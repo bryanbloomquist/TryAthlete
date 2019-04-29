@@ -1,17 +1,25 @@
 {
   "name": "try-athlete",
   "version": "0.1.0",
+  "main": "server.js",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.16.4",
+    "express-router": "0.0.1",
+    "mongoose": "^5.5.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
