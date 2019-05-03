@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Wrapper from "./components/Wrapper/Wrapper";
-import Nav from "./components/Navbar/Nav";
+import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
@@ -13,7 +13,7 @@ function App() {
   return (
     <Router>
       <Wrapper>
-        <Nav />
+        <Navbar />
         <Switch>
           <Route exact path="/" component={Dashboard} />
           <Route exact path="/user" component={Profile} />
