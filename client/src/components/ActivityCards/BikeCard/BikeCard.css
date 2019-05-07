@@ -1,0 +1,8 @@
+.card {
+    width:30%;
+    height: 25%;
+    background-color: lightgray;
+    box-shadow: 5px 10px 8px #888888;
+    margin: 1%;
+    float: left;
+}
