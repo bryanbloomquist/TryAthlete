@@ -12,7 +12,7 @@ function ChallengesCard(props) {
     console.log(style);
     return (
         <div className="card" style={style}>
-            <h2>Current Challenges</h2><br />
+            <h2>Challenges</h2><br />
             
         </div>
     )

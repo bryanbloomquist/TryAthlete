@@ -12,3 +12,12 @@
 .card-wide {
     width:94%;
 }
+
+.avatar {
+    width:50px;
+    float: right;
+}
+
+.container-fluid {
+    padding: 1% 15% 1% 15%;
+}

@@ -14,19 +14,17 @@ function ActivityCard(props) {
     console.log(style);
     return (
         <div className="card" style={style}>
-            <h2>Record a {props.activity}</h2><br />
+            <h2>Record a {props.activity}</h2>
             <Form>
                 <Form.Group>
                     <Form.Label>Distance</Form.Label>
-                        <Form.Control type="number" placeholder="1"></Form.Control>
-                    <br /><br />
+                        <Form.Control type="number" placeholder="1"></Form.Control>          
                     <Form.Label>Units</Form.Label>
-                    <br />
                         <Form.Control as="select">
                             <option value="unit1">{props.units[0]}</option>
                             <option value="unit2">{props.units[1]}</option>
                         </Form.Control>
-                    <br /><br />
+                    <br />
                     <Button type="submit" className="btn btn-warning">Log it</Button>
                 </Form.Group>
             </Form>

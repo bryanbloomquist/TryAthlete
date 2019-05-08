@@ -18,18 +18,26 @@ import Swim from "../components/images/swim.png";
 
 class Profile extends Component {
     state = {
-        user: {},
+        user: {
+            id: 1,
+            fname: "Scott",
+            lname: "Anderson",
+            userName: "wildside50",
+            avatar: "https://media.licdn.com/dms/image/C5603AQG8RXuzxnp7Vg/profile-displayphoto-shrink_200_200/0?e=1562803200&v=beta&t=8fzMGfAM1iGOsjDSm_FAUS-zD1ler13jAEzweHT_nvw"
+        },
         // activity: ["Run", "Bike Ride", "Swim"],
         // rbunits: ["mi", "km"],
         // sunits: ["meter", "yard"],
         // color: ["#ed4b4b", "#4fc147", "#4b68ed"]
     };
+
+    
     // When this component mounts, grab the user with the _id of this.props.match.params.id
-    componentDidMount() {
-        API.getUser(this.props.match.params.id)
-            .then(res => this.setState({ user: res.data }))
-            .catch(err => console.log(err));
-    }
+    // componentDidMount() {
+    //     API.getUser(this.props.match.params.id)
+    //         .then(res => this.setState({ user: res.data }))
+    //         .catch(err => console.log(err));
+    // }
 
     logOut() {
         window.location.assign('/');
@@ -39,21 +47,6 @@ class Profile extends Component {
     render() {
         return (
             <Container fluid>
-                <Row>
-                    <Col size="md-12">
-                        <Jumbotron>
-                            <h1>Profile</h1>
-                            <h2>
-
-                                {this.state.user.fname} {this.state.user.lname}
-                            </h2>
-                            <img src={this.state.user.avatar} className="text-center" alt="User Avatar" />
-                        </Jumbotron>
-                    </Col>
-                </Row>
-                <Row>
-                    <h1 className="text-center">User Profile Area</h1>
-                </Row>
                 <Row>
                     <ActivityCard
                         activity={"Run"}
