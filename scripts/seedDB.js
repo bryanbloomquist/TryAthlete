@@ -12,12 +12,18 @@ const userSeed = [
   {
     fname: "stephen",
     lname: "king",
-    avatar: "https://via.placeholder.com/150"
+    avatar: "https://via.placeholder.com/150",
+    activities: [],
+    goals: [],
+    badges: []
   },
   {
     fname: "william",
     lname: "golding",
-    avatar: "https://via.placeholder.com/150"
+    avatar: "https://via.placeholder.com/150",
+    activities: [],
+    goals: [],
+    badges: []
   }
 ];
 
