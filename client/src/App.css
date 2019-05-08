@@ -1,0 +1,14 @@
+.card {
+    width:30%;
+    height: auto;
+    color: white;
+    box-shadow: 5px 10px 8px #888888;
+    margin: 1%;
+    padding: 5%;
+    float: left;
+    /* text-align: center; */
+}
+
+.card-wide {
+    width:94%;
+}
