@@ -16,6 +16,10 @@ class Details extends Component {
             .catch(err => console.log(err));
     }
 
+    logIn() {
+        window.location.assign('/user/');
+      }
+
     render() {
         return (
             <Container fluid>
@@ -32,6 +36,7 @@ class Details extends Component {
                 <Row>
                     <Col>
                         <h2 className="text-center">Home Page Info Here</h2>
+                        <button className="btn btn-success" onClick={() => this.logIn()}>Login</button>
                     </Col>
                 </Row>
             </Container>

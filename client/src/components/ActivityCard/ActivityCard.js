@@ -5,7 +5,7 @@ function ActivityCard(props) {
     const style = {
         backgroundColor: props.color,
         backgroundImage: "url("+props.img+")",
-        backgroundSize: " 100% auto",
+        backgroundSize: " 100% 100%",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
     }
@@ -24,7 +24,7 @@ function ActivityCard(props) {
                     </select>
                 </label>
                 <br /><br />
-                <button type="submit" className="btn btn-danger">Log it</button>
+                <button type="submit" className="btn btn-warning">Log it</button>
             </form>
         </div>
     )

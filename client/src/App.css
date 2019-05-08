@@ -8,3 +8,7 @@
     float: left;
     /* text-align: center; */
 }
+
+.card-wide {
+    width:94%;
+}

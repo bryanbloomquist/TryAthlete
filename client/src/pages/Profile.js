@@ -1,14 +1,20 @@
 import React, { Component } from "react";
+//react-bootstrap
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Jumbotron from "react-bootstrap/Jumbotron";
+//API
 import API from "../utils/API";
+//Components
 import ActivityCard from "../components/ActivityCard/ActivityCard.js";
-import Run from "../components/images/run.png"
-import Bike from "../components/images/bike.png"
-import Swim from "../components/images/swim.png"
-// import run from "../components/images"
+import BadgesCard from "../components/BadgesCard/BadgesCard.js";
+import ChallengesCard from "../components/ChallengesCard/ChallengesCard.js";
+import GoalsCard from "../components/GoalsCard/GoalsCard.js";
+import SocialCard from "../components/SocialCard/SocialCard.js";
+import Run from "../components/images/run.png";
+import Bike from "../components/images/bike.png";
+import Swim from "../components/images/swim.png";
 
 class Profile extends Component {
     state = {
@@ -24,6 +30,11 @@ class Profile extends Component {
             .then(res => this.setState({ user: res.data }))
             .catch(err => console.log(err));
     }
+
+    logOut() {
+        window.location.assign('/');
+      }
+
 
     render() {
         return (
@@ -63,7 +74,17 @@ class Profile extends Component {
                         img={Swim}
                     />
                 </Row>
+                <Row>
+                    <GoalsCard />
+                    <ChallengesCard />
+                    <BadgesCard />
+                </Row>
+                <Row>
+                    <SocialCard />
+                </Row>
+                <button className="btn btn-danger" onClick={() => this.logOut()}>Logout</button>
             </Container >
+
         );
     }
 }
