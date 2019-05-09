@@ -27,19 +27,19 @@ const GoalSchema = new Schema({
         type: Number,
         required: true
     }
-    ,goalDate: {
-        type: Date,
-        required: true
-    },
-    dateEntered: {
-        type: Date,
-        required: true,
-        default: Date.now
-    },
-    dateCompleted: {
-        type: Date,
-        required: false
-    }
+    // ,goalDate: {
+    //     type: Date,
+    //     required: true
+    // },
+    // dateEntered: {
+    //     type: Date,
+    //     required: true,
+    //     default: Date.now
+    // },
+    // dateCompleted: {
+    //     type: Date,
+    //     required: false
+    // }
 
 });
 

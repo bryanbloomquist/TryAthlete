@@ -32,6 +32,19 @@ const ChallengeSchema = new Schema({
         required: true,
         default: false
     }
+        // ,goalDate: {
+    //     type: Date,
+    //     required: true
+    // },
+    // dateEntered: {
+    //     type: Date,
+    //     required: true,
+    //     default: Date.now
+    // },
+    // dateCompleted: {
+    //     type: Date,
+    //     required: false
+    // }
 });
 
 const Challenge = mongoose.model("Goal", ChallengeSchema);
