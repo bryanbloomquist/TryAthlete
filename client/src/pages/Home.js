@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import GoogleLogin from "react-google-login";
-import { GoogleLogout } from "react-google-login";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -29,10 +28,6 @@ class Details extends Component {
             console.log( response.hg.id_token );
         }
 
-        const logout = ( response ) => {
-            console.log( response );
-        }
-
         return (
             <Container fluid>
                 <Row>
@@ -55,13 +50,6 @@ class Details extends Component {
                             onSuccess = { responseGoogle }
                             onFailure = { responseGoogle }
                         />
-                    </Col>
-                    <Col>
-                        <GoogleLogout 
-                            buttonText = "Logout"
-                            onLogoutSuccess = { logout }
-                        >
-                        </GoogleLogout>
                     </Col>
                 </Row>
             </Container>
