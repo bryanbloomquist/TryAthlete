@@ -42,7 +42,7 @@ let seedChallenge = {
 
 db.Activity.create(seedAct)
     .then(function (dbActivity) {
-        return db.User.findOneAndUpdate({ "fname": "stephen" }, { $push: { activities: dbActivity._id } }, { new: true });
+        return db.User.findOneAndUpdate({ "givenName": "stephen" }, { $push: { activities: dbActivity._id } }, { new: true });
     })
     .then(function (dbUser) {
         console.log(dbUser);
@@ -54,7 +54,7 @@ db.Activity.create(seedAct)
 //seed badge object
 db.Badge.create(seedBadge)
     .then(function (dbBadge) {
-        return db.User.findOneAndUpdate({ "fname": "stephen" }, { $push: { badges: dbBadge._id } }, { new: true });
+        return db.User.findOneAndUpdate({ "givenName": "stephen" }, { $push: { badges: dbBadge._id } }, { new: true });
     })
     .then(function (dbUser) {
         console.log(dbUser);
@@ -66,7 +66,7 @@ db.Badge.create(seedBadge)
 //seed challenge object
 db.Challenge.create(seedChallenge)
     .then(function (dbChallenge) {
-        return db.User.findOneAndUpdate({ "fname": "stephen" }, { $push: { challenges: dbChallenge._id } }, { new: true });
+        return db.User.findOneAndUpdate({ "givenName": "stephen" }, { $push: { challenges: dbChallenge._id } }, { new: true });
     })
     .then(function (dbUser) {
         console.log(dbUser);
@@ -78,7 +78,7 @@ db.Challenge.create(seedChallenge)
 //seed goal object
 db.Goal.create(seedGoal)
     .then(function (dbGoal) {
-        return db.User.findOneAndUpdate({ "fname": "stephen" }, { $push: { goals: dbGoal._id } }, { new: true });
+        return db.User.findOneAndUpdate({ "givenName": "stephen" }, { $push: { goals: dbGoal._id } }, { new: true });
     })
     .then(function (dbUser) {
         console.log(dbUser);
