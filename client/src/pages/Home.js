@@ -64,8 +64,7 @@ class Details extends Component {
                         </GoogleLogout>
                     </Col>
                 </Row>
-            </Container>,
-            document.getElementById( "googleButton" )
+            </Container>
         );
     }
 }
