@@ -15,7 +15,9 @@ const userSeed = [
     avatar: "https://via.placeholder.com/150",
     activities: [],
     goals: [],
-    badges: []
+    badges: [],
+    challenges: [],
+    friends: []
   },
   {
     fname: "william",
@@ -23,7 +25,9 @@ const userSeed = [
     avatar: "https://via.placeholder.com/150",
     activities: [],
     goals: [],
-    badges: []
+    badges: [],
+    challenges: [],
+    friends: []
   }
 ];
 
