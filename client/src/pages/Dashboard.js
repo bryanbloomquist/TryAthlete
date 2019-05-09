@@ -9,6 +9,7 @@ class Dashboard extends Component {
     state = {
         user: {}
     };
+
     // When this component mounts, grab the user with the _id of this.props.match.params.id
     componentDidMount() {
         API.getUser(this.props.match.params.id)
