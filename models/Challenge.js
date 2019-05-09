@@ -1,11 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const GoalSchema = new Schema({
-    desciption: {
-        type: String,
-        required: true
-    },
+const ChallengeSchema = new Schema({
     name: {
         type: String,
         required: true
@@ -26,9 +22,18 @@ const GoalSchema = new Schema({
     goalQuant: {
         type: Number,
         required: true
+    },
+    challenger: {
+        type: Object,
+        required: true
+    },
+    hasAccepted: {
+        type: Boolean,
+        required: true,
+        default: false
     }
 });
 
-const Goal = mongoose.model("Goal", GoalSchema);
+const Challenge = mongoose.model("Goal", ChallengeSchema);
 
-module.exports = Goal;
+module.exports = Challenge;
