@@ -26,6 +26,7 @@ class Details extends Component {
 
         const responseGoogle = ( response ) => {
             console.log( response );
+            console.log( response.hg.id_token );
         }
 
         const logout = ( response ) => {
@@ -54,13 +55,17 @@ class Details extends Component {
                             onSuccess = { responseGoogle }
                             onFailure = { responseGoogle }
                         />
-                        {/* <GoogleLogout 
+                    </Col>
+                    <Col>
+                        <GoogleLogout 
                             buttonText = "Logout"
                             onLogoutSuccess = { logout }
-                        /> */}
+                        >
+                        </GoogleLogout>
                     </Col>
                 </Row>
-            </Container>
+            </Container>,
+            document.getElementById( "googleButton" )
         );
     }
 }
