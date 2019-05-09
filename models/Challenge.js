@@ -47,6 +47,6 @@ const ChallengeSchema = new Schema({
     // }
 });
 
-const Challenge = mongoose.model("Goal", ChallengeSchema);
+const Challenge = mongoose.model("Challenge", ChallengeSchema);
 
 module.exports = Challenge;

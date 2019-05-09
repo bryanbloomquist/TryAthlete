@@ -11,9 +11,10 @@ mongoose.connect(
 //user seed
 const userSeed = [
   {
-    fname: "stephen",
-    lname: "king",
-    avatar: "https://via.placeholder.com/150",
+    givenName: "stephen",
+    familyName: "king",
+    imageUrl: "https://via.placeholder.com/150",
+    email: "www.google.com",
     activities: [],
     goals: [],
     badges: [],
@@ -21,9 +22,10 @@ const userSeed = [
     friends: []
   },
   {
-    fname: "william",
-    lname: "golding",
-    avatar: "https://via.placeholder.com/150",
+    givenName: "william",
+    familyName: "golding",
+    imageUrl: "https://via.placeholder.com/150",
+    email: "www.yahoo.com",
     activities: [],
     goals: [],
     badges: [],

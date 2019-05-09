@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const GoalSchema = new Schema({
-    desciption: {
+    description: {
         type: String,
         required: true
     },
@@ -46,3 +46,4 @@ const GoalSchema = new Schema({
 const Goal = mongoose.model("Goal", GoalSchema);
 
 module.exports = Goal;
+
