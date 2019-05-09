@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import GoogleLogin from "react-google-login";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -18,9 +19,14 @@ class Details extends Component {
 
     logIn() {
         window.location.assign('/user/');
-      }
+    }
 
     render() {
+
+        const responseGoogle = ( response ) => {
+            console.log( response );
+        }
+
         return (
             <Container fluid>
                 <Row>
@@ -36,7 +42,14 @@ class Details extends Component {
                 <Row>
                     <Col>
                         <h2 className="text-center">Home Page Info Here</h2>
-                        <button className="btn btn-success" onClick={() => this.logIn()}>Login</button>
+                        {/* <button className="btn btn-success" onClick={() => this.logIn()}>Login</button> */}
+                        <GoogleLogin
+                            clientId = "907322878909-ceh0tltstqr7ht4eidho9ehj73bs7t1p.apps.googleusercontent.com"
+                            buttonText = "Google Login"
+                            onSuccess = { responseGoogle }
+                            onFailure = { responseGoogle }
+                            className = "justify-content-center"
+                        />
                     </Col>
                 </Row>
             </Container>
