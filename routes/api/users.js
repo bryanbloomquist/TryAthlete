@@ -13,4 +13,28 @@ router
   .put(usersController.update)
   .delete(usersController.remove);
 
+  router
+  .route("/:id/activities")
+  .get(usersController.findById)
+  .put(usersController.update)
+  .delete(usersController.remove);
+
+  router
+  .route("/:id/goals")
+  .get(usersController.findById)
+  .put(usersController.update)
+  .delete(usersController.remove);
+
+  router
+  .route("/:id/badges")
+  .get(usersController.findById)
+  .put(usersController.update)
+  .delete(usersController.remove);
+
+  router
+  .route("/:id/friends")
+  .get(usersController.findById)
+  .put(usersController.update)
+  .delete(usersController.remove);
+
 module.exports = router;

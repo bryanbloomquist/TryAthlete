@@ -25,10 +25,15 @@ const UserSchema = new Schema({
   badges: [{
     type: Schema.Types.ObjectId,
     ref: "Badge"
-  }]
-
-
-
+  }],
+  challenges: [{
+    type: Schema.Types.ObjectId,
+    ref: "Challenge"
+  }],
+  friends: {
+    type: Array,
+    required: false
+  }
 });
 
 const User = mongoose.model("User", UserSchema);

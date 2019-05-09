@@ -11,7 +11,11 @@ const ActivitySchema = new Schema({
         type: String,
         required: true
     },
-    distance: {
+    distanceMeasurement: {
+        type: Number,
+        required: true
+    },
+    distanceUnit: {
         type: String,
         required: true
     },

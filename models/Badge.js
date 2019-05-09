@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const BadgeSchema = new Schema({
-    isReached: {
+    isEarned: {
         type: Boolean,
         required: true
     },
@@ -17,12 +17,7 @@ const BadgeSchema = new Schema({
     sport: {
         type: String,
         required: true
-    },
-    imgSrc: {
-        type: String,
-        required: true
     }
-
 });
 
 const Badge = mongoose.model("Badge", BadgeSchema);
