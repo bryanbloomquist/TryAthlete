@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Jumbotron from "react-bootstrap/Jumbotron";
 
-class Details extends Component {
+class Home extends Component {
     logIn() {
         window.location.assign('/user/');
       }
@@ -33,4 +33,4 @@ class Details extends Component {
     }
 }
 
-export default Details;
+export default Home;

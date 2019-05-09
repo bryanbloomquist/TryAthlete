@@ -5,13 +5,14 @@ import API from "./utils/API";
 import Wrapper from "./components/Wrapper/Wrapper";
 import NavbarArea from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
-import Dashboard from "./pages/Dashboard";
-import Home from "./pages/Home";
-import Profile from "./pages/Profile";
-import Goals from "./pages/Goals";
-import Challenges from "./pages/Challenges";
-import Badges from "./pages/Badges";
-import NoMatch from "./pages/NoMatch";
+import Dashboard from "./components/Dashboard/Dashboard";
+import Home from "./components/Home/Home";
+import Profile from "./components/Profile/Profile";
+import Goals from "./components/Goals/Goals";
+import Challenges from "./components/Challenges/Challenges";
+import Badges from "./components/Badges/Badges";
+import Social from "./components/Social/Social";
+// import NoMatch from "./components/NoMatch/NoMatch";
 import './App.css';
 
 class App extends Component {
@@ -38,12 +39,14 @@ class App extends Component {
         <Wrapper>
           <NavbarArea>{this.state.user}</NavbarArea>
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/user/:id/dashboard" component={Dashboard} />
-            <Route exact path="/user/:id/goals" component={Goals} />
-            <Route exact path="/user" component={Dashboard} />
-            <Route exact path="/user/:id/profile" component={Profile} />
-            <Route component={NoMatch} />
+            <Route exact path="/"  render={(props) => <Home {...props} user={this.state}/>} />
+            <Route exact path="/dashboard" render={(props) => <Dashboard {...props} user={this.state}/>} />
+            <Route exact path="/goals"  render={(props) => <Goals {...props} user={this.state}/>} />
+            <Route exact path="/challenges"  render={(props) => <Challenges {...props} user={this.state.user}/>} />
+            <Route exact path="/badges"  render={(props) => <Badges {...props} user={this.state}/>} />
+            <Route exact path="/social"  render={(props) => <Social {...props} user={this.state}/>} />
+            <Route exact path="/profile"  render={(props) => <Profile {...props} user={this.state}/>} />
+            {/* <Route component={NoMatch} /> */}
           </Switch>
           <Footer />
         </Wrapper>

@@ -11,7 +11,7 @@ class Details extends Component {
                 <Row>
                     <Col size="md-12">
                         <Jumbotron>
-                            <h1>User Details</h1>
+                            <h1>Scoial Feed</h1>
                             <h2>
                                 {this.state.user.fname} {this.state.user.lname}
                             </h2>
