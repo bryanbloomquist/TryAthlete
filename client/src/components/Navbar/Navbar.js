@@ -33,7 +33,7 @@ function NavbarArea(props) {
                 <FormControl type="text" placeholder="Search for friends" className="mr-sm-2" />
                 <Button className="searchButton" variant="outline-success">Search</Button>
             </Form>
-            <Navbar.Brand href="/user">
+            <Navbar.Brand href="/dashboard">
                 <img className="avatar" src={props.children.avatar} alt="login"></img>
             </Navbar.Brand>
         </Navbar >

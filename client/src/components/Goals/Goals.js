@@ -5,6 +5,7 @@ import Container from "react-bootstrap/Container";
 import Jumbotron from "react-bootstrap/Jumbotron";
 
 function Goals(props) {
+    console.log(props);
     return (
         <Container fluid>
             <Row>
@@ -12,9 +13,9 @@ function Goals(props) {
                     <Jumbotron>
                         <h1>Goals</h1>
                         <h2>
-                            
+                            {props.user.fname} {props.user.lname}
                         </h2>
-                        <img src={props.avatar} className="text-center" alt="User Avatar" />
+                        <img src={props.user.avatar} className="text-center" alt="User Avatar" />
                     </Jumbotron>
                 </Col>
             </Row>

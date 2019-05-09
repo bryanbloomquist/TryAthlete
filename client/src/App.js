@@ -39,13 +39,13 @@ class App extends Component {
         <Wrapper>
           <NavbarArea>{this.state.user}</NavbarArea>
           <Switch>
-            <Route exact path="/"  render={(props) => <Home {...props} user={this.state}/>} />
-            <Route exact path="/dashboard" render={(props) => <Dashboard {...props} user={this.state}/>} />
-            <Route exact path="/goals"  render={(props) => <Goals {...props} user={this.state}/>} />
+            <Route exact path="/"  render={(props) => <Home {...props} user={this.state.user}/>} />
+            <Route exact path="/dashboard" render={(props) => <Dashboard {...props} user={this.state.user}/>} />
+            <Route exact path="/goals"  render={(props) => <Goals {...props} user={this.state.user}/>} />
             <Route exact path="/challenges"  render={(props) => <Challenges {...props} user={this.state.user}/>} />
-            <Route exact path="/badges"  render={(props) => <Badges {...props} user={this.state}/>} />
-            <Route exact path="/social"  render={(props) => <Social {...props} user={this.state}/>} />
-            <Route exact path="/profile"  render={(props) => <Profile {...props} user={this.state}/>} />
+            <Route exact path="/badges"  render={(props) => <Badges {...props} user={this.state.user}/>} />
+            <Route exact path="/social"  render={(props) => <Social {...props} user={this.state.user}/>} />
+            <Route exact path="/profile"  render={(props) => <Profile {...props} user={this.state.user}/>} />
             {/* <Route component={NoMatch} /> */}
           </Switch>
           <Footer />
