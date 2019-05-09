@@ -14,7 +14,7 @@ const GoalSchema = new Schema({
         type: String,
         required: true
     },
-    achieved: {
+    isAchieved: {
         type: Boolean,
         required: true,
         default: false
@@ -26,14 +26,7 @@ const GoalSchema = new Schema({
     goalQuant: {
         type: Number,
         required: true
-    },
-    isChallenge: {
-        type: Boolean,
-        required: true,
-        default: false
     }
-
-
 });
 
 const Goal = mongoose.model("Goal", GoalSchema);
