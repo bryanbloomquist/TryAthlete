@@ -26,6 +26,10 @@ const UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Badge"
   }],
+  challenges: [{
+    type: Schema.Types.ObjectId,
+    ref: "Challenge"
+  }],
   friends: {
     type: Array,
     required: false
