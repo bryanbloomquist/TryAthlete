@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import GoogleLogin from "react-google-login";
+import GoogleLogout from "react-google-login";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -27,6 +28,10 @@ class Details extends Component {
             console.log( response );
         }
 
+        const logout = ( response ) => {
+            console.log( response );
+        }
+
         return (
             <Container fluid>
                 <Row>
@@ -48,7 +53,10 @@ class Details extends Component {
                             buttonText = "Google Login"
                             onSuccess = { responseGoogle }
                             onFailure = { responseGoogle }
-                            className = "justify-content-center"
+                        />
+                        <GoogleLogout 
+                            buttonText = "Logout"
+                            onLogoutSuccess = { logout }
                         />
                     </Col>
                 </Row>
