@@ -6,9 +6,45 @@
     margin: 1%;
     padding: 5%;
     float: left;
-    /* text-align: center; */
 }
 
 .card-wide {
     width:94%;
 }
+
+.avatar {
+    width:50px;
+    float: right;
+    border-radius: 50%;
+}
+
+.container-fluid {
+    padding: 1% 10% 1% 10%;
+}
+
+.navbar-brand {
+    padding-left: 2%;
+}
+
+.navbar {
+    background-color: lightgrey
+}
+
+h2 {
+    font-size: 22px;
+  }
+  @media (min-width:576px) {
+    h1 {
+      font-size: 22px;
+    }
+  }
+  @media (min-width:768px) {
+    h1 {
+      font-size: 24px;
+    }
+  }
+  @media (min-width:992px) {
+    h1 {
+      font-size: 34px;
+    }
+  }

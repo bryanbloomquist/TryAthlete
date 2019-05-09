@@ -4,28 +4,27 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Jumbotron from "react-bootstrap/Jumbotron";
 
-function Goals(props) {
-    console.log(props);
+function Profile() {
     return (
         <Container fluid>
             <Row>
                 <Col size="md-12">
                     <Jumbotron>
-                        <h1>Goals</h1>
+                        <h1>Profile</h1>
                         <h2>
-                            {props.user.fname} {props.user.lname}
+                            {this.state.user.fname} {this.state.user.lname}
                         </h2>
-                        <img src={props.user.avatar} className="text-center" alt="User Avatar" />
+                        <img src={this.state.user.avatar} className="text-center" alt="User Avatar" />
                     </Jumbotron>
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    <h1 className="text-center">User Detials Area</h1>
+                    <h1 className="text-center">User Dashboard Area</h1>
                 </Col>
             </Row>
         </Container>
     );
 }
 
-export default Goals;
+export default Profile

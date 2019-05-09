@@ -4,28 +4,28 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Jumbotron from "react-bootstrap/Jumbotron";
 
-function Goals(props) {
-    console.log(props);
+function Home() {
     return (
         <Container fluid>
             <Row>
                 <Col size="md-12">
                     <Jumbotron>
-                        <h1>Goals</h1>
+                        <h1>LANDING PAGE</h1>
                         <h2>
-                            {props.user.fname} {props.user.lname}
-                        </h2>
-                        <img src={props.user.avatar} className="text-center" alt="User Avatar" />
+                            Login / Register Here - Cool Video looping?
+                            </h2>
                     </Jumbotron>
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    <h1 className="text-center">User Detials Area</h1>
+                    <h2 className="text-center">Home Page Info Here</h2>
+                    <button className="btn btn-success" onClick={() => this.logIn()}>Login</button>
                 </Col>
             </Row>
         </Container>
     );
 }
 
-export default Goals;
+
+export default Home;
