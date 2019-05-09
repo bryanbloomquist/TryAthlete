@@ -3,16 +3,15 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Jumbotron from "react-bootstrap/Jumbotron";
-import API from "../utils/API";
 
-class Profile extends Component {
+class Details extends Component {
     render() {
         return (
             <Container fluid>
                 <Row>
                     <Col size="md-12">
                         <Jumbotron>
-                            <h1>Profile</h1>
+                            <h1>User Details</h1>
                             <h2>
                                 {this.state.user.fname} {this.state.user.lname}
                             </h2>
@@ -22,7 +21,7 @@ class Profile extends Component {
                 </Row>
                 <Row>
                     <Col>
-                        <h1 className="text-center">User Dashboard Area</h1>
+                        <h1 className="text-center">User Detials Area</h1>
                     </Col>
                 </Row>
             </Container>
@@ -30,4 +29,4 @@ class Profile extends Component {
     }
 }
 
-export default Profile
+export default Details;

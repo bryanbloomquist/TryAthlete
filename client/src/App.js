@@ -8,7 +8,9 @@ import Footer from "./components/Footer/Footer";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-import Details from "./pages/Details";
+import Goals from "./pages/Goals";
+import Challenges from "./pages/Challenges";
+import Badges from "./pages/Badges";
 import NoMatch from "./pages/NoMatch";
 import './App.css';
 
@@ -37,9 +39,10 @@ class App extends Component {
           <NavbarArea>{this.state.user}</NavbarArea>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/user" component={Profile} />
-            <Route exact path="/user/:id" component={Details} />
             <Route exact path="/user/:id/dashboard" component={Dashboard} />
+            <Route exact path="/user/:id/goals" component={Goals} />
+            <Route exact path="/user" component={Dashboard} />
+            <Route exact path="/user/:id/profile" component={Profile} />
             <Route component={NoMatch} />
           </Switch>
           <Footer />

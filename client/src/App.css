@@ -25,3 +25,26 @@
 .navbar-brand {
     padding-left: 2%;
 }
+
+.navbar {
+    background-color: lightgrey
+}
+
+h2 {
+    font-size: 22px;
+  }
+  @media (min-width:576px) {
+    h1 {
+      font-size: 22px;
+    }
+  }
+  @media (min-width:768px) {
+    h1 {
+      font-size: 24px;
+    }
+  }
+  @media (min-width:992px) {
+    h1 {
+      font-size: 34px;
+    }
+  }

@@ -7,12 +7,12 @@ import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
 import Logo from "../images/logo2.png"
 import Home from "../images/home2.png"
-import Login from "../images/login2.png"
+// import Login from "../images/login2.png"
 
 function NavbarArea(props) {
     console.log(props.children)
     return (
-        <Navbar bg="light" expand="lg">
+        <Navbar expand="lg">
             <Navbar.Brand href="/">
                 <img src={Logo} alt="logo"></img>
                 {` `}
@@ -20,7 +20,7 @@ function NavbarArea(props) {
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Nav className="mr-auto">
-                <NavDropdown title="Navigation" id="basic-nav-dropdown">
+                <NavDropdown title="Menu" id="basic-nav-dropdown">
                     <NavDropdown.Item href="/user">Dashboard</NavDropdown.Item>
                     <NavDropdown.Item href="/user/goals">Goals</NavDropdown.Item>
                     <NavDropdown.Item href="/user/challenges">Challenges</NavDropdown.Item>
