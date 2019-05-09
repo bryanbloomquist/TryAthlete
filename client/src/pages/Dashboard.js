@@ -6,16 +6,6 @@ import Jumbotron from "react-bootstrap/Jumbotron";
 import API from "../utils/API";
 
 class Dashboard extends Component {
-    state = {
-        user: {}
-    };
-    // When this component mounts, grab the user with the _id of this.props.match.params.id
-    componentDidMount() {
-        API.getUser(this.props.match.params.id)
-            .then(res => this.setState({ user: res.data }))
-            .catch(err => console.log(err));
-    }
-
     render() {
         return (
             <Container fluid>

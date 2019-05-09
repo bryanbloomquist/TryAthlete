@@ -6,7 +6,6 @@
     margin: 1%;
     padding: 5%;
     float: left;
-    /* text-align: center; */
 }
 
 .card-wide {
@@ -16,8 +15,13 @@
 .avatar {
     width:50px;
     float: right;
+    border-radius: 50%;
 }
 
 .container-fluid {
-    padding: 1% 15% 1% 15%;
+    padding: 1% 10% 1% 10%;
+}
+
+.navbar-brand {
+    padding-left: 2%;
 }

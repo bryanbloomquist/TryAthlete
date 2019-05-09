@@ -7,7 +7,7 @@ function ActivityCard(props) {
     const style = {
         backgroundColor: props.color,
         backgroundImage: "url(" + props.img + ")",
-        backgroundSize: " 100% 100%",
+        backgroundSize: " 90% 90%",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
     }
