@@ -27,6 +27,20 @@ const GoalSchema = new Schema({
         type: Number,
         required: true
     }
+    ,goalDate: {
+        type: Date,
+        required: true
+    },
+    dateEntered: {
+        type: Date,
+        required: true,
+        default: Date.now
+    },
+    dateCompleted: {
+        type: Date,
+        required: false
+    }
+
 });
 
 const Goal = mongoose.model("Goal", GoalSchema);
