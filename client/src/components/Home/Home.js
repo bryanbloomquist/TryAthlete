@@ -7,7 +7,8 @@ import Image from "react-bootstrap/Image";
 import BackgroundVideo from "../BackgroundVideo/BackgroundVideo";
 import Logo from "../images/logo-white.svg"
 
-function Home() {
+function Home(props) {
+    console.log(props)
     return (
         <Container fluid>
             <Row>
