@@ -4,9 +4,10 @@ const Schema = mongoose.Schema;
 const BadgeSchema = new Schema({
     isEarned: {
         type: Boolean,
-        required: true
+        required: true,
+        default: false
     },
-    desciption: {
+    description: {
         type: String,
         required: true
     },
@@ -23,3 +24,4 @@ const BadgeSchema = new Schema({
 const Badge = mongoose.model("Badge", BadgeSchema);
 
 module.exports = Badge;
+
