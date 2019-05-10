@@ -17,11 +17,39 @@ import './App.css';
 
 class App extends Component {
   state = {
-    user: {
+    scott: {
         id: 1,
         fname: "Scott",
         lname: "Anderson",
         userName: "wildside50",
+        avatar: "https://media.licdn.com/dms/image/C5603AQG8RXuzxnp7Vg/profile-displayphoto-shrink_200_200/0?e=1562803200&v=beta&t=8fzMGfAM1iGOsjDSm_FAUS-zD1ler13jAEzweHT_nvw"
+    },
+    ashlen: {
+        id: 2,
+        fname: "Ashlen",
+        lname: "Bruns",
+        userName: "tryAshlen",
+        avatar: "https://media.licdn.com/dms/image/C5603AQG8RXuzxnp7Vg/profile-displayphoto-shrink_200_200/0?e=1562803200&v=beta&t=8fzMGfAM1iGOsjDSm_FAUS-zD1ler13jAEzweHT_nvw"
+    },
+    bryan: {
+        id: 3,
+        fname: "Bryan",
+        lname: "Bloomquist",
+        userName: "dungeonMaster",
+        avatar: "https://media.licdn.com/dms/image/C5603AQG8RXuzxnp7Vg/profile-displayphoto-shrink_200_200/0?e=1562803200&v=beta&t=8fzMGfAM1iGOsjDSm_FAUS-zD1ler13jAEzweHT_nvw"
+    },
+    john: {
+        id: 4,
+        fname: "John",
+        lname: "Evans",
+        userName: "prettyBoy",
+        avatar: "https://media.licdn.com/dms/image/C5603AQG8RXuzxnp7Vg/profile-displayphoto-shrink_200_200/0?e=1562803200&v=beta&t=8fzMGfAM1iGOsjDSm_FAUS-zD1ler13jAEzweHT_nvw"
+    },
+    steve: {
+        id: 5,
+        fname: "Steve",
+        lname: "Thompson",
+        userName: "taskMaster",
         avatar: "https://media.licdn.com/dms/image/C5603AQG8RXuzxnp7Vg/profile-displayphoto-shrink_200_200/0?e=1562803200&v=beta&t=8fzMGfAM1iGOsjDSm_FAUS-zD1ler13jAEzweHT_nvw"
     }
 };
