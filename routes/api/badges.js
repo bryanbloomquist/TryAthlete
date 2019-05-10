@@ -1,15 +1,15 @@
 const router = require("express").Router();
-const usersController = require("../../controllers/usersController");
+const badgesController = require("../../controllers/badgesController.js");
 
 // Matches with "/api/badge"
 router.route("/")
-  .get(usersController.findAll)
+  .get(badgesController.findAll)
 
 
 // Matches with "/api/users/:id"
 router
   .route("/:id")
-  .get(usersController.findById)
+  .get(badgesController.findById)
 
 
 module.exports = router;
