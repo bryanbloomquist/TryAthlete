@@ -3,29 +3,30 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Jumbotron from "react-bootstrap/Jumbotron";
+import Image from "react-bootstrap/Image";
+import BackgroundVideo from "../BackgroundVideo/BackgroundVideo";
+import Logo from "../images/logo-white.svg"
 
-function Home() {
+function Home(props) {
+    console.log(props)
     return (
         <Container fluid>
             <Row>
                 <Col size="md-12">
-                    <Jumbotron>
-                        <h1>LANDING PAGE</h1>
-                        <h2>
-                            Login / Register Here - Cool Video looping?
-                            </h2>
+                    <Jumbotron className="homeJumbo">
+                    
+                        <Image className="logo" src={Logo} alt="logo" fluid></Image>
                     </Jumbotron>
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    <h2 className="text-center">Home Page Info Here</h2>
-                    <button className="btn btn-success" onClick={() => this.logIn()}>Login</button>
+                    <h2 className="text-center slogan">Push Yourself, Pull For Everyone</h2>
                 </Col>
             </Row>
+            <BackgroundVideo />
         </Container>
     );
 }
-
 
 export default Home;

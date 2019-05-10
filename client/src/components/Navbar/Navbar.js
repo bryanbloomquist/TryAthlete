@@ -10,7 +10,8 @@ import Home from "../images/home2.png"
 // import Login from "../images/login2.png"
 
 function NavbarArea(props) {
-    console.log(props.children)
+    console.log(props.children.scott.avatar)
+    console.log(props.children.scott.avatar)
     return (
         <Navbar expand="lg">
             <Navbar.Brand href="/">
@@ -34,7 +35,7 @@ function NavbarArea(props) {
                 <Button className="searchButton" variant="outline-success">Search</Button>
             </Form>
             <Navbar.Brand href="/dashboard">
-                <img className="avatar" src={props.children.avatar} alt="login"></img>
+                <img className="avatar" src={props.children.scott.avatar} alt="login"></img>
             </Navbar.Brand>
         </Navbar >
 

@@ -17,11 +17,39 @@ import './App.css';
 
 class App extends Component {
   state = {
-    user: {
+    scott: {
         id: 1,
         fname: "Scott",
         lname: "Anderson",
         userName: "wildside50",
+        avatar: "https://media.licdn.com/dms/image/C5603AQG8RXuzxnp7Vg/profile-displayphoto-shrink_200_200/0?e=1562803200&v=beta&t=8fzMGfAM1iGOsjDSm_FAUS-zD1ler13jAEzweHT_nvw"
+    },
+    ashlen: {
+        id: 2,
+        fname: "Ashlen",
+        lname: "Bruns",
+        userName: "tryAshlen",
+        avatar: "https://media.licdn.com/dms/image/C5603AQG8RXuzxnp7Vg/profile-displayphoto-shrink_200_200/0?e=1562803200&v=beta&t=8fzMGfAM1iGOsjDSm_FAUS-zD1ler13jAEzweHT_nvw"
+    },
+    bryan: {
+        id: 3,
+        fname: "Bryan",
+        lname: "Bloomquist",
+        userName: "dungeonMaster",
+        avatar: "https://media.licdn.com/dms/image/C5603AQG8RXuzxnp7Vg/profile-displayphoto-shrink_200_200/0?e=1562803200&v=beta&t=8fzMGfAM1iGOsjDSm_FAUS-zD1ler13jAEzweHT_nvw"
+    },
+    john: {
+        id: 4,
+        fname: "John",
+        lname: "Evans",
+        userName: "prettyBoy",
+        avatar: "https://media.licdn.com/dms/image/C5603AQG8RXuzxnp7Vg/profile-displayphoto-shrink_200_200/0?e=1562803200&v=beta&t=8fzMGfAM1iGOsjDSm_FAUS-zD1ler13jAEzweHT_nvw"
+    },
+    steve: {
+        id: 5,
+        fname: "Steve",
+        lname: "Thompson",
+        userName: "taskMaster",
         avatar: "https://media.licdn.com/dms/image/C5603AQG8RXuzxnp7Vg/profile-displayphoto-shrink_200_200/0?e=1562803200&v=beta&t=8fzMGfAM1iGOsjDSm_FAUS-zD1ler13jAEzweHT_nvw"
     }
 };
@@ -37,15 +65,15 @@ class App extends Component {
     return (
       <Router>
         <Wrapper>
-          <NavbarArea>{this.state.user}</NavbarArea>
+          <NavbarArea>{this.state}</NavbarArea>
           <Switch>
-            <Route exact path="/"  render={(props) => <Home {...props} user={this.state.user}/>} />
-            <Route exact path="/dashboard" render={(props) => <Dashboard {...props} user={this.state.user}/>} />
-            <Route exact path="/goals"  render={(props) => <Goals {...props} user={this.state.user}/>} />
-            <Route exact path="/challenges"  render={(props) => <Challenges {...props} user={this.state.user}/>} />
-            <Route exact path="/badges"  render={(props) => <Badges {...props} user={this.state.user}/>} />
-            <Route exact path="/social"  render={(props) => <Social {...props} user={this.state.user}/>} />
-            <Route exact path="/profile"  render={(props) => <Profile {...props} user={this.state.user}/>} />
+            <Route exact path="/"  render={(props) => <Home {...props} user={this.state}/>} />
+            <Route exact path="/dashboard" render={(props) => <Dashboard {...props} user={this.state}/>} />
+            <Route exact path="/goals"  render={(props) => <Goals {...props} user={this.state}/>} />
+            <Route exact path="/challenges"  render={(props) => <Challenges {...props} user={this.state}/>} />
+            <Route exact path="/badges"  render={(props) => <Badges {...props} user={this.state}/>} />
+            <Route exact path="/social"  render={(props) => <Social {...props} user={this.state}/>} />
+            <Route exact path="/profile"  render={(props) => <Profile {...props} user={this.state}/>} />
             {/* <Route component={NoMatch} /> */}
           </Switch>
           <Footer />
