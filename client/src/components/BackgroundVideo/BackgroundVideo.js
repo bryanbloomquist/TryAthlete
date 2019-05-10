@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import Jumbotron from "react-bootstrap/Jumbotron";
 import YouTube from "react-youtube";
 
-class Home extends Component {
+class BackgroundVideo extends Component {
     _onReady(event) {
         // access to player in all event handlers via event.target
         // event.target.mute();
@@ -21,8 +20,11 @@ class Home extends Component {
                 autoplay: 1,
                 controls: 0,
                 rel: 0,
-                showinfo: 0,
-                mute: 1
+                showinfo: 1,
+                mute: 1,
+                start: 63,
+                loop: 1,
+                modestbranding: 1,
             }
         };
 
@@ -48,4 +50,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default BackgroundVideo;
