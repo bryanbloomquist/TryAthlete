@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const db = require("../models");
+const date = new Date();
 
 // This file empties the users collection and inserts the users below
 
@@ -22,7 +23,7 @@ const userSeed = [
         distanceQty: "50",
         distanceUnit: "km",
         duration: 50,
-        createTime: new Timestamp()
+        createTime: date.getTime()
       }
     ],
     goals: [
@@ -35,7 +36,7 @@ const userSeed = [
         goalQty: 50,
         goalUnit: "km",
         goalTimeFrame: "this week",
-        createTime: new Timestamp()
+        createTime: date.getTime()
       }
     ],
     badges: [
@@ -57,7 +58,7 @@ const userSeed = [
         },
         challengeTimeFrame: "this month",
         hasAccepted: false,
-        createTime: new Timestamp()
+        createTime: date.getTime()
       }
     ],
     friends: {
