@@ -19,7 +19,7 @@ function GoalsCard(props) {
     return (
         <div className="card" style={style}>
             <h2>Goals</h2><br/>
-            {props.user.data.givenName}
+            {/* {props.user.data.givenName} */}
             {/* <ul>
                 {goals.map((value, index) => {
                     return <li key={index}>{value}</li>
