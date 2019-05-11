@@ -21,9 +21,9 @@ function SocialCard(props) {
         <div className="card card-wide" style={style}>
             <h2>Social Feed</h2><br />
             <ul>
-            {friends.id.map((value, index) => {
+            {/* {friends.id.map((value, index) => {
                 return <li key={index}>{value}</li>
-            })}
+            })} */}
         </ul>
         </div>
     )

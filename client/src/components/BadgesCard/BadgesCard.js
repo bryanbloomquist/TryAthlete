@@ -20,9 +20,9 @@ function BadgesCard(props) {
         <div className="card" style={style}>
             <h2>Badges</h2><br />
             <ul>
-                {badges.id.map((value, index) => {
+                {/* {badges.id.map((value, index) => {
                     return <li key={index}>{value}</li>
-                })}
+                })} */}
             </ul>
             <p>Hi</p>
             

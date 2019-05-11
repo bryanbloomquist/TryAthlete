@@ -24,7 +24,7 @@ function ChallengesCard(props) {
                     return <li key={index}>{value}</li>
                 })}
             </ul> */}
-            <p>{challenges[1].activity} {challenges[1].goalQuant} {challenges[1].goalType.unit} {challenges[1].goalType.frequency}</p>
+            {/* <p>{challenges[1].activity} {challenges[1].goalQuant} {challenges[1].goalType.unit} {challenges[1].goalType.frequency}</p> */}
             
         </div>
     )
