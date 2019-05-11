@@ -1,18 +1,32 @@
 import React from "react";
 
 function GoalsCard(props) {
-    // console.log(props);
+    console.log(props.user);
+
     const style = {
-        backgroundColor: "black",
+        backgroundColor: "slategray",
         // backgroundImage: "url("+props.img+")",
         // backgroundSize: " 100% 100%",
         // backgroundPosition: "center",
         // backgroundRepeat: "no-repeat",
     }
-    console.log(style);
+    const goals = {
+        ...props.user.goals
+    }
+
+    // for (i=1; i<goals)
+    console.log(goals)
     return (
         <div className="card" style={style}>
-            <h2>Goals</h2><br />          
+            <h2>Goals</h2><br />
+            {/* <ul>
+                {goals.map((value, index) => {
+                    return <li key={index}>{value}</li>
+                })}
+            </ul> */}
+            <p>{goals[1].activity} {goals[1].goalQuant} {goals[1].goalType.unit} {goals[1].goalType.frequency}</p>
+            <p>{props.user.goals[2].activity} {props.user.goals[2].goalQuant} {props.user.goals[2].goalType.unit} {props.user.goals[2].goalType.frequency}</p>
+            
         </div>
     )
 }

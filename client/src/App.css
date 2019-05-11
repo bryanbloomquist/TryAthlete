@@ -83,6 +83,10 @@
 .slogan {
   color:white;
 }
+
+.logo-small {
+  height: 50px;
+}
 /* 
 .video-div {
   position: fixed; 
