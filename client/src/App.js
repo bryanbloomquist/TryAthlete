@@ -18,285 +18,34 @@ import { runInContext } from 'vm';
 
 class App extends Component {
   state = {
-    scott: {
-      id: 1,
-      fname: "Scott",
-      lname: "Anderson",
-      userName: "wildside50",
-      avatar: "https://media.licdn.com/dms/image/C5603AQG8RXuzxnp7Vg/profile-displayphoto-shrink_200_200/0?e=1562803200&v=beta&t=8fzMGfAM1iGOsjDSm_FAUS-zD1ler13jAEzweHT_nvw",
-      activityLog: {
-
-      },
-      goals: {
-        1: {
-          activity: "Run",
-          isAchieved: false,
-          goalQuant: 5,
-          goalType: {
-            unit: "miles",
-            frequency: "this week",
-            time: null,
-          }
-        },
-        2: {
-          activity: "Bike",
-          isAchieved: false,
-          goalQuant: 3,
-          goalType: {
-            unit: "hours",
-            frequency: "today",
-            time: null,
-          }
-        }
-      },
-      challenges: {
-        1: {
-          activity: "Swim",
-          isAchieved: false,
-          goalQuant: 3,
-          goalType: {
-            unit: "days",
-            frequency: "this week",
-            time: null,
-          }
-        },
-      },
-      badges: {
-        id: [
-          1,2,5
-        ]
-      },
-      friends: {
-        id: [
-          1, 2, 3, 4, 5
-        ]
+    user: {
+      givenName: "",
+      familyName: "",
+      imageUrl: "",
+      email: "",
+      activities: [],
+      goals: [],
+      badges: [],
+      challenges: [],
+      friends: []
       }
-    },
-    ashlen: {
-      id: 2,
-      fname: "Ashlen",
-      lname: "Bruns",
-      userName: "tryAshlen",
-      avatar: "https://media.licdn.com/dms/image/C5603AQHCHIqg8saACg/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=6QlSv60MHLaDtII42_NG6awgDmhLpdysNNxwJshE4e8",
-      activityLog: {
+  }
+  componentDidMount() {
+    this.loadUser();
+  }
 
-      },
-      goals: {
-        1: {
-          activity: "Run",
-          isAchieved: false,
-          goalQuant: 5,
-          goalType: {
-            unit: "miles",
-            frequency: "this week",
-            time: null,
-          }
-        },
-        2: {
-          activity: "Bike",
-          isAchieved: false,
-          goalQuant: 3,
-          goalType: {
-            unit: "hours",
-            frequency: "today",
-            time: null,
-          }
-        }
-      },
-      challenges: {
-        1: {
-          activity: "Swim",
-          isAchieved: false,
-          goalQuant: 3,
-          goalType: {
-            unit: "days",
-            frequency: "this week",
-            time: null,
-          }
-        },
-      },
-      badges: {
-        id: [
-          1,2,5
-        ]
-      },
-      friends: {
-        id: [
-          1, 2, 3, 4, 5
-        ]
-      }
-    },
-    bryan: {
-      id: 3,
-      fname: "Bryan",
-      lname: "Bloomquist",
-      userName: "dungeonMaster",
-      avatar: "https://media.licdn.com/dms/image/C5603AQGfOg_kMRgAxg/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=KSkhM_y0lzMiAmZgGJdJWdxUxxO4678kBkGeye5iddY",
-      activityLog: {
-
-      },
-      goals: {
-        1: {
-          activity: "Run",
-          isAchieved: false,
-          goalQuant: 5,
-          goalType: {
-            unit: "miles",
-            frequency: "this week",
-            time: null,
-          }
-        },
-        2: {
-          activity: "Bike",
-          isAchieved: false,
-          goalQuant: 3,
-          goalType: {
-            unit: "hours",
-            frequency: "today",
-            time: null,
-          }
-        }
-      },
-      challenges: {
-        1: {
-          activity: "Swim",
-          isAchieved: false,
-          goalQuant: 3,
-          goalType: {
-            unit: "days",
-            frequency: "this week",
-            time: null,
-          }
-        },
-      },
-      badges: {
-
-      },
-      friends: {
-        id: [
-          1, 2, 3, 4, 5
-        ]
-      }
-    },
-    john: {
-      id: 4,
-      fname: "John",
-      lname: "Evans",
-      userName: "prettyBoy",
-      avatar: "https://media.licdn.com/dms/image/C5603AQFqk9UyKm7cjw/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=_vQAdIdDL0nlgaB2lCoParKhkOMgVEj_ftqx3rK950Y",
-      activityLog: {
-
-      },
-      goals: {
-        1: {
-          activity: "Run",
-          isAchieved: false,
-          goalQuant: 5,
-          goalType: {
-            unit: "miles",
-            frequency: "this week",
-            time: null,
-          }
-        },
-        2: {
-          activity: "Bike",
-          isAchieved: false,
-          goalQuant: 3,
-          goalType: {
-            unit: "hours",
-            frequency: "today",
-            time: null,
-          }
-        }
-      },
-      challenges: {
-        1: {
-          activity: "Swim",
-          isAchieved: false,
-          goalQuant: 3,
-          goalType: {
-            unit: "days",
-            frequency: "this week",
-            time: null,
-          }
-        },
-      },
-      badges: {
-        id: [
-          1,2,5
-        ]
-      },
-      friends: {
-        id: [
-          1, 2, 3, 4, 5
-        ]
-      }
-    },
-    steve: {
-      id: 5,
-      fname: "Steve",
-      lname: "Thompson",
-      userName: "taskMaster",
-      avatar: "https://media.licdn.com/dms/image/C4E03AQHytoRECLHRyg/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=jGC1r9oyhxaY9DgmIDDwtPydAi7HDsp-00OCJPVZQ2I",
-      activityLog: {
-
-      },
-      goals: {
-        1: {
-          activity: "Run",
-          isAchieved: false,
-          goalQuant: 5,
-          goalType: {
-            unit: "miles",
-            frequency: "this week",
-            time: null,
-          }
-        },
-        2: {
-          activity: "Bike",
-          isAchieved: false,
-          goalQuant: 3,
-          goalType: {
-            unit: "hours",
-            frequency: "today",
-            time: null,
-          }
-        }
-      },
-      challenges: {
-        1: {
-          activity: "Swim",
-          isAchieved: false,
-          goalQuant: 3,
-          goalType: {
-            unit: "days",
-            frequency: "this week",
-            time: null,
-          }
-        },
-      },
-      badges: {
-        id: [
-          1,2,5
-        ]
-      },
-      friends: {
-        id: [
-          1, 2, 3, 4, 5
-        ]
-      }
-    },
-  };
-
-  
   // When this component mounts, grab the user with the _id of this.props.match.params.id
-  //   componentDidMount() {
-  //     API.getUser(this.props.match.params.id)
-  //         .then(res => this.setState({ user: res.data }))
-  //         .catch(err => console.log(err));
-  // }
+  loadUser = () => {
+    API.getUser("5cd71d51596fe50188296867")
+      .then(res => {
+        this.setState({ user: res })
+        console.log(this.state.user)
+      })
+      .catch(err => console.log(err));
+  }
+
   render() {
-    const user=this.state.ashlen;
+    const user = this.state.user;
     return (
       <Router>
         <Wrapper>
