@@ -38,7 +38,7 @@ class App extends Component {
   loadUser = () => {
     API.getUser("5cd73fdea1ba7124c8468c48")
       .then(res => {
-        this.setState({ user: res })
+        this.setState({ user: res.data })
         console.log(this.state.user)
       })
       .catch(err => console.log(err));
