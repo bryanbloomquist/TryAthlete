@@ -16,7 +16,8 @@ router
   router
   .route("/:id/activities")
   .get(usersController.findById)
-  .put(usersController.update)
+  //cash me outside howbowda
+  .put(usersController.addActivity)
   .delete(usersController.remove);
 
   router
