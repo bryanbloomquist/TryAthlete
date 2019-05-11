@@ -18,22 +18,22 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  activities: [{
-    type: Schema.Types.ObjectId,
-    ref: "Activity"
-  }],
-  goals: [{
-    type: Schema.Types.ObjectId,
-    ref: "Goal"
-  }],
-  badges: [{
-    type: Schema.Types.ObjectId,
-    ref: "Badge"
-  }],
-  challenges: [{
-    type: Schema.Types.ObjectId,
-    ref: "Challenge"
-  }],
+  activities: {
+    type: Array,
+    required: false
+  },
+  goals: {
+    type: Array,
+    required: false
+  },
+  badges: {
+    type: Array,
+    required: false
+  },
+  challenges: {
+    type: Array,
+    required: false
+  },
   friends: {
     type: Array,
     required: false
