@@ -36,7 +36,7 @@ class App extends Component {
 
   // When this component mounts, grab the user with the _id of this.props.match.params.id
   loadUser = () => {
-    API.getUser("5cd71d51596fe50188296867")
+    API.getUser("5cd73fdea1ba7124c8468c48")
       .then(res => {
         this.setState({ user: res })
         console.log(this.state.user)
