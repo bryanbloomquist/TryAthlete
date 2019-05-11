@@ -10,8 +10,8 @@
 <defs>
 </defs>
 <rect x="2.25" y="2.25" fill="none" stroke="#FFFFFF" stroke-width="4.5" stroke-miterlimit="10" width="771.428" height="450"/>
-<text transform="matrix(0.9995 0 0 1 41.2622 336.1689)" fill="#ED4B4B" font-family="'Futura-Bold'" font-size="382.309" letter-spacing="-21.011">T</text>
-<text transform="matrix(0.9995 0 0 1 222.3848 336.1689)" fill="#4FC147" font-family="'Futura-Bold'" font-size="382.309" letter-spacing="-21.011">R</text>
-<text transform="matrix(0.9995 0 0 1 470.3779 336.1689)" fill="#4B68ED" font-family="'Futura-Bold'" font-size="382.309" letter-spacing="-21.011">Y</text>
-<text transform="matrix(1.3101 0 0 1 108.7725 408.0146)" fill="#FFFFFF" stroke="#FFFFFF" stroke-miterlimit="10" font-family="'Futura-Medium'" font-size="55.6088" letter-spacing="29.005">ATHLETE</text>
+<text transform="matrix(0.9995 0 0 1 41.2622 336.1689)" fill="#ED4B4B" font-family="'Helvetica'" font-size="382.309" letter-spacing="-21.011">T</text>
+<text transform="matrix(0.9995 0 0 1 246.3848 336.1689)" fill="#4FC147" font-family="'Helvetica'" font-size="382.309" letter-spacing="-21.011">R</text>
+<text transform="matrix(0.9995 0 0 1 470.3779 336.1689)" fill="#4B68ED" font-family="'Helvetica'" font-size="382.309" letter-spacing="-21.011">Y</text>
+<text transform="matrix(1.3101 0 0 1 135.7725 408.0146)" fill="#FFFFFF" stroke="#FFFFFF" stroke-miterlimit="10" font-family="'Helvetica'" font-size="55.6088" letter-spacing="20.005">ATHLETE</text>
 </svg>
