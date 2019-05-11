@@ -15,11 +15,52 @@ const userSeed = [
     familyName: "king",
     imageUrl: "https://via.placeholder.com/150",
     email: "www.google.com",
-    activities: [],
-    goals: [],
-    badges: [],
-    challenges: [],
-    friends: []
+    activities: [
+      {
+        id: 23,
+        sport: "Running",
+        distanceMeasurement: "50",
+        distanceUnit: "km",
+        time: 50
+      }
+    ],
+    goals: [
+      {
+        id: 2,
+        description: "Run 50 km in a week",
+        name: "First goal",
+        sport: "running",
+        isAchieved: false,
+        goalType: "distance",
+        goalQuant: 50
+      }
+    ],
+    badges: [
+      {
+        id: 54,
+        isEarned: false,
+        description: "Long Run Fastly",
+        name: "Long Runner Badge",
+        sport: "Running"
+      }
+    ],
+    challenges: [
+      {
+        id: 25,
+        name: "First goal",
+        sport: "running",
+        isAchieved: false,
+        goalType: "distance",
+        goalQuant: 50,
+        challenger: "Jim",
+        hasAccepted: false
+      }
+    ],
+    friends: [
+      "Jeff",
+      "William",
+      "Cindy"
+    ]
   },
   {
     givenName: "william",
