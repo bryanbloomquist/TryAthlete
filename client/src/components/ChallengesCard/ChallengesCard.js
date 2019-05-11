@@ -1,18 +1,30 @@
 import React from "react";
 
 function ChallengesCard(props) {
-    // console.log(props);
+    console.log(props.user);
+
     const style = {
-        backgroundColor: "black",
+        backgroundColor: "slategray",
         // backgroundImage: "url("+props.img+")",
         // backgroundSize: " 100% 100%",
         // backgroundPosition: "center",
         // backgroundRepeat: "no-repeat",
     }
-    console.log(style);
+    const challenges = {
+        ...props.user.challenges
+    }
+
+    // for (i=1; i<goals)
+    console.log(challenges)
     return (
         <div className="card" style={style}>
             <h2>Challenges</h2><br />
+            {/* <ul>
+                {goals.map((value, index) => {
+                    return <li key={index}>{value}</li>
+                })}
+            </ul> */}
+            <p>{challenges[1].activity} {challenges[1].goalQuant} {challenges[1].goalType.unit} {challenges[1].goalType.frequency}</p>
             
         </div>
     )

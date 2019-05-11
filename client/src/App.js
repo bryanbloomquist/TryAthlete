@@ -62,7 +62,9 @@ class App extends Component {
         },
       },
       badges: {
-
+        id: [
+          1,2,5
+        ]
       },
       friends: {
         id: [
@@ -114,7 +116,9 @@ class App extends Component {
         },
       },
       badges: {
-
+        id: [
+          1,2,5
+        ]
       },
       friends: {
         id: [
@@ -218,7 +222,9 @@ class App extends Component {
         },
       },
       badges: {
-
+        id: [
+          1,2,5
+        ]
       },
       friends: {
         id: [
@@ -270,7 +276,9 @@ class App extends Component {
         },
       },
       badges: {
-
+        id: [
+          1,2,5
+        ]
       },
       friends: {
         id: [
