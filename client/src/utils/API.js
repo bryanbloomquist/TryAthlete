@@ -4,27 +4,27 @@ import axios from "axios";
 export default {
     // Gets all books
     getUsers: function () {
-        return axios.get("/api/user");
+        return axios.get("/api/users");
     },
     // Gets the book with the given id
     getUser: function (id) {
-        return axios.get("/api/user/" + id);
+        return axios.get("/api/users/" + id);
     },
     // Deletes the book with the given id
     deleteUser: function (id) {
-        return axios.delete("/api/user/" + id);
+        return axios.delete("/api/users/" + id);
     },
     // Saves a book to the database
     saveUser: function (bookData) {
-        return axios.post("/api/user", bookData);
+        return axios.post("/api/users", bookData);
     },
     saveActivity: function (activityData) {
-        return axios.post("/api/user/:id/activities", activityData);
+        return axios.post("/api/users/:id/activities", activityData);
     },
     saveGoal: function (goalData) {
-        return axios.post("/api/user/:id/activities", goalData);
+        return axios.post("/api/users/:id/activities", goalData);
     },
     saveChallenge: function (challengeData) {
-        return axios.post("/api/user/:id/challenges", challengeData);
+        return axios.post("/api/users/:id/challenges", challengeData);
     }
 };
