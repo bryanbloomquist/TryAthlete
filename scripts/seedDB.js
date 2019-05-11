@@ -18,107 +18,56 @@ const userSeed = [
     activities: [
       {
         id: 23,
-        sport: "Running",
-        distanceMeasurement: "50",
+        sport: "Run",
+        distanceQty: "50",
         distanceUnit: "km",
-        time: 50
+        duration: 50,
+        createTime: new Timestamp()
       }
     ],
     goals: [
       {
         id: 2,
-        description: "Run 50 km in a week",
-        name: "First goal",
-        sport: "running",
+        name: "Run 50 km in a week",
+        sport: "Run",
         isAchieved: false,
         goalType: "distance",
-        goalQuant: 50
+        goalQty: 50,
+        goalUnit: "km",
+        goalTimeFrame: "this week",
+        createTime: new Timestamp()
       }
     ],
     badges: [
       {
-        id: 54,
-        isEarned: false,
-        description: "Long Run Fastly",
-        name: "Long Runner Badge",
-        sport: "Running"
+        id: [1, 2, 5]
       }
     ],
     challenges: [
       {
         id: 25,
         name: "First goal",
-        sport: "running",
+        sport: "Run",
         isAchieved: false,
         goalType: "distance",
-        goalQuant: 50,
-        challenger: "Jim",
-        hasAccepted: false
+        goalQty: 50,
+        goalUnit: "km",
+        challenger: {
+          id: 4
+        },
+        challengeTimeFrame: "this month",
+        hasAccepted: false,
+        createTime: new Timestamp()
       }
     ],
-    friends: [
-      "Jeff",
-      "William",
-      "Cindy"
-    ]
+    friends: {
+      id: [
+        1,
+        4,
+        6
+      ]
+    }
   },
-  {
-    givenName: "william",
-    familyName: "golding",
-    imageUrl: "https://via.placeholder.com/150",
-    email: "www.yahoo.com",
-    activities: [
-      {
-        id: 29,
-        sport: "Swimming",
-        distanceMeasurement: "2000",
-        distanceUnit: "m",
-        time: 45
-      }
-    ],
-    goals: [
-      {
-        id: 2,
-        description: "Swim three times this week",
-        name: "Swimming goal",
-        sport: "Swimming",
-        isAchieved: false,
-        goalType: "frequency",
-        goalQuant: 3
-      }
-    ],
-    badges: [
-      {
-        id: 54,
-        isEarned: true,
-        description: "Long Run Fastly",
-        name: "Long Runner Badge",
-        sport: "Running"
-      },
-      {
-        id: 54,
-        isEarned: false,
-        description: "Swim Far",
-        name: "Long Swim Badge",
-        sport: "Swimming"
-      }
-    ],
-    challenges: [
-      {
-        id: 25,
-        name: "Bike 100 miles",
-        sport: "Biking",
-        isAchieved: false,
-        goalType: "distance",
-        goalQuant: 100,
-        challenger: "Paul",
-        hasAccepted: true
-      }
-    ],
-    friends: [
-      "Paul", "William", "Cindy"
-    ]
-  }
 ];
 
 db.User
