@@ -67,11 +67,57 @@ const userSeed = [
     familyName: "golding",
     imageUrl: "https://via.placeholder.com/150",
     email: "www.yahoo.com",
-    activities: [],
-    goals: [],
-    badges: [],
-    challenges: [],
-    friends: []
+    activities: [
+      {
+        id: 29,
+        sport: "Swimming",
+        distanceMeasurement: "2000",
+        distanceUnit: "m",
+        time: 45
+      }
+    ],
+    goals: [
+      {
+        id: 2,
+        description: "Swim three times this week",
+        name: "Swimming goal",
+        sport: "Swimming",
+        isAchieved: false,
+        goalType: "frequency",
+        goalQuant: 3
+      }
+    ],
+    badges: [
+      {
+        id: 54,
+        isEarned: true,
+        description: "Long Run Fastly",
+        name: "Long Runner Badge",
+        sport: "Running"
+      },
+      {
+        id: 54,
+        isEarned: false,
+        description: "Swim Far",
+        name: "Long Swim Badge",
+        sport: "Swimming"
+      }
+    ],
+    challenges: [
+      {
+        id: 25,
+        name: "Bike 100 miles",
+        sport: "Biking",
+        isAchieved: false,
+        goalType: "distance",
+        goalQuant: 100,
+        challenger: "Paul",
+        hasAccepted: true
+      }
+    ],
+    friends: [
+      "Paul", "William", "Cindy"
+    ]
   }
 ];
 
