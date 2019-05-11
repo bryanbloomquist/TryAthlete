@@ -13,7 +13,6 @@ import Bike from "../images/bike.png";
 import Swim from "../images/swim.png";
 
 function Dashboard(props) {
-    console.log(props.user);
     return (
         <Container fluid>
             <Row>

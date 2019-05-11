@@ -38,13 +38,15 @@ class App extends Component {
   loadUser = () => {
     API.getUser("5cd71d51596fe50188296867")
       .then(res => {
+        console.log(res)
         this.setState({ user: res })
-        console.log(this.state.user)
+        console.log(this.state)
       })
       .catch(err => console.log(err));
   }
 
   render() {
+    console.log(this.state)
     const user = this.state.user;
     return (
       <Router>

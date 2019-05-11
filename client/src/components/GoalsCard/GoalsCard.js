@@ -1,7 +1,6 @@
 import React from "react";
 
 function GoalsCard(props) {
-    console.log(props.user.data);
 
     const style = {
         backgroundColor: "slategray",
@@ -15,7 +14,7 @@ function GoalsCard(props) {
     }
 
     // for (i=1; i<goals)
-    console.log(goals)
+
     return (
         <div className="card" style={style}>
             <h2>Goals</h2><br/>
