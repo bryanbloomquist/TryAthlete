@@ -5,8 +5,9 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
-import Logo from "../images/logo.svg"
-import Home from "../images/home2.png"
+import Logo from "../images/logo.svg";
+import Home from "../images/home2.png";
+import LoginButton from "../GoogleLogin/GoogleLogin";
 // import Login from "../images/login2.png"
 
 function NavbarArea(props) {
@@ -32,7 +33,8 @@ function NavbarArea(props) {
                 <Button className="searchButton" variant="outline-success">Search</Button>
             </Form>
             <Navbar.Brand href="/dashboard">
-                <img className="avatar" src={props.children.avatar} alt="login"></img>
+                {/* <img className="avatar" src={props.children.avatar} alt="login"></img> */}
+                <LoginButton />
             </Navbar.Brand>
         </Navbar >
 
