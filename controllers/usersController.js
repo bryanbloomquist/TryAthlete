@@ -1,4 +1,5 @@
 const db = require("../models");
+const mongoose = require("mongoose")
 
 // Defining methods for the UsersController
 module.exports = {
