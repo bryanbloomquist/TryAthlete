@@ -10,19 +10,19 @@ function BadgesCard(props) {
         // backgroundPosition: "center",
         // backgroundRepeat: "no-repeat",
     }
-    const badges = {
-        ...props.user.badges
-    }
+    // const badges = {
+    //     ...props.user.badges
+    // }
 
     // for (i=1; i<goals)
-    console.log(badges)
+    // console.log(badges)
     return (
         <div className="card" style={style}>
             <h2>Badges</h2><br />
             <ul>
-                {badges.id.map((value, index) => {
+                {/* {badges.id.map((value, index) => {
                     return <li key={index}>{value}</li>
-                })}
+                })} */}
             </ul>
             <p>Hi</p>
             

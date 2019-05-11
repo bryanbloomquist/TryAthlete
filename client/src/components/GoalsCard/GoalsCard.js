@@ -10,12 +10,12 @@ function GoalsCard(props) {
         // backgroundPosition: "center",
         // backgroundRepeat: "no-repeat",
     }
-    const goals = {
-        ...props.user.goals
-    }
+    // const goals = {
+    //     ...props.user.goals
+    // }
 
     // for (i=1; i<goals)
-    console.log(goals)
+    // console.log(goals)
     return (
         <div className="card" style={style}>
             <h2>Goals</h2><br />
@@ -24,8 +24,8 @@ function GoalsCard(props) {
                     return <li key={index}>{value}</li>
                 })}
             </ul> */}
-            <p>{goals[1].activity} {goals[1].goalQuant} {goals[1].goalType.unit} {goals[1].goalType.frequency}</p>
-            <p>{props.user.goals[2].activity} {props.user.goals[2].goalQuant} {props.user.goals[2].goalType.unit} {props.user.goals[2].goalType.frequency}</p>
+            {/* <p>{goals[1].activity} {goals[1].goalQuant} {goals[1].goalType.unit} {goals[1].goalType.frequency}</p>
+            <p>{props.user.goals[2].activity} {props.user.goals[2].goalQuant} {props.user.goals[2].goalType.unit} {props.user.goals[2].goalType.frequency}</p> */}
             
         </div>
     )
