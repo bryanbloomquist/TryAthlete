@@ -11,6 +11,7 @@ function ActivityCard(props) {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
     }
+    
     console.log(style);
     return (
         <div className="card" style={style}>

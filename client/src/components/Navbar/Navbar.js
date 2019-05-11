@@ -5,20 +5,17 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
-import Logo from "../images/logo2.png";
+import Logo from "../images/logo.svg";
 import Home from "../images/home2.png";
 import LoginButton from "../GoogleLogin/GoogleLogin";
 // import Login from "../images/login2.png"
 
 function NavbarArea(props) {
-    console.log(props.children.scott.avatar)
-    console.log(props.children.scott.avatar)
+    console.log(props)
     return (
         <Navbar expand="lg">
             <Navbar.Brand href="/">
-                <img src={Logo} alt="logo"></img>
-                {` `}
-                <img src={Home} alt="home"></img>
+                <img className="logo-small" src={Logo} alt="logo"></img>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Nav className="mr-auto">
@@ -36,8 +33,8 @@ function NavbarArea(props) {
                 <Button className="searchButton" variant="outline-success">Search</Button>
             </Form>
             <Navbar.Brand href="/dashboard">
+                {/* <img className="avatar" src={props.children.avatar} alt="login"></img> */}
                 <LoginButton />
-                {/* <img className="avatar" src={props.children.scott.avatar} alt="login"></img> */}
             </Navbar.Brand>
         </Navbar >
 
