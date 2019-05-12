@@ -15,19 +15,24 @@ export default {
     saveUser: function (bookData) {
         return axios.post("/api/users", bookData);
     },
-    saveActivity: function (activityData) {
-        return axios.put("/api/users/:id/activities", activityData);
+
+    saveActivity: function (activityData, userId) {
+        return axios.put(`/api/users/${userId}/activities`, activityData);
     },
-    deleteActivity: function (activityData) {
-        return axios.get("/api/users/:id/activities/:activityId", activityData);
+
+    deleteActivity: function (activityData, userId, activityId) {
+        return axios.get(`/api/users/${userId}/activities/${activityId}`);
     },
-    saveGoal: function (goalData) {
-        return axios.post("/api/users/:id/goals", goalData);
+
+    saveGoal: function (goalData, userId) {
+        return axios.post(`/api/users/${userId}/goals`, goalData);
     },
-    saveChallenge: function (challengeData) {
-        return axios.post("/api/users/:id/challenges", challengeData);
+
+    saveChallenge: function (challengeData, userId) {
+        return axios.post(`/api/users/${userId}/challenges`, challengeData);
     },
-    addFriend: function (friendData) {
-        return axios.post("/api/users/:id/friends", friendData);
+    
+    addFriend: function (friendData, userId) {
+        return axios.post(`/api/users/${userId}/friends`, friendData);
     }
 };
