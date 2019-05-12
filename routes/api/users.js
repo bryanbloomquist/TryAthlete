@@ -16,14 +16,17 @@ router
   router
   .route("/:id/activities")
   .get(usersController.findById)
-  //cash me outside howbowda
   .put(usersController.addActivity)
   .delete(usersController.remove);
 
   router
+  .route("/:id/activities/:activityId")
+  .get(usersController.removeActivity)
+
+  router
   .route("/:id/goals")
   .get(usersController.findById)
-  .put(usersController.update)
+  .put(usersController.addGoal)
   .delete(usersController.remove);
 
   router
