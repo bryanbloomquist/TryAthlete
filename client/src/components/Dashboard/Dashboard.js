@@ -13,7 +13,7 @@ import Bike from "../images/bike.png";
 import Swim from "../images/swim.png";
 
 function Dashboard(props) {
-    console.log(props.user);
+    console.log(props)
     return (
         <Container fluid>
             <Row>
@@ -37,17 +37,16 @@ function Dashboard(props) {
                 />
             </Row>
             <Row>
-                <GoalsCard user={props.user}/>
-                <ChallengesCard user={props.user}/>
-                <BadgesCard user={props.user}/>
+                <GoalsCard user={props.user} />
+                <ChallengesCard user={props.user} />
+                <BadgesCard user={props.user} />
             </Row>
             <Row>
-                <SocialCard user={props.user}/>
+                <SocialCard user={props.user} />
             </Row>
         </Container >
 
     )
 }
-
 
 export default Dashboard;

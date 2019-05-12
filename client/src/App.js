@@ -28,11 +28,17 @@ class App extends Component {
   // When this component mounts, grab the user with the _id of this.props.match.params.id
   loadUser = () => {
     //set the string here to whatever the id of the user in your db is! Use compass or ROBO 3t to see the id
+<<<<<<< HEAD
     API.getUser("5cd8337b03e3d431681f9201")
       .then(res => {
         this.setState({ user: res, hasUser: true })
         console.log(res)
         console.log(res.data.challenges[0].sport)
+=======
+    API.getUser("5cd733befb3d1a29ac976a8f")
+      .then(res => {
+        this.setState({ user: res.data, hasUser: true })
+>>>>>>> ff651ee4bc6d59446860812853a23f1d2d95c3b1
       })
       .catch(err => console.log(err));
   }
@@ -56,7 +62,11 @@ class App extends Component {
               {/* <Route component={NoMatch} /> */}
             </Switch>
             <Footer />
+<<<<<<< HEAD
         </Wrapper>) : (<h1></h1>)}
+=======
+        </Wrapper>) : (<h1> </h1>)}
+>>>>>>> ff651ee4bc6d59446860812853a23f1d2d95c3b1
       </Router>
     )
   }

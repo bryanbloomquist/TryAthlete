@@ -5,7 +5,6 @@ import Container from "react-bootstrap/Container";
 import Jumbotron from "react-bootstrap/Jumbotron";
 
 function Challenges(props) {
-    console.log(props);
     return (
         <Container fluid>
             <Row>

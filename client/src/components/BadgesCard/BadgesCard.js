@@ -1,7 +1,6 @@
 import React from "react";
 
 function BadgesCard(props) {
-    console.log(props.user);
 
     const style = {
         backgroundColor: "slategray",
@@ -10,12 +9,12 @@ function BadgesCard(props) {
         // backgroundPosition: "center",
         // backgroundRepeat: "no-repeat",
     }
-    const badges = {
-        ...props.user.badges
-    }
+    // const badges = {
+    //     ...props.user.badges
+    // }
 
     // for (i=1; i<goals)
-    console.log(badges)
+
     return (
         <div className="card" style={style}>
             <h2>Badges</h2><br />

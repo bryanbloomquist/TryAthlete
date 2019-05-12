@@ -19,6 +19,7 @@ const UserSchema = new Schema({
     required: true
   },
   activities: {
+<<<<<<< HEAD
     type: Array,
     default: []
   },
@@ -33,6 +34,18 @@ const UserSchema = new Schema({
   challenges: {
     type: Array,
     default: []
+=======
+    type: Array, "default": []
+  },
+  goals: {
+    type: Array, "default": []
+  },
+  badges: {
+    type: Array, "default": []
+  },
+  challenges: {
+    type: Array, "default": []
+>>>>>>> ff651ee4bc6d59446860812853a23f1d2d95c3b1
   },
   friends: {
     type: Array,

@@ -1,7 +1,6 @@
 import React from "react";
 
 function SocialCard(props) {
-    console.log(props.user);
     const style = {
         backgroundColor: "slategray",
         // backgroundImage: "url("+props.img+")",
@@ -9,14 +8,12 @@ function SocialCard(props) {
         // backgroundPosition: "center",
         // backgroundRepeat: "no-repeat",
     }
-    console.log(style);
 
-    const friends = {
-        ...props.user.friends
-    }
+    // const friends = {
+    //     ...props.user.friends
+    // }
 
     // for (i=1; i<goals)
-    console.log(friends)
     return (
         <div className="card card-wide" style={style}>
             <h2>Social Feed</h2><br />
