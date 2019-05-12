@@ -22,7 +22,7 @@ function Goals(props) {
                     Goal Details for {localProps.user.givenName}
                 </Col>
             </Row>
-            <Row className="text-center">
+            <Row className="text-center py-5">
                 <Col md={4}>
                     <Form>
                         <Form.Group as={Row} controlId="goalActivity">
