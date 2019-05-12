@@ -12,7 +12,10 @@ function GoalsCard(props) {
 
     // console.log(props.user.goals.length);
     
-    // console.log(props.user.goals[0])
+    console.log(props.user.goals[0])
+    const test = props.user.goals[0];
+    console.log(test);
+    console.log(test.sport);
     // console.log(length);
     // let activityArray = []
 
@@ -28,7 +31,6 @@ function GoalsCard(props) {
         <div className="card" style={style}>
             <h2>Goals</h2><br />
             {props.user.givenName}
-            {props.user.goals[0].sport}
             {/* <p>{goals[1].activity} {goals[1].goalQuant} {goals[1].goalType.unit} {goals[1].goalType.frequency}</p>
             <p>{props.user.goals[2].activity} {props.user.goals[2].goalQuant} {props.user.goals[2].goalType.unit} {props.user.goals[2].goalType.frequency}</p> */}
 
