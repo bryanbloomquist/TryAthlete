@@ -30,9 +30,7 @@ class App extends Component {
     //set the string here to whatever the id of the user in your db is! Use compass or ROBO 3t to see the id
     API.getUser("5cd733befb3d1a29ac976a8f")
       .then(res => {
-        this.setState({ user: res, hasUser: true })
-        console.log(res)
-        console.log(res.data.challenges[0].sport)
+        this.setState({ user: res.data, hasUser: true })
       })
       .catch(err => console.log(err));
   }
