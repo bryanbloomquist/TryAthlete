@@ -17,21 +17,6 @@ import './App.css';
 
 class App extends Component {
   state = {
-<<<<<<< HEAD
-    user: ""
-  }
-
-  componentDidMount() {
-    API.getUser("5cd71d51596fe50188296867")
-      .then(res => {
-        this.setState({ user: res })
-        console.log(this.state.user)
-      })
-      .catch(err => console.log(err));
-  }
-
-
-=======
     user: {},
     hasUser: false
   }
@@ -49,7 +34,6 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
->>>>>>> ff651ee4bc6d59446860812853a23f1d2d95c3b1
   render() {
     const user = this.state.user;
     return (

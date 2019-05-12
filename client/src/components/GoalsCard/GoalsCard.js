@@ -9,25 +9,6 @@ function GoalsCard(props) {
         // backgroundPosition: "center",
         // backgroundRepeat: "no-repeat",
     }
-<<<<<<< HEAD
-    // const goals = {
-    //     ...props.user.goals
-    // }
-
-    // for (i=1; i<goals)
-    // console.log(goals)
-    return (
-        <div className="card" style={style}>
-            <h2>Goals</h2><br />
-            {/* <ul>
-                {goals.map((value, index) => {
-                    return <li key={index}>{value}</li>
-                })}
-            </ul> */}
-            {/* <p>{goals[1].activity} {goals[1].goalQuant} {goals[1].goalType.unit} {goals[1].goalType.frequency}</p>
-            <p>{props.user.goals[2].activity} {props.user.goals[2].goalQuant} {props.user.goals[2].goalType.unit} {props.user.goals[2].goalType.frequency}</p> */}
-            
-=======
 
     // console.log(props.user.goals.length);
     
@@ -53,7 +34,6 @@ function GoalsCard(props) {
             {/* <p>{goals[1].activity} {goals[1].goalQuant} {goals[1].goalType.unit} {goals[1].goalType.frequency}</p>
             <p>{props.user.goals[2].activity} {props.user.goals[2].goalQuant} {props.user.goals[2].goalType.unit} {props.user.goals[2].goalType.frequency}</p> */}
 
->>>>>>> ff651ee4bc6d59446860812853a23f1d2d95c3b1
         </div>
     )
 }

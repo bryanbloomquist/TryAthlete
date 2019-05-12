@@ -14,11 +14,6 @@ function BadgesCard(props) {
     // }
 
     // for (i=1; i<goals)
-<<<<<<< HEAD
-    // console.log(badges)
-=======
-
->>>>>>> ff651ee4bc6d59446860812853a23f1d2d95c3b1
     return (
         <div className="card" style={style}>
             <h2>Badges</h2><br />
