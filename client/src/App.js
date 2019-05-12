@@ -30,7 +30,9 @@ class App extends Component {
     //set the string here to whatever the id of the user in your db is! Use compass or ROBO 3t to see the id
     API.getUser("5cd733befb3d1a29ac976a8f")
       .then(res => {
-        this.setState({ user: res.user, hasUser: true })
+        this.setState({ user: res, hasUser: true })
+        console.log(res)
+        console.log(res.data.challenges[0].sport)
       })
       .catch(err => console.log(err));
   }
@@ -54,7 +56,7 @@ class App extends Component {
               {/* <Route component={NoMatch} /> */}
             </Switch>
             <Footer />
-        </Wrapper>) : (<h1></h1>)}
+        </Wrapper>) : (<h1> </h1>)}
       </Router>
     )
   }
