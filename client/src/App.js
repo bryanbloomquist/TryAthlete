@@ -34,12 +34,6 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
-// // Create/Save a new Goal
-//   createNewGoal = () => {
-//     API.saveGoal()
-//   }
-
-  
 
 
   render() {
