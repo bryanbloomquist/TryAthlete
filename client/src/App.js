@@ -39,12 +39,13 @@ class App extends Component {
     API.getUser("5cd733befb3d1a29ac976a8f")
       .then(res => {
         this.setState({ user: res.data })
-        console.log(this.state)
+        console.log(this.state.user.goals[0].sport)
       })
       .catch(err => console.log(err));
   }
 
   render() {
+    console.log(this.state.user);
     const user = this.state.user;
     return (
       <Router>
