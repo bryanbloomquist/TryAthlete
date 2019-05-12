@@ -22,7 +22,7 @@ export default {
         return axios.post("/api/users/:id/activities", activityData);
     },
     saveGoal: function (goalData) {
-        return axios.post("/api/users/:id/activities", goalData);
+        return axios.put("/api/users/:id/goals", goalData);
     },
     saveChallenge: function (challengeData) {
         return axios.post("/api/users/:id/challenges", challengeData);

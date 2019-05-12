@@ -33,6 +33,12 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  addGoal: function(req, res) {
+    db.User
+      .findOneAndUpdate({ _id: req.params.id }, { $push: { goals: req.body } }, { new: true })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   remove: function(req, res) {
     db.User
       .findById({ _id: req.params.id })

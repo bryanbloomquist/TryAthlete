@@ -23,7 +23,7 @@ router
   router
   .route("/:id/goals")
   .get(usersController.findById)
-  .put(usersController.update)
+  .put(usersController.addGoal)
   .delete(usersController.remove);
 
   router
