@@ -9,9 +9,9 @@ function BadgesCard(props) {
         // backgroundPosition: "center",
         // backgroundRepeat: "no-repeat",
     }
-    const badges = {
-        ...props.user.badges
-    }
+    // const badges = {
+    //     ...props.user.badges
+    // }
 
     // for (i=1; i<goals)
 

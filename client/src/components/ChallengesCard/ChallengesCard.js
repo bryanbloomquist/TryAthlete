@@ -9,9 +9,9 @@ function ChallengesCard(props) {
         // backgroundPosition: "center",
         // backgroundRepeat: "no-repeat",
     }
-    const challenges = {
-        ...props.user.challenges
-    }
+    // const challenges = {
+    //     ...props.user.challenges
+    // }
 
     // for (i=1; i<goals)
 

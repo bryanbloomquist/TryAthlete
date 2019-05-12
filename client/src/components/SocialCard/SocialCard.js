@@ -9,9 +9,9 @@ function SocialCard(props) {
         // backgroundRepeat: "no-repeat",
     }
 
-    const friends = {
-        ...props.user.friends
-    }
+    // const friends = {
+    //     ...props.user.friends
+    // }
 
     // for (i=1; i<goals)
     return (
