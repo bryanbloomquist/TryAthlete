@@ -37,10 +37,11 @@ class App extends Component {
   // When this component mounts, grab the user with the _id of this.props.match.params.id
   loadUser = () => {
     //set the string here to whatever the id of the user in your db is! Use compass or ROBO 3t to see the id
-    API.getUser("5cd74400e3107e374cf1e52f")
+    API.getUser("5cd8337b03e3d431681f9201")
       .then(res => {
         this.setState({ user: res })
         console.log(res)
+        console.log(res.data.challenges[0].sport)
       })
       .catch(err => console.log(err));
   }
