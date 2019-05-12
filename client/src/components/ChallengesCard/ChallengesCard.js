@@ -1,7 +1,6 @@
 import React from "react";
 
 function ChallengesCard(props) {
-    console.log(props.user);
 
     const style = {
         backgroundColor: "slategray",
@@ -10,12 +9,12 @@ function ChallengesCard(props) {
         // backgroundPosition: "center",
         // backgroundRepeat: "no-repeat",
     }
-    const challenges = {
-        ...props.user.challenges
-    }
+    // const challenges = {
+    //     ...props.user.challenges
+    // }
 
     // for (i=1; i<goals)
-    console.log(challenges)
+
     return (
         <div className="card" style={style}>
             <h2>Challenges</h2><br />
@@ -24,7 +23,7 @@ function ChallengesCard(props) {
                     return <li key={index}>{value}</li>
                 })}
             </ul> */}
-            <p>{challenges[1].activity} {challenges[1].goalQuant} {challenges[1].goalType.unit} {challenges[1].goalType.frequency}</p>
+            {/* <p>{challenges[1].activity} {challenges[1].goalQuant} {challenges[1].goalType.unit} {challenges[1].goalType.frequency}</p> */}
             
         </div>
     )

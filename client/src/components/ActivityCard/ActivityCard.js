@@ -3,7 +3,6 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 function ActivityCard(props) {
-    // console.log(props);
     const style = {
         backgroundColor: props.color,
         backgroundImage: "url(" + props.img + ")",
@@ -12,7 +11,6 @@ function ActivityCard(props) {
         backgroundRepeat: "no-repeat",
     }
     
-    console.log(style);
     return (
         <div className="card" style={style}>
             <h2>Record a {props.activity}</h2>

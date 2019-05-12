@@ -18,301 +18,43 @@ import { runInContext } from 'vm';
 
 class App extends Component {
   state = {
-    scott: {
-      id: 1,
-      fname: "Scott",
-      lname: "Anderson",
-      userName: "wildside50",
-      avatar: "https://media.licdn.com/dms/image/C5603AQG8RXuzxnp7Vg/profile-displayphoto-shrink_200_200/0?e=1562803200&v=beta&t=8fzMGfAM1iGOsjDSm_FAUS-zD1ler13jAEzweHT_nvw",
-      activityLog: {
+    user: {},
+    hasUser: false
+  }
+  componentDidMount() {
+    this.loadUser();
+  }
 
-      },
-      goals: {
-        1: {
-          activity: "Run",
-          isAchieved: false,
-          goalQuant: 5,
-          goalType: {
-            unit: "miles",
-            frequency: "this week",
-            time: null,
-          }
-        },
-        2: {
-          activity: "Bike",
-          isAchieved: false,
-          goalQuant: 3,
-          goalType: {
-            unit: "hours",
-            frequency: "today",
-            time: null,
-          }
-        }
-      },
-      challenges: {
-        1: {
-          activity: "Swim",
-          isAchieved: false,
-          goalQuant: 3,
-          goalType: {
-            unit: "days",
-            frequency: "this week",
-            time: null,
-          }
-        },
-      },
-      badges: {
-        id: [
-          1,2,5
-        ]
-      },
-      friends: {
-        id: [
-          1, 2, 3, 4, 5
-        ]
-      }
-    },
-    ashlen: {
-      id: 2,
-      fname: "Ashlen",
-      lname: "Bruns",
-      userName: "tryAshlen",
-      avatar: "https://media.licdn.com/dms/image/C5603AQHCHIqg8saACg/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=6QlSv60MHLaDtII42_NG6awgDmhLpdysNNxwJshE4e8",
-      activityLog: {
-
-      },
-      goals: {
-        1: {
-          activity: "Run",
-          isAchieved: false,
-          goalQuant: 5,
-          goalType: {
-            unit: "miles",
-            frequency: "this week",
-            time: null,
-          }
-        },
-        2: {
-          activity: "Bike",
-          isAchieved: false,
-          goalQuant: 3,
-          goalType: {
-            unit: "hours",
-            frequency: "today",
-            time: null,
-          }
-        }
-      },
-      challenges: {
-        1: {
-          activity: "Swim",
-          isAchieved: false,
-          goalQuant: 3,
-          goalType: {
-            unit: "days",
-            frequency: "this week",
-            time: null,
-          }
-        },
-      },
-      badges: {
-        id: [
-          1,2,5
-        ]
-      },
-      friends: {
-        id: [
-          1, 2, 3, 4, 5
-        ]
-      }
-    },
-    bryan: {
-      id: 3,
-      fname: "Bryan",
-      lname: "Bloomquist",
-      userName: "dungeonMaster",
-      avatar: "https://media.licdn.com/dms/image/C5603AQGfOg_kMRgAxg/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=KSkhM_y0lzMiAmZgGJdJWdxUxxO4678kBkGeye5iddY",
-      activityLog: {
-
-      },
-      goals: {
-        1: {
-          activity: "Run",
-          isAchieved: false,
-          goalQuant: 5,
-          goalType: {
-            unit: "miles",
-            frequency: "this week",
-            time: null,
-          }
-        },
-        2: {
-          activity: "Bike",
-          isAchieved: false,
-          goalQuant: 3,
-          goalType: {
-            unit: "hours",
-            frequency: "today",
-            time: null,
-          }
-        }
-      },
-      challenges: {
-        1: {
-          activity: "Swim",
-          isAchieved: false,
-          goalQuant: 3,
-          goalType: {
-            unit: "days",
-            frequency: "this week",
-            time: null,
-          }
-        },
-      },
-      badges: {
-
-      },
-      friends: {
-        id: [
-          1, 2, 3, 4, 5
-        ]
-      }
-    },
-    john: {
-      id: 4,
-      fname: "John",
-      lname: "Evans",
-      userName: "prettyBoy",
-      avatar: "https://media.licdn.com/dms/image/C5603AQFqk9UyKm7cjw/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=_vQAdIdDL0nlgaB2lCoParKhkOMgVEj_ftqx3rK950Y",
-      activityLog: {
-
-      },
-      goals: {
-        1: {
-          activity: "Run",
-          isAchieved: false,
-          goalQuant: 5,
-          goalType: {
-            unit: "miles",
-            frequency: "this week",
-            time: null,
-          }
-        },
-        2: {
-          activity: "Bike",
-          isAchieved: false,
-          goalQuant: 3,
-          goalType: {
-            unit: "hours",
-            frequency: "today",
-            time: null,
-          }
-        }
-      },
-      challenges: {
-        1: {
-          activity: "Swim",
-          isAchieved: false,
-          goalQuant: 3,
-          goalType: {
-            unit: "days",
-            frequency: "this week",
-            time: null,
-          }
-        },
-      },
-      badges: {
-        id: [
-          1,2,5
-        ]
-      },
-      friends: {
-        id: [
-          1, 2, 3, 4, 5
-        ]
-      }
-    },
-    steve: {
-      id: 5,
-      fname: "Steve",
-      lname: "Thompson",
-      userName: "taskMaster",
-      avatar: "https://media.licdn.com/dms/image/C4E03AQHytoRECLHRyg/profile-displayphoto-shrink_800_800/0?e=1562803200&v=beta&t=jGC1r9oyhxaY9DgmIDDwtPydAi7HDsp-00OCJPVZQ2I",
-      activityLog: {
-
-      },
-      goals: {
-        1: {
-          activity: "Run",
-          isAchieved: false,
-          goalQuant: 5,
-          goalType: {
-            unit: "miles",
-            frequency: "this week",
-            time: null,
-          }
-        },
-        2: {
-          activity: "Bike",
-          isAchieved: false,
-          goalQuant: 3,
-          goalType: {
-            unit: "hours",
-            frequency: "today",
-            time: null,
-          }
-        }
-      },
-      challenges: {
-        1: {
-          activity: "Swim",
-          isAchieved: false,
-          goalQuant: 3,
-          goalType: {
-            unit: "days",
-            frequency: "this week",
-            time: null,
-          }
-        },
-      },
-      badges: {
-        id: [
-          1,2,5
-        ]
-      },
-      friends: {
-        id: [
-          1, 2, 3, 4, 5
-        ]
-      }
-    },
-  };
-
-  
   // When this component mounts, grab the user with the _id of this.props.match.params.id
-  //   componentDidMount() {
-  //     API.getUser(this.props.match.params.id)
-  //         .then(res => this.setState({ user: res.data }))
-  //         .catch(err => console.log(err));
-  // }
+  loadUser = () => {
+    //set the string here to whatever the id of the user in your db is! Use compass or ROBO 3t to see the id
+    API.getUser("5cd733befb3d1a29ac976a8f")
+      .then(res => {
+        this.setState({ user: res.data, hasUser: true })
+      })
+      .catch(err => console.log(err));
+  }
+
   render() {
-    const user=this.state.ashlen;
+    const user = this.state.user;
     return (
       <Router>
+        {this.state.hasUser ? (
         <Wrapper>
+          
           <NavbarArea>{user}</NavbarArea>
-          <Switch>
-            <Route exact path="/" render={(props) => <Home {...props} user={user} />} />
-            <Route exact path="/dashboard" render={(props) => <Dashboard {...props} user={user} />} />
-            <Route exact path="/goals" render={(props) => <Goals {...props} user={user} />} />
-            <Route exact path="/challenges" render={(props) => <Challenges {...props} user={user} />} />
-            <Route exact path="/badges" render={(props) => <Badges {...props} user={user} />} />
-            <Route exact path="/social" render={(props) => <Social {...props} user={user} />} />
-            <Route exact path="/profile" render={(props) => <Profile {...props} user={user} />} />
-            {/* <Route component={NoMatch} /> */}
-          </Switch>
-          <Footer />
-        </Wrapper>
+            <Switch>
+              <Route exact path="/" render={(props) => <Home {...props} user={user} />} />
+              <Route exact path="/dashboard" render={(props) => <Dashboard {...props} user={user} />} />
+              <Route exact path="/goals" render={(props) => <Goals {...props} user={user} />} />
+              <Route exact path="/challenges" render={(props) => <Challenges {...props} user={user} />} />
+              <Route exact path="/badges" render={(props) => <Badges {...props} user={user} />} />
+              <Route exact path="/social" render={(props) => <Social {...props} user={user} />} />
+              <Route exact path="/profile" render={(props) => <Profile {...props} user={user} />} />
+              {/* <Route component={NoMatch} /> */}
+            </Switch>
+            <Footer />
+        </Wrapper>) : (<h1> </h1>)}
       </Router>
     )
   }
