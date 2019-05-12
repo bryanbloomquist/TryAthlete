@@ -18,17 +18,8 @@ import { runInContext } from 'vm';
 
 class App extends Component {
   state = {
-    user: {
-      givenName: "",
-      familyName: "",
-      imageUrl: "",
-      email: "",
-      activities: [],
-      goals: [],
-      badges: [],
-      challenges: [],
-      friends: []
-      }
+    user: {},
+    hasUser: false
   }
   componentDidMount() {
     this.loadUser();
@@ -39,7 +30,7 @@ class App extends Component {
     //set the string here to whatever the id of the user in your db is! Use compass or ROBO 3t to see the id
     API.getUser("5cd8337b03e3d431681f9201")
       .then(res => {
-        this.setState({ user: res })
+        this.setState({ user: res, hasUser: true })
         console.log(res)
         console.log(res.data.challenges[0].sport)
       })
@@ -50,20 +41,22 @@ class App extends Component {
     const user = this.state.user;
     return (
       <Router>
+        {this.state.hasUser ? (
         <Wrapper>
+          
           <NavbarArea>{user}</NavbarArea>
-          <Switch>
-            <Route exact path="/" render={(props) => <Home {...props} user={user} />} />
-            <Route exact path="/dashboard" render={(props) => <Dashboard {...props} user={user} />} />
-            <Route exact path="/goals" render={(props) => <Goals {...props} user={user} />} />
-            <Route exact path="/challenges" render={(props) => <Challenges {...props} user={user} />} />
-            <Route exact path="/badges" render={(props) => <Badges {...props} user={user} />} />
-            <Route exact path="/social" render={(props) => <Social {...props} user={user} />} />
-            <Route exact path="/profile" render={(props) => <Profile {...props} user={user} />} />
-            {/* <Route component={NoMatch} /> */}
-          </Switch>
-          <Footer />
-        </Wrapper>
+            <Switch>
+              <Route exact path="/" render={(props) => <Home {...props} user={user} />} />
+              <Route exact path="/dashboard" render={(props) => <Dashboard {...props} user={user} />} />
+              <Route exact path="/goals" render={(props) => <Goals {...props} user={user} />} />
+              <Route exact path="/challenges" render={(props) => <Challenges {...props} user={user} />} />
+              <Route exact path="/badges" render={(props) => <Badges {...props} user={user} />} />
+              <Route exact path="/social" render={(props) => <Social {...props} user={user} />} />
+              <Route exact path="/profile" render={(props) => <Profile {...props} user={user} />} />
+              {/* <Route component={NoMatch} /> */}
+            </Switch>
+            <Footer />
+        </Wrapper>) : (<h1></h1>)}
       </Router>
     )
   }
