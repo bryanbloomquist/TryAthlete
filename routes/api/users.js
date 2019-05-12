@@ -13,29 +13,63 @@ router
   .put(usersController.update)
   .delete(usersController.remove);
 
-  router
+//activities
+
+router
   .route("/:id/activities")
   .get(usersController.findById)
-  //cash me outside howbowda
   .put(usersController.addActivity)
   .delete(usersController.remove);
 
-  router
-  .route("/:id/goals")
-  .get(usersController.findById)
-  .put(usersController.update)
-  .delete(usersController.remove);
+router
+  .route("/:id/activities/:activityId")
+  .get(usersController.removeActivity)
 
-  router
-  .route("/:id/badges")
-  .get(usersController.findById)
-  .put(usersController.update)
-  .delete(usersController.remove);
+//friends
 
-  router
+router
   .route("/:id/friends")
   .get(usersController.findById)
-  .put(usersController.update)
+  .put(usersController.addActivity)
   .delete(usersController.remove);
+
+router
+  .route("/:id/friends/:friendId")
+  .get(usersController.removeActivity)
+
+//goals
+
+router
+  .route("/:id/goals")
+  .get(usersController.findById)
+  .put(usersController.addGoal)
+  .delete(usersController.remove);
+
+router
+  .route("/:id/goals/:goalId")
+  .get(usersController.removeActivity)
+
+//badges
+router
+  .route("/:id/badges")
+  .get(usersController.findById)
+  .put(usersController.addBadge)
+  .delete(usersController.remove);
+
+router
+  .route("/:id/badges/:badgeId")
+  .get(usersController.removeActivity)
+
+//challenges
+
+router
+  .route("/:id/challenges")
+  .get(usersController.findById)
+  .put(usersController.addChallenge)
+  .delete(usersController.remove);
+
+router
+  .route("/:id/challenges/:challengeId")
+  .get(usersController.removeChallenge)
 
 module.exports = router;
