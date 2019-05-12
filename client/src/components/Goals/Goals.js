@@ -14,7 +14,6 @@ var localProps = {
 
 
 function Goals(props) {
-    console.log(props);
     return (
         <Container fluid className="pb-5">
             <Row>

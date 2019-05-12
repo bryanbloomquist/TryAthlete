@@ -11,7 +11,6 @@ import LoginButton from "../GoogleLogin/GoogleLogin";
 // import Login from "../images/login2.png"
 
 function NavbarArea(props) {
-    console.log(props)
     return (
         <Navbar expand="lg">
             <Navbar.Brand href="/">
