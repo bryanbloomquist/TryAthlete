@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { GoogleLogin } from "react-google-login";
+import API from "../../utils/API";
 
 class LoginButton extends Component {
   state = {
@@ -8,7 +9,7 @@ class LoginButton extends Component {
 
   responseGoogleSuccess = ( response ) => {
     console.log( response );
-    let user = {
+    let loginUser = {
       "email": response.profileObj.email,
       "familyName": response.profileObj.familyName,
       "givenName": response.profileObj.givenName,
@@ -16,8 +17,20 @@ class LoginButton extends Component {
       "imageUrl": response.profileObj.imageUrl,
       "name": response.profileObj.name
     }
-    console.log( user );
+    console.log( loginUser );
+    this.setState({ user: loginUser, hasUser: true })
+    console.log( this.state.user );
+    console.log( this.state.hasUser );
+    // CALL FUNCTION HERE TO CHECK DATABASE FOR USER
+    this.validateUser( loginUser );
   }
+
+  // ADD FUNCTION THAT WILL SEARCH DATABASE FOR GOOGLE ID
+  validateUser = ( data ) => {
+
+  }
+  // IF NONE ARE FOUND ADD THAT USER TO THE DATABASE
+  // IF MATCH, SET USER TO THAT DATA
 
   responseGoogleFailure = ( response ) => {
     console.log( response );
