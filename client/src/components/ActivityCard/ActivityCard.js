@@ -20,6 +20,8 @@ function ActivityCard(props) {
         units: "miles"
     }  
 
+    const id = props.user._id
+
     return (
         <div className="card" style={style}>
             <h2>Record a {props.activity}</h2>
@@ -33,7 +35,7 @@ function ActivityCard(props) {
                         <option value="unit2">{props.units[1]}</option>
                     </Form.Control>
                     <br />
-                    <Button  className="btn btn-warning"  onClick={() => API.logActivity( props.user._id, { test })}>Log it</Button>
+                    <Button  className="btn btn-warning"  onClick={() => API.saveActivity( {id}, { test })}>Log it</Button>
                 </Form.Group>
             </Form>
         </div>
