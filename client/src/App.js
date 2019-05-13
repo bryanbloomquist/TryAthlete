@@ -34,7 +34,13 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
-
+  // createNewGoal = () => {
+  //   API.saveGoal(newGoal)
+  //     .then(res => {
+  //       res.json(newGoal)
+  //     })
+  //     .catch(err => console.log(err));
+  // }
 
   render() {
     const user = this.state.user;
