@@ -48,7 +48,6 @@ class App extends Component {
       <Router>
         {this.state.hasUser ? (
         <Wrapper>
-          
           <NavbarArea>{user}</NavbarArea>
             <Switch>
               <Route exact path="/" render={(props) => <Home {...props} user={user} />} />

@@ -2,7 +2,6 @@ import React from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import API from "../../utils/API";
 
@@ -16,7 +15,7 @@ var newGoal = {
     goalTimeFrame: "This Week",
 };
 
-
+// How to pull Form data into a Variable called "newGoal"???
 
 
 function GoalForm(props) {
@@ -25,7 +24,6 @@ function GoalForm(props) {
     console.log("props are: ",props);
 
     return (
-        <Card className="card-wide text-dark bg-light">
         <Form>
             <Form.Group as={Row} controlId="goalActivity">
                 <Form.Label column sm={4}>Activity:</Form.Label>
@@ -82,7 +80,6 @@ function GoalForm(props) {
                 </Button>
             </Col>
         </Form>
-        </Card>
     );
 }
 

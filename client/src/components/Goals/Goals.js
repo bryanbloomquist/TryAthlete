@@ -4,8 +4,8 @@ import CurGoalsCard from "./CurGoalsCard";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
+import Card from "react-bootstrap/Card";
 import AchievedGoalsCard from "./AcheivedGoalsCard";
-
 
 
 function Goals(props) {
@@ -21,9 +21,11 @@ function Goals(props) {
             </Row>
             <Row className="text-center py-5">
                 <Col md={4}>
-                    <GoalForm 
-                    user={props.user}
-                    />
+                    <Card className="card-wide text-dark bg-light">
+                        <GoalForm 
+                        user={props.user}
+                        />
+                    </Card>
                 </Col>
                 <Col md={8}>
                     <Row>
