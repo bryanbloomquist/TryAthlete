@@ -75,7 +75,7 @@ function GoalForm(props) {
                 </Col>
             </Form.Group>
             <Col sm={{ span: 9, offset: 1 }}>
-                <Button variant="warning" size="lg" block onClick={() => API.saveGoal( props.user._id, newGoal)} >
+                <Button variant="warning" size="lg" block onClick={() => API.saveGoal( newGoal, props.user._id )} >
                     Create New Goal
                 </Button>
             </Col>
