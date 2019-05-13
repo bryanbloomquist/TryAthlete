@@ -3,9 +3,24 @@ import API from "../../utils/API";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
+const test = {
+    sport: "Run",
+    distance: "5",
+    units: "miles"
+}  
+
+var newGoal = {
+    name: "Swim 2 Times This Week",
+    sport: "Swim",
+    isAchieved: false,
+    goalType: "Frequency",
+    goalQty: 2,
+    goalUnit: "Times",
+    goalTimeFrame: "This Week",
+};
 
 function ActivityCard(props) {
-    console.log(props.user._id)
+    console.log(props.user.user._id)
     const style = {
         backgroundColor: props.color,
         backgroundImage: "url(" + props.img + ")",
@@ -13,13 +28,6 @@ function ActivityCard(props) {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
     }
-
-    const test = {
-        sport: "Run",
-        distance: "5",
-        units: "miles"
-    }  
-
     const id = props.user._id
 
     return (
@@ -35,7 +43,7 @@ function ActivityCard(props) {
                         <option value="unit2">{props.units[1]}</option>
                     </Form.Control>
                     <br />
-                    <Button  className="btn btn-warning" block onClick={() => API.saveActivity( "5cd733befb3d1a29ac976a8f", test )}>Log it</Button>
+                    <Button className="btn btn-warning" block onClick={() => API.saveGoal( props.user.user._id, newGoal)}>Log it</Button>
                 </Form.Group>
             </Form>
         </div>

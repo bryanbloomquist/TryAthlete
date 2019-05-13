@@ -22,21 +22,21 @@ function Dashboard(props) {
                     units={["mi", "km"]}
                     color={"#ed4b4b"}
                     img={Run}
-                    user={props.user}
+                    user={props}
                 />
                 <ActivityCard
                     activity={"Ride"}
                     units={["mi", "km"]}
                     color={"#4fc147"}
                     img={Bike}
-                    user={props.user}
+                    user={props}
                 />
                 <ActivityCard
                     activity={"Swim"}
                     units={["meters", "yards"]}
                     color={"#4b68ed"}
                     img={Swim}
-                    user={props.user}
+                    user={props}
                 />
             </Row>
             <Row>
