@@ -20,7 +20,7 @@ import { runInContext } from 'vm';
 class App extends Component {
   state = {
     user: {},
-    hasUser: false
+    loggedIn: false
   }
 
   responseGoogleSuccess = ( response ) => {
@@ -29,21 +29,49 @@ class App extends Component {
       "email": response.profileObj.email,
       "familyName": response.profileObj.familyName,
       "givenName": response.profileObj.givenName,
-      "googleId": response.googleId,
       "imageUrl": response.profileObj.imageUrl,
       "name": response.profileObj.name
     }
     console.log( loginUser );
-    this.setState({ user: loginUser, hasUser: true })
     console.log( this.state.user );
-    console.log( this.state.hasUser );
+    console.log( this.state.loggedIn );
     // CALL FUNCTION HERE TO CHECK DATABASE FOR USER
     this.validateUser( loginUser );
   }
 
   // ADD FUNCTION THAT WILL SEARCH DATABASE FOR GOOGLE ID
-  validateUser = ( data ) => {
-
+  validateUser = ( loginUser ) => {
+    API
+      .getUsers()
+      .then(( res ) => {
+        res.data.forEach(( user ) => {
+          if ( user.email === loginUser.email ) {
+            this.setState({ user: user, loggedIn: true })
+            console.log( this.state.user );
+            console.log( "loggedIn: " + this.state.loggedIn )
+          }
+        })
+        if ( !this.state.loggedin ) {
+          let userObject = {
+            givenName: loginUser.givenName,
+            familyName: loginUser.familyName,
+            imageUrl: loginUser.imageUrl,
+            email: loginUser.email,
+            activities: [],
+            goals: [],
+            badges: [],
+            challenges: [],
+            friends: []
+          }
+          API
+            .saveUser( userObject )
+            .then(( res ) => {
+              console.log( res );
+              this.setState({ user: userObject, loggedIn: true })
+            })
+            .catch(( err ) => console.log(( err )))
+        }
+      })
   }
   // IF NONE ARE FOUND ADD THAT USER TO THE DATABASE
   // IF MATCH, SET USER TO THAT DATA
@@ -71,7 +99,7 @@ class App extends Component {
     console.log( user );
     return (
       <Router>
-        {this.state.hasUser ? (
+        {this.state.loggedIn ? (
           <Wrapper>
             <NavbarArea>{user}</NavbarArea>
             <Switch>
@@ -94,16 +122,10 @@ class App extends Component {
               onSuccess = { this.responseGoogleSuccess }
               onFailure = { this.responseGoogleFailure }
               cookiePolicy = { "single_host_origin" }
+              className = "loginButton"
             />
             <Switch>
               <Route exact path="/" render={(props) => <Home {...props} user={user} />} />
-              <Route exact path="/dashboard" render={(props) => <Dashboard {...props} user={user} />} />
-              <Route exact path="/goals" render={(props) => <Goals {...props} user={user} />} />
-              <Route exact path="/challenges" render={(props) => <Challenges {...props} user={user} />} />
-              <Route exact path="/badges" render={(props) => <Badges {...props} user={user} />} />
-              <Route exact path="/social" render={(props) => <Social {...props} user={user} />} />
-              <Route exact path="/profile" render={(props) => <Profile {...props} user={user} />} />
-              {/* <Route component={NoMatch} /> */}
             </Switch>
           </Wrapper>
         )}
