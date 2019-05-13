@@ -1,5 +1,5 @@
 import React from "react";
-import GoalDisplay from "./GoalDisplay";
+import ArrayDisplay from "../ArrayDisplay/ArrayDisplay";
 
 function GoalsCard(props) {
     console.log(props.user)
@@ -17,7 +17,7 @@ function GoalsCard(props) {
     return (
         <div className="card" style={style}>
             <h2>Goals</h2><br />
-            <GoalDisplay length={length} goals={goals}></GoalDisplay>
+            <ArrayDisplay length={length} goals={goals} card="goals"></ArrayDisplay>
 
         </div>
     )

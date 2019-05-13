@@ -2,6 +2,10 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
+const logActivity = function() {
+    console.log("It was pressed")
+}
+
 function ActivityCard(props) {
     const style = {
         backgroundColor: props.color,
@@ -24,7 +28,7 @@ function ActivityCard(props) {
                             <option value="unit2">{props.units[1]}</option>
                         </Form.Control>
                     <br />
-                    <Button type="submit" className="btn btn-warning">Log it</Button>
+                    <Button type="submit" className="btn btn-warning" onClick={logActivity}>Log it</Button>
                 </Form.Group>
             </Form>
         </div>
