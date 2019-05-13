@@ -25,7 +25,7 @@ router
   .route("/:id/activities/:activityId")
   .get(usersController.removeActivity)
 
-//friends
+// //friends
 
 router
   .route("/:id/friends")
@@ -37,7 +37,7 @@ router
   .route("/:id/friends/:friendId")
   .get(usersController.removeActivity)
 
-//goals
+// //goals
 
 router
   .route("/:id/goals")
@@ -49,7 +49,7 @@ router
   .route("/:id/goals/:goalId")
   .get(usersController.removeActivity)
 
-//badges
+// //badges
 router
   .route("/:id/badges")
   .get(usersController.findById)
@@ -60,7 +60,7 @@ router
   .route("/:id/badges/:badgeId")
   .get(usersController.removeActivity)
 
-//challenges
+// //challenges
 
 router
   .route("/:id/challenges")
