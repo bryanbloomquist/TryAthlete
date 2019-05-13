@@ -21,8 +21,8 @@ export default {
     saveActivity: function (activityData) {
         return axios.post("/api/users/:id/activities", activityData);
     },
-    saveGoal: function (goalData) {
-        return axios.put("/api/users/:id/goals", goalData);
+    saveGoal: function (userID, goalData) {
+        return axios.put("/api/users/" +userID+ "/goals", goalData);
     },
     saveChallenge: function (challengeData) {
         return axios.post("/api/users/:id/challenges", challengeData);

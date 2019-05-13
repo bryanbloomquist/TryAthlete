@@ -21,7 +21,9 @@ function Goals(props) {
             </Row>
             <Row className="text-center py-5">
                 <Col md={4}>
-                    <GoalForm />
+                    <GoalForm 
+                    user={props.user}
+                    />
                 </Col>
                 <Col md={8}>
                     <Row>
@@ -34,7 +36,7 @@ function Goals(props) {
                     <Row>
                         <Col>
                             <AchievedGoalsCard
-                                user={props.user}
+                                userGoals={props.user.goals}
                             />
                         </Col>
                     </Row>

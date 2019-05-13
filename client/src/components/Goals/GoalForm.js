@@ -20,6 +20,7 @@ var newGoal = {
 function GoalForm(props) {
 
     console.log(newGoal);
+    console.log("props are: ",props);
 
     return (
         <Card className="card-wide text-dark bg-light">
@@ -72,7 +73,7 @@ function GoalForm(props) {
                 </Col>
             </Form.Group>
             <Col sm={{ span: 9, offset: 1 }}>
-                <Button variant="warning" size="lg" block onClick={() => API.saveGoal({ newGoal })} >
+                <Button variant="warning" size="lg" block onClick={() => API.saveGoal( props.user._id, { newGoal })} >
                     Create New Goal
                 </Button>
             </Col>
