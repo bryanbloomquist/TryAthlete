@@ -12,15 +12,44 @@ import Goals from "./components/Goals/Goals";
 import Challenges from "./components/Challenges/Challenges";
 import Badges from "./components/Badges/Badges";
 import Social from "./components/Social/Social";
+import { GoogleLogin } from "react-google-login";
 // import NoMatch from "./components/NoMatch/NoMatch";
 import './App.css';
 import { runInContext } from 'vm';
-import LoginButton from './components/GoogleLogin/GoogleLogin';
 
 class App extends Component {
   state = {
     user: {},
     hasUser: false
+  }
+
+  responseGoogleSuccess = ( response ) => {
+    console.log( response );
+    let loginUser = {
+      "email": response.profileObj.email,
+      "familyName": response.profileObj.familyName,
+      "givenName": response.profileObj.givenName,
+      "googleId": response.googleId,
+      "imageUrl": response.profileObj.imageUrl,
+      "name": response.profileObj.name
+    }
+    console.log( loginUser );
+    this.setState({ user: loginUser, hasUser: true })
+    console.log( this.state.user );
+    console.log( this.state.hasUser );
+    // CALL FUNCTION HERE TO CHECK DATABASE FOR USER
+    this.validateUser( loginUser );
+  }
+
+  // ADD FUNCTION THAT WILL SEARCH DATABASE FOR GOOGLE ID
+  validateUser = ( data ) => {
+
+  }
+  // IF NONE ARE FOUND ADD THAT USER TO THE DATABASE
+  // IF MATCH, SET USER TO THAT DATA
+
+  responseGoogleFailure = ( response ) => {
+    console.log( response );
   }
 
   // componentDidMount() {
@@ -45,31 +74,37 @@ class App extends Component {
         {this.state.hasUser ? (
           <Wrapper>
             <NavbarArea>{user}</NavbarArea>
-              <Switch>
-                <Route exact path="/" render={(props) => <Home {...props} user={user} />} />
-                <Route exact path="/dashboard" render={(props) => <Dashboard {...props} user={user} />} />
-                <Route exact path="/goals" render={(props) => <Goals {...props} user={user} />} />
-                <Route exact path="/challenges" render={(props) => <Challenges {...props} user={user} />} />
-                <Route exact path="/badges" render={(props) => <Badges {...props} user={user} />} />
-                <Route exact path="/social" render={(props) => <Social {...props} user={user} />} />
-                <Route exact path="/profile" render={(props) => <Profile {...props} user={user} />} />
-                {/* <Route component={NoMatch} /> */}
-              </Switch>
-              <Footer />
+            <Switch>
+              <Route exact path="/" render={(props) => <Home {...props} user={user} />} />
+              <Route exact path="/dashboard" render={(props) => <Dashboard {...props} user={user} />} />
+              <Route exact path="/goals" render={(props) => <Goals {...props} user={user} />} />
+              <Route exact path="/challenges" render={(props) => <Challenges {...props} user={user} />} />
+              <Route exact path="/badges" render={(props) => <Badges {...props} user={user} />} />
+              <Route exact path="/social" render={(props) => <Social {...props} user={user} />} />
+              <Route exact path="/profile" render={(props) => <Profile {...props} user={user} />} />
+              {/* <Route component={NoMatch} /> */}
+            </Switch>
+            <Footer />
           </Wrapper>
         ) : (
           <Wrapper>
-            <LoginButton />
+            <GoogleLogin
+              clientId = "907322878909-ceh0tltstqr7ht4eidho9ehj73bs7t1p.apps.googleusercontent.com"
+              buttonText = "Login"
+              onSuccess = { this.responseGoogleSuccess }
+              onFailure = { this.responseGoogleFailure }
+              cookiePolicy = { "single_host_origin" }
+            />
             <Switch>
-                <Route exact path="/" render={(props) => <Home {...props} user={user} />} />
-                <Route exact path="/dashboard" render={(props) => <Dashboard {...props} user={user} />} />
-                <Route exact path="/goals" render={(props) => <Goals {...props} user={user} />} />
-                <Route exact path="/challenges" render={(props) => <Challenges {...props} user={user} />} />
-                <Route exact path="/badges" render={(props) => <Badges {...props} user={user} />} />
-                <Route exact path="/social" render={(props) => <Social {...props} user={user} />} />
-                <Route exact path="/profile" render={(props) => <Profile {...props} user={user} />} />
-                {/* <Route component={NoMatch} /> */}
-              </Switch>
+              <Route exact path="/" render={(props) => <Home {...props} user={user} />} />
+              <Route exact path="/dashboard" render={(props) => <Dashboard {...props} user={user} />} />
+              <Route exact path="/goals" render={(props) => <Goals {...props} user={user} />} />
+              <Route exact path="/challenges" render={(props) => <Challenges {...props} user={user} />} />
+              <Route exact path="/badges" render={(props) => <Badges {...props} user={user} />} />
+              <Route exact path="/social" render={(props) => <Social {...props} user={user} />} />
+              <Route exact path="/profile" render={(props) => <Profile {...props} user={user} />} />
+              {/* <Route component={NoMatch} /> */}
+            </Switch>
           </Wrapper>
         )}
       </Router>
