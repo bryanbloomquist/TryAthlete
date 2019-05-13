@@ -2,7 +2,7 @@ import React from "react";
 import ArrayDisplay from "../ArrayDisplay/ArrayDisplay";
 
 function GoalsCard(props) {
-    console.log(props.user)
+    console.log(props)
     const style = {
         backgroundColor: "slategray",
         // backgroundImage: "url("+props.img+")",

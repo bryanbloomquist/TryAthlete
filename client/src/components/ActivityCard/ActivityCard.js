@@ -29,7 +29,6 @@ function ActivityCard(props) {
         backgroundRepeat: "no-repeat",
     }
     const id = props.user._id
-
     return (
         <div className="card" style={style}>
             <h2>Record a {props.activity}</h2>
