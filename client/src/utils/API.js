@@ -2,29 +2,61 @@
 import axios from "axios";
 
 export default {
-    // Gets all books
+
+    //--------------------------------USERS------------------------------
+
+    // Gets all users
     getUsers: function () {
         return axios.get("/api/users");
     },
-    // Gets the book with the given id
+    // Gets the user with the given id
     getUser: function (id) {
         return axios.get("/api/users/" + id);
     },
-    // Deletes the book with the given id
-    deleteUser: function (id) {
-        return axios.delete("/api/users/" + id);
-    },
-    // Saves a book to the database
+
     saveUser: function (bookData) {
         return axios.post("/api/users", bookData);
     },
-    saveActivity: function (activityData) {
-        return axios.post("/api/users/:id/activities", activityData);
+
+
+    //--------------------------------ACTIVITIES------------------------------
+
+    saveActivity: function (activityData, userId) {
+        return axios.put(`/api/users/${userId}/activities`, activityData);
     },
-    saveGoal: function (goalData) {
-        return axios.post("/api/users/:id/activities", goalData);
+
+    deleteActivity: function (userId, activityId) {
+        return axios.get(`/api/users/${userId}/activities/${activityId}`);
     },
-    saveChallenge: function (challengeData) {
-        return axios.post("/api/users/:id/challenges", challengeData);
+
+    //--------------------------------GOALS------------------------------
+
+    saveGoal: function (goalData, userId) {
+        return axios.post(`/api/users/${userId}/goals`, goalData);
+    },
+
+    deleteGoal: function (userId, goalId) {
+        return axios.get(`/api/users/${userId}/goals/${goalId}`);
+    },
+
+    //--------------------------------CHALLENGES------------------------------
+
+    saveChallenge: function (challengeData, userId) {
+        return axios.post(`/api/users/${userId}/challenges`, challengeData);
+    },
+
+    deleteChallenge: function (userId, challengeId) {
+        return axios.get(`/api/users/${userId}/challenges/${challengeId}`);
+    },
+
+    //--------------------------------FRIENDS------------------------------
+
+    addFriend: function (friendData, userId) {
+        return axios.post(`/api/users/${userId}/friends`, friendData);
+    },
+
+    deleteFriend: function (userId, friendId) {
+        return axios.get(`/api/users/${userId}/friends/${friendId}`);
     }
+
 };
