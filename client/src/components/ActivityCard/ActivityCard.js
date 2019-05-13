@@ -4,17 +4,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 
-const logActivity = () => {
-    API.addActivity("test")
-        .then(res => {
-            res.json()
-        })
-        .catch(err => console.log(err));
-}
-
-
-
 function ActivityCard(props) {
+    console.log(props.user._id)
     const style = {
         backgroundColor: props.color,
         backgroundImage: "url(" + props.img + ")",
@@ -22,6 +13,12 @@ function ActivityCard(props) {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
     }
+
+    const test = {
+        sport: "Run",
+        distance: "5",
+        units: "miles"
+    }  
 
     return (
         <div className="card" style={style}>
@@ -36,7 +33,7 @@ function ActivityCard(props) {
                         <option value="unit2">{props.units[1]}</option>
                     </Form.Control>
                     <br />
-                    <Button  className="btn btn-warning" onClick={logActivity}>Log it</Button>
+                    <Button  className="btn btn-warning"  onClick={() => API.logActivity( props.user._id, { test })}>Log it</Button>
                 </Form.Group>
             </Form>
         </div>
