@@ -17,6 +17,8 @@ var newGoal = {
 };
 
 
+
+
 function GoalForm(props) {
 
     console.log(newGoal);
@@ -48,7 +50,7 @@ function GoalForm(props) {
             <Form.Group as={Row} controlId="goalQty">
                 <Form.Label column sm={4}>Qty:</Form.Label>
                 <Col sm={3}>
-                    <Form.Control type="text" />
+                    <Form.Control inputRef={goalQty => this.textInput = goalQty} type="text" />
                 </Col>
             </Form.Group>
             <Form.Group as={Row} controlId="goalUnit">
@@ -60,6 +62,8 @@ function GoalForm(props) {
                         <option>Hours</option>
                         <option>Days</option>
                         <option>Times</option>
+                        <option>Meters</option>
+                        <option>Yards</option>
                     </Form.Control>
                 </Col>
             </Form.Group>
