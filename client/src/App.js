@@ -12,6 +12,7 @@ import Goals from "./components/Goals/Goals";
 import Challenges from "./components/Challenges/Challenges";
 import Badges from "./components/Badges/Badges";
 import Social from "./components/Social/Social";
+import Row from "react-bootstrap/Row";
 import { GoogleLogin } from "react-google-login";
 // import NoMatch from "./components/NoMatch/NoMatch";
 import './App.css';
@@ -32,8 +33,6 @@ class App extends Component {
       "name": response.profileObj.name
     }
     console.log( loginUser );
-    console.log( this.state.user );
-    console.log( this.state.loggedIn );
     this.validateUser( loginUser );
   }
 
@@ -45,11 +44,12 @@ class App extends Component {
         for( let i = 0; i < res.data.length; i++ ) {
           if ( res.data[i].email === loginUser.email ) {
             this.setState({ user: res.data[i], loggedIn: true });
+            console.log( "user found!" );
             userFound = true;
           }
         }
         if ( !userFound ) {
-          console.log( "creating new user!")
+          console.log( "creating new user!" );
           let userObject = {
             givenName: loginUser.givenName,
             familyName: loginUser.familyName,
@@ -103,14 +103,16 @@ class App extends Component {
           </Wrapper>
         ) : (
           <Wrapper>
-            <GoogleLogin
-              clientId = "907322878909-ceh0tltstqr7ht4eidho9ehj73bs7t1p.apps.googleusercontent.com"
-              buttonText = "Login"
-              onSuccess = { this.responseGoogleSuccess }
-              onFailure = { this.responseGoogleFailure }
-              cookiePolicy = { "single_host_origin" }
-              className = "loginButton"
-            />
+            <Row className = "justify-content-center">
+              <GoogleLogin
+                clientId = "907322878909-ceh0tltstqr7ht4eidho9ehj73bs7t1p.apps.googleusercontent.com"
+                buttonText = "LOGIN"
+                onSuccess = { this.responseGoogleSuccess }
+                onFailure = { this.responseGoogleFailure }
+                cookiePolicy = { "single_host_origin" }
+                className = "loginButton"
+              />
+            </Row>
             <Switch>
               <Route exact path="/" render={(props) => <Home {...props} user={ this.state.user } />} />
             </Switch>
