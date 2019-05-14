@@ -4,7 +4,8 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Jumbotron from "react-bootstrap/Jumbotron";
 
-function Profile() {
+function Profile(props) {
+    console.log(props.user)
     return (
         <Container fluid>
             <Row>
@@ -12,9 +13,9 @@ function Profile() {
                     <Jumbotron>
                         <h1>Profile</h1>
                         <h2>
-                            {this.state.user.fname} {this.state.user.lname}
+                            
                         </h2>
-                        <img src={this.state.user.avatar} className="text-center" alt="User Avatar" />
+                        <img src="" className="text-center" alt="User Avatar" />
                     </Jumbotron>
                 </Col>
             </Row>

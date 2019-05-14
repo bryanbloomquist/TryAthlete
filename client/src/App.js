@@ -22,30 +22,49 @@ class App extends Component {
     loggedIn: false
   }
 
-  responseGoogleSuccess = ( response ) => {
-    let loginUser = {
-      "email": response.profileObj.email,
-      "familyName": response.profileObj.familyName,
-      "givenName": response.profileObj.givenName,
-      "imageUrl": response.profileObj.imageUrl,
-      "name": response.profileObj.name
+  componentDidMount() {
+    //check local storage
+    let localStorageUser = JSON.parse(window.localStorage.getItem("user"))
+
+    //if there is a user saved to the local storage
+    if (localStorageUser !== null) {
+      //set the user and log in
+      this.setState({ user: localStorageUser, loggedIn: true })
+    } else {
+      console.log("no user")
     }
-    this.validateUser( loginUser );
   }
 
-  validateUser = ( loginUser ) => {
+
+  responseGoogleSuccess = (response) => {
+    //if the user isn't already logged in from local storage
+    if (this.state.loggedIn === false) {
+      let loginUser = {
+        "email": response.profileObj.email,
+        "familyName": response.profileObj.familyName,
+        "givenName": response.profileObj.givenName,
+        "imageUrl": response.profileObj.imageUrl,
+        "name": response.profileObj.name
+      }
+      this.validateUser(loginUser);
+    }
+  }
+
+  validateUser = (loginUser) => {
     API
       .getUsers()
-      .then(( res ) => {
+      .then((res) => {
         let userFound = false;
-        for( let i = 0; i < res.data.length; i++ ) {
-          if ( res.data[i].email === loginUser.email ) {
+        for (let i = 0; i < res.data.length; i++) {
+          if (res.data[i].email === loginUser.email) {
             this.setState({ user: res.data[i], loggedIn: true });
+            window.localStorage.setItem('user', JSON.stringify(res.data[i]));
+            window.localStorage.setItem('loggedIn', true);
             userFound = true;
           }
         }
-        if ( !userFound ) {
-          console.log( "creating new user!")
+        if (!userFound) {
+          console.log("creating new user!")
           let userObject = {
             givenName: loginUser.givenName,
             familyName: loginUser.familyName,
@@ -58,18 +77,20 @@ class App extends Component {
             friends: []
           }
           API
-            .saveUser( userObject )
-            .then(( res ) => {
-              this.setState({ user: userObject, loggedIn: true })
-              console.log( "logged in = " + this.state.loggedIn );
+            .saveUser(userObject)
+            .then((res) => {
+              this.setState({ user: userObject, loggedIn: true });
+              window.localStorage.setItem('user', JSON.stringify(userObject));
+              window.localStorage.setItem('loggedIn', true);
+              console.log("logged in = " + this.state.loggedIn);
             })
-            .catch(( err ) => console.log(( err )))
+            .catch((err) => console.log((err)))
         }
       })
   }
 
-  responseGoogleFailure = ( response ) => {
-    console.log( response );
+  responseGoogleFailure = (response) => {
+    console.log(response);
   }
 
   // componentDidMount() {
@@ -77,39 +98,39 @@ class App extends Component {
   // }
 
   render() {
-    console.log( "is logged in: " + this.state.loggedIn );
+    console.log("is logged in: " + this.state.loggedIn);
     return (
       <Router>
         {this.state.loggedIn ? (
           <Wrapper>
-            <NavbarArea>{ this.state.user }</NavbarArea>
+            <NavbarArea>{this.state.user}</NavbarArea>
             <Switch>
-              <Route exact path="/" render={(props) => <Home { ...props } user = { this.state.user } />} />
-              <Route exact path="/dashboard" render={(props) => <Dashboard { ...props } user = { this.state.user } />} />
-              <Route exact path="/goals" render={(props) => <Goals { ...props } user = { this.state.user } />} />
-              <Route exact path="/challenges" render={(props) => <Challenges { ...props } user = { this.state.user } />} />
-              <Route exact path="/badges" render={(props) => <Badges { ...props } user = { this.state.user } />} />
-              <Route exact path="/social" render={(props) => <Social { ...props } user = { this.state.user } />} />
-              <Route exact path="/profile" render={(props) => <Profile { ...props } user = { this.state.user } />} />
+              <Route exact path="/" render={(props) => <Home {...props} user={this.state.user} />} />
+              <Route exact path="/dashboard" render={(props) => <Dashboard {...props} user={this.state.user} />} />
+              <Route exact path="/goals" render={(props) => <Goals {...props} user={this.state.user} />} />
+              <Route exact path="/challenges" render={(props) => <Challenges {...props} user={this.state.user} />} />
+              <Route exact path="/badges" render={(props) => <Badges {...props} user={this.state.user} />} />
+              <Route exact path="/social" render={(props) => <Social {...props} user={this.state.user} />} />
+              <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state.user} />} />
               {/* <Route component={NoMatch} /> */}
             </Switch>
             <Footer />
           </Wrapper>
         ) : (
-          <Wrapper>
-            <GoogleLogin
-              clientId = "907322878909-ceh0tltstqr7ht4eidho9ehj73bs7t1p.apps.googleusercontent.com"
-              buttonText = "Login"
-              onSuccess = { this.responseGoogleSuccess }
-              onFailure = { this.responseGoogleFailure }
-              cookiePolicy = { "single_host_origin" }
-              className = "loginButton"
-            />
-            <Switch>
-              <Route exact path="/" render={(props) => <Home {...props} user={ this.state.user } />} />
-            </Switch>
-          </Wrapper>
-        )}
+            <Wrapper>
+              <GoogleLogin
+                clientId="907322878909-ceh0tltstqr7ht4eidho9ehj73bs7t1p.apps.googleusercontent.com"
+                buttonText="Login"
+                onSuccess={this.responseGoogleSuccess}
+                onFailure={this.responseGoogleFailure}
+                cookiePolicy={"single_host_origin"}
+                className="loginButton"
+              />
+              <Switch>
+                <Route exact path="/" render={(props) => <Home {...props} user={this.state.user} />} />
+              </Switch>
+            </Wrapper>
+          )}
       </Router>
     )
   }
