@@ -39,6 +39,7 @@ class App extends Component {
     this.validateUser( loginUser );
   }
 
+<<<<<<< HEAD
   // ADD FUNCTION THAT WILL SEARCH DATABASE FOR GOOGLE ID
   validateUser = ( loginUser ) => {
     API
@@ -71,6 +72,14 @@ class App extends Component {
             })
             .catch(( err ) => console.log(( err )))
         }
+=======
+  // When this component mounts, grab the user with the _id of this.props.match.params.id
+  loadUser = () => {
+    //set the string here to whatever the id of the user in your db is! Use compass or ROBO 3t to see the id
+    API.getUser("5cd872ab293cb74314bda2c8")
+      .then(res => {
+        this.setState({ user: res.data, hasUser: true })
+>>>>>>> cdc27d33d5cff8d1a210c6a5906a2d7bb8fc479c
       })
   }
   // IF NONE ARE FOUND ADD THAT USER TO THE DATABASE
@@ -99,9 +108,15 @@ class App extends Component {
     console.log( user );
     return (
       <Router>
+<<<<<<< HEAD
         {this.state.loggedIn ? (
           <Wrapper>
             <NavbarArea>{user}</NavbarArea>
+=======
+        {this.state.hasUser ? (
+        <Wrapper>
+          <NavbarArea>{user}</NavbarArea>
+>>>>>>> cdc27d33d5cff8d1a210c6a5906a2d7bb8fc479c
             <Switch>
               <Route exact path="/" render={(props) => <Home {...props} user={user} />} />
               <Route exact path="/dashboard" render={(props) => <Dashboard {...props} user={user} />} />
