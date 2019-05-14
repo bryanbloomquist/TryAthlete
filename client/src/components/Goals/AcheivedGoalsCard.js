@@ -5,7 +5,6 @@ import Card from "react-bootstrap/Card";
 // import API from "../../utils/API";          // Need a Query to pull Run, Bike, and Swim Data
 
 function AchievedGoalsCard(props) {
-    console.log("Achivement: ", props)
     return (
         <Card className="card-wide text-dark bg-light">
             <Card.Title>Lifetime Acheivements</Card.Title>

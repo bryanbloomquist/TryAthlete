@@ -3,11 +3,11 @@ import API from "../../utils/API";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-const test = {
-    sport: "Run",
-    distance: "5",
-    units: "miles"
-}  
+// const test = {
+//     sport: "Run",
+//     distance: "5",
+//     units: "miles"
+// }  
 
 var newGoal = {
     name: "Swim 2 Times This Week",
@@ -28,7 +28,7 @@ function ActivityCard(props) {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
     }
-    const id = props.user._id
+    // const id = props.user._id
     return (
         <div className="card" style={style}>
             <h2>Record a {props.activity}</h2>

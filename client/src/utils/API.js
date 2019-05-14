@@ -1,8 +1,15 @@
 // Interact with our app via API using axios
 import axios from "axios";
 
+let goalCount = 100;
+
+
 export default {
 
+
+    goalsCounter: function (){
+        return goalCount++
+    },
     //--------------------------------USERS------------------------------
 
     // Gets all users
@@ -36,7 +43,7 @@ export default {
     },
 
     deleteGoal: function (userId, goalId) {
-        return axios.get(`/api/users/${userId}/goals/${goalId}`);
+        return axios.delete(`/api/users/${userId}/goals/${goalId}`);
     },
 
     //--------------------------------CHALLENGES------------------------------

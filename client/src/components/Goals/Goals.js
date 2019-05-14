@@ -9,7 +9,6 @@ import AchievedGoalsCard from "./AcheivedGoalsCard";
 
 
 function Goals(props) {
-    console.log(props);
     var fname = props.user.givenName.charAt(0).toUpperCase() + props.user.givenName.slice(1);
 
     return (
@@ -31,7 +30,8 @@ function Goals(props) {
                     <Row>
                         <Col>
                             <CurGoalsCard
-                                userGoals={props.user.goals}
+                                user = {props.user}
+                                goals = {props.user.goals}
                             />
                         </Col>
                     </Row>
