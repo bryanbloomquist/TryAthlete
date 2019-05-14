@@ -27,7 +27,12 @@ class App extends Component {
   // When this component mounts, grab the user with the _id of this.props.match.params.id
   loadUser = () => {
     //set the string here to whatever the id of the user in your db is! Use compass or ROBO 3t to see the id
+<<<<<<< HEAD
     API.getUser("5cd87458e50d0a105c7cb212")
+=======
+
+    API.getUser("5cd70f770d2fed1c848cbf6c")
+>>>>>>> 60a87a214cb8092ba9d6613226c82ee635047d9f
       .then(res => {
         this.setState({ user: res.data, hasUser: true })
       })
