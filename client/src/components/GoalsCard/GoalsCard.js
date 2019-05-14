@@ -13,14 +13,22 @@ function GoalsCard(props) {
 
     const length = props.user.goals.length;
     const goals = props.user.goals;
-    
-    return (
-        <div className="card" style={style}>
-            <h2>Goals</h2><br />
-            <ArrayDisplay length={length} goals={goals} card="goals"></ArrayDisplay>
-
-        </div>
-    )
+    if (props.user.goals) {
+        return (
+            <div className="card" style={style}>
+                <h2>Goals</h2><br />
+                <ArrayDisplay length={length} goals={goals} card="goals"></ArrayDisplay>
+            </div>
+        )
+    }
+    else {
+        return (
+            <div className="card" style={style}>
+                <h2>Goals</h2><br />
+                <p>Set a goal!</p>
+            </div>
+        )
+    }
 }
 
 export default GoalsCard;
