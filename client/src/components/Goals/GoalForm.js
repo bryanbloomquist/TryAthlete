@@ -21,7 +21,7 @@ var newGoal = {
 function GoalForm(props) {
 
     console.log(newGoal);
-    console.log("props are: ",props);
+    console.log("props are: ", props);
 
     return (
         <Form>
