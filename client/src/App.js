@@ -35,11 +35,9 @@ class App extends Component {
     console.log( loginUser );
     console.log( this.state.user );
     console.log( this.state.loggedIn );
-    // CALL FUNCTION HERE TO CHECK DATABASE FOR USER
     this.validateUser( loginUser );
   }
 
-  // ADD FUNCTION THAT WILL SEARCH DATABASE FOR GOOGLE ID
   validateUser = ( loginUser ) => {
     API
       .getUsers()
@@ -51,7 +49,6 @@ class App extends Component {
             userFound = true;
           }
         }
-        // check to see if google login matches user in database
         if ( !userFound ) {
           console.log( "creating new user!")
           let userObject = {
@@ -65,7 +62,6 @@ class App extends Component {
             challenges: [],
             friends: []
           }
-          // Add user to database if there is no match
           API
             .saveUser( userObject )
             .then(( res ) => {
@@ -95,13 +91,13 @@ class App extends Component {
           <Wrapper>
             <NavbarArea>{ this.state.user }</NavbarArea>
             <Switch>
-              <Route exact path="/" render={(props) => <Home {...props} user={ this.state.user } />} />
-              <Route exact path="/dashboard" render={(props) => <Dashboard {...props} user={ this.state.user } />} />
-              <Route exact path="/goals" render={(props) => <Goals {...props} user={ this.state.user } />} />
-              <Route exact path="/challenges" render={(props) => <Challenges {...props} user={ this.state.user } />} />
-              <Route exact path="/badges" render={(props) => <Badges {...props} user={ this.state.user } />} />
-              <Route exact path="/social" render={(props) => <Social {...props} user={ this.state.user } />} />
-              <Route exact path="/profile" render={(props) => <Profile {...props} user={ this.state.user } />} />
+              <Route exact path="/" render={(props) => <Home { ...props } user = { this.state.user } loggedIn = { this.state.loggedIn } />} />
+              <Route exact path="/dashboard" render={(props) => <Dashboard { ...props } user = { this.state.user } loggedIn = { this.state.loggedIn } />} />
+              <Route exact path="/goals" render={(props) => <Goals { ...props } user = { this.state.user } loggedIn = { this.state.loggedIn } />} />
+              <Route exact path="/challenges" render={(props) => <Challenges { ...props } user = { this.state.user } loggedIn = { this.state.loggedIn } />} />
+              <Route exact path="/badges" render={(props) => <Badges { ...props } user = { this.state.user } loggedIn = { this.state.loggedIn } />} />
+              <Route exact path="/social" render={(props) => <Social { ...props } user = { this.state.user } loggedIn = { this.state.loggedIn } />} />
+              <Route exact path="/profile" render={(props) => <Profile { ...props } user = { this.state.user } loggedIn = { this.state.loggedIn } />} />
               {/* <Route component={NoMatch} /> */}
             </Switch>
             <Footer />
