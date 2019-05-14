@@ -45,7 +45,7 @@ class App extends Component {
         let userFound = false;
         for( let i = 0; i < res.data.length; i++ ) {
           if ( res.data[i].email === loginUser.email ) {
-            this.setState({ user: res.data, loggedIn: true });
+            this.setState({ user: res.data[i], loggedIn: true });
             userFound = true;
           }
         }
@@ -91,13 +91,13 @@ class App extends Component {
           <Wrapper>
             <NavbarArea>{ this.state.user }</NavbarArea>
             <Switch>
-              <Route exact path="/" render={(props) => <Home { ...props } user = { this.state.user } loggedIn = { this.state.loggedIn } />} />
-              <Route exact path="/dashboard" render={(props) => <Dashboard { ...props } user = { this.state.user } loggedIn = { this.state.loggedIn } />} />
-              <Route exact path="/goals" render={(props) => <Goals { ...props } user = { this.state.user } loggedIn = { this.state.loggedIn } />} />
-              <Route exact path="/challenges" render={(props) => <Challenges { ...props } user = { this.state.user } loggedIn = { this.state.loggedIn } />} />
-              <Route exact path="/badges" render={(props) => <Badges { ...props } user = { this.state.user } loggedIn = { this.state.loggedIn } />} />
-              <Route exact path="/social" render={(props) => <Social { ...props } user = { this.state.user } loggedIn = { this.state.loggedIn } />} />
-              <Route exact path="/profile" render={(props) => <Profile { ...props } user = { this.state.user } loggedIn = { this.state.loggedIn } />} />
+              <Route exact path="/" render={(props) => <Home { ...props } user = { this.state.user } />} />
+              <Route exact path="/dashboard" render={(props) => <Dashboard { ...props } user = { this.state.user } />} />
+              <Route exact path="/goals" render={(props) => <Goals { ...props } user = { this.state.user } />} />
+              <Route exact path="/challenges" render={(props) => <Challenges { ...props } user = { this.state.user } />} />
+              <Route exact path="/badges" render={(props) => <Badges { ...props } user = { this.state.user } />} />
+              <Route exact path="/social" render={(props) => <Social { ...props } user = { this.state.user } />} />
+              <Route exact path="/profile" render={(props) => <Profile { ...props } user = { this.state.user } />} />
               {/* <Route component={NoMatch} /> */}
             </Switch>
             <Footer />
