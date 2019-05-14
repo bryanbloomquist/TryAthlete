@@ -44,14 +44,16 @@ class App extends Component {
     API
       .getUsers()
       .then(( res ) => {
-        res.data.forEach(( user ) => {
-          if ( user.email === loginUser.email ) {
-            this.setState({ user: user, loggedIn: true })
-            console.log( this.state.user );
-            console.log( "loggedIn: " + this.state.loggedIn )
+        let userFound = false;
+        for( let i = 0; i < res.data.length; i++ ) {
+          if ( res.data[i].email === loginUser.email ) {
+            this.setState({ user: res.data, loggedIn: true });
+            userFound = true;
           }
-        })
-        if ( !this.state.loggedin ) {
+        }
+        // check to see if google login matches user in database
+        if ( !userFound ) {
+          console.log( "creating new user!")
           let userObject = {
             givenName: loginUser.givenName,
             familyName: loginUser.familyName,
@@ -63,6 +65,7 @@ class App extends Component {
             challenges: [],
             friends: []
           }
+          // Add user to database if there is no match
           API
             .saveUser( userObject )
             .then(( res ) => {
@@ -75,43 +78,30 @@ class App extends Component {
         }
       })
   }
-  // IF NONE ARE FOUND ADD THAT USER TO THE DATABASE
-  // IF MATCH, SET USER TO THAT DATA
 
   responseGoogleFailure = ( response ) => {
     console.log( response );
   }
 
   // componentDidMount() {
-  //   this.loadUser();
-  // }
-
-  // // When this component mounts, grab the user with the _id of this.props.match.params.id
-  // loadUser = () => {
-  //   //set the string here to whatever the id of the user in your db is! Use compass or ROBO 3t to see the id
-  //   API.getUser("5cd733befb3d1a29ac976a8f")
-  //     .then(res => {
-  //       this.setState({ user: res.data, hasUser: true })
-  //     })
-  //     .catch(err => console.log(err));
+  //
   // }
 
   render() {
-    let user = this.state.user;
-    console.log( user );
+    console.log( "is logged in: " + this.state.loggedIn );
     return (
       <Router>
         {this.state.loggedIn ? (
           <Wrapper>
-            <NavbarArea>{user}</NavbarArea>
+            <NavbarArea>{ this.state.user }</NavbarArea>
             <Switch>
-              <Route exact path="/" render={(props) => <Home {...props} user={user} />} />
-              <Route exact path="/dashboard" render={(props) => <Dashboard {...props} user={user} />} />
-              <Route exact path="/goals" render={(props) => <Goals {...props} user={user} />} />
-              <Route exact path="/challenges" render={(props) => <Challenges {...props} user={user} />} />
-              <Route exact path="/badges" render={(props) => <Badges {...props} user={user} />} />
-              <Route exact path="/social" render={(props) => <Social {...props} user={user} />} />
-              <Route exact path="/profile" render={(props) => <Profile {...props} user={user} />} />
+              <Route exact path="/" render={(props) => <Home {...props} user={ this.state.user } />} />
+              <Route exact path="/dashboard" render={(props) => <Dashboard {...props} user={ this.state.user } />} />
+              <Route exact path="/goals" render={(props) => <Goals {...props} user={ this.state.user } />} />
+              <Route exact path="/challenges" render={(props) => <Challenges {...props} user={ this.state.user } />} />
+              <Route exact path="/badges" render={(props) => <Badges {...props} user={ this.state.user } />} />
+              <Route exact path="/social" render={(props) => <Social {...props} user={ this.state.user } />} />
+              <Route exact path="/profile" render={(props) => <Profile {...props} user={ this.state.user } />} />
               {/* <Route component={NoMatch} /> */}
             </Switch>
             <Footer />
@@ -127,7 +117,7 @@ class App extends Component {
               className = "loginButton"
             />
             <Switch>
-              <Route exact path="/" render={(props) => <Home {...props} user={user} />} />
+              <Route exact path="/" render={(props) => <Home {...props} user={ this.state.user } />} />
             </Switch>
           </Wrapper>
         )}

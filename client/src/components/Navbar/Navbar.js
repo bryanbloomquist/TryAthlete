@@ -18,7 +18,7 @@ function NavbarArea(props) {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Nav className="mr-auto">
                 <NavDropdown title="Menu" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="/dashboard">Dashboard</NavDropdown.Item>
+                    <NavDropdown.Item>Dashboard</NavDropdown.Item>
                     <NavDropdown.Item href="/goals">Goals</NavDropdown.Item>
                     <NavDropdown.Item href="/challenges">Challenges</NavDropdown.Item>
                     <NavDropdown.Item href="/badges">Badges</NavDropdown.Item>
