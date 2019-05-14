@@ -2,30 +2,36 @@ import React from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import API from "../../utils/API";
 
-var newGoal = {
-    name: "Swim 2 Times This Week",
-    sport: "Swim",
-    isAchieved: false,
-    goalType: "Frequency",
-    goalQty: 2,
-    goalUnit: "Times",
-    goalTimeFrame: "This Week",
-};
+
+function createGoalObject() {
+    let uniqueID = API.goalsCounter();
+
+    let newGoal = {
+        id: uniqueID,
+        name: "Swim 2 Times This Week",
+        sport: "Swim",
+        isAchieved: false,
+        goalType: "Frequency",
+        goalQty: 2,
+        goalUnit: "Times",
+        goalTimeFrame: "This Week",
+    };
+
+    return newGoal;
+
+}
 
 
+
+
+// How to pull Form data into a Variable called "newGoal"???
 
 
 function GoalForm(props) {
-
-    console.log(newGoal);
-    console.log("props are: ",props);
-
     return (
-        <Card className="card-wide text-dark bg-light">
         <Form>
             <Form.Group as={Row} controlId="goalActivity">
                 <Form.Label column sm={4}>Activity:</Form.Label>
@@ -77,12 +83,11 @@ function GoalForm(props) {
                 </Col>
             </Form.Group>
             <Col sm={{ span: 9, offset: 1 }}>
-                <Button variant="warning" size="lg" block onClick={() => API.saveGoal( props.user._id, newGoal)} >
+                <Button variant="warning" size="lg" block onClick={() => API.saveGoal(createGoalObject(), props.user._id)} >
                     Create New Goal
                 </Button>
             </Col>
         </Form>
-        </Card>
     );
 }
 

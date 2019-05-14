@@ -1,26 +1,47 @@
 import React from "react";
+import GoalForm from "./GoalForm";
+import CurGoalsCard from "./CurGoalsCard";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import Jumbotron from "react-bootstrap/Jumbotron";
+import Card from "react-bootstrap/Card";
+import AchievedGoalsCard from "./AcheivedGoalsCard";
+
 
 function Goals(props) {
+    var fname = props.user.givenName.charAt(0).toUpperCase() + props.user.givenName.slice(1);
+
     return (
-        <Container fluid>
+        <Container fluid className="pb-5">
             <Row>
-                <Col size="md-12">
-                    <Jumbotron>
-                        <h1>Goals</h1>
-                        <h2>
-                            {props.user.fname} {props.user.lname}
-                        </h2>
-                        <img src={props.user.avatar} className="text-center" alt="User Avatar" />
-                    </Jumbotron>
+                <Col className="display-3 text-center py-5">
+                    Goals for {fname}
                 </Col>
             </Row>
-            <Row>
-                <Col>
-                    <h1 className="text-center">User Detials Area</h1>
+            <Row className="text-center py-5">
+                <Col md={4}>
+                    <Card className="card-wide text-dark bg-light">
+                        <GoalForm 
+                        user={props.user}
+                        />
+                    </Card>
+                </Col>
+                <Col md={8}>
+                    <Row>
+                        <Col>
+                            <CurGoalsCard
+                                user = {props.user}
+                                goals = {props.user.goals}
+                            />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <AchievedGoalsCard
+                                userGoals={props.user.goals}
+                            />
+                        </Col>
+                    </Row>
                 </Col>
             </Row>
         </Container>
