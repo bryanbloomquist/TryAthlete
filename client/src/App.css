@@ -12,6 +12,10 @@
     width:94%;
 }
 
+.loginButton {
+  margin: 10px auto;
+}
+
 .avatar {
     width:50px;
     float: right;
@@ -29,6 +33,7 @@
 .navbar {
     background-color: lightgrey
 }
+
 .video-background {
   background: #000;
   position: fixed;
@@ -38,6 +43,7 @@
   left: 0;
   z-index: -99;
 }
+
 .video-background::after {
   display: block;
   content: '';
@@ -49,6 +55,7 @@
   z-index: 1;
   background: rgba(0, 0, 0, 0.25);
 }
+
 .video-foreground, .video-background iframe {
   position: absolute;
   top: 0;
@@ -61,17 +68,19 @@
 .homeJumbo {
   background: rgba(0, 0, 0, 0);
 }
+
 @media (min-aspect-ratio: 1.7777777778) {
   .video-foreground {
     height: 300%;
     top: -100%;
- }
+  }
 }
+
 @media (max-aspect-ratio: 1.7777777778) {
   .video-foreground {
     width: 300%;
     left: -100%;
- }
+  }
 }
 
 .logo {
@@ -87,6 +96,7 @@
 .logo-small {
   height: 50px;
 }
+
 /* 
 .video-div {
   position: fixed; 
