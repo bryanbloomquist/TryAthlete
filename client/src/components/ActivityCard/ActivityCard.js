@@ -42,7 +42,7 @@ function ActivityCard(props) {
                         <option value="unit2">{props.units[1]}</option>
                     </Form.Control>
                     <br />
-                    <Button className="btn btn-warning" block onClick={() => API.saveGoal( props.user.user._id, newGoal)}>Log it</Button>
+                    <Button className="btn btn-warning" block onClick={() => API.saveActivity( newGoal, props.user.user._id )}>Log it</Button>
                 </Form.Group>
             </Form>
         </div>
