@@ -23,7 +23,6 @@ class App extends Component {
   }
 
   responseGoogleSuccess = ( response ) => {
-    console.log( response );
     let loginUser = {
       "email": response.profileObj.email,
       "familyName": response.profileObj.familyName,
@@ -31,9 +30,6 @@ class App extends Component {
       "imageUrl": response.profileObj.imageUrl,
       "name": response.profileObj.name
     }
-    console.log( loginUser );
-    console.log( this.state.user );
-    console.log( this.state.loggedIn );
     this.validateUser( loginUser );
   }
 
@@ -64,9 +60,7 @@ class App extends Component {
           API
             .saveUser( userObject )
             .then(( res ) => {
-              console.log( res );
               this.setState({ user: userObject, loggedIn: true })
-              console.log( this.state.user );
               console.log( "logged in = " + this.state.loggedIn );
             })
             .catch(( err ) => console.log(( err )))
