@@ -1,7 +1,7 @@
 import React from "react";
-import ArrayDisplay from "../ArrayDisplay/ArrayDisplay";
+import ArrayDisplay from "./ArrayDisplay";
 
-function Badges(props) {
+function ChallengesCard(props) {
     const style = {
         backgroundColor: "slategray",
         // backgroundImage: "url("+props.img+")",
@@ -10,22 +10,22 @@ function Badges(props) {
         // backgroundRepeat: "no-repeat",
     }
 
-    const length = props.user.goals.length;
-    const badges = props.user.badges;
-    if(props.badges) {
+    const length = props.user.challenges.length;
+    const challenges = props.user.challenges;
+    if (props.challenges) {
     return (
         <div className="card" style={style}>
-            <h2>Badges</h2><br />
-            <ArrayDisplay length={length} badges={badges} card="badges"></ArrayDisplay>
+            <h2>Challenges</h2><br />
+            <ArrayDisplay length={length} challenges={challenges} card="challenges"></ArrayDisplay>
         </div>
     )}
     else {
         return (
             <div className="card" style={style}>
-                <h2>Badges</h2><br />
-                <p>No badges yet</p>
+                <h2>Challenges</h2><br />
+                <p>No challenges yet</p>
             </div>
         )}
 }
 
-export default Badges;
+export default ChallengesCard;

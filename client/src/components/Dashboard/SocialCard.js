@@ -9,11 +9,6 @@ function SocialCard(props) {
         // backgroundRepeat: "no-repeat",
     }
 
-    // const friends = {
-    //     ...props.user.friends
-    // }
-
-    // for (i=1; i<goals)
     return (
         <div className="card card-wide" style={style}>
             <h2>Social Feed</h2><br />

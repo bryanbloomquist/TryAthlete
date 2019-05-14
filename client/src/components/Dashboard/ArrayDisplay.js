@@ -1,9 +1,6 @@
 import React from "react";
 
 function ArrayDisplay(props) {
-    console.log(props)
-    console.log(props.length)
-    console.log(props.goals)
     if (props.card === "goals") {
         return (
             <ul>
@@ -32,6 +29,5 @@ function ArrayDisplay(props) {
         )
     }
 }
-
 
 export default ArrayDisplay;

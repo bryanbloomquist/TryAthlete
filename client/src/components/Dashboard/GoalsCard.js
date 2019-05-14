@@ -1,5 +1,5 @@
 import React from "react";
-import ArrayDisplay from "../ArrayDisplay/ArrayDisplay";
+import ArrayDisplay from "./ArrayDisplay";
 
 function GoalsCard(props) {
     console.log(props)
