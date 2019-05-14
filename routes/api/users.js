@@ -47,7 +47,7 @@ router
 
 router
   .route("/:id/goals/:goalId")
-  .get(usersController.removeActivity)
+  .delete(usersController.removeGoal)
 
 // //badges
 router

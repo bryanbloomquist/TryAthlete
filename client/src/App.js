@@ -14,7 +14,6 @@ import Badges from "./components/Badges/Badges";
 import Social from "./components/Social/Social";
 // import NoMatch from "./components/NoMatch/NoMatch";
 import './App.css';
-import { runInContext } from 'vm';
 
 class App extends Component {
   state = {
@@ -28,13 +27,20 @@ class App extends Component {
   // When this component mounts, grab the user with the _id of this.props.match.params.id
   loadUser = () => {
     //set the string here to whatever the id of the user in your db is! Use compass or ROBO 3t to see the id
-
-    API.getUser("5cd70f770d2fed1c848cbf6c")
+    API.getUser("5cd87458e50d0a105c7cb212")
       .then(res => {
         this.setState({ user: res.data, hasUser: true })
       })
       .catch(err => console.log(err));
   }
+
+  // createNewGoal = () => {
+  //   API.saveGoal(newGoal)
+  //     .then(res => {
+  //       res.json(newGoal)
+  //     })
+  //     .catch(err => console.log(err));
+  // }
 
   render() {
     const user = this.state.user;
@@ -46,8 +52,8 @@ class App extends Component {
             <Switch>
               <Route exact path="/" render={(props) => <Home {...props} user={user} />} />
               <Route exact path="/dashboard" render={(props) => <Dashboard {...props} user={user} />} />
-              <Route exact path="/goals" render={(props) => <Goals {...props} user={user} />} />
-              <Route exact path="/challenges" render={(props) => <Challenges {...props} user={user} />} />
+              <Route exact path="/goals" render={(props) => <Goals {...props} user={user}/>} />
+              <Route exact path="/challenges" render={(props) => <Challenges {...props} user={user}/>} />
               <Route exact path="/badges" render={(props) => <Badges {...props} user={user} />} />
               <Route exact path="/social" render={(props) => <Social {...props} user={user} />} />
               <Route exact path="/profile" render={(props) => <Profile {...props} user={user} />} />

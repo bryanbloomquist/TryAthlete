@@ -1,8 +1,15 @@
 // Interact with our app via API using axios
 import axios from "axios";
 
+let goalCount = 100;
+
+
 export default {
 
+
+    goalsCounter: function (){
+        return goalCount++
+    },
     //--------------------------------USERS------------------------------
 
     // Gets all users
@@ -32,17 +39,17 @@ export default {
     //--------------------------------GOALS------------------------------
 
     saveGoal: function (goalData, userId) {
-        return axios.post(`/api/users/${userId}/goals`, goalData);
+        return axios.put(`/api/users/${userId}/goals`, goalData);
     },
 
     deleteGoal: function (userId, goalId) {
-        return axios.get(`/api/users/${userId}/goals/${goalId}`);
+        return axios.delete(`/api/users/${userId}/goals/${goalId}`);
     },
 
     //--------------------------------CHALLENGES------------------------------
 
     saveChallenge: function (challengeData, userId) {
-        return axios.post(`/api/users/${userId}/challenges`, challengeData);
+        return axios.put(`/api/users/${userId}/challenges`, challengeData);
     },
 
     deleteChallenge: function (userId, challengeId) {
@@ -52,7 +59,7 @@ export default {
     //--------------------------------FRIENDS------------------------------
 
     addFriend: function (friendData, userId) {
-        return axios.post(`/api/users/${userId}/friends`, friendData);
+        return axios.put(`/api/users/${userId}/friends`, friendData);
     },
 
     deleteFriend: function (userId, friendId) {
