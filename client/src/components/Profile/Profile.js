@@ -83,8 +83,15 @@ function Profile(props) {
             <Row>
                 <Col>
                     {props.user.activities.map(activity => {
+                        console.log(activity)
                         return (
-                            <ActivityRow data={activity}/>
+                            <ActivityRow 
+                            date={activity.date}
+                            sport={activity.sport}
+                            distance_unit={activity.distance_unit}
+                            distance_measurement={activity.distance_measurement}
+                            time={activity.time}
+                            />
                         )
                     })}
 
