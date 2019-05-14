@@ -2,10 +2,6 @@ import React from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-<<<<<<< HEAD
-=======
-import Card from "react-bootstrap/Card";
->>>>>>> 60a87a214cb8092ba9d6613226c82ee635047d9f
 import Button from "react-bootstrap/Button";
 import API from "../../utils/API";
 
@@ -19,26 +15,15 @@ var newGoal = {
     goalTimeFrame: "This Week",
 };
 
-<<<<<<< HEAD
 // How to pull Form data into a Variable called "newGoal"???
-=======
-
->>>>>>> 60a87a214cb8092ba9d6613226c82ee635047d9f
 
 
 function GoalForm(props) {
 
     console.log(newGoal);
-<<<<<<< HEAD
     console.log("props are: ", props);
 
     return (
-=======
-    console.log("props are: ",props);
-
-    return (
-        <Card className="card-wide text-dark bg-light">
->>>>>>> 60a87a214cb8092ba9d6613226c82ee635047d9f
         <Form>
             <Form.Group as={Row} controlId="goalActivity">
                 <Form.Label column sm={4}>Activity:</Form.Label>
@@ -90,19 +75,11 @@ function GoalForm(props) {
                 </Col>
             </Form.Group>
             <Col sm={{ span: 9, offset: 1 }}>
-<<<<<<< HEAD
                 <Button variant="warning" size="lg" block onClick={() => API.saveGoal( newGoal, props.user._id )} >
-=======
-                <Button variant="warning" size="lg" block onClick={() => API.saveGoal( props.user._id, newGoal)} >
->>>>>>> 60a87a214cb8092ba9d6613226c82ee635047d9f
                     Create New Goal
                 </Button>
             </Col>
         </Form>
-<<<<<<< HEAD
-=======
-        </Card>
->>>>>>> 60a87a214cb8092ba9d6613226c82ee635047d9f
     );
 }
 

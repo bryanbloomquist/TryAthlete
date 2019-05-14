@@ -10,18 +10,10 @@ function Badges(props) {
         // backgroundPosition: "center",
         // backgroundRepeat: "no-repeat",
     }
-<<<<<<< HEAD
-    // const badges = {
-    //     ...props.user.badges
-    // }
-
-    // for (i=1; i<goals)
-=======
 
     const length = props.user.goals.length;
     const badges = props.user.badges;
     
->>>>>>> 60a87a214cb8092ba9d6613226c82ee635047d9f
     return (
         <div className="card" style={style}>
             <h2>Badges</h2><br />
