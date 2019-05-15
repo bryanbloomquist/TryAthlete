@@ -14,7 +14,7 @@ function Goals(props) {
     return (
         <Container fluid className="pb-5">
             <Row>
-                <Col className="display-3 text-center py-5">
+                <Col className="display-3 text-center py-5 goal-title">
                     Goals for {fname}
                 </Col>
             </Row>

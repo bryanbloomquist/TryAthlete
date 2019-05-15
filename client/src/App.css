@@ -69,6 +69,12 @@
   background: rgba(0, 0, 0, 0);
 }
 
+.goal-title{
+  background-image: URL("../src/components/images/banner-arrow.png");
+  background-repeat: no-repeat;
+  background-size: 90% 100%;
+}
+
 @media (min-aspect-ratio: 1.7777777778) {
   .video-foreground {
     height: 300%;
