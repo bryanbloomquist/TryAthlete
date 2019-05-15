@@ -10,7 +10,8 @@ const test = {
 }  
 
 function ActivityCard(props) {
-    console.log(props.user.user._id)
+    console.log(props.activity)
+    console.log(props.sport)
     const style = {
         backgroundColor: props.color,
         backgroundImage: "url(" + props.img + ")",
@@ -18,21 +19,21 @@ function ActivityCard(props) {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
     }
-    // const id = props.user._id
     return (
         <div className="card" style={style}>
-            <h2>Record a {props.activity}</h2>
+            <h2>Record a {props.sport}</h2>
             <Form>
                 <Form.Group>
                     <Form.Label>Distance</Form.Label>
-                    <Form.Control type="number" placeholder="1"></Form.Control>
+                    <Form.Control name={props.sport} onChange={props.onDistanceChange} distance={props.activity.distance} type="number" placeholder="0"></Form.Control>
                     <Form.Label>Units</Form.Label>
-                    <Form.Control as="select">
-                        <option value="unit1">{props.units[0]}</option>
-                        <option value="unit2">{props.units[1]}</option>
+                    <Form.Control name={props.sport} onChange={props.onUnitChange} units={props.activity.units} as="select">
+                        <option value={props.units[0]}>{props.units[0]}</option>
+                        <option value={props.units[1]}>{props.units[1]}</option>
                     </Form.Control>
                     <br />
-                    <Button className="btn btn-warning" block onClick={() => API.saveActivity( test, props.user.user._id )}>Log it</Button>
+                    <Button className="btn btn-warning" block 
+                    onClick={(event) => props.onLogClick(event)}>Log it</Button>
                 </Form.Group>
             </Form>
         </div>
