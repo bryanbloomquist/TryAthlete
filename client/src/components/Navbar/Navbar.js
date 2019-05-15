@@ -17,7 +17,6 @@ const style = {
 }
 
 function NavbarArea(props) {
-    console.log( props );
     return (
         <Navbar expand="md">
             <Navbar.Brand href="/">
