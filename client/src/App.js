@@ -37,15 +37,36 @@ class App extends Component {
     }
   }
 
-  responseGoogleSuccess = (response) => {
-    let loginUser = {
-      "email": response.profileObj.email,
-      "familyName": response.profileObj.familyName,
-      "givenName": response.profileObj.givenName,
-      "imageUrl": response.profileObj.imageUrl,
-      "name": response.profileObj.name
+  componentDidMount() {
+    //check local storage
+    let localStorageUser = JSON.parse(window.localStorage.getItem("user"))
+
+    //if there is a user saved to the local storage
+    if (localStorageUser !== null) {
+      //set the user and log in
+
+      //get the most up-to-data user information
+      API.getUser(localStorageUser._id)
+        .then(res => {
+          this.setState({ user: res.data, loggedIn: true });
+        })
+    } else {
+      console.log("no user")
     }
-    this.validateUser(loginUser);
+  }
+
+  responseGoogleSuccess = (response) => {
+    //if the user isn't already logged in from local storage
+    if (this.state.loggedIn === false) {
+      let loginUser = {
+        "email": response.profileObj.email,
+        "familyName": response.profileObj.familyName,
+        "givenName": response.profileObj.givenName,
+        "imageUrl": response.profileObj.imageUrl,
+        "name": response.profileObj.name
+      }
+      this.validateUser(loginUser);
+    }
   }
 
   validateUser = (loginUser) => {
@@ -56,6 +77,8 @@ class App extends Component {
         for (let i = 0; i < res.data.length; i++) {
           if (res.data[i].email === loginUser.email) {
             this.setState({ user: res.data[i], loggedIn: true });
+            window.localStorage.setItem('user', JSON.stringify(res.data[i]));
+            window.localStorage.setItem('loggedIn', true);
             userFound = true;
           }
         }
@@ -75,7 +98,9 @@ class App extends Component {
           API
             .saveUser(userObject)
             .then((res) => {
-              this.setState({ user: userObject, loggedIn: true })
+              this.setState({ user: userObject, loggedIn: true });
+              window.localStorage.setItem('user', JSON.stringify(userObject));
+              window.localStorage.setItem('loggedIn', true);
               console.log("logged in = " + this.state.loggedIn);
             })
             .catch((err) => console.log((err)))
@@ -166,6 +191,7 @@ class App extends Component {
                   onLogClick={this.onLogClick}
                   onDistanceChange={this.onDistanceChange}
                   onUnitChange={this.onUnitChange} />} />
+
               <Route exact path="/goals" render={(props) => <Goals {...props} user={this.state.user} />} />
               <Route exact path="/challenges" render={(props) => <Challenges {...props} user={this.state.user} />} />
               <Route exact path="/badges" render={(props) => <Badges {...props} user={this.state.user} />} />
