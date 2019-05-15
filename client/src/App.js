@@ -26,7 +26,7 @@ class App extends Component {
       units: "mi"
     },
     rideActivity: {
-      sport: "Ride",
+      sport: "Bike Ride",
       distance: 0,
       units: "mi"
     },
@@ -87,21 +87,13 @@ class App extends Component {
     console.log(response);
   }
 
-  // componentDidMount() {
-  //
-  // }
-
   //logic for activity card logging
   onLogClick = (event) => {
     let activity = Object.assign({}, this.state.runActivity);
     API.saveActivity(activity, this.state.user._id)
-    console.log(activity);
-    console.log(event);
-    console.log(event.target);
   }
 
   onDistanceChange = (event) => {
-    console.log(event);
     const { name, value } = event.target;
 
     if (name === "Run") {
@@ -112,7 +104,7 @@ class App extends Component {
         }
       }))
     }
-    if (name === "Ride") {
+    if (name === "Bike Ride") {
       this.setState(prevState => ({
         rideActivity: {
           ...prevState.rideActivity,
@@ -131,7 +123,6 @@ class App extends Component {
   }
 
   onUnitChange = (event) => {
-    console.log(event);
     const { name, value } = event.target;
 
     if (name === "Run") {
@@ -142,7 +133,7 @@ class App extends Component {
         }
       }))
     }
-    if (name === "Ride") {
+    if (name === "Bike Ride") {
       this.setState(prevState => ({
         rideActivity: {
           ...prevState.rideActivity,

@@ -1,13 +1,6 @@
 import React from "react";
-import API from "../../utils/API";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-
-const test = {
-    sport: "Run",
-    distance: "5",
-    units: "miles"
-}  
 
 function ActivityCard(props) {
     console.log(props.activity)

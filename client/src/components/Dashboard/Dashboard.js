@@ -13,7 +13,6 @@ import Bike from "../images/bike.png";
 import Swim from "../images/swim.png";
 
 function Dashboard(props) {
-    console.log(props)
     return (
         <Container fluid>
             <Row>
@@ -30,7 +29,7 @@ function Dashboard(props) {
                     onUnitChange={props.onUnitChange}
                 />
                 <ActivityCard
-                    sport={"Ride"}
+                    sport={"Bike Ride"}
                     units={["mi", "km"]}
                     color={"#4fc147"}
                     img={Bike}
