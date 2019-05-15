@@ -3,11 +3,11 @@ import React from "react";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 //Components
-import ActivityCard from "../ActivityCard/ActivityCard.js";
-import BadgesCard from "../BadgesCard/BadgesCard.js";
-import ChallengesCard from "../ChallengesCard/ChallengesCard.js";
-import GoalsCard from "../GoalsCard/GoalsCard.js";
-import SocialCard from "../SocialCard/SocialCard.js";
+import ActivityCard from "./ActivityCard";
+import BadgesCard from "./BadgesCard";
+import ChallengesCard from "./ChallengesCard";
+import GoalsCard from "./GoalsCard";
+import SocialCard from "./SocialCard";
 import Run from "../images/run.png";
 import Bike from "../images/bike.png";
 import Swim from "../images/swim.png";

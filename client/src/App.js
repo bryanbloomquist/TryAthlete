@@ -12,55 +12,130 @@ import Goals from "./components/Goals/Goals";
 import Challenges from "./components/Challenges/Challenges";
 import Badges from "./components/Badges/Badges";
 import Social from "./components/Social/Social";
+import { GoogleLogin } from "react-google-login";
 // import NoMatch from "./components/NoMatch/NoMatch";
 import './App.css';
 
 class App extends Component {
   state = {
     user: {},
-    hasUser: false
+    loggedIn: false
   }
+
   componentDidMount() {
-    this.loadUser();
+    //check local storage
+    let localStorageUser = JSON.parse(window.localStorage.getItem("user"))
+
+    //if there is a user saved to the local storage
+    if (localStorageUser !== null) {
+      //set the user and log in
+
+      //get the most up-to-data user information
+      API.getUser(localStorageUser._id)
+        .then(res => {
+          this.setState({ user: res.data, loggedIn: true });
+        })
+    } else {
+      console.log("no user")
+    }
   }
 
-  // When this component mounts, grab the user with the _id of this.props.match.params.id
-  loadUser = () => {
-    //set the string here to whatever the id of the user in your db is! Use compass or ROBO 3t to see the id
-    API.getUser("5cd87458e50d0a105c7cb212")
-      .then(res => {
-        this.setState({ user: res.data, hasUser: true })
+
+  responseGoogleSuccess = (response) => {
+    //if the user isn't already logged in from local storage
+    if (this.state.loggedIn === false) {
+      let loginUser = {
+        "email": response.profileObj.email,
+        "familyName": response.profileObj.familyName,
+        "givenName": response.profileObj.givenName,
+        "imageUrl": response.profileObj.imageUrl,
+        "name": response.profileObj.name
+      }
+      this.validateUser(loginUser);
+    }
+  }
+
+  validateUser = (loginUser) => {
+    API
+      .getUsers()
+      .then((res) => {
+        let userFound = false;
+        for (let i = 0; i < res.data.length; i++) {
+          if (res.data[i].email === loginUser.email) {
+            this.setState({ user: res.data[i], loggedIn: true });
+            window.localStorage.setItem('user', JSON.stringify(res.data[i]));
+            window.localStorage.setItem('loggedIn', true);
+            userFound = true;
+          }
+        }
+        if (!userFound) {
+          console.log("creating new user!")
+          let userObject = {
+            givenName: loginUser.givenName,
+            familyName: loginUser.familyName,
+            imageUrl: loginUser.imageUrl,
+            email: loginUser.email,
+            activities: [],
+            goals: [],
+            badges: [],
+            challenges: [],
+            friends: []
+          }
+          API
+            .saveUser(userObject)
+            .then((res) => {
+              this.setState({ user: userObject, loggedIn: true });
+              window.localStorage.setItem('user', JSON.stringify(userObject));
+              window.localStorage.setItem('loggedIn', true);
+              console.log("logged in = " + this.state.loggedIn);
+            })
+            .catch((err) => console.log((err)))
+        }
       })
-      .catch(err => console.log(err));
   }
 
-  // createNewGoal = () => {
-  //   API.saveGoal(newGoal)
-  //     .then(res => {
-  //       res.json(newGoal)
-  //     })
-  //     .catch(err => console.log(err));
+  responseGoogleFailure = (response) => {
+    console.log(response);
+  }
+
+  // componentDidMount() {
+  //
   // }
 
   render() {
-    const user = this.state.user;
+    console.log("is logged in: " + this.state.loggedIn);
     return (
       <Router>
-        {this.state.hasUser ? (
-        <Wrapper>
-          <NavbarArea>{user}</NavbarArea>
+        {this.state.loggedIn ? (
+          <Wrapper>
+            <NavbarArea>{this.state.user}</NavbarArea>
             <Switch>
-              <Route exact path="/" render={(props) => <Home {...props} user={user} />} />
-              <Route exact path="/dashboard" render={(props) => <Dashboard {...props} user={user} />} />
-              <Route exact path="/goals" render={(props) => <Goals {...props} user={user}/>} />
-              <Route exact path="/challenges" render={(props) => <Challenges {...props} user={user}/>} />
-              <Route exact path="/badges" render={(props) => <Badges {...props} user={user} />} />
-              <Route exact path="/social" render={(props) => <Social {...props} user={user} />} />
-              <Route exact path="/profile" render={(props) => <Profile {...props} user={user} />} />
+              <Route exact path="/" render={(props) => <Home {...props} user={this.state.user} />} />
+              <Route exact path="/dashboard" render={(props) => <Dashboard {...props} user={this.state.user} />} />
+              <Route exact path="/goals" render={(props) => <Goals {...props} user={this.state.user} />} />
+              <Route exact path="/challenges" render={(props) => <Challenges {...props} user={this.state.user} />} />
+              <Route exact path="/badges" render={(props) => <Badges {...props} user={this.state.user} />} />
+              <Route exact path="/social" render={(props) => <Social {...props} user={this.state.user} />} />
+              <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state.user} />} />
               {/* <Route component={NoMatch} /> */}
             </Switch>
             <Footer />
-        </Wrapper>) : (<h1> </h1>)}
+          </Wrapper>
+        ) : (
+            <Wrapper>
+              <GoogleLogin
+                clientId="907322878909-ceh0tltstqr7ht4eidho9ehj73bs7t1p.apps.googleusercontent.com"
+                buttonText="Login"
+                onSuccess={this.responseGoogleSuccess}
+                onFailure={this.responseGoogleFailure}
+                cookiePolicy={"single_host_origin"}
+                className="loginButton"
+              />
+              <Switch>
+                <Route exact path="/" render={(props) => <Home {...props} user={this.state.user} />} />
+              </Switch>
+            </Wrapper>
+          )}
       </Router>
     )
   }
