@@ -26,7 +26,7 @@ function ActivityCard(props) {
                     </Form.Control>
                     <br />
                     <Button className="btn btn-warning" block 
-                    onClick={(event) => props.onLogClick(event)}>Log it</Button>
+                    onClick={(event) => props.onLogClick(event, props.sport)}>Log it</Button>
                 </Form.Group>
             </Form>
         </div>
