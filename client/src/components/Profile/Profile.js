@@ -1,11 +1,28 @@
 import React from "react";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Jumbotron from "react-bootstrap/Jumbotron";
+import { Row, Col, Container, Jumbotron } from "react-bootstrap";
 import ActivityRow from "./ActivityRow"
 
 function Profile(props) {
+
+    let style = {
+        ul: {
+            listStyle: "none"
+        },
+        li: {
+            padding: "5px"
+        },
+        jumbo: {
+            textAlign: "center",
+            background: "none",
+            marginBottom: "10px"
+            
+        },
+        header: {
+            textAlign: "center",
+            width: "50%"
+        }
+
+    }
 
     //run calculations
     let totalRunDistance = 0;
@@ -54,43 +71,42 @@ function Profile(props) {
 
     let activityNum = props.user.activities.length;
 
-
     return (
         <Container fluid>
             <Row>
-                <Col size="md-6">
-                    <Jumbotron>
+                <Col size="md-12" style={style.header}>
+                    <Jumbotron style={style.jumbo}>
                         <h1>Profile</h1>
                         <h2>
 
                         </h2>
                         <img src={props.user.imageUrl} className="text-center" alt="User Avatar" />
-                    </Jumbotron>
-                </Col>
-                <Col size="md-6">
-                    <Jumbotron>
-                        <h1>Lifetime Totals</h1>
-                        <ul>
-                            <li>Total Bike Distance: {totalBikeDistance} miles</li>
-                            <li>Total Run Distance: {totalRunDistance} miles</li>
-                            <li>Total Swim Distance: {totalSwimDistance} yards</li>
-                            <li>Total Activities Completed: {activityNum}</li>
+                        <hr></hr>
+                        <h1>{props.user.givenName}'s Lifetime Totals</h1>
+                        <ul style={style.ul}>
+                            <li style={style.li}>Total Bike Distance: {totalBikeDistance} miles</li>
+                            <li style={style.li}>Total Run Distance: {totalRunDistance} miles</li>
+                            <li style={style.li}>Total Swim Distance: {totalSwimDistance} yards</li>
+                            <li style={style.li}>Total Activities Completed: {activityNum}</li>
                         </ul>
-
                     </Jumbotron>
                 </Col>
             </Row>
+
             <Row>
                 <Col>
                     {props.user.activities.map(activity => {
                         console.log(activity)
                         return (
-                            <ActivityRow 
-                            date={activity.date}
-                            sport={activity.sport}
-                            distance_unit={activity.distance_unit}
-                            distance_measurement={activity.distance_measurement}
-                            time={activity.time}
+                            <ActivityRow
+                                key={activity.id}
+                                date={activity.date}
+                                sport={activity.sport}
+                                distance_unit={activity.distance_unit}
+                                distance_measurement={activity.distance_measurement}
+                                time={activity.time}
+                                id={activity.id}
+                                delete={props.delete}
                             />
                         )
                     })}
