@@ -25,8 +25,6 @@ function createGoalObject() {
 }
 
 
-
-
 // How to pull Form data into a Variable called "newGoal"???
 
 
