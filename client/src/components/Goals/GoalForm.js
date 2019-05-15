@@ -7,10 +7,11 @@ import API from "../../utils/API";
 
 
 function createGoalObject() {
-    let uniqueID = API.goalsCounter();
+    let d = new Date();
+
 
     let newGoal = {
-        id: uniqueID,
+        id: +d.getFullYear()+d.getMonth()+d.getDay()+d.getTime(),
         name: "Swim 2 Times This Week",
         sport: "Swim",
         isAchieved: false,
