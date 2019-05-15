@@ -29,7 +29,12 @@ class App extends Component {
     //if there is a user saved to the local storage
     if (localStorageUser !== null) {
       //set the user and log in
-      this.setState({ user: localStorageUser, loggedIn: true })
+
+      //get the most up-to-data user information
+      API.getUser(localStorageUser._id)
+        .then(res => {
+          this.setState({ user: res.data, loggedIn: true });
+        })
     } else {
       console.log("no user")
     }
