@@ -5,8 +5,9 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
-import Link from "react-router-dom/Link"
+// import Link from "react-router-dom/Link";
 import Logo from "../images/logo.svg";
+const Link = require("react-router-dom").Link;
 // import Home from "../images/home2.png";
 // import Login from "../images/login2.png"
 
