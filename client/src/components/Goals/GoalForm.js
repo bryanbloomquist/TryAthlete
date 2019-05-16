@@ -48,7 +48,7 @@ function GoalForm(props) {
                     </Form.Control>
                 </Col>
                 <Col sm={{ span: 9, offset: 1 }}>
-                    <Button variant="warning" size="lg" className="my-2" block onClick={() => props.onGoalSubmit()} >
+                    <Button type="submit" variant="warning" size="lg" className="my-2" block onClick={() => props.onGoalSubmit()} >
                         Create New Goal
                     </Button>
                 </Col>

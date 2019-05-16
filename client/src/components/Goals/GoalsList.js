@@ -18,7 +18,7 @@ function CurGoalsCard(props) {
                         {props.name}
                     </Col>
                     <Col sm={3}>
-                        <Button variant="danger" onClick={() => API.deleteGoal(props.userID, props.goalID )}>Delete</Button>
+                        <Button type="submit" variant="danger" onClick={() => API.deleteGoal(props.userID, props.goalID )}>Delete</Button>
                     </Col>
                 </Row>
                 <div className="progress-bar bg-success" style={{ width: props.progress }}> </div>
