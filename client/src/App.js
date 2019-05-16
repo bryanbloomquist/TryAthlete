@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Row, Col, Button } from "react-bootstrap";
 //API
 import API from "./utils/API";
 import Wrapper from "./components/Wrapper/Wrapper";
@@ -203,17 +204,30 @@ class App extends Component {
           </Wrapper>
         ) : (
             <Wrapper>
-              <GoogleLogin
-                clientId="907322878909-ceh0tltstqr7ht4eidho9ehj73bs7t1p.apps.googleusercontent.com"
-                buttonText="Login"
-                onSuccess={this.responseGoogleSuccess}
-                onFailure={this.responseGoogleFailure}
-                cookiePolicy={"single_host_origin"}
-                className="loginButton"
-              />
               <Switch>
                 <Route exact path="/" render={(props) => <Home {...props} user={this.state.user} />} />
               </Switch>
+              <Row className = "justify-content-center">
+                <Col xs="auto">
+                  <GoogleLogin
+                    clientId="907322878909-ceh0tltstqr7ht4eidho9ehj73bs7t1p.apps.googleusercontent.com"
+                    render={renderProps => (
+                      <Button
+                        className = "btn-lg btn-primary border-dark mt-5"
+                        onClick={renderProps.onClick} 
+                        disabled={renderProps.disabled}
+                      >
+                        Login with Google
+                      </Button>
+                    )}
+                    buttonText="Login"
+                    onSuccess={this.responseGoogleSuccess}
+                    onFailure={this.responseGoogleFailure}
+                    cookiePolicy={"single_host_origin"}
+                  />
+                </Col>
+              </Row>
+
             </Wrapper>
           )}
       </Router>
