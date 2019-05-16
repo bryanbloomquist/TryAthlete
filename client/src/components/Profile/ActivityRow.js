@@ -33,9 +33,6 @@ function ActivityRow(props) {
         cardBody: {
             color: "black",
             padding: "5px",
-
-
-
         },
         card: {
             width: "70%",
