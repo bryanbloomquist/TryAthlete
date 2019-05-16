@@ -2,11 +2,14 @@ import React from "react";
 import { Row, Col, Container, Jumbotron } from "react-bootstrap";
 import ActivityRow from "./ActivityRow"
 
+
 function Profile(props) {
 
     let style = {
         ul: {
-            listStyle: "none"
+            listStyle: "none",
+            margin: "none",
+            padding: "0"
         },
         li: {
             padding: "5px"
@@ -14,12 +17,19 @@ function Profile(props) {
         jumbo: {
             textAlign: "center",
             background: "none",
-            marginBottom: "10px"
+            marginBottom: "10px",
+            paddingBottom: "10px"
             
         },
         header: {
             textAlign: "center",
             width: "50%"
+        },
+        span: {
+            fontWeight: "900"
+        },
+        image: {
+            margin: "10px"
         }
 
     }
@@ -80,13 +90,13 @@ function Profile(props) {
                         <h2>
 
                         </h2>
-                        <img src={props.user.imageUrl} className="text-center" alt="User Avatar" />
+                        <img src={props.user.imageUrl} style={style.image} className="text-center" alt="User Avatar" />
                         <hr></hr>
-                        <h1>Lifetime Totals</h1>
+                        <h4>Lifetime Totals</h4>
                         <ul style={style.ul}>
-                            <li style={style.li}>Total Bike Distance: {totalBikeDistance} miles</li>
-                            <li style={style.li}>Total Run Distance: {totalRunDistance} miles</li>
-                            <li style={style.li}>Total Swim Distance: {totalSwimDistance} yards</li>
+                            <li style={style.li}><span style={style.span}>Bike:</span> {totalBikeDistance} miles</li>
+                            <li style={style.li}><span style={style.span}>Run:</span> {totalRunDistance} miles</li>
+                            <li style={style.li}><span style={style.span}>Swim:</span> {totalSwimDistance} yards</li>
                             <li style={style.li}>Total Activities Completed: {activityNum}</li>
                         </ul>
                     </Jumbotron>
