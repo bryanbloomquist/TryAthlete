@@ -9,19 +9,19 @@ import Swim from "../images/swim.png";
 
 
 function ActivityRow(props) {
-    
+
     let image;
     let color;
     switch (props.sport) {
-        case "swim":
+        case "Swim":
             image = Swim;
             color = "blue"
             break;
-        case "bike":
+        case "Ride":
             image = Bike;
             color = "green"
             break;
-        case "run":
+        case "Run":
             image = Run;
             color = "red"
             break;
@@ -33,8 +33,8 @@ function ActivityRow(props) {
         cardBody: {
             color: "black",
             padding: "5px",
-            
-            
+
+
 
         },
         card: {
@@ -66,26 +66,28 @@ function ActivityRow(props) {
         }
     }
 
-    let avgSpeed = (props.distance_unit/(props.time/60))
+    //let avgSpeed = (props.distance / (props.time / 60))
 
+    console.log(props)
     return (
         <div style={style.card} key={props.id}>
             <div style={style.cardBody}>
                 <Row>
-                    <Col sm={2} style={style.col}>
+                    <Col sm={3} style={style.col}>
                         <div style={style.title}>{props.sport.charAt(0).toUpperCase() + props.sport.slice(1)}</div>
                         <img className="img-fluid" style={style.image} src={image} alt='sports' />
                     </Col>
-                    <Col style={style.col} sm={8}>
-                       <h4 style={style.h5}>{props.distance_unit.toFixed(2)} {props.distance_measurement}</h4>
-                       <h5>Time: {props.time} Minutes</h5>
-                       <h5>Average Speed: {avgSpeed.toFixed(2)} {props.distance_measurement}/hr</h5>
+                    <Col style={style.col} sm={6}>
+                        <h5 style={style.h5}>Distance: {props.distance} {props.units}</h5>
+                        {/* <h6>Date: {props.time} </h6> */}
+                        {/* <h6>Average Speed: {avgSpeed.toFixed(2)} {props.units}/hr</h6> */}
                     </Col>
-                    <Col style={style.col} sm={2}>
-                       <Button variant="danger" onClick={() => { props.delete(props.id) }}  style={style.button}>X</Button>
+                    <Col style={style.col} sm={3}>
+                        <Button variant="danger" onClick={() => { props.delete(props.id) }} style={style.button}>X</Button>
                     </Col>
                 </Row>
             </div>
+            <hr></hr>
         </div>
     )
 }

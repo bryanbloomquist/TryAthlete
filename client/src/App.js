@@ -23,17 +23,23 @@ class App extends Component {
     runActivity: {
       sport: "Run",
       distance: 0,
-      units: "mi"
+      units: "mi",
+      id: 0,
+      time: 0
     },
     rideActivity: {
       sport: "Ride",
       distance: 0,
-      units: "mi"
+      units: "mi",
+      id: 0,
+      time: 0
     },
     swimActivity: {
       sport: "Swim",
       distance: 0,
-      units: "meters"
+      units: "meters",
+      id: 0,
+      time: 0
     }
   }
 
@@ -136,6 +142,8 @@ class App extends Component {
         runActivity: {
           ...prevState.runActivity,
           distance: value,
+          id: Date.now(),
+          time: Date.now()
         }
       }))
     }
@@ -144,6 +152,8 @@ class App extends Component {
         rideActivity: {
           ...prevState.rideActivity,
           distance: value,
+          id: Date.now(),
+          time: Date.now()
         }
       }))
     }
@@ -152,6 +162,8 @@ class App extends Component {
         swimActivity: {
           ...prevState.swimActivity,
           distance: value,
+          id: Date.now(),
+          time: Date.now()
         }
       }))
     }

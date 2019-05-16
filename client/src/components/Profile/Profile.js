@@ -4,7 +4,7 @@ import ActivityRow from "./ActivityRow"
 
 
 function Profile(props) {
-
+    console.log(props)
     let style = {
         ul: {
             listStyle: "none",
@@ -41,13 +41,13 @@ function Profile(props) {
     let totalRunDistance = 0;
     for (let i = 0; i < props.user.activities.length; i++) {
         //if the sport is running
-        if (props.user.activities[i].sport === "run")
+        if (props.user.activities[i].sport === "Run")
             //if the unit is miles
-            if (props.user.activities[i].distance_measurement === "miles") {
-                totalRunDistance += props.user.activities[i].distance_unit
+            if (props.user.activities[i].units === "mi") {
+                totalRunDistance += parseInt(props.user.activities[i].distance)
             } else {
                 //convert to miles
-                totalRunDistance += (props.user.activities[i].distance_unit * 0.621371)
+                totalRunDistance += (parseInt(props.user.activities[i].distance) * 0.621371)
             }
     }
     console.log("Total run distance in miles: ", totalRunDistance)
@@ -56,13 +56,13 @@ function Profile(props) {
     let totalSwimDistance = 0;
     for (let i = 0; i < props.user.activities.length; i++) {
         //if the sport is swimming
-        if (props.user.activities[i].sport === "swim")
+        if (props.user.activities[i].sport === "Swim")
             //if the unit is yards
-            if (props.user.activities[i].distance_measurement === "yards") {
-                totalSwimDistance += props.user.activities[i].distance_unit
+            if (props.user.activities[i].units === "yards") {
+                totalSwimDistance += parseInt(props.user.activities[i].distance)
             } else {
                 //convert to yards
-                totalSwimDistance += (props.user.activities[i].distance_unit * 1.09361)
+                totalSwimDistance += (parseInt(props.user.activities[i].distance) * 1.09361)
             }
     }
     console.log("Total swim distance in yards: ", totalSwimDistance)
@@ -71,13 +71,13 @@ function Profile(props) {
     let totalBikeDistance = 0;
     for (let i = 0; i < props.user.activities.length; i++) {
         //if the sport is biking
-        if (props.user.activities[i].sport === "bike")
+        if (props.user.activities[i].sport === "Ride")
             //if the unit is miles
-            if (props.user.activities[i].distance_measurement === "miles") {
-                totalBikeDistance += props.user.activities[i].distance_unit
+            if (props.user.activities[i].units === "mi") {
+                totalBikeDistance += parseInt(props.user.activities[i].distance)
             } else {
                 //convert to yards
-                totalBikeDistance += (props.user.activities[i].distance_unit * .621371)
+                totalBikeDistance += (parseInt(props.user.activities[i].distance) * .621371)
             }
     }
     console.log("Total bike distance in miles: ", totalBikeDistance)
@@ -97,13 +97,12 @@ function Profile(props) {
                         <hr></hr>
                         <h4>Lifetime Totals</h4>
                         <ul style={style.ul}>
-                            <li style={style.li}><span style={style.span}>Bike:</span> {totalBikeDistance} miles</li>
-                            <li style={style.li}><span style={style.span}>Run:</span> {totalRunDistance} miles</li>
-                            <li style={style.li}><span style={style.span}>Swim:</span> {totalSwimDistance} yards</li>
+                            <li style={style.li}><span style={style.span}>Bike:</span> {totalBikeDistance.toFixed(2)} miles</li>
+                            <li style={style.li}><span style={style.span}>Run:</span> {totalRunDistance.toFixed(2)} miles</li>
+                            <li style={style.li}><span style={style.span}>Swim:</span> {totalSwimDistance.toFixed(2)} yards</li>
                             <li style={style.li}>Total Activities Completed: {activityNum}</li>
                         </ul>
                         <hr></hr>
-
                     </Jumbotron>
                 </Col>
             </Row>
@@ -111,22 +110,19 @@ function Profile(props) {
             <Row>
                 <Col style={style.info}>
                     <h4>Activity Log</h4>
+
                     {props.user.activities.map(activity => {
                         console.log(activity)
                         return (
-                            <div>
-                                <ActivityRow
-                                    key={activity.id}
-                                    date={activity.date}
-                                    sport={activity.sport}
-                                    distance_unit={activity.distance_unit}
-                                    distance_measurement={activity.distance_measurement}
-                                    time={activity.time}
-                                    id={activity.id}
-                                    delete={props.delete}
-                                />
-                                <hr></hr>
-                            </div>
+                            <ActivityRow
+                                key={activity.id}
+                                sport={activity.sport}
+                                distance={activity.distance}
+                                units={activity.units}
+                                time={activity.time}
+                                id={activity.id}
+                                delete={props.delete}
+                            />
                         )
                     })}
 
