@@ -76,13 +76,13 @@ function Profile(props) {
             <Row>
                 <Col size="md-12" style={style.header}>
                     <Jumbotron style={style.jumbo}>
-                        <h1>Profile</h1>
+                        <h1>{props.user.givenName} {props.user.familyName}</h1>
                         <h2>
 
                         </h2>
                         <img src={props.user.imageUrl} className="text-center" alt="User Avatar" />
                         <hr></hr>
-                        <h1>{props.user.givenName}'s Lifetime Totals</h1>
+                        <h1>Lifetime Totals</h1>
                         <ul style={style.ul}>
                             <li style={style.li}>Total Bike Distance: {totalBikeDistance} miles</li>
                             <li style={style.li}>Total Run Distance: {totalRunDistance} miles</li>

@@ -23,7 +23,8 @@ function ActivityRow(props) {
             width: "80%"
         },
         col: {
-            marginTop: "auto"
+            marginTop: "auto",
+            marginBottom: "auto"
         },
         h5: {
             fontWeight: "700"
@@ -65,7 +66,7 @@ function ActivityRow(props) {
                        <h6>Average Speed: {avgSpeed} {props.distance_measurement}/hr</h6>
                     </Col>
                     <Col style={style.col} sm={1}>
-                       <Button onClick={() => { props.delete(props.id) }}  style={style.button}>X</Button>
+                       <Button variant="danger" onClick={() => { props.delete(props.id) }}  style={style.button}>X</Button>
                     </Col>
                 </Row>
             </Card.Body>
