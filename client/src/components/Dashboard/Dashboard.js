@@ -29,7 +29,7 @@ function Dashboard(props) {
                     onUnitChange={props.onUnitChange}
                 />
                 <ActivityCard
-                    sport={"Bike Ride"}
+                    sport={"Ride"}
                     units={["mi", "km"]}
                     color={"#4fc147"}
                     img={Bike}
