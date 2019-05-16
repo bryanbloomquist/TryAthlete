@@ -210,7 +210,6 @@ class App extends Component {
               <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state.user} />} />
               {/* <Route component={NoMatch} /> */}
             </Switch>
-            <Footer />
           </Wrapper>
         ) : (
             <Wrapper>
