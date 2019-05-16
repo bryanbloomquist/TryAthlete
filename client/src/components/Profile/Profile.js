@@ -70,7 +70,7 @@ function Profile(props) {
     console.log("Total bike distance in miles: ", totalBikeDistance)
 
     let activityNum = props.user.activities.length;
-
+   
     return (
         <Container fluid>
             <Row>

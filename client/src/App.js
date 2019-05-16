@@ -186,8 +186,16 @@ class App extends Component {
     }
   }
 
+  // delete our activity
+  deleteActivity = id  => {
+    API.deleteActivity(this.state.user._id, id)
+      .then(res => this.setState({user: res.data}))
+      .catch(err => console.log(err));
+  };
+
   render() {
     console.log("is logged in: " + this.state.loggedIn);
+    console.log()
     return (
       <Router>
         {this.state.loggedIn ? (
@@ -206,7 +214,7 @@ class App extends Component {
               <Route exact path="/challenges" render={(props) => <Challenges {...props} user={this.state.user} />} />
               <Route exact path="/badges" render={(props) => <Badges {...props} user={this.state.user} />} />
               <Route exact path="/social" render={(props) => <Social {...props} user={this.state.user} />} />
-              <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state.user} />} />
+              <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state.user} delete={this.deleteActivity} />} />
               {/* <Route component={NoMatch} /> */}
             </Switch>
             <Footer />
