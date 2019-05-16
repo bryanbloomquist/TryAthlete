@@ -19,7 +19,7 @@ function Profile(props) {
             background: "none",
             marginBottom: "10px",
             paddingBottom: "10px"
-            
+
         },
         header: {
             textAlign: "center",
@@ -30,6 +30,9 @@ function Profile(props) {
         },
         image: {
             margin: "10px"
+        },
+        info: {
+            textAlign: 'center'
         }
 
     }
@@ -80,7 +83,7 @@ function Profile(props) {
     console.log("Total bike distance in miles: ", totalBikeDistance)
 
     let activityNum = props.user.activities.length;
-   
+
     return (
         <Container fluid>
             <Row>
@@ -99,25 +102,31 @@ function Profile(props) {
                             <li style={style.li}><span style={style.span}>Swim:</span> {totalSwimDistance} yards</li>
                             <li style={style.li}>Total Activities Completed: {activityNum}</li>
                         </ul>
+                        <hr></hr>
+
                     </Jumbotron>
                 </Col>
             </Row>
 
             <Row>
-                <Col>
+                <Col style={style.info}>
+                    <h4>Activity Log</h4>
                     {props.user.activities.map(activity => {
                         console.log(activity)
                         return (
-                            <ActivityRow
-                                key={activity.id}
-                                date={activity.date}
-                                sport={activity.sport}
-                                distance_unit={activity.distance_unit}
-                                distance_measurement={activity.distance_measurement}
-                                time={activity.time}
-                                id={activity.id}
-                                delete={props.delete}
-                            />
+                            <div>
+                                <ActivityRow
+                                    key={activity.id}
+                                    date={activity.date}
+                                    sport={activity.sport}
+                                    distance_unit={activity.distance_unit}
+                                    distance_measurement={activity.distance_measurement}
+                                    time={activity.time}
+                                    id={activity.id}
+                                    delete={props.delete}
+                                />
+                                <hr></hr>
+                            </div>
                         )
                     })}
 

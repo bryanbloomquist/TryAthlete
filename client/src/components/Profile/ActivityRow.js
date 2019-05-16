@@ -32,15 +32,19 @@ function ActivityRow(props) {
     let style = {
         cardBody: {
             color: "black",
-            padding: "5px"
+            padding: "5px",
+            
+            
 
         },
         card: {
-            width: "100%",
+            width: "70%",
+            marginLeft: "auto",
+            marginRight: "auto",
             padding: "10px"
         },
         image: {
-            width: "70%"
+            width: "90%"
         },
         col: {
             marginTop: "auto",
@@ -65,24 +69,24 @@ function ActivityRow(props) {
     let avgSpeed = (props.distance_unit/(props.time/60))
 
     return (
-        <Card style={style.card} key={props.id}>
-            <Card.Body style={style.cardBody}>
+        <div style={style.card} key={props.id}>
+            <div style={style.cardBody}>
                 <Row>
-                    <Col sm={3} style={style.col}>
-                        <Card.Title style={style.title}>{props.sport.charAt(0).toUpperCase() + props.sport.slice(1)}</Card.Title>
+                    <Col sm={2} style={style.col}>
+                        <div style={style.title}>{props.sport.charAt(0).toUpperCase() + props.sport.slice(1)}</div>
                         <img className="img-fluid" style={style.image} src={image} alt='sports' />
                     </Col>
-                    <Col style={style.col} sm={7}>
-                       <h5 stlye={style.h5}>{props.distance_unit.toFixed(2)} {props.distance_measurement}</h5>
-                       <h6>Time: {props.time} Minutes</h6>
-                       <h6>Average Speed: {avgSpeed.toFixed(2)} {props.distance_measurement}/hr</h6>
+                    <Col style={style.col} sm={8}>
+                       <h4 style={style.h5}>{props.distance_unit.toFixed(2)} {props.distance_measurement}</h4>
+                       <h5>Time: {props.time} Minutes</h5>
+                       <h5>Average Speed: {avgSpeed.toFixed(2)} {props.distance_measurement}/hr</h5>
                     </Col>
-                    <Col style={style.col} sm={1}>
+                    <Col style={style.col} sm={2}>
                        <Button variant="danger" onClick={() => { props.delete(props.id) }}  style={style.button}>X</Button>
                     </Col>
                 </Row>
-            </Card.Body>
-        </Card>
+            </div>
+        </div>
     )
 }
 
