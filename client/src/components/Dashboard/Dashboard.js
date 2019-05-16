@@ -13,30 +13,44 @@ import Bike from "../images/bike.png";
 import Swim from "../images/swim.png";
 
 function Dashboard(props) {
-    console.log(props)
     return (
         <Container fluid>
             <Row>
                 <ActivityCard
-                    activity={"Run"}
+                    sport={"Run"}
                     units={["mi", "km"]}
                     color={"#ed4b4b"}
                     img={Run}
                     user={props}
+                    activity={props.runActivity}
+                    unit={props.runActivity}
+                    onLogClick={props.onLogClick}
+                    onDistanceChange={props.onDistanceChange}
+                    onUnitChange={props.onUnitChange}
                 />
                 <ActivityCard
-                    activity={"Ride"}
+                    sport={"Ride"}
                     units={["mi", "km"]}
                     color={"#4fc147"}
                     img={Bike}
                     user={props}
+                    activity={props.rideActivity}
+                    unit={props.rideActivity}
+                    onLogClick={props.onLogClick}
+                    onDistanceChange={props.onDistanceChange}
+                    onUnitChange={props.onUnitChange}
                 />
                 <ActivityCard
-                    activity={"Swim"}
+                    sport={"Swim"}
                     units={["meters", "yards"]}
                     color={"#4b68ed"}
                     img={Swim}
                     user={props}
+                    activity={props.swimActivity}
+                    unit={props.swimActivity}
+                    onLogClick={props.onLogClick}
+                    onDistanceChange={props.onDistanceChange}
+                    onUnitChange={props.onUnitChange}
                 />
             </Row>
             <Row>

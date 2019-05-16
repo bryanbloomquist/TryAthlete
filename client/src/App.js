@@ -19,7 +19,22 @@ import './App.css';
 class App extends Component {
   state = {
     user: {},
-    loggedIn: false
+    loggedIn: false,
+    runActivity: {
+      sport: "Run",
+      distance: 0,
+      units: "mi"
+    },
+    rideActivity: {
+      sport: "Ride",
+      distance: 0,
+      units: "mi"
+    },
+    swimActivity: {
+      sport: "Swim",
+      distance: 0,
+      units: "meters"
+    }
   }
 
   componentDidMount() {
@@ -39,7 +54,6 @@ class App extends Component {
       console.log("no user")
     }
   }
-
 
   responseGoogleSuccess = (response) => {
     //if the user isn't already logged in from local storage
@@ -98,9 +112,79 @@ class App extends Component {
     console.log(response);
   }
 
-  // componentDidMount() {
-  //
-  // }
+  //logic for activity card logging
+  onLogClick = (event, sport) => {
+    if (sport === "Run") {
+      let activity = Object.assign({}, this.state.runActivity);
+      API.saveActivity(activity, this.state.user._id)
+    }
+    if (sport === "Ride") {
+      let activity = Object.assign({}, this.state.rideActivity);
+      API.saveActivity(activity, this.state.user._id)
+    }
+    if (sport === "Swim") {
+      let activity = Object.assign({}, this.state.swimActivity);
+      API.saveActivity(activity, this.state.user._id)
+    }
+  }
+
+  onDistanceChange = (event) => {
+    const { name, value } = event.target;
+
+    if (name === "Run") {
+      this.setState(prevState => ({
+        runActivity: {
+          ...prevState.runActivity,
+          distance: value,
+        }
+      }))
+    }
+    if (name === "Ride") {
+      this.setState(prevState => ({
+        rideActivity: {
+          ...prevState.rideActivity,
+          distance: value,
+        }
+      }))
+    }
+    if (name === "Swim") {
+      this.setState(prevState => ({
+        swimActivity: {
+          ...prevState.swimActivity,
+          distance: value,
+        }
+      }))
+    }
+  }
+
+  onUnitChange = (event) => {
+    const { name, value } = event.target;
+
+    if (name === "Run") {
+      this.setState(prevState => ({
+        runActivity: {
+          ...prevState.runActivity,
+          units: value,
+        }
+      }))
+    }
+    if (name === "Ride") {
+      this.setState(prevState => ({
+        rideActivity: {
+          ...prevState.rideActivity,
+          units: value,
+        }
+      }))
+    }
+    if (name === "Swim") {
+      this.setState(prevState => ({
+        swimActivity: {
+          ...prevState.swimActivity,
+          units: value,
+        }
+      }))
+    }
+  }
 
   render() {
     console.log("is logged in: " + this.state.loggedIn);
@@ -111,7 +195,13 @@ class App extends Component {
             <NavbarArea>{this.state.user}</NavbarArea>
             <Switch>
               <Route exact path="/" render={(props) => <Home {...props} user={this.state.user} />} />
-              <Route exact path="/dashboard" render={(props) => <Dashboard {...props} user={this.state.user} />} />
+              <Route exact path="/dashboard" render={(props) =>
+                <Dashboard {...props} {...this.state}
+                  user={this.state.user}
+                  onLogClick={this.onLogClick}
+                  onDistanceChange={this.onDistanceChange}
+                  onUnitChange={this.onUnitChange} />} />
+
               <Route exact path="/goals" render={(props) => <Goals {...props} user={this.state.user} />} />
               <Route exact path="/challenges" render={(props) => <Challenges {...props} user={this.state.user} />} />
               <Route exact path="/badges" render={(props) => <Badges {...props} user={this.state.user} />} />
