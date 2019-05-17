@@ -12,7 +12,8 @@ function GoalsCard(props) {
 
     const length = props.user.goals.length;
     const goals = props.user.goals;
-    if (props.user.goals) {
+    console.log(props.user.goals)
+    if (props.user.goals[0]) {
         return (
             <div className="card" style={style}>
                 <h2>Goals</h2><br />
