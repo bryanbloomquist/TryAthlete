@@ -24,17 +24,20 @@ class App extends Component {
     runActivity: {
       sport: "Run",
       distance: 0,
-      units: "mi"
+      units: "mi",
+      // date: Date.now()
     },
     rideActivity: {
       sport: "Ride",
       distance: 0,
-      units: "mi"
+      units: "mi",
+      // date: Date.now()
     },
     swimActivity: {
       sport: "Swim",
       distance: 0,
-      units: "meters"
+      units: "meters",
+      // date: Date.now()
     }
   }
 
@@ -123,6 +126,12 @@ class App extends Component {
   //logic for activity card logging
   onLogClick = (event, sport) => {
     if (sport === "Run") {
+      // this.setState(prevState => ({
+      //   runActivity: {
+      //     ...prevState.runActivity,
+      //     date: Date.now(),
+      //   }
+      // }))
       let activity = Object.assign({}, this.state.runActivity);
       API.saveActivity(activity, this.state.user._id)
     }
