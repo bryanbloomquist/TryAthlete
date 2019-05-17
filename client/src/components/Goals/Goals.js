@@ -167,7 +167,7 @@ class Goals extends Component {
                                                 <Row>
                                                     <Col sm={9}>
                                                         {goal.name}
-                                                        <div className="progress-bar bg-success" style={{ width: goal.goalProgress }}> </div>
+                                                        <div className="progress-bar bg-success mt-2" style={{ width: goal.goalProgress }}> </div>
                                                     </Col>
                                                     <Col sm={3}>
                                                         <DeleteBtn className="ml-5" onClick = {() => this.onGoalDelete(goal.id)}/>
