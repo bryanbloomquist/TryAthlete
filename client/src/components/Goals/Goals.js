@@ -14,7 +14,7 @@ function Goals(props) {
     return (
         <Container fluid className="pb-5">
             <Row>
-                <Col className="display-3 text-center py-5">
+                <Col className="display-3 text-center py-5 goal-title">
                     Goals for {fname}
                 </Col>
             </Row>
@@ -23,6 +23,9 @@ function Goals(props) {
                     <Card className="card-wide text-dark bg-light">
                         <GoalForm 
                         user={props.user}
+                        onGoalChange={props.onGoalChange}
+                        onGoalSubmit={props.onGoalSubmit}
+                        curGoal={props.curGoal}
                         />
                     </Card>
                 </Col>
