@@ -18,36 +18,33 @@ function Dashboard(props) {
             <Row>
                 <ActivityCard
                     sport={"Run"}
-                    units={["mi", "km"]}
+                    units={["mi", "km", "minutes"]}
                     color={"#ed4b4b"}
                     img={Run}
                     user={props}
                     activity={props.runActivity}
-                    unit={props.runActivity}
                     onLogClick={props.onLogClick}
                     onDistanceChange={props.onDistanceChange}
                     onUnitChange={props.onUnitChange}
                 />
                 <ActivityCard
                     sport={"Ride"}
-                    units={["mi", "km"]}
+                    units={["mi", "km", "minutes"]}
                     color={"#4fc147"}
                     img={Bike}
                     user={props}
                     activity={props.rideActivity}
-                    unit={props.rideActivity}
                     onLogClick={props.onLogClick}
                     onDistanceChange={props.onDistanceChange}
                     onUnitChange={props.onUnitChange}
                 />
                 <ActivityCard
                     sport={"Swim"}
-                    units={["meters", "yards"]}
+                    units={["meters", "yards", "minutes"]}
                     color={"#4b68ed"}
                     img={Swim}
                     user={props}
                     activity={props.swimActivity}
-                    unit={props.swimActivity}
                     onLogClick={props.onLogClick}
                     onDistanceChange={props.onDistanceChange}
                     onUnitChange={props.onUnitChange}

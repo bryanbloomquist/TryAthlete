@@ -25,19 +25,16 @@ class App extends Component {
       sport: "Run",
       distance: 0,
       units: "mi",
-      // date: Date.now()
     },
     rideActivity: {
       sport: "Ride",
       distance: 0,
       units: "mi",
-      // date: Date.now()
     },
     swimActivity: {
       sport: "Swim",
       distance: 0,
       units: "meters",
-      // date: Date.now()
     }
   }
 
