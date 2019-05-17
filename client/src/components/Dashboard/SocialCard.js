@@ -1,24 +1,32 @@
 import React from "react";
+import ArrayDisplay from "./ArrayDisplay";
+import Card from "react-bootstrap/Card"
 
 function SocialCard(props) {
-    const style = {
-        backgroundColor: "slategray",
-        // backgroundImage: "url("+props.img+")",
-        // backgroundSize: " 100% 100%",
-        // backgroundPosition: "center",
-        // backgroundRepeat: "no-repeat",
+    const length = props.user.friends.length;
+    const friends = props.user.friends;
+    if (props.user.friends[0]) {
+        return (
+            <Card className="card card-wide">
+                <Card.Link className="cardLink " href="/Social">
+                    <Card.Body>
+                        <h2>Social Feed</h2>
+                        <ArrayDisplay length={length} friends={friends} card="social"></ArrayDisplay>
+                    </Card.Body>
+                </Card.Link>
+            </Card>
+        )} else {
+            return (
+                <Card className="card card-wide">
+                    <Card.Link className="cardLink" href="/Social">
+                        <Card.Body>
+                            <h2>Social Feed</h2>
+                            <p>Add a friend!</p>
+                        </Card.Body>
+                    </Card.Link>
+                </Card>
+            )
+        }
     }
 
-    return (
-        <div className="card card-wide" style={style}>
-            <h2>Social Feed</h2><br />
-            <ul>
-            {/* {friends.id.map((value, index) => {
-                return <li key={index}>{value}</li>
-            })} */}
-        </ul>
-        </div>
-    )
-}
-
-export default SocialCard;
+    export default SocialCard;

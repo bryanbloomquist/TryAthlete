@@ -1,31 +1,34 @@
 import React from "react";
 import ArrayDisplay from "./ArrayDisplay";
+import Card from "react-bootstrap/Card"
 
 function ChallengesCard(props) {
-    const style = {
-        backgroundColor: "slategray",
-        // backgroundImage: "url("+props.img+")",
-        // backgroundSize: " 100% 100%",
-        // backgroundPosition: "center",
-        // backgroundRepeat: "no-repeat",
-    }
-
     const length = props.user.challenges.length;
     const challenges = props.user.challenges;
     if (props.challenges) {
-    return (
-        <div className="card" style={style}>
-            <h2>Challenges</h2><br />
-            <ArrayDisplay length={length} challenges={challenges} card="challenges"></ArrayDisplay>
-        </div>
-    )}
+        return (
+            <Card className="card">
+                <Card.Link className="cardLink" href="/Challenges">
+                    <Card.Body>
+                        <h2>Challenges</h2>
+                        <ArrayDisplay length={length} challenges={challenges} card="challenges"></ArrayDisplay>
+                    </Card.Body>
+                </Card.Link>
+            </Card>
+        )
+    }
     else {
         return (
-            <div className="card" style={style}>
-                <h2>Challenges</h2><br />
-                <p>No challenges yet</p>
-            </div>
-        )}
+            <Card className="card">
+                <Card.Link className="cardLink" href="/Challenges">
+                    <Card.Body>
+                        <h2>Challenges</h2>
+                        <p>No challenges yet</p>
+                    </Card.Body>
+                </Card.Link>
+            </Card>
+        )
+    }
 }
 
 export default ChallengesCard;
