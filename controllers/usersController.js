@@ -1,8 +1,16 @@
 const db = require("../models");
 
 const object = function(object) {
-  var count = Object.keys(object).length;
-  return(count);
+  let count = Object.keys(object).length;
+  let array = []
+  let finalArray= []
+  let date = Date.now();
+  array.push(Object.values(object))
+  for (let i = 0; i < count; i++) {
+    finalArray.push(array[0][i])
+  }
+  finalArray.push(date)
+  return(finalArray)
 }
 
 // Defining methods for the UsersController
@@ -44,7 +52,7 @@ module.exports = {
   //------------------------ACTIVITIES---------------------
   addActivity: function (req, res) {
     db.User
-      .findOneAndUpdate({ _id: req.params.id }, { $push: { activities: { $each: [[object(req.body), Date.now()]] } } })
+      .findOneAndUpdate({ _id: req.params.id }, { $push: { activities: [object(req.body)] } } )
       // .findOneAndUpdate({ _id: req.params.id }, { $push: { activities: { $each: [[req.body.sport, req.body.distance, req.body.units, Date.now()]] } } })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
