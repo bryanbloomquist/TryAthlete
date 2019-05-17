@@ -1,18 +1,10 @@
 const db = require("../models");
 
 const object = function(object) {
-  let count = Object.keys(object).length;
-  let array = []
-  let finalArray= []
   let date = Date.now();
-  array.push(Object.values(object))
-  for (let i = 0; i < count; i++) {
-    finalArray.push(array[0][i])
-  }
-  finalArray.push(date)
-  return(finalArray)
+  object.timestamp = date
+  return(object)
 }
-
 // Defining methods for the UsersController
 module.exports = {
 
