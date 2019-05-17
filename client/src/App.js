@@ -36,14 +36,6 @@ class App extends Component {
       distance: 0,
 
       units: "meters"
-    },
-    goal:
-    {
-      sport: "Run",
-      type: "Distance",
-      qty: 1,
-      unit: "mi",
-      timeframe: "This Week"
     }
   }
 
@@ -209,90 +201,10 @@ class App extends Component {
     }
   }
 
-  onGoalChange = (event) => {
-    const { name, value } = event.target;
-
-    switch (name) {
-      case "sport":
-        this.setState(prevState => ({
-          goal:
-          {
-            ...prevState.goal,
-            sport: value
-          }
-        }))
-        break;
-
-      case "type":
-        this.setState(prevState => ({
-          goal:
-          {
-            ...prevState.goal,
-            type: value
-          }
-        }))
-        break;
-
-      case "qty":
-        this.setState(prevState => ({
-          goal:
-          {
-            ...prevState.goal,
-            qty: value
-          }
-        }))
-        break;
-
-      case "unit":
-        this.setState(prevState => ({
-          goal:
-          {
-            ...prevState.goal,
-            unit: value
-          }
-        }))
-        break;
-
-      case "timeframe":
-        this.setState(prevState => ({
-          goal:
-          {
-            ...prevState.goal,
-            timeframe: value
-          }
-        }))
-        break;
-
-      default:
-        console.log("No Goal Field Change Match...");
-    }
-  }
-
-  onGoalSubmit = (() => {
-
-    console.log("goalSubmit clicked: ", this.state.user._id, this.state.goal.goalType);
-
-    let d = new Date();
-    let timestamp = d.getFullYear() + d.getMonth() + d.getDay() + d.getTime();
-
-    let newGoal = {
-      id: timestamp,
-      name: this.state.goal.sport + " " + this.state.goal.qty + " " + this.state.goal.unit + " " + this.state.goal.timeframe,
-      sport: this.state.goal.sport,
-      isAchieved: false,
-      goalType: this.state.goal.type,
-      goalQty: this.state.goal.qty,
-      goalUnit: this.state.goal.unit,
-      goalTimeFrame: this.state.goal.timeframe,
-    };
-    console.log("newGoalObj: ", newGoal);
-    API.saveGoal(newGoal, this.state.user._id)
-
-  });
-
+  
 
   render() {
-    console.log("is logged in: " + this.state.loggedIn);
+    // console.log("is logged in: " + this.state.loggedIn);
     return (
       <Router>
         {this.state.loggedIn ? (
@@ -306,12 +218,8 @@ class App extends Component {
                   onLogClick={this.onLogClick}
                   onDistanceChange={this.onDistanceChange}
                   onUnitChange={this.onUnitChange} />} />
-              <Route exact path="/goals" render={(props) =>
-                <Goals {...props} user={this.state.user}
-                  onGoalChange={this.onGoalChange}
-                  onGoalSubmit={this.onGoalSubmit}
-                  curGoal={this.state.goal}
-                />} />
+
+              <Route exact path="/goals" render={(props) => <Goals {...props} user={this.state.user} />} />
               <Route exact path="/challenges" render={(props) => <Challenges {...props} user={this.state.user} />} />
               <Route exact path="/badges" render={(props) => <Badges {...props} user={this.state.user} />} />
               <Route exact path="/social" render={(props) => <Social {...props} user={this.state.user} />} />

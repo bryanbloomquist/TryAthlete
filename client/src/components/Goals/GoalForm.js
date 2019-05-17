@@ -26,13 +26,14 @@ function GoalForm(props) {
                 </Col>
                 <Form.Label column sm={4} className="text-right my-2">Qty:</Form.Label>
                 <Col sm={6}>
-                    <Form.Control name="qty" className="my-2" inputRef={goalQty => this.textInput = goalQty} type="text" onChange={props.onGoalChange} placeholder="1" />
+                    <Form.Control name="qty" className="my-2" type="text" onChange={props.onGoalChange} placeholder="1" />
                 </Col>
                 <Form.Label column sm={4} className="text-right my-2">Unit:</Form.Label>
                 <Col sm={6}>
                     <Form.Control name="unit" className="my-2" as="select" onChange={props.onGoalChange}>
                         <option defaultValue>mi</option>
                         <option>km</option>
+                        <option>minutes</option>
                         <option>hours</option>
                         <option>days</option>
                         <option>times</option>
