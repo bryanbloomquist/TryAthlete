@@ -29,7 +29,6 @@ class Goals extends Component {
         }
     }
 
-
     componentDidMount(){
         this.loadGoals();
     };
@@ -127,8 +126,9 @@ class Goals extends Component {
     });
 
     onGoalDelete = ((userID, goalID) => {
-        API.deleteGoal(userID, goalID);
-
+        API.deleteGoal(userID, goalID)
+            .then(res => this.loadGoals())
+            .catch(err => console.log(err));
     });
 
 
