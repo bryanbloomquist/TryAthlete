@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Row, Col, Button } from "react-bootstrap";
 //API
 import API from "./utils/API";
 import Wrapper from "./components/Wrapper/Wrapper";
 import NavbarArea from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Home from "./components/Home/Home";
 import Profile from "./components/Profile/Profile";
@@ -15,6 +15,7 @@ import Social from "./components/Social/Social";
 import { GoogleLogin } from "react-google-login";
 // import NoMatch from "./components/NoMatch/NoMatch";
 import './App.css';
+const Link = require("react-router-dom").Link;
 
 class App extends Component {
   state = {
@@ -112,6 +113,13 @@ class App extends Component {
     console.log(response);
   }
 
+  logoutSession = ( ) => {
+    this.setState({ user: "", loggedIn: false});
+    window.localStorage.clear();
+    console.log( "user: " + this.state.user );
+    console.log( "logged in = " + this.state.loggedIn );
+  }
+
   //logic for activity card logging
   onLogClick = (event, sport) => {
     if (sport === "Run") {
@@ -203,30 +211,51 @@ class App extends Component {
                   onLogClick={this.onLogClick}
                   onDistanceChange={this.onDistanceChange}
                   onUnitChange={this.onUnitChange} />} />
-
-              <Route exact path="/goals" render={(props) =>
-                <Goals {...props} user={this.state.user}/>} />
+              <Route exact path="/goals" render={(props) => <Goals {...props} user={this.state.user} />} />
               <Route exact path="/challenges" render={(props) => <Challenges {...props} user={this.state.user} />} />
               <Route exact path="/badges" render={(props) => <Badges {...props} user={this.state.user} />} />
               <Route exact path="/social" render={(props) => <Social {...props} user={this.state.user} />} />
               <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state.user} />} />
               {/* <Route component={NoMatch} /> */}
             </Switch>
-            <Footer />
+            <Row className = "justify-content-center">
+              <Col xs="auto">
+                <Link to = "/">
+                  <Button 
+                    className = "btn-lg btn-primary border-dark my-5"
+                    onClick = { this.logoutSession }
+                  >
+                    Logout 
+                  </Button>
+                </Link>
+              </Col>
+            </Row>
           </Wrapper>
         ) : (
             <Wrapper>
-              <GoogleLogin
-                clientId="907322878909-ceh0tltstqr7ht4eidho9ehj73bs7t1p.apps.googleusercontent.com"
-                buttonText="Login"
-                onSuccess={this.responseGoogleSuccess}
-                onFailure={this.responseGoogleFailure}
-                cookiePolicy={"single_host_origin"}
-                className="loginButton"
-              />
               <Switch>
                 <Route exact path="/" render={(props) => <Home {...props} user={this.state.user} />} />
               </Switch>
+              <Row className = "justify-content-center">
+                <Col xs="auto">
+                  <GoogleLogin
+                    clientId="907322878909-ceh0tltstqr7ht4eidho9ehj73bs7t1p.apps.googleusercontent.com"
+                    render={renderProps => (
+                      <Button
+                        className = "btn-lg btn-primary border-dark mt-5"
+                        onClick={renderProps.onClick} 
+                        disabled={renderProps.disabled}
+                      >
+                        Login with Google
+                      </Button>
+                    )}
+                    onSuccess={this.responseGoogleSuccess}
+                    onFailure={this.responseGoogleFailure}
+                    cookiePolicy={"single_host_origin"}
+                  />
+                </Col>
+              </Row>
+
             </Wrapper>
           )}
       </Router>
