@@ -3,11 +3,10 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import API from "../../utils/API";
+
+
 
 function CurGoalsCard(props) {
-    console.log("CurGoalsCard", props);
-// If implementing "progress" then change progress bar background appropriate
     console.log("GoalsList - UserID: ", props.userID);
     console.log("GoalsList - GoalID: ", props.goalID);
     return (
@@ -18,10 +17,10 @@ function CurGoalsCard(props) {
                         {props.name}
                     </Col>
                     <Col sm={3}>
-                        <Button type="submit" variant="danger" onClick={() => API.deleteGoal(props.userID, props.goalID )}>Delete</Button>
+                        <Button type="submit" role="button" variant="danger" onClick={() => props.onGoalDelete(props.userID, props.goalID)}>Delete</Button>
                     </Col>
                 </Row>
-                <div className="progress-bar bg-success" style={{ width: props.progress }}> </div>
+                <div className="progress-bar bg-success" style={{ width: props.goalProgress }}> </div>
             </ListGroup.Item>
         </ListGroup>
     );

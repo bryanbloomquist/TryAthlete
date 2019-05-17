@@ -36,7 +36,8 @@ const userSeed = [
         goalQty: 50,
         goalUnit: "km",
         goalTimeFrame: "this week",
-        createTime: date.getTime()
+        createTime: date.getTime(),
+        progress: "20%"
       }
     ],
     badges: [
@@ -69,64 +70,6 @@ const userSeed = [
       ]
     }
   },
-  {
-    givenName: "Bryan",
-    familyName: "Bloomquist",
-    imageUrl: "https://lh3.googleusercontent.com/-ynCknDbQEw0/AAAAAAAAAAI/AAAAAAAAAQI/C-M_g56Qdk0/s96-c/photo.jpg",
-    email: "bmbloomquist@gmail.com",
-    activities: [
-      {
-        id: 23,
-        sport: "Run",
-        distanceQty: "50",
-        distanceUnit: "km",
-        duration: 50,
-        createTime: date.getTime()
-      }
-    ],
-    goals: [
-      {
-        id: 2,
-        name: "Run 50 km in a week",
-        sport: "Run",
-        isAchieved: false,
-        goalType: "distance",
-        goalQty: 50,
-        goalUnit: "km",
-        goalTimeFrame: "this week",
-        createTime: date.getTime()
-      }
-    ],
-    badges: [
-      {
-        id: [1, 2, 5]
-      }
-    ],
-    challenges: [
-      {
-        id: 25,
-        name: "First goal",
-        sport: "Run",
-        isAchieved: false,
-        goalType: "distance",
-        goalQty: 50,
-        goalUnit: "km",
-        challenger: {
-          id: 4
-        },
-        challengeTimeFrame: "this month",
-        hasAccepted: false,
-        createTime: date.getTime()
-      }
-    ],
-    friends: {
-      id: [
-        1,
-        4,
-        6
-      ]
-    }
-  }
 ];
 
 db.User

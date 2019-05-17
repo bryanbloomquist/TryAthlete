@@ -12,14 +12,14 @@ function CurGoalsCard(props) {
         <Card className="card-wide text-dark mt-0 bg-light">
             <Card.Title>Current Goals</Card.Title>
             <Card.Body className="h5">
-                {props.goals.map((goal) =>
+                {props.user.goals.map((goal) =>
                     <GoalsList 
                         userID = {props.user._id}
                         key = {goal.id}
                         goalID = {goal.id}
                         name = {goal.name}
                         isAchieved = {goal.isAchieved}
-                        progress = "40%"   
+                        onGoalDelete={props.onGoalDelete}
                     />
                 )}
             </Card.Body>
