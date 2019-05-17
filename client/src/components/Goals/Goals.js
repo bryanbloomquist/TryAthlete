@@ -6,8 +6,9 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import AchievedGoalsCard from "./AcheivedGoalsCard";
+import ListGroup from "react-bootstrap/ListGroup";
+import DeleteBtn from "./DeleteBtn";
 import API from "../../utils/API";
-
 
 class Goals extends Component {
     constructor(props) {
@@ -15,7 +16,6 @@ class Goals extends Component {
         this.state = {
             user:
             {
-                id: this.props.user._id,
                 goals: []
             },
             newGoal:
@@ -29,18 +29,18 @@ class Goals extends Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.loadGoals();
     };
 
     loadGoals = () => {
-        API.getUser(this.state.user.id)
+        API.getUser(this.props.user._id)
             .then(res =>
                 this.setState({
-                    user:{goals: res.data.goals}
+                    user: { goals: res.data.goals }
                 })
-        )
-        .catch(err => console.log(err));
+            )
+            .catch(err => console.log(err));
     };
 
     onGoalChange = (event) => {
@@ -120,13 +120,15 @@ class Goals extends Component {
             goalTimeFrame: this.state.newGoal.timeframe,
             goalProgress: "0%"
         };
-        console.log("newGoalObj: ", newGoal,this.state.user.id);
-        API.saveGoal(newGoal, this.props.user._id);
+        console.log("newGoalObj: ", newGoal, this.state.user.id);
+        API.saveGoal(newGoal, this.props.user._id)
+            .then(res => this.loadGoals())
+            .catch(err => console.log(err));
 
     });
 
-    onGoalDelete = ((userID, goalID) => {
-        API.deleteGoal(userID, goalID)
+    onGoalDelete = ((goalID) => {
+        API.deleteGoal(this.props.user._id, goalID)
             .then(res => this.loadGoals())
             .catch(err => console.log(err));
     });
@@ -157,10 +159,19 @@ class Goals extends Component {
                     <Col md={8}>
                         <Row>
                             <Col>
-                                <CurGoalsCard
-                                    user={this.props.user}
-                                    onGoalDelete={this.onGoalDelete}
-                                />
+                                <CurGoalsCard>
+                                    <ListGroup variant="flush">
+                                    {this.state.user.goals.map(goal => {
+                                        return (
+                                            <ListGroup.Item key={goal.id} className="bg-light">
+                                                {goal.name}
+                                                <DeleteBtn className="ml-5" onClick = {() => this.onGoalDelete(goal.id)}/>
+                                                <div className="progress-bar bg-success" style={{ width: goal.goalProgress }}> </div>
+                                            </ListGroup.Item>
+                                        );
+                                    })}
+                                    </ListGroup>
+                                </CurGoalsCard>
                             </Col>
                         </Row>
                         <Row>
