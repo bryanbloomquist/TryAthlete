@@ -206,7 +206,6 @@ class App extends Component {
     }
   }
 
-<<<<<<< HEAD
   // delete our activity
   deleteActivity = id  => {
     API.deleteActivity(this.state.user._id, id)
@@ -217,12 +216,6 @@ class App extends Component {
   render() {
     console.log("is logged in: " + this.state.loggedIn);
     console.log()
-=======
-  
-
-  render() {
-    // console.log("is logged in: " + this.state.loggedIn);
->>>>>>> 8de455fae3c7671f359e35867297a04f1140a083
     return (
       <Router>
         {this.state.loggedIn ? (
