@@ -33,6 +33,7 @@ function GoalForm(props) {
                     <Form.Control name="unit" className="my-2" as="select" onChange={props.onGoalChange}>
                         <option defaultValue>mi</option>
                         <option>km</option>
+                        <option>minutes</option>
                         <option>hours</option>
                         <option>days</option>
                         <option>times</option>

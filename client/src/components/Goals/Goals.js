@@ -118,7 +118,7 @@ class Goals extends Component {
             goalQty: this.state.newGoal.qty,
             goalUnit: this.state.newGoal.unit,
             goalTimeFrame: this.state.newGoal.timeframe,
-            goalProgress: "0%"
+            goalProgress: "10%"
         };
         console.log("newGoalObj: ", newGoal, this.state.user.id);
         API.saveGoal(newGoal, this.props.user._id)
@@ -164,9 +164,16 @@ class Goals extends Component {
                                     {this.state.user.goals.map(goal => {
                                         return (
                                             <ListGroup.Item key={goal.id} className="bg-light">
-                                                {goal.name}
-                                                <DeleteBtn className="ml-5" onClick = {() => this.onGoalDelete(goal.id)}/>
-                                                <div className="progress-bar bg-success" style={{ width: goal.goalProgress }}> </div>
+                                                <Row>
+                                                    <Col sm={9}>
+                                                        {goal.name}
+                                                        <div className="progress-bar bg-success" style={{ width: goal.goalProgress }}> </div>
+                                                    </Col>
+                                                    <Col sm={3}>
+                                                        <DeleteBtn className="ml-5" onClick = {() => this.onGoalDelete(goal.id)}/>
+                                                    </Col>
+                                                        
+                                                </Row>
                                             </ListGroup.Item>
                                         );
                                     })}
