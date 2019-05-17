@@ -3,90 +3,57 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import API from "../../utils/API";
-
-
-function createGoalObject() {
-    let uniqueID = API.goalsCounter();
-
-    let newGoal = {
-        id: uniqueID,
-        name: "Swim 2 Times This Week",
-        sport: "Swim",
-        isAchieved: false,
-        goalType: "Frequency",
-        goalQty: 2,
-        goalUnit: "Times",
-        goalTimeFrame: "This Week",
-    };
-
-    return newGoal;
-
-}
-
-
-
-
-// How to pull Form data into a Variable called "newGoal"???
-
 
 function GoalForm(props) {
     return (
         <Form>
-            <Form.Group as={Row} controlId="goalActivity">
-                <Form.Label column sm={4}>Activity:</Form.Label>
+            <Form.Group as={Row} controlId="newGoal">
+                <Form.Label column sm={4} className="text-right my-2">Sport:</Form.Label>
                 <Col sm={6}>
-                    <Form.Control as="select">
-                        <option>Run</option>
+                    <Form.Control name="sport" className="my-2" as="select" onChange={props.onGoalChange}>
+                        <option defaultValue>Run</option>
                         <option>Bike</option>
                         <option>Swim</option>
                     </Form.Control>
                 </Col>
-            </Form.Group>
-            <Form.Group as={Row} controlId="goalType">
-                <Form.Label column sm={4}>Type:</Form.Label>
+                <Form.Label column sm={4} className="text-right  my-2">Type:</Form.Label>
                 <Col sm={6}>
-                    <Form.Control as="select">
-                        <option>Distance</option>
+                    <Form.Control name="type" className="my-2" as="select" onChange={props.onGoalChange}>
+                        <option defaultValue>Distance</option>
                         <option>Frequency</option>
                         <option>Time</option>
                     </Form.Control>
                 </Col>
-            </Form.Group>
-            <Form.Group as={Row} controlId="goalQty">
-                <Form.Label column sm={4}>Qty:</Form.Label>
-                <Col sm={3}>
-                    <Form.Control inputRef={goalQty => this.textInput = goalQty} type="text" />
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} controlId="goalUnit">
-                <Form.Label column sm={4}>Unit:</Form.Label>
+                <Form.Label column sm={4} className="text-right my-2">Qty:</Form.Label>
                 <Col sm={6}>
-                    <Form.Control as="select">
-                        <option>Miles</option>
-                        <option>Kilometer</option>
-                        <option>Hours</option>
-                        <option>Days</option>
-                        <option>Times</option>
-                        <option>Meters</option>
-                        <option>Yards</option>
+                    <Form.Control name="qty" className="my-2" type="text" onChange={props.onGoalChange} placeholder="1" />
+                </Col>
+                <Form.Label column sm={4} className="text-right my-2">Unit:</Form.Label>
+                <Col sm={6}>
+                    <Form.Control name="unit" className="my-2" as="select" onChange={props.onGoalChange}>
+                        <option defaultValue>mi</option>
+                        <option>km</option>
+                        <option>minutes</option>
+                        <option>hours</option>
+                        <option>days</option>
+                        <option>times</option>
+                        <option>meters</option>
+                        <option>yards</option>
                     </Form.Control>
                 </Col>
-            </Form.Group>
-            <Form.Group as={Row} controlId="goalTimeframe">
-                <Form.Label column sm={4}>Time frame:</Form.Label>
+                <Form.Label column sm={4} className="text-right my-2">Time frame:</Form.Label>
                 <Col sm={6}>
-                    <Form.Control as="select">
+                    <Form.Control name="timeframe" className="my-2" as="select" onChange={props.onGoalChange}>
                         <option>Today</option>
-                        <option>This Week</option>
+                        <option defaultValue>This Week</option>
                     </Form.Control>
                 </Col>
+                <Col sm={{ span: 9, offset: 1 }}>
+                    <Button type="submit" variant="warning" size="lg" className="my-2" block onClick={() => props.onGoalSubmit()} >
+                        Create New Goal
+                    </Button>
+                </Col>
             </Form.Group>
-            <Col sm={{ span: 9, offset: 1 }}>
-                <Button variant="warning" size="lg" block onClick={() => API.saveGoal(createGoalObject(), props.user._id)} >
-                    Create New Goal
-                </Button>
-            </Col>
         </Form>
     );
 }
