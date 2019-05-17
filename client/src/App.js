@@ -194,8 +194,10 @@ class App extends Component {
     }
   }
 
+  
+
   render() {
-    console.log("is logged in: " + this.state.loggedIn);
+    // console.log("is logged in: " + this.state.loggedIn);
     return (
       <Router>
         {this.state.loggedIn ? (
