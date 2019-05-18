@@ -12,7 +12,7 @@ function ChallengeForm(props) {
             <Form.Group as={Row} controlId="newChallenge">
                 <Form.Label column sm={4} className="text-right my-2">Friend:</Form.Label>
                 <Col sm={6}>
-                    <Form.Control name="challenger" className="my-2" as="select" onChange={props.onChallengeChange} defaultValue="">
+                    <Form.Control name="fChallenged" className="my-2" as="select" onChange={props.onChallengeChange} defaultValue="">
                             <option disabled></option>
                             {props.friends.map(friend => {
                             return (

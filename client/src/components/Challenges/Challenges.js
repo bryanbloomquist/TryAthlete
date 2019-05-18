@@ -16,20 +16,20 @@ class Challenges extends Component {
         this.state = {
             friends: [],
             newChallenge:
-                {
-                    sport: "Run",
-                    type: "Distance",
-                    qty: 1,
-                    unit: "mi",
-                    timeframe: "This Week",
-                    challenger: ""
-                }
+            {
+                sport: "Run",
+                type: "Distance",
+                qty: 1,
+                unit: "mi",
+                timeframe: "This Week",
+                fChallenged: ""
+            }
         }
     }
 
     componentDidMount() {
-        var getFriendsPromises = [];
-        for(var i = 0; i < this.props.user.friends.length; i++) {
+        let getFriendsPromises = [];
+        for (let i = 0; i < this.props.user.friends.length; i++) {
             console.log("Loading Friends List into State: ", this.props.user.friends[i]);
             getFriendsPromises.push(this.userNameLookup(this.props.user.friends[i]));
         }
@@ -52,18 +52,29 @@ class Challenges extends Component {
             .catch(err => console.log(err));
     };
 
-    onChallengeChange = (event, uid) => {
+    onChallengeChange = (event) => {
         const { name, value } = event.target;
-
+        console.log("Name: ", value);
         switch (name) {
-            case "challenger":
-                this.setState(prevState => ({
-                    newChallenge:
-                    {
-                        ...prevState.newChallenge,
-                        challenger: value
-                    }
-                }))
+            case "fChallenged":
+                API.getUser(value)
+                    .then(res => {
+                        this.setState(prevState => ({
+                            newChallenge:
+                            {
+                                ...prevState.newChallenge,
+                                fChallenged: 
+                                    {   
+                                        id: res.data._id,
+                                        givenName: res.data.givenName,
+                                        familyName: res.data.familyName,
+                                        imageUrl: res.data.imageUrl,
+                                        email: res.data.email
+                                    }
+                            }
+                        }))
+                })
+                
                 break;
 
             case "sport":
@@ -133,14 +144,22 @@ class Challenges extends Component {
             challengeUnit: this.state.newChallenge.unit,
             challengeTimeFrame: this.state.newChallenge.timeframe,
             challengeProgress: "10%",
-            challenger: this.state.newChallenge.challenger.key
+            challenger: 
+                {
+                    id: this.props.user._id,
+                    givenName: this.props.user.givenName,
+                    familyName: this.props.user.familyName,
+                    imageUrl: this.props.user.imageUrl,
+                    email:this.props.user.email
+                }  
         };
+
         console.log("newChallengeObj: ", newChallenge, "Challenger: ", this.props.user._id, "Challenged: ", this.state.newChallenge.friend);
-        API.saveChallenge(newChallenge, this.state.newChallenge.challenger)
+
+        API.saveChallenge(newChallenge, this.state.newChallenge.fChallenged.id)
             .then(() => this.loadChallenges())
             .catch(err => console.log(err));
-
-    });
+    })
 
     onChallangeDelete = ((challengeID) => {
         API.deleteChallenge(this.props.user._id, challengeID)
@@ -180,7 +199,7 @@ class Challenges extends Component {
                                                 Challenger
                                             </Col>
                                             <Col sm={6} className="my-auto">
-                                                Challenge Name <br/>& Progress
+                                                Challenge Name <br />& Progress
                                             </Col>
                                         </Row>
                                         {this.props.user.challenges.map(challenge => {
@@ -188,16 +207,23 @@ class Challenges extends Component {
                                                 <ListGroup.Item key={challenge.id} className="bg-light">
                                                     <Row>
                                                         <Col sm={3}>
-                                                            {challenge.challenger}
+                                                            <Row>
+                                                                <Col sm={12}>
+                                                                <img src={challenge.challenger.imageUrl} className="challenge-avatars"></img>
+                                                                </Col>
+                                                                <Col sm={12}>
+                                                                {challenge.challenger.givenName} {challenge.challenger.familyName}
+                                                                </Col>
+                                                            </Row>
                                                         </Col>
                                                         <Col sm={6}>
                                                             {challenge.name}
                                                             <div className="progress-bar bg-success mt-2" style={{ width: challenge.challengeProgress }}> </div>
                                                         </Col>
                                                         <Col sm={3}>
-                                                            <DeleteBtn className="ml-5" 
-                                                                onClick={() => this.onChallengeDelete(challenge.id)} 
-                                                                btnname = "Decline" 
+                                                            <DeleteBtn className="ml-5"
+                                                                onClick={() => this.onChallengeDelete(challenge.id)}
+                                                                btnname="Decline"
                                                             />
                                                         </Col>
                                                     </Row>
