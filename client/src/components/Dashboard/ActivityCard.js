@@ -3,8 +3,7 @@ import Form from "react-bootstrap/Form";
 import { Button, Modal } from "react-bootstrap";
 
 function ActivityCard(props) {
-    console.log(props.activity)
-    console.log(props.sport)
+    console.log(props)
     const style = {
         backgroundColor: props.color,
         backgroundImage: "url(" + props.img + ")",
