@@ -6,10 +6,10 @@ module.exports = {
             if (activityList[i].sport === "Run")
                 //if the unit is miles
                 if (activityList[i].units === "mi") {
-                    totalRunDistance += parseInt(activityList[i].distance)
+                    totalRunDistance += parseFloat(activityList[i].distance)
                 } else {
                     //convert to miles
-                    totalRunDistance += (parseInt(activityList[i].distance) * 0.621371)
+                    totalRunDistance += (parseFloat(activityList[i].distance) * 0.621371)
                 }
         }
         return totalRunDistance
@@ -22,10 +22,10 @@ module.exports = {
             if (activityList[i].sport === "Swim")
                 //if the unit is yards
                 if (activityList[i].units === "yards") {
-                    totalSwimDistance += parseInt(activityList[i].distance)
+                    totalSwimDistance += parseFloat(activityList[i].distance)
                 } else {
                     //convert to yards
-                    totalSwimDistance += (parseInt(activityList[i].distance) * 1.09361)
+                    totalSwimDistance += (parseFloat(activityList[i].distance) * 1.09361)
                 }
         }
         return totalSwimDistance
@@ -38,10 +38,10 @@ module.exports = {
             if (activityList[i].sport === "Ride")
                 //if the unit is miles
                 if (activityList[i].units === "mi") {
-                    totalBikeDistance += parseInt(activityList[i].distance)
+                    totalBikeDistance += parseFloat(activityList[i].distance)
                 } else {
                     //convert to yards
-                    totalBikeDistance += (parseInt(activityList[i].distance) * .621371)
+                    totalBikeDistance += (parseFloat(activityList[i].distance) * .621371)
                 }
         }
         return totalBikeDistance;
