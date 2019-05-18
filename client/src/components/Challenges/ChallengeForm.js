@@ -16,7 +16,7 @@ function ChallengeForm(props) {
                             <option disabled></option>
                             {props.friends.map(friend => {
                             return (
-                                <option key={friend._id} value={friend._id}>{friend.givenName} {friend.familyName}</option>
+                                <option key={friend._id} value={friend._id} title={friend.email}>{friend.givenName} {friend.familyName}</option>
                             )
                         })}
                     </Form.Control>
