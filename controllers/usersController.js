@@ -6,6 +6,7 @@ const object = function(object) {
   object.id = date
   return(object)
 }
+
 // Defining methods for the UsersController
 module.exports = {
 

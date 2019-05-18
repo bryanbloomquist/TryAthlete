@@ -82,7 +82,7 @@ function ActivityRow(props) {
                     <Col style={Style.col} sm={6}>
                         <h5 style={Style.h5}>Distance: {props.distance} {props.units}</h5>
                         <h6>Average Speed: {avgSpeed.toFixed(2)} {props.units}/hr</h6>
-                        <h6 style={Style.h5}>{convertTimetoDate(props.time)}</h6>
+                        <h6 style={Style.h5}>{convertTimetoDate(props.timestamp)}</h6>
                     </Col>
                     <Col style={Style.col} sm={3}>
                         <Button variant="danger" onClick={() => { props.delete(props.id) }} style={Style.button}>X</Button>
