@@ -34,6 +34,7 @@ function Dashboard(props) {
                     activity={props.runActivity}
                     onLogClick={props.onLogClick}
                     onDistanceChange={props.onDistanceChange}
+                    onDurationChange={props.onDurationChange}
                     onUnitChange={props.onUnitChange}
                 />
                 <ActivityCard
@@ -45,6 +46,7 @@ function Dashboard(props) {
                     activity={props.rideActivity}
                     onLogClick={props.onLogClick}
                     onDistanceChange={props.onDistanceChange}
+                    onDurationChange={props.onDurationChange}
                     onUnitChange={props.onUnitChange}
                 />
                 <ActivityCard
@@ -56,6 +58,7 @@ function Dashboard(props) {
                     activity={props.swimActivity}
                     onLogClick={props.onLogClick}
                     onDistanceChange={props.onDistanceChange}
+                    onDurationChange={props.onDurationChange}
                     onUnitChange={props.onUnitChange}
                 />
             </Row>

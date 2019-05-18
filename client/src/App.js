@@ -25,16 +25,19 @@ class App extends Component {
       sport: "Run",
       distance: 0,
       units: "mi",
+      duration: 0
     },
     rideActivity: {
       sport: "Ride",
       distance: 0,
       units: "mi",
+      duration: 0
     },
     swimActivity: {
       sport: "Swim",
       distance: 0,
-      units: "meters"
+      units: "meters",
+      duration: 0
     }
   }
 
@@ -130,6 +133,7 @@ class App extends Component {
       //   }
       // }))
       let activity = Object.assign({}, this.state.runActivity);
+        console.log(activity)
       API.saveActivity(activity, this.state.user._id)
     }
     if (sport === "Ride") {
@@ -206,6 +210,36 @@ class App extends Component {
     }
   }
 
+  //NEW
+  onDurationChange = (event) => {
+    const { name, value } = event.target;
+
+    if (name === "Run") {
+      this.setState(prevState => ({
+        runActivity: {
+          ...prevState.runActivity,
+          duration: value,
+        }
+      }))
+    }
+    if (name === "Ride") {
+      this.setState(prevState => ({
+        rideActivity: {
+          ...prevState.rideActivity,
+          duration: value,
+        }
+      }))
+    }
+    if (name === "Swim") {
+      this.setState(prevState => ({
+        swimActivity: {
+          ...prevState.swimActivity,
+          duration: value,
+        }
+      }))
+    }
+  }
+
   // delete our activity
   deleteActivity = id  => {
     API.deleteActivity(this.state.user._id, id)
@@ -228,7 +262,8 @@ class App extends Component {
                   user={this.state.user}
                   onLogClick={this.onLogClick}
                   onDistanceChange={this.onDistanceChange}
-                  onUnitChange={this.onUnitChange} />} />
+                  onUnitChange={this.onUnitChange}
+                  onDurationChange={this.onDurationChange} />} />
 
               <Route exact path="/goals" render={(props) => <Goals {...props} user={this.state.user} />} />
               <Route exact path="/challenges" render={(props) => <Challenges {...props} user={this.state.user} />} />
