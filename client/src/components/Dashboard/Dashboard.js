@@ -16,6 +16,7 @@ import Swim from "../images/swim.png";
 // const Link = require("react-router-dom").Link;
 
 function Dashboard(props) {
+    console.log(props)
     return (
         <Container fluid>
             <Row>
