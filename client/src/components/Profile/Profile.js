@@ -6,7 +6,7 @@ import Style from "./profileStyle"
 
 
 function Profile(props) {
-
+    
     console.log(props.user.activities)
     let activityNum = props.user.activities.length;
 
