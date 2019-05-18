@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button";
 function ChallengeForm(props) {
     return (
         <Form>
+            <h3 className="py-3">Challenge a Friend</h3>
             <Form.Group as={Row} controlId="newChallenge">
                 <Form.Label column sm={4} className="text-right my-2">Friend:</Form.Label>
                 <Col sm={6}>
