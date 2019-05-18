@@ -137,16 +137,19 @@ class App extends Component {
     if (sport === "Run") {
       let activity = Object.assign({}, this.state.runActivity);
       API.saveActivity(activity, this.state.user._id)
-      .then(console.log("done!"))
+      .then(res => this.setState({user: res.data}));
     }
     if (sport === "Ride") {
       let activity = Object.assign({}, this.state.rideActivity);
       API.saveActivity(activity, this.state.user._id)
+      .then(res => this.setState({user: res.data}));
     }
     if (sport === "Swim") {
       let activity = Object.assign({}, this.state.swimActivity);
       API.saveActivity(activity, this.state.user._id)
+      .then(res => this.setState({user: res.data}));
     }
+    
   }
 
   onDistanceChange = (event) => {
