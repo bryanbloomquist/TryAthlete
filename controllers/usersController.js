@@ -46,7 +46,7 @@ module.exports = {
   //------------------------ACTIVITIES---------------------
   addActivity: function (req, res) {
     db.User
-      .findOneAndUpdate({ _id: req.params.id }, { $push: { activities: [object(req.body)] } } )
+      .findOneAndUpdate({ _id: req.params.id }, { $push: { activities: [object(req.body)] } }, {new : true } )
       // .findOneAndUpdate({ _id: req.params.id }, { $push: { activities: { $each: [[req.body.sport, req.body.distance, req.body.units, Date.now()]] } } })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
