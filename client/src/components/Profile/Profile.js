@@ -118,6 +118,7 @@ function Profile(props) {
                                 key={activity.id}
                                 sport={activity.sport}
                                 distance={activity.distance}
+                                duration={activity.duration}
                                 units={activity.units}
                                 time={activity.time}
                                 id={activity.id}
