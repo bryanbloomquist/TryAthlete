@@ -12,7 +12,6 @@ mongoose.connect(
 //user seed
 const userSeed = [
   {
-    id: "1",
     givenName: "steve",
     familyName: "rogers",
     imageUrl: "https://fanfest.com/wp-content/uploads/2018/10/captain-america-figure_0-632x450.png",
