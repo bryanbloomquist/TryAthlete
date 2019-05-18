@@ -106,11 +106,7 @@ class Goals extends Component {
 
         console.log("goalSubmit clicked: ", this.props.user._id);
 
-        let d = new Date();
-        let timestamp = d.getFullYear() + d.getMonth() + d.getDay() + d.getTime();
-
         let newGoal = {
-            id: timestamp,
             name: this.state.newGoal.sport + " " + this.state.newGoal.qty + " " + this.state.newGoal.unit + " " + this.state.newGoal.timeframe,
             sport: this.state.newGoal.sport,
             isAchieved: false,
@@ -135,13 +131,11 @@ class Goals extends Component {
 
 
     render() {
-        let fname = this.props.user.givenName.charAt(0).toUpperCase() + this.props.user.givenName.slice(1);
-
         return (
             <Container fluid className="pb-5">
                 <Row>
                     <Col className="display-3 text-center py-5 component-title">
-                        Goals for {fname}
+                        Goals
                     </Col>
                 </Row>
                 <Row className="text-center py-5">

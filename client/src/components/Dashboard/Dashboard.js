@@ -13,7 +13,7 @@ import Run from "../images/run.png";
 import Bike from "../images/bike.png";
 import Swim from "../images/swim.png";
 
-const Link = require("react-router-dom").Link;
+// const Link = require("react-router-dom").Link;
 
 function Dashboard(props) {
     return (

@@ -153,24 +153,35 @@ class App extends Component {
     console.log(event)
     if (sport === "Run") {
       let activity = Object.assign({}, this.state.runActivity);
-      API.saveActivity(activity, this.state.user._id)
-        .then(res => this.setState({ user: res.data }));
+
+      if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
+      else {
+        API.saveActivity(activity, this.state.user._id)
+          .then(res => this.setState({ user: res.data }));
+      }
     }
     if (sport === "Ride") {
       let activity = Object.assign({}, this.state.rideActivity);
-      API.saveActivity(activity, this.state.user._id)
-        .then(res => this.setState({ user: res.data }));
+      if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
+      else {
+        API.saveActivity(activity, this.state.user._id)
+          .then(res => this.setState({ user: res.data }));
+      }
     }
     if (sport === "Swim") {
       let activity = Object.assign({}, this.state.swimActivity);
-      API.saveActivity(activity, this.state.user._id)
+      if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
+      else {
+        API.saveActivity(activity, this.state.user._id)
         .then(res => this.setState({ user: res.data }));
+      }
     }
 
   }
 
   onDistanceChange = (event) => {
     const { name, value } = event.target;
+    console.log(value)
 
     if (name === "Run") {
       this.setState(prevState => ({

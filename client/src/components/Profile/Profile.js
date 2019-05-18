@@ -6,12 +6,17 @@ import Style from "./profileStyle"
 
 
 function Profile(props) {
-    
+
     console.log(props.user.activities)
     let activityNum = props.user.activities.length;
 
     return (
         <Container fluid>
+            <Row>
+                <Col className="display-3 text-center py-5 component-title">
+                    Profile
+                </Col>
+            </Row>
             <Row>
                 <Col size="md-6" style={Style.header}>
                     <Jumbotron style={Style.jumbo}>
@@ -20,14 +25,14 @@ function Profile(props) {
 
                         </h2>
                         <img src={props.user.imageUrl} style={Style.image} className="text-center" alt="User Avatar" />
-                       
-       
+
+
                         <hr></hr>
                     </Jumbotron>
                 </Col>
                 <Col size="md-6" style={Style.header}>
                     <Jumbotron style={Style.jumbo}>
-                    <h4>Lifetime Totals</h4>
+                        <h4>Lifetime Totals</h4>
                         <ul style={Style.ul}>
                             <li style={Style.li}><span style={Style.span}>Bike: </span>{Calculations.calcTotalBike(props.user.activities).toFixed(2)} miles</li>
                             <li style={Style.li}><span style={Style.span}>Run:</span> {Calculations.calcTotalRun(props.user.activities).toFixed(2)} miles</li>

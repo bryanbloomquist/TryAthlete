@@ -8,23 +8,22 @@ function BadgeArrayMap(props) {
     console.log(props);
     let badgeStyle;
 
-    if (!props.user.badges.includes(props.badgeId)) {
-        badgeStyle = {
-            width: "150px",
-            height: "150px",
-            filter: "grayscale(1)"
-        }
-    } else {
-        badgeStyle = {
-            width: "150px",
-            height: "150px"
-        }
-    }
-
-    return (
+    return(  
     props.badges.map((value, index) => {
+        if (props.user.badges.includes(value.badgeId)) {
+            badgeStyle = {
+                width: "150px",
+                height: "150px"
+            }
+        } else {
+            badgeStyle = {
+                width: "150px",
+                height: "150px",
+                filter: "grayscale(1)"
+            }
+        }
         return (
-            <Card className="text-dark mx-auto px-1 py-1" key={index} style={{width: '400px', backgroundColor: 'white'}}>
+            <Card className="text-dark mx-auto px-1 py-1" key={index} style={{ width: '400px', backgroundColor: 'white' }}>
                 <Row className="no-gutters">
                     <Col xs={5} sm={5} md={5}>
                         <Card.Img src={require(`../images/badges/${value.src}.png`)} className="mx-3 my-3" id="one" style={badgeStyle} />
@@ -39,6 +38,7 @@ function BadgeArrayMap(props) {
             </Card>
         )
     })
-    )}
+)}
 
-export default BadgeArrayMap;
+
+    export default BadgeArrayMap;

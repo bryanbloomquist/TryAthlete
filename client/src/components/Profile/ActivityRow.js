@@ -81,6 +81,7 @@ function ActivityRow(props) {
                     </Col>
                     <Col style={Style.col} sm={6}>
                         <h5 style={Style.h5}>Distance: {props.distance} {props.units}</h5>
+                        <h6>Duration: {props.duration} min</h6>
                         <h6>Average Speed: {avgSpeed.toFixed(2)} {props.units}/hr</h6>
                         <h6 style={Style.h5}>{convertTimetoDate(props.timestamp)}</h6>
                     </Col>
