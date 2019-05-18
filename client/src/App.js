@@ -134,6 +134,7 @@ class App extends Component {
 
   //logic for activity card logging
   onLogClick = (event, sport) => {
+    console.log(event)
     if (sport === "Run") {
       let activity = Object.assign({}, this.state.runActivity);
       API.saveActivity(activity, this.state.user._id)

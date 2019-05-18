@@ -4,6 +4,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
+
 function ChallengeForm(props) {
     return (
         <Form>
@@ -13,25 +14,25 @@ function ChallengeForm(props) {
                 <Col sm={6}>
                     <Form.Control name="challenger" className="my-2" as="select" onChange={props.onChallengeChange} defaultValue="">
                             <option disabled></option>
-                            {props.user.friends.map(friend => {
+                            {props.friends.map(friend => {
                             return (
-                                <option key={friend}>{friend}</option>
+                                <option key={friend._id} value={friend._id}>{friend.givenName} {friend.familyName}</option>
                             )
                         })}
                     </Form.Control>
                 </Col>
                 <Form.Label column sm={4} className="text-right my-2">Sport:</Form.Label>
                 <Col sm={6}>
-                    <Form.Control name="sport" className="my-2" as="select" onChange={props.onChallengeChange}>
-                        <option defaultValue>Run</option>
+                    <Form.Control name="sport" className="my-2" as="select" onChange={props.onChallengeChange} defaultValue="Run">
+                        <option>Run</option>
                         <option>Bike</option>
                         <option>Swim</option>
                     </Form.Control>
                 </Col>
                 <Form.Label column sm={4} className="text-right  my-2">Type:</Form.Label>
                 <Col sm={6}>
-                    <Form.Control name="type" className="my-2" as="select" onChange={props.onChallengeChange}>
-                        <option defaultValue>Distance</option>
+                    <Form.Control name="type" className="my-2" as="select" onChange={props.onChallengeChange} defaultValue="Distance">
+                        <option>Distance</option>
                         <option>Frequency</option>
                         <option>Time</option>
                     </Form.Control>
@@ -42,8 +43,8 @@ function ChallengeForm(props) {
                 </Col>
                 <Form.Label column sm={4} className="text-right my-2">Unit:</Form.Label>
                 <Col sm={6}>
-                    <Form.Control name="unit" className="my-2" as="select" onChange={props.onChallengeChange}>
-                        <option defaultValue>mi</option>
+                    <Form.Control name="unit" className="my-2" as="select" onChange={props.onChallengeChange} defaultValue="mi">
+                        <option>mi</option>
                         <option>km</option>
                         <option>minutes</option>
                         <option>hours</option>
@@ -55,9 +56,9 @@ function ChallengeForm(props) {
                 </Col>
                 <Form.Label column sm={4} className="text-right my-2">Time frame:</Form.Label>
                 <Col sm={6}>
-                    <Form.Control name="timeframe" className="my-2" as="select" onChange={props.onChallengeChange}>
+                    <Form.Control name="timeframe" className="my-2" as="select" onChange={props.onChallengeChange} defaultValue="This Week">
                         <option>Today</option>
-                        <option defaultValue>This Week</option>
+                        <option>This Week</option>
                     </Form.Control>
                 </Col>
 

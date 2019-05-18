@@ -10,16 +10,16 @@ function GoalForm(props) {
             <Form.Group as={Row} controlId="newGoal">
                 <Form.Label column sm={4} className="text-right my-2">Sport:</Form.Label>
                 <Col sm={6}>
-                    <Form.Control name="sport" className="my-2" as="select" onChange={props.onGoalChange}>
-                        <option defaultValue>Run</option>
+                    <Form.Control name="sport" className="my-2" as="select" onChange={props.onGoalChange} defaultValue="Run">
+                        <option>Run</option>
                         <option>Bike</option>
                         <option>Swim</option>
                     </Form.Control>
                 </Col>
                 <Form.Label column sm={4} className="text-right  my-2">Type:</Form.Label>
                 <Col sm={6}>
-                    <Form.Control name="type" className="my-2" as="select" onChange={props.onGoalChange}>
-                        <option defaultValue>Distance</option>
+                    <Form.Control name="type" className="my-2" as="select" onChange={props.onGoalChange} defaultValue="Distance">
+                        <option>Distance</option>
                         <option>Frequency</option>
                         <option>Time</option>
                     </Form.Control>
@@ -30,8 +30,8 @@ function GoalForm(props) {
                 </Col>
                 <Form.Label column sm={4} className="text-right my-2">Unit:</Form.Label>
                 <Col sm={6}>
-                    <Form.Control name="unit" className="my-2" as="select" onChange={props.onGoalChange}>
-                        <option defaultValue>mi</option>
+                    <Form.Control name="unit" className="my-2" as="select" onChange={props.onGoalChange} defaultValue="mi">
+                        <option>mi</option>
                         <option>km</option>
                         <option>minutes</option>
                         <option>hours</option>
@@ -43,9 +43,9 @@ function GoalForm(props) {
                 </Col>
                 <Form.Label column sm={4} className="text-right my-2">Time frame:</Form.Label>
                 <Col sm={6}>
-                    <Form.Control name="timeframe" className="my-2" as="select" onChange={props.onGoalChange}>
+                    <Form.Control name="timeframe" className="my-2" as="select" onChange={props.onGoalChange} defaultValue="This Week">
                         <option>Today</option>
-                        <option defaultValue>This Week</option>
+                        <option>This Week</option>
                     </Form.Control>
                 </Col>
                 <Col sm={{ span: 9, offset: 1 }}>
