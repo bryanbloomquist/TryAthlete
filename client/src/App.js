@@ -43,6 +43,14 @@ class App extends Component {
   }
 
   componentDidMount() {
+
+    //load badges
+    API.getBadges()
+    .then(res => {
+      this.setState({ badges: res.data });
+      console.log(this.state.badges);
+    })
+
     //check local storage
     let localStorageUser = JSON.parse(window.localStorage.getItem("user"))
 
@@ -58,14 +66,6 @@ class App extends Component {
     } else {
       console.log("no user")
     }
-  }
-
-  componentDidMount() {
-    API.getBadges()
-    .then(res => {
-      this.setState({ badges: res.data });
-      console.log(this.state.badges);
-    })
   }
 
   responseGoogleSuccess = (response) => {
@@ -137,6 +137,7 @@ class App extends Component {
     if (sport === "Run") {
       let activity = Object.assign({}, this.state.runActivity);
       API.saveActivity(activity, this.state.user._id)
+      .then(console.log("done!"))
     }
     if (sport === "Ride") {
       let activity = Object.assign({}, this.state.rideActivity);
