@@ -8,6 +8,7 @@ function BadgeArrayMap(props) {
     console.log(props);
     let badgeStyle;
 
+    return(  
     props.badges.map((value, index) => {
         if (props.user.badges.includes(value.badgeId)) {
             badgeStyle = {
@@ -37,7 +38,7 @@ function BadgeArrayMap(props) {
             </Card>
         )
     })
-}
+    )}
 
 
     export default BadgeArrayMap;
