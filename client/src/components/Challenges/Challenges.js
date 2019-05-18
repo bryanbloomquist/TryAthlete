@@ -14,21 +14,16 @@ class Challenges extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // user:
-            // {
-            //     challenges: []
-
-            // },
             friends: [],
             newChallenge:
-            {
-                sport: "Run",
-                type: "Distance",
-                qty: 1,
-                unit: "mi",
-                timeframe: "This Week",
-                friend: ""
-            }
+                {
+                    sport: "Run",
+                    type: "Distance",
+                    qty: 1,
+                    unit: "mi",
+                    timeframe: "This Week",
+                    challenger: ""
+                }
         }
     }
 
@@ -40,10 +35,6 @@ class Challenges extends Component {
         });
     };
 
-    componentWillMount() {
-        this._isMounted = false;
-
-    }
     // loadChallenges = () => {
     //     API.getUser(this.props.user._id)
     //         .then(res =>
@@ -79,6 +70,16 @@ class Challenges extends Component {
         const { name, value } = event.target;
 
         switch (name) {
+            case "challenger":
+                this.setState(prevState => ({
+                    newChallenge:
+                    {
+                        ...prevState.newChallenge,
+                        challenger: value
+                    }
+                }))
+                break;
+
             case "sport":
                 this.setState(prevState => ({
                     newChallenge:
@@ -134,7 +135,7 @@ class Challenges extends Component {
         }
     }
 
-    onchallengesubmit = (() => {
+    onChallengeSubmit = (() => {
 
         console.log("ChallengeSubmit clicked: ", this.props.user._id);
 
@@ -151,11 +152,11 @@ class Challenges extends Component {
             challengeUnit: this.state.newChallenge.unit,
             challengeTimeFrame: this.state.newChallenge.timeframe,
             challengeProgress: "10%",
-            challenger: this.props.user._id
+            challenger: this.state.newChallenge.challenger
         };
         console.log("newChallengeObj: ", newChallenge, "Challenger: ", this.props.user._id, "Challenged: ", this.state.newChallenge.friend);
-        API.saveChallenge(newChallenge, this.state.newChallenge.friend)
-            .then(res => this.loadChallenges())
+        API.saveChallenge(newChallenge, this.state.newChallenge.challenger)
+            .then(() => this.loadChallenges())
             .catch(err => console.log(err));
 
     });
@@ -184,7 +185,7 @@ class Challenges extends Component {
                                 user={this.props.user}
                                 friends={this.state.friends}
                                 onChallengeChange={this.onChallengeChange}
-                                onchallengesubmit={this.onChallengeSubmit}
+                                onChallengeSubmit={this.onChallengeSubmit}
                                 newChallenge={this.state.newChallenge}
                             />
                         </Card>
@@ -214,7 +215,10 @@ class Challenges extends Component {
                                                             <div className="progress-bar bg-success mt-2" style={{ width: challenge.challengeProgress }}> </div>
                                                         </Col>
                                                         <Col sm={3}>
-                                                            <DeleteBtn className="ml-5" onClick={() => this.onChallengeDelete(challenge.id)} btnName="Decline" />
+                                                            <DeleteBtn className="ml-5" 
+                                                                onClick={() => this.onChallengeDelete(challenge.id)} 
+                                                                btnname = "Decline" 
+                                                            />
                                                         </Col>
                                                     </Row>
                                                 </ListGroup.Item>

@@ -10,11 +10,11 @@ function ChallengeForm(props) {
             <Form.Group as={Row} controlId="newChallenge">
                 <Form.Label column sm={4} className="text-right my-2">Friend:</Form.Label>
                 <Col sm={6}>
-                    <Form.Control name="timeframe" className="my-2" as="select" onChange={props.onChallengeChange}>
-                        {/* {props.friends.map(friend => { */}
+                    <Form.Control name="challenger" className="my-2" as="select" onChange={props.onChallengeChange} defaultValue="">
+                            <option disabled></option>
                             {props.user.friends.map(friend => {
                             return (
-                                <option key={friend}> placeholder | {friend}</option>
+                                <option key={friend}>{friend}</option>
                             )
                         })}
                     </Form.Control>
