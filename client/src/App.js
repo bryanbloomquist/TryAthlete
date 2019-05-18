@@ -20,6 +20,7 @@ const Link = require("react-router-dom").Link;
 class App extends Component {
   state = {
     user: {},
+    badges: {},
     loggedIn: false,
     runActivity: {
       sport: "Run",
@@ -57,6 +58,14 @@ class App extends Component {
     } else {
       console.log("no user")
     }
+  }
+
+  componentDidMount() {
+    API.getBadges()
+    .then(res => {
+      this.setState({ badges: res.data });
+      console.log(this.state.badges);
+    })
   }
 
   responseGoogleSuccess = (response) => {
@@ -254,7 +263,9 @@ class App extends Component {
 
               <Route exact path="/goals" render={(props) => <Goals {...props} user={this.state.user} />} />
               <Route exact path="/challenges" render={(props) => <Challenges {...props} user={this.state.user} />} />
-              <Route exact path="/badges" render={(props) => <Badges {...props} user={this.state.user} />} />
+              <Route exact path="/badges" render={(props) => <Badges {...props} 
+                user={this.state.user}
+                badges={this.state.badges} />} />
               <Route exact path="/social" render={(props) => <Social {...props} user={this.state.user} />} />
               <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state.user} delete={this.deleteActivity} />} />
               {/* <Route component={NoMatch} /> */}
