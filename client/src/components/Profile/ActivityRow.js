@@ -62,9 +62,17 @@ function ActivityRow(props) {
             color: color
         }
     }
-    
-    let avgSpeed = (props.distance / (parseInt(props.duration))) * 60
-    
+
+    let avgSpeed = (props.distance / (parseInt(props.duration))) * 60;
+
+
+
+    let convertTimetoDate = (time) => {
+        let date = new Date(time);
+        date = date.toDateString().slice(4)
+        return date;
+    }
+
     console.log(props)
     return (
         <div style={style.card} key={props.id}>
@@ -78,6 +86,7 @@ function ActivityRow(props) {
                         <h5 style={style.h5}>Distance: {props.distance} {props.units}</h5>
                         {/* <h6>Date: {props.time} </h6> */}
                         <h6>Average Speed: {avgSpeed.toFixed(2)} {props.units}/hr</h6>
+                        <h6 style={style.h5}>{convertTimetoDate(props.time)}</h6>
                     </Col>
                     <Col style={style.col} sm={3}>
                         <Button variant="danger" onClick={() => { props.delete(props.id) }} style={style.button}>X</Button>
