@@ -20,25 +20,37 @@ const Link = require("react-router-dom").Link;
 class App extends Component {
   state = {
     user: {},
+    badges: {},
     loggedIn: false,
     runActivity: {
       sport: "Run",
       distance: 0,
-      units: "mi"
+      units: "mi",
+      duration: 0
     },
     rideActivity: {
       sport: "Ride",
       distance: 0,
-      units: "mi"
+      units: "mi",
+      duration: 0
     },
     swimActivity: {
       sport: "Swim",
       distance: 0,
-      units: "meters"
+      units: "meters",
+      duration: 0
     }
   }
 
   componentDidMount() {
+
+    //load badges
+    API.getBadges()
+    .then(res => {
+      this.setState({ badges: res.data });
+      console.log(this.state.badges);
+    })
+
     //check local storage
     let localStorageUser = JSON.parse(window.localStorage.getItem("user"))
 
@@ -125,15 +137,19 @@ class App extends Component {
     if (sport === "Run") {
       let activity = Object.assign({}, this.state.runActivity);
       API.saveActivity(activity, this.state.user._id)
+      .then(res => this.setState({user: res.data}));
     }
     if (sport === "Ride") {
       let activity = Object.assign({}, this.state.rideActivity);
       API.saveActivity(activity, this.state.user._id)
+      .then(res => this.setState({user: res.data}));
     }
     if (sport === "Swim") {
       let activity = Object.assign({}, this.state.swimActivity);
       API.saveActivity(activity, this.state.user._id)
+      .then(res => this.setState({user: res.data}));
     }
+    
   }
 
   onDistanceChange = (event) => {
@@ -143,7 +159,7 @@ class App extends Component {
       this.setState(prevState => ({
         runActivity: {
           ...prevState.runActivity,
-          distance: value,
+          distance: value
         }
       }))
     }
@@ -151,7 +167,7 @@ class App extends Component {
       this.setState(prevState => ({
         rideActivity: {
           ...prevState.rideActivity,
-          distance: value,
+          distance: value
         }
       }))
     }
@@ -159,7 +175,7 @@ class App extends Component {
       this.setState(prevState => ({
         swimActivity: {
           ...prevState.swimActivity,
-          distance: value,
+          distance: value
         }
       }))
     }
@@ -194,10 +210,46 @@ class App extends Component {
     }
   }
 
-  
+  //NEW
+  onDurationChange = (event) => {
+    const { name, value } = event.target;
+
+    if (name === "Run") {
+      this.setState(prevState => ({
+        runActivity: {
+          ...prevState.runActivity,
+          duration: value,
+        }
+      }))
+    }
+    if (name === "Ride") {
+      this.setState(prevState => ({
+        rideActivity: {
+          ...prevState.rideActivity,
+          duration: value,
+        }
+      }))
+    }
+    if (name === "Swim") {
+      this.setState(prevState => ({
+        swimActivity: {
+          ...prevState.swimActivity,
+          duration: value,
+        }
+      }))
+    }
+  }
+
+  // delete our activity
+  deleteActivity = id  => {
+    API.deleteActivity(this.state.user._id, id)
+      .then(res => this.setState({user: res.data}))
+      .catch(err => console.log(err));
+  };
 
   render() {
-    // console.log("is logged in: " + this.state.loggedIn);
+    console.log("is logged in: " + this.state.loggedIn);
+    console.log()
     return (
       <Router>
         {this.state.loggedIn ? (
@@ -210,12 +262,16 @@ class App extends Component {
                   user={this.state.user}
                   onLogClick={this.onLogClick}
                   onDistanceChange={this.onDistanceChange}
-                  onUnitChange={this.onUnitChange} />} />
+                  onUnitChange={this.onUnitChange}
+                  onDurationChange={this.onDurationChange} />} />
+
               <Route exact path="/goals" render={(props) => <Goals {...props} user={this.state.user} />} />
               <Route exact path="/challenges" render={(props) => <Challenges {...props} user={this.state.user} />} />
-              <Route exact path="/badges" render={(props) => <Badges {...props} user={this.state.user} />} />
+              <Route exact path="/badges" render={(props) => <Badges {...props} 
+                user={this.state.user}
+                badges={this.state.badges} />} />
               <Route exact path="/social" render={(props) => <Social {...props} user={this.state.user} />} />
-              <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state.user} />} />
+              <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state.user} delete={this.deleteActivity} />} />
               {/* <Route component={NoMatch} /> */}
             </Switch>
             <Row className = "justify-content-center">

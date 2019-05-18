@@ -26,6 +26,12 @@ export default {
     },
 
 
+    //--------------------------------BADGES------------------------------
+    getBadges: function () {
+        return axios.get("/api/badges");
+    },
+    
+
     //--------------------------------ACTIVITIES------------------------------
 
     saveActivity: function (activityData, userId) {
@@ -33,6 +39,7 @@ export default {
     },
 
     deleteActivity: function (userId, activityId) {
+        console.log(`/api/users/${userId}/activities/${activityId}`)
         return axios.get(`/api/users/${userId}/activities/${activityId}`);
     },
 

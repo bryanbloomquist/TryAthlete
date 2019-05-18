@@ -1,6 +1,7 @@
 import React from "react";
 //react-bootstrap
 import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 //Components
 import ActivityCard from "./ActivityCard";
@@ -12,44 +13,52 @@ import Run from "../images/run.png";
 import Bike from "../images/bike.png";
 import Swim from "../images/swim.png";
 
+const Link = require("react-router-dom").Link;
+
 function Dashboard(props) {
+    let fname = props.user.givenName.charAt(0).toUpperCase() + props.user.givenName.slice(1);
     return (
         <Container fluid>
             <Row>
+                <Col className="display-3 text-center py-5 goal-title">
+                    {fname}'s Dashboard
+                </Col>
+            </Row>
+            <Row>
                 <ActivityCard
                     sport={"Run"}
-                    units={["mi", "km"]}
+                    units={["mi", "km", "minutes"]}
                     color={"#ed4b4b"}
                     img={Run}
                     user={props}
                     activity={props.runActivity}
-                    unit={props.runActivity}
                     onLogClick={props.onLogClick}
                     onDistanceChange={props.onDistanceChange}
+                    onDurationChange={props.onDurationChange}
                     onUnitChange={props.onUnitChange}
                 />
                 <ActivityCard
                     sport={"Ride"}
-                    units={["mi", "km"]}
+                    units={["mi", "km", "minutes"]}
                     color={"#4fc147"}
                     img={Bike}
                     user={props}
                     activity={props.rideActivity}
-                    unit={props.rideActivity}
                     onLogClick={props.onLogClick}
                     onDistanceChange={props.onDistanceChange}
+                    onDurationChange={props.onDurationChange}
                     onUnitChange={props.onUnitChange}
                 />
                 <ActivityCard
                     sport={"Swim"}
-                    units={["meters", "yards"]}
+                    units={["meters", "yards", "minutes"]}
                     color={"#4b68ed"}
                     img={Swim}
                     user={props}
                     activity={props.swimActivity}
-                    unit={props.swimActivity}
                     onLogClick={props.onLogClick}
                     onDistanceChange={props.onDistanceChange}
+                    onDurationChange={props.onDurationChange}
                     onUnitChange={props.onUnitChange}
                 />
             </Row>
