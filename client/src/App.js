@@ -40,7 +40,23 @@ class App extends Component {
       units: "meters",
       duration: 0
     },
+    show: false,
     redirect: false
+  }
+
+  constructor(props, context) {
+    super(props, context);
+
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+  }
+
+  handleClose() {
+    this.setState({ show: false });
+  }
+
+  handleShow() {
+    this.setState({ show: true });
   }
 
   //redirect logic
@@ -156,8 +172,10 @@ class App extends Component {
     console.log(event)
     if (sport === "Run") {
       let activity = Object.assign({}, this.state.runActivity);
+
       if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
       else {
+        this.handleShow(); 
         API.saveActivity(activity, this.state.user._id)
           .then(res => this.setState({ user: res.data }));
       }
@@ -166,6 +184,7 @@ class App extends Component {
       let activity = Object.assign({}, this.state.rideActivity);
       if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
       else {
+        this.handleShow(); 
         API.saveActivity(activity, this.state.user._id)
           .then(res => this.setState({ user: res.data }));
       }
@@ -174,6 +193,7 @@ class App extends Component {
       let activity = Object.assign({}, this.state.swimActivity);
       if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
       else {
+        this.handleShow(); 
         API.saveActivity(activity, this.state.user._id)
           .then(res => this.setState({ user: res.data }));
       }
@@ -294,8 +314,9 @@ class App extends Component {
                   onLogClick={this.onLogClick}
                   onDistanceChange={this.onDistanceChange}
                   onUnitChange={this.onUnitChange}
-                  onDurationChange={this.onDurationChange} />} />
-
+                  onDurationChange={this.onDurationChange}
+                  handleClose={this.handleClose}
+                  handleShow={this.handleShow} />} />
               <Route exact path="/goals" render={(props) => <Goals {...props} user={this.state.user} />} />
               <Route exact path="/challenges" render={(props) => <Challenges {...props} user={this.state.user} />} />
               <Route exact path="/badges" render={(props) => <Badges {...props}
@@ -317,6 +338,17 @@ class App extends Component {
                 </Link>
               </Col>
             </Row>
+            <Modal show={this.state.show} onHide={this.handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>Activity logged</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>Woohoo! Keep it up!</Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={this.handleClose}>
+                  Close
+            </Button>
+              </Modal.Footer>
+            </Modal>
           </Wrapper>
         ) : (
             <Wrapper>

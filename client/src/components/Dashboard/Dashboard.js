@@ -16,6 +16,7 @@ import Swim from "../images/swim.png";
 // const Link = require("react-router-dom").Link;
 
 function Dashboard(props) {
+    console.log(props)
     return (
         <Container fluid>
             <Row>
@@ -35,6 +36,8 @@ function Dashboard(props) {
                     onDistanceChange={props.onDistanceChange}
                     onDurationChange={props.onDurationChange}
                     onUnitChange={props.onUnitChange}
+                    handleClose={props.handleClose}
+                    handleShow={props.handleShow}
                 />
                 <ActivityCard
                     sport={"Ride"}
@@ -47,6 +50,8 @@ function Dashboard(props) {
                     onDistanceChange={props.onDistanceChange}
                     onDurationChange={props.onDurationChange}
                     onUnitChange={props.onUnitChange}
+                    handleClose={props.handleClose}
+                    handleShow={props.handleShow}
                 />
                 <ActivityCard
                     sport={"Swim"}
@@ -59,6 +64,8 @@ function Dashboard(props) {
                     onDistanceChange={props.onDistanceChange}
                     onDurationChange={props.onDurationChange}
                     onUnitChange={props.onUnitChange}
+                    handleClose={props.handleClose}
+                    handleShow={props.handleShow}
                 />
             </Row>
             <Row>
