@@ -12,12 +12,10 @@ function Badges(props) {
     const user = props.user;
 
     return (
-        <Container>
+        <Container fluid className="pb-5">
             <Row>
-                <Col size="md-12">
-                    <Jumbotron>
-                        <h1 class="text-center">Badges</h1>
-                    </Jumbotron>
+                <Col className="display-3 text-center py-5 component-title">
+                    Badges
                 </Col>
             </Row>
             
