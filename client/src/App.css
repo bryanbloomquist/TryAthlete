@@ -82,7 +82,7 @@ ul {
   background: rgba(0, 0, 0, 0);
 }
 
-.goal-title{
+.goal-title, .component-title {
   background-image: URL("../src/components/images/banner-arrow.png");
   background-repeat: no-repeat;
   background-size: 90% 100%;

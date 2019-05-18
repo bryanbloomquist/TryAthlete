@@ -7,7 +7,7 @@ import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import AchievedGoalsCard from "./AcheivedGoalsCard";
 import ListGroup from "react-bootstrap/ListGroup";
-import DeleteBtn from "./DeleteBtn";
+import DeleteBtn from "./DeleteGoalBtn";
 import API from "../../utils/API";
 
 class Goals extends Component {
@@ -136,12 +136,11 @@ class Goals extends Component {
 
     render() {
         let fname = this.props.user.givenName.charAt(0).toUpperCase() + this.props.user.givenName.slice(1);
-        // console.log(this.props);
 
         return (
             <Container fluid className="pb-5">
                 <Row>
-                    <Col className="display-3 text-center py-5 goal-title">
+                    <Col className="display-3 text-center py-5 component-title">
                         Goals for {fname}
                     </Col>
                 </Row>
@@ -170,7 +169,9 @@ class Goals extends Component {
                                                         <div className="progress-bar bg-success mt-2" style={{ width: goal.goalProgress }}> </div>
                                                     </Col>
                                                     <Col sm={3}>
-                                                        <DeleteBtn className="ml-5" onClick = {() => this.onGoalDelete(goal.id)}/>
+                                                        <DeleteBtn className="ml-5" 
+                                                            onClick = {() => this.onGoalDelete(goal.id)} 
+                                                            btnname="Delete"/>
                                                     </Col>
                                                         
                                                 </Row>

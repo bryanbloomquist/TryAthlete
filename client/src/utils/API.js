@@ -60,7 +60,7 @@ export default {
     },
 
     deleteChallenge: function (userId, challengeId) {
-        return axios.get(`/api/users/${userId}/challenges/${challengeId}`);
+        return axios.delete(`/api/users/${userId}/challenges/${challengeId}`);
     },
 
     //--------------------------------FRIENDS------------------------------
@@ -70,7 +70,7 @@ export default {
     },
 
     deleteFriend: function (userId, friendId) {
-        return axios.get(`/api/users/${userId}/friends/${friendId}`);
+        return axios.delete(`/api/users/${userId}/friends/${friendId}`);
     }
 
 };
