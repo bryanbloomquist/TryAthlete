@@ -1,6 +1,8 @@
 import React from "react";
 //react-bootstrap
-import { Row, Col, Container, Button, Modal } from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
 //Components
 import ActivityCard from "./ActivityCard";
 import BadgesCard from "./BadgesCard";
@@ -14,12 +16,11 @@ import Swim from "../images/swim.png";
 const Link = require("react-router-dom").Link;
 
 function Dashboard(props) {
-    let fname = props.user.givenName.charAt(0).toUpperCase() + props.user.givenName.slice(1);
     return (
         <Container fluid>
             <Row>
                 <Col className="display-3 text-center py-5 goal-title">
-                    {fname}'s Dashboard
+                    Dashboard
                 </Col>
             </Row>
             <Row>
@@ -34,6 +35,8 @@ function Dashboard(props) {
                     onDistanceChange={props.onDistanceChange}
                     onDurationChange={props.onDurationChange}
                     onUnitChange={props.onUnitChange}
+                    handleClose={props.handleClose}
+                    handleShow={props.handleShow}
                 />
                 <ActivityCard
                     sport={"Ride"}
@@ -46,6 +49,8 @@ function Dashboard(props) {
                     onDistanceChange={props.onDistanceChange}
                     onDurationChange={props.onDurationChange}
                     onUnitChange={props.onUnitChange}
+                    handleClose={props.handleClose}
+                    handleShow={props.handleShow}
                 />
                 <ActivityCard
                     sport={"Swim"}
@@ -58,6 +63,8 @@ function Dashboard(props) {
                     onDistanceChange={props.onDistanceChange}
                     onDurationChange={props.onDurationChange}
                     onUnitChange={props.onUnitChange}
+                    handleClose={props.handleClose}
+                    handleShow={props.handleShow}
                 />
             </Row>
             <Row>
@@ -68,24 +75,6 @@ function Dashboard(props) {
             <Row>
                 <SocialCard user={props.user} />
             </Row>
-            <Button variant="primary" onClick={props.handleShow}>
-                Launch demo modal
-        </Button>
-
-            <Modal show={props.state.show} onHide={props.handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={props.handleClose}>
-                        Close
-            </Button>
-                    <Button variant="primary" onClick={props.handleClose}>
-                        Save Changes
-            </Button>
-                </Modal.Footer>
-            </Modal>
         </Container >
 
     )
