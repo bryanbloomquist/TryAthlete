@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect, BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Row, Col, Button } from "react-bootstrap";
+import { Row, Col, Button, Modal } from "react-bootstrap";
 //API
 import API from "./utils/API";
 import Wrapper from "./components/Wrapper/Wrapper";
