@@ -218,7 +218,6 @@ class App extends Component {
                   onLogClick={this.onLogClick}
                   onDistanceChange={this.onDistanceChange}
                   onUnitChange={this.onUnitChange} />} />
-
               <Route exact path="/goals" render={(props) => <Goals {...props} user={this.state.user} />} />
               <Route exact path="/challenges" render={(props) => <Challenges {...props} user={this.state.user} />} />
               <Route exact path="/badges" render={(props) => <Badges {...props} user={this.state.user} />} />
