@@ -24,13 +24,13 @@ function NavbarArea(props) {
                 <img className="logo-small" src={Logo} alt="logo"></img>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id = "basic-navbar-nav">
+            <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                     <NavDropdown title="Menu">
                         <Link style={style} to="/dashboard">Dashboard</Link>
                         <Link style={style} to="/goals">Goals</Link>
                         <Link style={style} to="/challenges">Challenges</Link>
-                        <Link style={style} to="/badges">Badges</Link> 
+                        <Link style={style} to="/badges">Badges</Link>
                         <Link style={style} to="/social">Social</Link>
                     </NavDropdown>
                 </Nav>
@@ -38,9 +38,9 @@ function NavbarArea(props) {
                     <FormControl type="text" placeholder="Search for friends" className="mr-sm-2" />
                     <Button className="searchButton" variant="outline-success">Search</Button>
                 </Form>
-                <Navbar.Brand href="/dashboard">
-                    <img className="avatar" src={ props.children.imageUrl } alt= { props.children.givenName }></img>
-                </Navbar.Brand>
+                <Link to="/profile"><Navbar.Brand>
+                    <img className="avatar" src={props.children.imageUrl} alt={props.children.givenName}></img>
+                </Navbar.Brand></Link>
             </Navbar.Collapse>
         </Navbar >
     );
