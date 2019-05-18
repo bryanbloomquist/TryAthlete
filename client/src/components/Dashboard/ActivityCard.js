@@ -19,14 +19,14 @@ function ActivityCard(props) {
             <Form>
                 <Form.Group>
                     <Form.Label>Length</Form.Label>
-                    <Form.Control name={props.sport} onChange={props.onDistanceChange} value={props.activity.distance} min={0} distance={props.activity.distance} type="number"></Form.Control>
+                    <Form.Control name={props.sport} onChange={props.onDistanceChange} placeholder="0" min={0} distance={props.activity.distance} type="number"></Form.Control>
                     <Form.Label>Units</Form.Label>
                     <Form.Control name={props.sport} onChange={props.onUnitChange} units={props.activity.units} as="select">
                         <option value={props.units[0]}>{props.units[0]}</option>
                         <option value={props.units[1]}>{props.units[1]}</option>
                     </Form.Control>
                     <Form.Label>Duration (Minutes)</Form.Label>
-                    <Form.Control name={props.sport} onChange={props.onDurationChange} value={props.activity.duration} min={0} distance={props.activity.duration} type="number" placeholder="1"></Form.Control>
+                    <Form.Control name={props.sport} onChange={props.onDurationChange} placeholder="0" min={0} distance={props.activity.duration} type="number"></Form.Control>
                     <br />
                     <Button className="btn btn-warning" block 
                     onClick={(event) => props.onLogClick(event, props.sport)}>Log it</Button>
