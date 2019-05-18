@@ -26,6 +26,12 @@ export default {
     },
 
 
+    //--------------------------------BADGES------------------------------
+    getBadges: function () {
+        return axios.get("/api/badges");
+    },
+    
+
     //--------------------------------ACTIVITIES------------------------------
 
     saveActivity: function (activityData, userId) {

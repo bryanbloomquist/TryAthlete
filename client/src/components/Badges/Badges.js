@@ -3,28 +3,29 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Jumbotron from "react-bootstrap/Jumbotron";
+import BadgeArrayMap from "./BadgeArrayMap";
+
 
 function Badges(props) {
-        return (
-            <Container fluid>
-                <Row>
-                    <Col size="md-12">
-                        <Jumbotron>
-                            <h1>Badges</h1>
-                            <h2>
-                                {props.user.fname} {props.user.lname}
-                            </h2>
-                            <img src={props.user.avatar} className="text-center" alt="User Avatar" />
-                        </Jumbotron>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <h1 className="text-center">User Detials Area</h1>
-                    </Col>
-                </Row>
-            </Container>
-        );
+    const length = props.badges.length;
+    const badges = props.badges;
+    const user = props.user;
+
+    return (
+        <Container>
+            <Row>
+                <Col size="md-12">
+                    <Jumbotron>
+                        <h1 class="text-center">Badges</h1>
+                    </Jumbotron>
+                </Col>
+            </Row>
+            
+            <Row>
+                <BadgeArrayMap length={length} badges={badges} user={user}></BadgeArrayMap>
+            </Row>
+        </Container>
+    );
 }
 
 
