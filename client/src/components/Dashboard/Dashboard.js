@@ -1,8 +1,6 @@
 import React from "react";
 //react-bootstrap
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
+import { Row, Col, Container, Button, Modal } from "react-bootstrap";
 //Components
 import ActivityCard from "./ActivityCard";
 import BadgesCard from "./BadgesCard";
@@ -70,6 +68,24 @@ function Dashboard(props) {
             <Row>
                 <SocialCard user={props.user} />
             </Row>
+            <Button variant="primary" onClick={props.handleShow}>
+                Launch demo modal
+        </Button>
+
+            <Modal show={props.state.show} onHide={props.handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Modal heading</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={props.handleClose}>
+                        Close
+            </Button>
+                    <Button variant="primary" onClick={props.handleClose}>
+                        Save Changes
+            </Button>
+                </Modal.Footer>
+            </Modal>
         </Container >
 
     )
