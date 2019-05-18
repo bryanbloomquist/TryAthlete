@@ -1,10 +1,9 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import { Button, Modal } from "react-bootstrap";
 
 function ActivityCard(props) {
-    console.log(props.activity)
-    console.log(props.sport)
+    console.log(props)
     const style = {
         backgroundColor: props.color,
         backgroundImage: "url(" + props.img + ")",
@@ -28,8 +27,8 @@ function ActivityCard(props) {
                     <Form.Label>Duration (Minutes)</Form.Label>
                     <Form.Control name={props.sport} onChange={props.onDurationChange} placeholder="0" min={0} distance={props.activity.duration} type="number"></Form.Control>
                     <br />
-                    <Button className="btn btn-warning" block 
-                    onClick={(event) => props.onLogClick(event, props.sport)}>Log it</Button>
+                    <Button className="btn btn-warning" block
+                        onClick={(event) => props.onLogClick(event, props.sport)}>Log it</Button>
                 </Form.Group>
             </Form>
         </div>

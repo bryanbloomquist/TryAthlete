@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Row, Col, Button } from "react-bootstrap";
+import { Redirect, BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Row, Col, Button, Modal } from "react-bootstrap";
 //API
 import API from "./utils/API";
 import Wrapper from "./components/Wrapper/Wrapper";
@@ -39,6 +39,36 @@ class App extends Component {
       distance: 0,
       units: "meters",
       duration: 0
+    },
+    show: false,
+    redirect: false
+  }
+
+  constructor(props, context) {
+    super(props, context);
+
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+  }
+
+  handleClose() {
+    this.setState({ show: false });
+  }
+
+  handleShow() {
+    this.setState({ show: true });
+  }
+
+  //redirect logic
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    })
+  }
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      this.setState({redirect: false});
+      return <Redirect to='/dashboard'/>
     }
   }
 
@@ -62,6 +92,8 @@ class App extends Component {
       API.getUser(localStorageUser._id)
         .then(res => {
           this.setState({ user: res.data, loggedIn: true });
+          console.log(this.state)
+          // this.setRedirect()
         })
     } else {
       console.log("no user")
@@ -93,6 +125,8 @@ class App extends Component {
             window.localStorage.setItem('user', JSON.stringify(res.data[i]));
             window.localStorage.setItem('loggedIn', true);
             userFound = true;
+            // this.setRedirect()
+            console.log(this.state)
           }
         }
         if (!userFound) {
@@ -115,6 +149,7 @@ class App extends Component {
               window.localStorage.setItem('user', JSON.stringify(userObject));
               window.localStorage.setItem('loggedIn', true);
               console.log("logged in = " + this.state.loggedIn);
+              // this.setRedirect()
             })
             .catch((err) => console.log((err)))
         }
@@ -137,8 +172,10 @@ class App extends Component {
     console.log(event)
     if (sport === "Run") {
       let activity = Object.assign({}, this.state.runActivity);
+
       if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
       else {
+        this.handleShow(); 
         API.saveActivity(activity, this.state.user._id)
           .then(res => this.setState({ user: res.data }));
       }
@@ -147,6 +184,7 @@ class App extends Component {
       let activity = Object.assign({}, this.state.rideActivity);
       if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
       else {
+        this.handleShow(); 
         API.saveActivity(activity, this.state.user._id)
           .then(res => this.setState({ user: res.data }));
       }
@@ -155,8 +193,9 @@ class App extends Component {
       let activity = Object.assign({}, this.state.swimActivity);
       if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
       else {
+        this.handleShow(); 
         API.saveActivity(activity, this.state.user._id)
-        .then(res => this.setState({ user: res.data }));
+          .then(res => this.setState({ user: res.data }));
       }
     }
 
@@ -267,6 +306,7 @@ class App extends Component {
           <Wrapper>
             <NavbarArea>{this.state.user}</NavbarArea>
             <Switch>
+              {this.renderRedirect()}
               <Route exact path="/" render={(props) => <Home {...props} user={this.state.user} />} />
               <Route exact path="/dashboard" render={(props) =>
                 <Dashboard {...props} {...this.state}
@@ -274,8 +314,9 @@ class App extends Component {
                   onLogClick={this.onLogClick}
                   onDistanceChange={this.onDistanceChange}
                   onUnitChange={this.onUnitChange}
-                  onDurationChange={this.onDurationChange} />} />
-
+                  onDurationChange={this.onDurationChange}
+                  handleClose={this.handleClose}
+                  handleShow={this.handleShow} />} />
               <Route exact path="/goals" render={(props) => <Goals {...props} user={this.state.user} />} />
               <Route exact path="/challenges" render={(props) => <Challenges {...props} user={this.state.user} />} />
               <Route exact path="/badges" render={(props) => <Badges {...props}
@@ -297,6 +338,17 @@ class App extends Component {
                 </Link>
               </Col>
             </Row>
+            <Modal show={this.state.show} onHide={this.handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>Activity logged</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>Woohoo! Keep it up!</Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={this.handleClose}>
+                  Close
+            </Button>
+              </Modal.Footer>
+            </Modal>
           </Wrapper>
         ) : (
             <Wrapper>
