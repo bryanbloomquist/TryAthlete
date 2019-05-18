@@ -25,7 +25,7 @@ function ActivityCard(props) {
                         <option value={props.units[0]}>{props.units[0]}</option>
                         <option value={props.units[1]}>{props.units[1]}</option>
                     </Form.Control>
-                    <Form.Label>Time</Form.Label>
+                    <Form.Label>Duration (Minutes)</Form.Label>
                     <Form.Control name={props.sport} onChange={props.onDurationChange} distance={props.activity.duration} type="number" placeholder="0"></Form.Control>
                     <br />
                     <Button className="btn btn-warning" block 
