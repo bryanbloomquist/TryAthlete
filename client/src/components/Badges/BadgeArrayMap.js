@@ -38,7 +38,7 @@ function BadgeArrayMap(props) {
             </Card>
         )
     })
-    )}
+)}
 
 
     export default BadgeArrayMap;
