@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 
 
 function CurChallengesCard(props) {
-    return (<Button {...props} variant="danger">Delete</Button>);
+    return (<Button {...props} variant="danger">{props.btnName}</Button>);
 }
 
 export default CurChallengesCard;

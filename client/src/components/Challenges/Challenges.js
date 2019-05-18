@@ -194,18 +194,28 @@ class Challenges extends Component {
                             <Col>
                                 <CurChallengesCard>
                                     <ListGroup variant="flush">
+                                        <Row className="mb-3 font-weight-bold">
+                                            <Col sm={3} className="my-auto">
+                                                Challenger
+                                            </Col>
+                                            <Col sm={6} className="my-auto">
+                                                Challenge Name <br/>& Progress
+                                            </Col>
+                                        </Row>
                                         {this.props.user.challenges.map(challenge => {
                                             return (
                                                 <ListGroup.Item key={challenge.id} className="bg-light">
                                                     <Row>
-                                                        <Col sm={9}>
+                                                        <Col sm={3}>
+                                                            {challenge.challenger}
+                                                        </Col>
+                                                        <Col sm={6}>
                                                             {challenge.name}
                                                             <div className="progress-bar bg-success mt-2" style={{ width: challenge.challengeProgress }}> </div>
                                                         </Col>
                                                         <Col sm={3}>
-                                                            <DeleteBtn className="ml-5" onClick={() => this.onChallengeDelete(challenge.id)} />
+                                                            <DeleteBtn className="ml-5" onClick={() => this.onChallengeDelete(challenge.id)} btnName="Decline" />
                                                         </Col>
-
                                                     </Row>
                                                 </ListGroup.Item>
                                             );

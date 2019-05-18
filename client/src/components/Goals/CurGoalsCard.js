@@ -5,7 +5,7 @@ import Card from "react-bootstrap/Card";
 function CurGoalsCard(props) {
     return (
         <Card className="card-wide text-dark mt-0 bg-light">
-            <Card.Title>Current Goals</Card.Title>
+            <Card.Title className="display-4">Current Goals</Card.Title>
             <Card.Body className="h5 overflow-auto">
                 {props.children}
             </Card.Body>

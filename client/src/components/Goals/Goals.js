@@ -169,7 +169,7 @@ class Goals extends Component {
                                                         <div className="progress-bar bg-success mt-2" style={{ width: goal.goalProgress }}> </div>
                                                     </Col>
                                                     <Col sm={3}>
-                                                        <DeleteBtn className="ml-5" onClick = {() => this.onGoalDelete(goal.id)}/>
+                                                        <DeleteBtn className="ml-5" onClick = {() => this.onGoalDelete(goal.id)} btnName="Delete"/>
                                                     </Col>
                                                         
                                                 </Row>

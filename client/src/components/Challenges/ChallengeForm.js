@@ -12,7 +12,7 @@ function ChallengeForm(props) {
                 <Col sm={6}>
                     <Form.Control name="timeframe" className="my-2" as="select" onChange={props.onChallengeChange}>
                         {/* {props.friends.map(friend => { */}
-                            {props.user.friends.map(friend =>{
+                            {props.user.friends.map(friend => {
                             return (
                                 <option key={friend}> placeholder | {friend}</option>
                             )
