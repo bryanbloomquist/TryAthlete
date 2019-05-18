@@ -16,12 +16,11 @@ import Swim from "../images/swim.png";
 const Link = require("react-router-dom").Link;
 
 function Dashboard(props) {
-    let fname = props.user.givenName.charAt(0).toUpperCase() + props.user.givenName.slice(1);
     return (
         <Container fluid>
             <Row>
                 <Col className="display-3 text-center py-5 goal-title">
-                    {fname}'s Dashboard
+                    Dashboard
                 </Col>
             </Row>
             <Row>
