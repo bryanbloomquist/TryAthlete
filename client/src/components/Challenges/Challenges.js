@@ -209,7 +209,7 @@ class Challenges extends Component {
                                                         <Col sm={3}>
                                                             <Row>
                                                                 <Col sm={12}>
-                                                                <img src={challenge.challenger.imageUrl} className="challenge-avatars"></img>
+                                                                <img src={challenge.challenger.imageUrl} className="challenge-avatars" alt={challenge.challenger.email}></img>
                                                                 </Col>
                                                                 <Col sm={12}>
                                                                 {challenge.challenger.givenName} {challenge.challenger.familyName}
