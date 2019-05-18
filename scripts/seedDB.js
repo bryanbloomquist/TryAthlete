@@ -12,62 +12,19 @@ mongoose.connect(
 //user seed
 const userSeed = [
   {
-    givenName: "stephen",
-    familyName: "king",
-    imageUrl: "https://via.placeholder.com/150",
-    email: "www.google.com",
-    activities: [
-      {
-        id: 23,
-        sport: "Run",
-        distanceQty: "50",
-        distanceUnit: "km",
-        duration: 50,
-        createTime: date.getTime()
-      }
-    ],
-    goals: [
-      {
-        id: 2,
-        name: "Run 50 km in a week",
-        sport: "Run",
-        isAchieved: false,
-        goalType: "distance",
-        goalQty: 50,
-        goalUnit: "km",
-        goalTimeFrame: "this week",
-        createTime: date.getTime(),
-        progress: "20%"
-      }
-    ],
+    givenName: "steve",
+    familyName: "rogers",
+    imageUrl: "https://fanfest.com/wp-content/uploads/2018/10/captain-america-figure_0-632x450.png",
+    email: "captain@gmail.com",
+    activities: [],
     badges: [
       {
         id: [1, 2, 5]
       }
     ],
-    challenges: [
-      {
-        id: 25,
-        name: "First goal",
-        sport: "Run",
-        isAchieved: false,
-        goalType: "distance",
-        goalQty: 50,
-        goalUnit: "km",
-        challenger: {
-          id: 4
-        },
-        challengeTimeFrame: "this month",
-        hasAccepted: false,
-        createTime: date.getTime()
-      }
-    ],
+    challenges: [],
     friends: {
-      id: [
-        1,
-        4,
-        6
-      ]
+      id: []
     }
   },
 ];
