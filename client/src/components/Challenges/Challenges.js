@@ -28,45 +28,31 @@ class Challenges extends Component {
     }
 
     componentDidMount() {
-        // this.loadChallenges();
-        this.props.user.friends.forEach(friend => {
-            console.log("Loading Friends List into State: ", friend)
-            this.userNameLookup(friend);
+        var getFriendsPromises = [];
+        for(var i = 0; i < this.props.user.friends.length; i++) {
+            console.log("Loading Friends List into State: ", this.props.user.friends[i]);
+            getFriendsPromises.push(this.userNameLookup(this.props.user.friends[i]));
+        }
+        Promise.all(getFriendsPromises).then((values) => {
+            console.log(values);
+            console.log("got here");
+            this.setState({
+                friends: values
+            });
         });
     };
 
-    // loadChallenges = () => {
-    //     API.getUser(this.props.user._id)
-    //         .then(res =>
-    //             this.setState({
-    //                 user:
-    //                 {
-    //                     challenges: res.data.challenges,
-    //                 }
-    //             })
-    //         )
-    //         .catch(err => console.log(err));
-    // };
-
     userNameLookup = (id) => {
         console.log("Friend ID Lookup: ", id);
-        API.getUser(id)
+        return API.getUser(id)
             .then(res => {
                 console.log("Friend Name Lookup: ", res.data);
-                this.setState(
-                    {
-                        friends: this.state.friends.concat({
-                            id: res.data._id,
-                            fname: res.data.givenName,
-                            lname: res.data.familyName
-                        })
-                    }
-                )
+                return res.data;
             })
             .catch(err => console.log(err));
     };
 
-    onChallengeChange = (event) => {
+    onChallengeChange = (event, uid) => {
         const { name, value } = event.target;
 
         switch (name) {
@@ -136,14 +122,9 @@ class Challenges extends Component {
     }
 
     onChallengeSubmit = (() => {
-
         console.log("ChallengeSubmit clicked: ", this.props.user._id);
 
-        let d = new Date();
-        let timestamp = d.getFullYear() + d.getMonth() + d.getDay() + d.getTime();
-
         let newChallenge = {
-            id: timestamp,
             name: this.state.newChallenge.sport + " " + this.state.newChallenge.qty + " " + this.state.newChallenge.unit + " " + this.state.newChallenge.timeframe,
             sport: this.state.newChallenge.sport,
             isAchieved: false,
@@ -152,7 +133,7 @@ class Challenges extends Component {
             challengeUnit: this.state.newChallenge.unit,
             challengeTimeFrame: this.state.newChallenge.timeframe,
             challengeProgress: "10%",
-            challenger: this.state.newChallenge.challenger
+            challenger: this.state.newChallenge.challenger.key
         };
         console.log("newChallengeObj: ", newChallenge, "Challenger: ", this.props.user._id, "Challenged: ", this.state.newChallenge.friend);
         API.saveChallenge(newChallenge, this.state.newChallenge.challenger)
@@ -169,13 +150,12 @@ class Challenges extends Component {
 
 
     render() {
-        let fname = this.props.user.givenName.charAt(0).toUpperCase() + this.props.user.givenName.slice(1);
         console.log("friends State: ", this.state.friends)
         return (
             <Container fluid className="pb-5">
                 <Row>
                     <Col className="display-3 text-center py-5 component-title">
-                        Challenges for {fname}
+                        Challenges
                     </Col>
                 </Row>
                 <Row className="text-center py-5">

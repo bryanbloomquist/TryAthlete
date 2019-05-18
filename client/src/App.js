@@ -134,6 +134,7 @@ class App extends Component {
 
   //logic for activity card logging
   onLogClick = (event, sport) => {
+    console.log(event)
     if (sport === "Run") {
       let activity = Object.assign({}, this.state.runActivity);
       if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
