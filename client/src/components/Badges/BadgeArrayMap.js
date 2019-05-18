@@ -8,17 +8,20 @@ function BadgeArrayMap(props) {
     console.log(props);
     let badgeStyle;
 
-    if (!props.user.badges.includes(props.badgeId)) {
-        badgeStyle = {
-            width: "150px",
-            height: "150px",
-            filter: "grayscale(1)"
+    for (let i=0;i<11;i++) {
+        if (!props.user.badges.includes(props.badges[i].badgeId)) {
+            badgeStyle = {
+                width: "150px",
+                height: "150px",
+                filter: "grayscale(1)"
+            }
+        } else {
+            badgeStyle = {
+                width: "150px",
+                height: "150px"
+            }
         }
-    } else {
-        badgeStyle = {
-            width: "150px",
-            height: "150px"
-        }
+    
     }
 
     return (
