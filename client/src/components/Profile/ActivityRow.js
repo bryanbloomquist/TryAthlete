@@ -76,7 +76,10 @@ function ActivityRow(props) {
             <div style={Style.cardBody}>
                 <Row>
                     <Col sm={3} style={Style.col}>
+<<<<<<< HEAD
                         {/* <div style={Style.title}>{props.sport.charAt(0).toUpperCase() + props.sport.slice(1)}</div> */}
+=======
+>>>>>>> a6d00994cbfe0b1bf389180191d8a937ed365ceb
                         <img className="img-fluid" style={Style.image} src={image} alt='sports' />
                     </Col>
                     <Col style={Style.col} sm={6}>
