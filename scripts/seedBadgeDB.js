@@ -83,7 +83,7 @@ const badgeSeed = [
     },
     {
       badgeId: 8,
-      name: "You're in de'Nile'",
+      name: "You're in de'Nile",
       description: "Swim 4,132 miles.",
       src: "nile",
       sport: "Swim",
@@ -93,7 +93,7 @@ const badgeSeed = [
     },
     {
       badgeId: 9,
-      name: "Bike Around Pluto'",
+      name: "Bike Around Pluto",
       description: "Bike 1,467 miles.",
       src: "pluto",
       sport: "Bike",
