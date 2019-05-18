@@ -3,6 +3,7 @@ const db = require("../models");
 const object = function(object) {
   let date = Date.now();
   object.timestamp = date
+  object.id = date
   return(object)
 }
 // Defining methods for the UsersController

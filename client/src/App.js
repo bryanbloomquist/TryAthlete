@@ -146,9 +146,7 @@ class App extends Component {
       this.setState(prevState => ({
         runActivity: {
           ...prevState.runActivity,
-          distance: value,
-          id: Date.now(),
-          time: Date.now()
+          distance: value
         }
       }))
     }
@@ -156,9 +154,7 @@ class App extends Component {
       this.setState(prevState => ({
         rideActivity: {
           ...prevState.rideActivity,
-          distance: value,
-          id: Date.now(),
-          time: Date.now()
+          distance: value
         }
       }))
     }
@@ -166,9 +162,7 @@ class App extends Component {
       this.setState(prevState => ({
         swimActivity: {
           ...prevState.swimActivity,
-          distance: value,
-          id: Date.now(),
-          time: Date.now()
+          distance: value
         }
       }))
     }
