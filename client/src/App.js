@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Redirect, BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Row, Col, Button } from "react-bootstrap";
 //API
 import API from "./utils/API";
@@ -39,6 +39,20 @@ class App extends Component {
       distance: 0,
       units: "meters",
       duration: 0
+    },
+    redirect: false
+  }
+
+  //redirect logic
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    })
+  }
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      this.setState({redirect: false});
+      return <Redirect to='/dashboard'/>
     }
   }
 
@@ -62,6 +76,8 @@ class App extends Component {
       API.getUser(localStorageUser._id)
         .then(res => {
           this.setState({ user: res.data, loggedIn: true });
+          console.log(this.state)
+          this.setRedirect()
         })
     } else {
       console.log("no user")
@@ -93,6 +109,8 @@ class App extends Component {
             window.localStorage.setItem('user', JSON.stringify(res.data[i]));
             window.localStorage.setItem('loggedIn', true);
             userFound = true;
+            this.setRedirect()
+            console.log(this.state)
           }
         }
         if (!userFound) {
@@ -115,6 +133,7 @@ class App extends Component {
               window.localStorage.setItem('user', JSON.stringify(userObject));
               window.localStorage.setItem('loggedIn', true);
               console.log("logged in = " + this.state.loggedIn);
+              this.setRedirect()
             })
             .catch((err) => console.log((err)))
         }
@@ -156,7 +175,7 @@ class App extends Component {
       if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
       else {
         API.saveActivity(activity, this.state.user._id)
-        .then(res => this.setState({ user: res.data }));
+          .then(res => this.setState({ user: res.data }));
       }
     }
 
@@ -267,6 +286,7 @@ class App extends Component {
           <Wrapper>
             <NavbarArea>{this.state.user}</NavbarArea>
             <Switch>
+              {this.renderRedirect()}
               <Route exact path="/" render={(props) => <Home {...props} user={this.state.user} />} />
               <Route exact path="/dashboard" render={(props) =>
                 <Dashboard {...props} {...this.state}
