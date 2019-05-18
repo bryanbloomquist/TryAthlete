@@ -46,10 +46,10 @@ class App extends Component {
 
     //load badges
     API.getBadges()
-    .then(res => {
-      this.setState({ badges: res.data });
-      console.log(this.state.badges);
-    })
+      .then(res => {
+        this.setState({ badges: res.data });
+        console.log(this.state.badges);
+      })
 
     //check local storage
     let localStorageUser = JSON.parse(window.localStorage.getItem("user"))
@@ -125,35 +125,45 @@ class App extends Component {
     console.log(response);
   }
 
-  logoutSession = ( ) => {
-    this.setState({ user: "", loggedIn: false});
+  logoutSession = () => {
+    this.setState({ user: "", loggedIn: false });
     window.localStorage.clear();
-    console.log( "user: " + this.state.user );
-    console.log( "logged in = " + this.state.loggedIn );
+    console.log("user: " + this.state.user);
+    console.log("logged in = " + this.state.loggedIn);
   }
 
   //logic for activity card logging
   onLogClick = (event, sport) => {
     if (sport === "Run") {
       let activity = Object.assign({}, this.state.runActivity);
-      API.saveActivity(activity, this.state.user._id)
-      .then(res => this.setState({user: res.data}));
+      if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
+      else {
+        API.saveActivity(activity, this.state.user._id)
+          .then(res => this.setState({ user: res.data }));
+      }
     }
     if (sport === "Ride") {
       let activity = Object.assign({}, this.state.rideActivity);
-      API.saveActivity(activity, this.state.user._id)
-      .then(res => this.setState({user: res.data}));
+      if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
+      else {
+        API.saveActivity(activity, this.state.user._id)
+          .then(res => this.setState({ user: res.data }));
+      }
     }
     if (sport === "Swim") {
       let activity = Object.assign({}, this.state.swimActivity);
-      API.saveActivity(activity, this.state.user._id)
-      .then(res => this.setState({user: res.data}));
+      if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
+      else {
+        API.saveActivity(activity, this.state.user._id)
+        .then(res => this.setState({ user: res.data }));
+      }
     }
-    
+
   }
 
   onDistanceChange = (event) => {
     const { name, value } = event.target;
+    console.log(value)
 
     if (name === "Run") {
       this.setState(prevState => ({
@@ -241,9 +251,9 @@ class App extends Component {
   }
 
   // delete our activity
-  deleteActivity = id  => {
+  deleteActivity = id => {
     API.deleteActivity(this.state.user._id, id)
-      .then(res => this.setState({user: res.data}))
+      .then(res => this.setState({ user: res.data }))
       .catch(err => console.log(err));
   };
 
@@ -267,21 +277,21 @@ class App extends Component {
 
               <Route exact path="/goals" render={(props) => <Goals {...props} user={this.state.user} />} />
               <Route exact path="/challenges" render={(props) => <Challenges {...props} user={this.state.user} />} />
-              <Route exact path="/badges" render={(props) => <Badges {...props} 
+              <Route exact path="/badges" render={(props) => <Badges {...props}
                 user={this.state.user}
                 badges={this.state.badges} />} />
               <Route exact path="/social" render={(props) => <Social {...props} user={this.state.user} />} />
               <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state.user} delete={this.deleteActivity} />} />
               {/* <Route component={NoMatch} /> */}
             </Switch>
-            <Row className = "justify-content-center">
+            <Row className="justify-content-center">
               <Col xs="auto">
-                <Link to = "/">
-                  <Button 
-                    className = "btn-lg btn-primary border-dark my-5"
-                    onClick = { this.logoutSession }
+                <Link to="/">
+                  <Button
+                    className="btn-lg btn-primary border-dark my-5"
+                    onClick={this.logoutSession}
                   >
-                    Logout 
+                    Logout
                   </Button>
                 </Link>
               </Col>
@@ -292,14 +302,14 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" render={(props) => <Home {...props} user={this.state.user} />} />
               </Switch>
-              <Row className = "justify-content-center">
+              <Row className="justify-content-center">
                 <Col xs="auto">
                   <GoogleLogin
                     clientId="907322878909-ceh0tltstqr7ht4eidho9ehj73bs7t1p.apps.googleusercontent.com"
                     render={renderProps => (
                       <Button
-                        className = "btn-lg btn-primary border-dark mt-5"
-                        onClick={renderProps.onClick} 
+                        className="btn-lg btn-primary border-dark mt-5"
+                        onClick={renderProps.onClick}
                         disabled={renderProps.disabled}
                       >
                         Login with Google
