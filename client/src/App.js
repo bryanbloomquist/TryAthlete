@@ -94,7 +94,7 @@ class App extends Component {
         .then(res => {
           this.setState({ user: res.data, loggedIn: true });
           console.log(this.state)
-          // this.setRedirect()
+         
           this.getUserFriends();
         })
     } else {
@@ -159,7 +159,7 @@ class App extends Component {
               window.localStorage.setItem('user', JSON.stringify(res.data[i]));
               window.localStorage.setItem('loggedIn', true);
               userFound = true;
-              // this.setRedirect()
+              this.setRedirect()
               console.log(this.state)
             }
           }
@@ -183,7 +183,7 @@ class App extends Component {
                 window.localStorage.setItem('user', JSON.stringify(userObject));
                 window.localStorage.setItem('loggedIn', true);
                 console.log("logged in = " + this.state.loggedIn);
-                // this.setRedirect()
+                this.setRedirect()
               })
               .catch((err) => console.log((err)))
           }
