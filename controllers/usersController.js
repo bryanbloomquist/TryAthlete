@@ -67,7 +67,7 @@ module.exports = {
 
   updateGoal: function (req, res) {
     db.User
-      .findOneAndUpdate({ _id: req.params.id, }, { $push: {goals: { isAchieved : true } } } )
+      .updateOne({ _id: req.params.id, goals: { $elemMatch: {id: req.params.goalId} } }, { $set: { "goals.$.isAchieved" : true } } )
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
