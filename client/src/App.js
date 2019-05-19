@@ -12,6 +12,7 @@ import Goals from "./components/Goals/Goals";
 import Challenges from "./components/Challenges/Challenges";
 import Badges from "./components/Badges/Badges";
 import Social from "./components/Social/Social";
+import Calculations from "./components/Profile/calculateTotals";
 import { GoogleLogin } from "react-google-login";
 // import NoMatch from "./components/NoMatch/NoMatch";
 import './App.css';
@@ -106,7 +107,10 @@ class App extends Component {
     }
   }
 
+<<<<<<< HEAD
   //friends function that populates after user loaded
+=======
+>>>>>>> fee35f09470cb69a0f87c4cef1c771878de682a9
   getUserFriends = () => {
     let getFriendsPromises = [];
     for (let i = 0; i < this.state.user.friends.length; i++) {
@@ -140,7 +144,10 @@ class App extends Component {
   };
 
   responseGoogleSuccess = (response) => {
+<<<<<<< HEAD
 
+=======
+>>>>>>> fee35f09470cb69a0f87c4cef1c771878de682a9
     //if the user isn't already logged in from local storage
     if (this.state.loggedIn === false) {
       let loginUser = {
@@ -165,7 +172,12 @@ class App extends Component {
             window.localStorage.setItem('user', JSON.stringify(res.data[i]));
             window.localStorage.setItem('loggedIn', true);
             userFound = true;
+<<<<<<< HEAD
             this.setRedirect()
+=======
+            // this.setRedirect()
+            console.log(this.state)
+>>>>>>> fee35f09470cb69a0f87c4cef1c771878de682a9
           }
         }
         if (!userFound) {
@@ -188,13 +200,18 @@ class App extends Component {
               window.localStorage.setItem('user', JSON.stringify(userObject));
               window.localStorage.setItem('loggedIn', true);
               console.log("logged in = " + this.state.loggedIn);
+<<<<<<< HEAD
               this.setRedirect()
+=======
+              // this.setRedirect()
+>>>>>>> fee35f09470cb69a0f87c4cef1c771878de682a9
             })
             .catch((err) => console.log((err)))
         }
         this.getUserFriends();
       })
   }
+<<<<<<< HEAD
 
   responseGoogleFailure = (response) => {
     console.log(response);
@@ -205,35 +222,72 @@ class App extends Component {
     window.localStorage.clear();
   }
 
+=======
+
+  responseGoogleFailure = (response) => {
+    console.log(response);
+  }
+
+  logoutSession = () => {
+    this.setState({ user: "", loggedIn: false });
+    window.localStorage.clear();
+    console.log("user: " + this.state.user);
+    console.log("logged in = " + this.state.loggedIn);
+  }
+
+>>>>>>> fee35f09470cb69a0f87c4cef1c771878de682a9
   //logic for activity card logging
   onLogClick = (event, sport) => {
     console.log(event)
     if (sport === "Run") {
       let activity = Object.assign({}, this.state.runActivity);
+<<<<<<< HEAD
 
       if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
       else {
         this.handleShow();
         API.saveActivity(activity, this.state.user._id)
           .then(res => this.setState({ user: res.data }));
+=======
+      if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
+      else {
+        this.handleShow(); 
+        API.saveActivity(activity, this.state.user._id)
+          .then(res => this.setState({ user: res.data }))
+          .then(( callback ) => this.calcBadges() );
+>>>>>>> fee35f09470cb69a0f87c4cef1c771878de682a9
       }
     }
     if (sport === "Ride") {
       let activity = Object.assign({}, this.state.rideActivity);
       if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
       else {
+<<<<<<< HEAD
         this.handleShow();
         API.saveActivity(activity, this.state.user._id)
           .then(res => this.setState({ user: res.data }));
+=======
+        this.handleShow(); 
+        API.saveActivity(activity, this.state.user._id)
+          .then(res => this.setState({ user: res.data }))
+          .then(( callback ) => this.calcBadges() );
+>>>>>>> fee35f09470cb69a0f87c4cef1c771878de682a9
       }
     }
     if (sport === "Swim") {
       let activity = Object.assign({}, this.state.swimActivity);
       if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
       else {
+<<<<<<< HEAD
         this.handleShow();
         API.saveActivity(activity, this.state.user._id)
           .then(res => this.setState({ user: res.data }));
+=======
+        this.handleShow(); 
+        API.saveActivity(activity, this.state.user._id)
+          .then(res => this.setState({ user: res.data }))
+          .then(( callback ) => this.calcBadges() );
+>>>>>>> fee35f09470cb69a0f87c4cef1c771878de682a9
       }
     }
 
@@ -250,6 +304,7 @@ class App extends Component {
           distance: value
         }
       }))
+<<<<<<< HEAD
     }
     if (name === "Ride") {
       this.setState(prevState => ({
@@ -267,6 +322,25 @@ class App extends Component {
         }
       }))
     }
+=======
+    }
+    if (name === "Ride") {
+      this.setState(prevState => ({
+        rideActivity: {
+          ...prevState.rideActivity,
+          distance: value
+        }
+      }))
+    }
+    if (name === "Swim") {
+      this.setState(prevState => ({
+        swimActivity: {
+          ...prevState.swimActivity,
+          distance: value
+        }
+      }))
+    }
+>>>>>>> fee35f09470cb69a0f87c4cef1c771878de682a9
   }
 
   onUnitChange = (event) => {
@@ -335,9 +409,36 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
+  // determine if a badge has been earned
+  calcBadges = () => {
+    let badgeEarned = [];
+    let bikeTotal = Calculations.calcTotalBike(this.state.user.activities).toFixed(2);
+    let runTotal = Calculations.calcTotalRun(this.state.user.activities).toFixed(2);
+    let swimTotal = Calculations.calcTotalSwim(this.state.user.activities).toFixed(2);
+    console.log( "bikeTotal: " + bikeTotal + ", runTotal: " + runTotal + ", swimTotal: " + swimTotal );
+    if ( runTotal >= 26 ) { badgeEarned.push( 1 );};
+    if ( runTotal >= 277 ) { badgeEarned.push( 2 );};
+    if ( runTotal >= 1350 ) { badgeEarned.push( 3 );};
+    if ( runTotal >= 2680 ) { badgeEarned.push( 4 );};
+    if ( swimTotal >= 36960 ) { badgeEarned.push( 5 );};
+    if ( swimTotal >= 580800 ) { badgeEarned.push( 6 );};
+    if ( swimTotal >= 4132480 ) { badgeEarned.push( 7 );};
+    if ( swimTotal >= 7272320 ) { badgeEarned.push( 8 );};
+    if ( bikeTotal >= 1467 ) { badgeEarned.push( 9 );};
+    if ( bikeTotal >= 2170 ) { badgeEarned.push( 10 );};
+    if ( bikeTotal >= 2200 ) { badgeEarned.push( 11 );};
+    if ( bikeTotal >= 13170 ) { badgeEarned.push( 12 );};
+    console.log( "badgeID earned: " + badgeEarned );
+    API.saveBadge(badgeEarned, this.state.user._id)
+      .then(( res ) => {
+        this.setState({ user: res.data })
+      })
+  }
+
   render() {
     console.log("is logged in: " + this.state.loggedIn);
-    console.log()
+    console.log("state of the user:");
+    console.log(this.state.user);
     return (
       <Router>
         {this.state.loggedIn ? (
@@ -360,7 +461,7 @@ class App extends Component {
               <Route exact path="/badges" render={(props) => <Badges {...props}
                 user={this.state.user}
                 badges={this.state.badges} />} />
-              <Route exact path="/social" render={(props) => <Social {...props} user={this.state.user} friends={this.state.friends} />} />
+              <Route exact path="/social" render={(props) => <Social {...props} user={this.state.user} />} />
               <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state.user} delete={this.deleteActivity} />} />
               {/* <Route component={NoMatch} /> */}
             </Switch>
@@ -397,15 +498,11 @@ class App extends Component {
                 <Col xs="auto">
                   <GoogleLogin
                     clientId="907322878909-ceh0tltstqr7ht4eidho9ehj73bs7t1p.apps.googleusercontent.com"
-                    render={renderProps => (
-                      <Button
-                        className="btn-lg btn-primary border-dark mt-5"
-                        onClick={renderProps.onClick}
-                        disabled={renderProps.disabled}
-                      >
+                    render={renderProps => {
+                      return (<Button className="btn-lg btn-primary border-dark mt-5" onClick={renderProps.onClick} disabled={renderProps.disabled}>
                         Login with Google
-                      </Button>
-                    )}
+                      </Button>);
+                    }}
                     onSuccess={this.responseGoogleSuccess}
                     onFailure={this.responseGoogleFailure}
                     cookiePolicy={"single_host_origin"}
