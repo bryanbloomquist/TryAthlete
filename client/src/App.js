@@ -392,8 +392,6 @@ class App extends Component {
             <Wrapper>
               <Switch>
                 <Route exact path="/" render={(props) => <Home {...props} user={this.state.user} />} />
-<<<<<<< HEAD
-=======
                 <Route exact path="/dashboard" render={(props) =>
                   <Dashboard {...props} {...this.state}
                     user={this.state.user}
@@ -411,7 +409,6 @@ class App extends Component {
                 <Route exact path="/social" render={(props) => <Social {...props} user={this.state.user} friends={this.state.friends}/>} />
                 <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state.user} delete={this.deleteActivity} />} />
                 {/* <Route component={NoMatch} /> */}
->>>>>>> 471690f5c43e01fa8b53aa0a1aba023daebc9517
               </Switch>
               <Row className="justify-content-center">
                 <Col xs="auto">
