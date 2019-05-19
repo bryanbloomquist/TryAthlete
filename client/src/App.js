@@ -46,9 +46,11 @@ class App extends Component {
     redirect: false
   }
 
+  //constructor to handle the model functions
   constructor(props, context) {
     super(props, context);
 
+    //models 
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
   }
@@ -67,6 +69,8 @@ class App extends Component {
       redirect: true
     })
   }
+
+  //redirect location in redner method
   renderRedirect = () => {
     if (this.state.redirect) {
       this.setState({ redirect: false });
@@ -86,16 +90,16 @@ class App extends Component {
     //check local storage
     let localStorageUser = JSON.parse(window.localStorage.getItem("user"))
 
-    //if there is a user saved to the local storage
+    //process for if there is a user saved to the local storage
     if (localStorageUser !== null) {
-      //set the user and log in
 
       //get the most up-to-data user information
       API.getUser(localStorageUser._id)
         .then(res => {
+          //set the user state to the API-called data
           this.setState({ user: res.data, loggedIn: true });
-          console.log(this.state)
-          // this.setRedirect()
+
+          //populate user friends list
           this.getUserFriends();
         })
     } else {
@@ -103,6 +107,7 @@ class App extends Component {
     }
   }
 
+  //friends function that populates after user loaded
   getUserFriends = () => {
     let getFriendsPromises = [];
     for (let i = 0; i < this.state.user.friends.length; i++) {
@@ -160,8 +165,7 @@ class App extends Component {
             window.localStorage.setItem('user', JSON.stringify(res.data[i]));
             window.localStorage.setItem('loggedIn', true);
             userFound = true;
-            // this.setRedirect()
-            console.log(this.state)
+            this.setRedirect()
           }
         }
         if (!userFound) {
@@ -184,7 +188,7 @@ class App extends Component {
               window.localStorage.setItem('user', JSON.stringify(userObject));
               window.localStorage.setItem('loggedIn', true);
               console.log("logged in = " + this.state.loggedIn);
-              // this.setRedirect()
+              this.setRedirect()
             })
             .catch((err) => console.log((err)))
         }
@@ -424,15 +428,11 @@ class App extends Component {
                 <Col xs="auto">
                   <GoogleLogin
                     clientId="907322878909-ceh0tltstqr7ht4eidho9ehj73bs7t1p.apps.googleusercontent.com"
-                    render={renderProps => (
-                      <Button
-                        className="btn-lg btn-primary border-dark mt-5"
-                        onClick={renderProps.onClick}
-                        disabled={renderProps.disabled}
-                      >
+                    render={renderProps => {
+                      return (<Button className="btn-lg btn-primary border-dark mt-5" onClick={renderProps.onClick} disabled={renderProps.disabled}>
                         Login with Google
-                      </Button>
-                    )}
+                      </Button>);
+                    }}
                     onSuccess={this.responseGoogleSuccess}
                     onFailure={this.responseGoogleFailure}
                     cookiePolicy={"single_host_origin"}
