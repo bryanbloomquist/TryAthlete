@@ -23,6 +23,7 @@ class App extends Component {
     user: {},
     badges: {},
     loggedIn: false,
+    friends: [],
     runActivity: {
       sport: "Run",
       distance: 0,
@@ -68,8 +69,8 @@ class App extends Component {
   }
   renderRedirect = () => {
     if (this.state.redirect) {
-      this.setState({redirect: false});
-      return <Redirect to='/dashboard'/>
+      this.setState({ redirect: false });
+      return <Redirect to='/dashboard' />
     }
   }
 
@@ -95,11 +96,44 @@ class App extends Component {
           this.setState({ user: res.data, loggedIn: true });
           console.log(this.state)
           // this.setRedirect()
+          this.getUserFriends();
         })
     } else {
       console.log("no user")
     }
   }
+
+  getUserFriends = () => {
+    let getFriendsPromises = [];
+    for (let i = 0; i < this.state.user.friends.length; i++) {
+      console.log("Loading Friends List into State: ", this.state.user.friends[i]);
+      getFriendsPromises.push(this.userNameLookup(this.state.user.friends[i]));
+    }
+    Promise.all(getFriendsPromises).then((values) => {
+      console.log(values);
+      console.log("got here");
+      this.setState({
+        friends: values
+      });
+    });
+  }
+
+  userNameLookup = (id) => {
+    console.log("Friend ID Lookup: ", id);
+    return API.getUser(id)
+      .then(res => {
+        console.log("Friend Name Lookup: ", res.data);
+        let friendData = {
+          id: res.data._id,
+          givenName: res.data.givenName,
+          familyName: res.data.familyName,
+          imageUrl: res.data.imageUrl,
+          email: res.data.email
+        }
+        return friendData;
+      })
+      .catch(err => console.log(err));
+  };
 
   responseGoogleSuccess = (response) => {
     //if the user isn't already logged in from local storage
@@ -154,6 +188,7 @@ class App extends Component {
             })
             .catch((err) => console.log((err)))
         }
+        this.getUserFriends();
       })
   }
 
