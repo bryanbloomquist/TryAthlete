@@ -107,10 +107,7 @@ class App extends Component {
     }
   }
 
-<<<<<<< HEAD
   //friends function that populates after user loaded
-=======
->>>>>>> fee35f09470cb69a0f87c4cef1c771878de682a9
   getUserFriends = () => {
     let getFriendsPromises = [];
     for (let i = 0; i < this.state.user.friends.length; i++) {
@@ -144,10 +141,6 @@ class App extends Component {
   };
 
   responseGoogleSuccess = (response) => {
-<<<<<<< HEAD
-
-=======
->>>>>>> fee35f09470cb69a0f87c4cef1c771878de682a9
     //if the user isn't already logged in from local storage
     if (this.state.loggedIn === false) {
       let loginUser = {
@@ -172,12 +165,7 @@ class App extends Component {
             window.localStorage.setItem('user', JSON.stringify(res.data[i]));
             window.localStorage.setItem('loggedIn', true);
             userFound = true;
-<<<<<<< HEAD
             this.setRedirect()
-=======
-            // this.setRedirect()
-            console.log(this.state)
->>>>>>> fee35f09470cb69a0f87c4cef1c771878de682a9
           }
         }
         if (!userFound) {
@@ -200,29 +188,13 @@ class App extends Component {
               window.localStorage.setItem('user', JSON.stringify(userObject));
               window.localStorage.setItem('loggedIn', true);
               console.log("logged in = " + this.state.loggedIn);
-<<<<<<< HEAD
               this.setRedirect()
-=======
-              // this.setRedirect()
->>>>>>> fee35f09470cb69a0f87c4cef1c771878de682a9
             })
             .catch((err) => console.log((err)))
         }
         this.getUserFriends();
       })
   }
-<<<<<<< HEAD
-
-  responseGoogleFailure = (response) => {
-    console.log(response);
-  }
-
-  logoutSession = () => {
-    this.setState({ user: "", loggedIn: false });
-    window.localStorage.clear();
-  }
-
-=======
 
   responseGoogleFailure = (response) => {
     console.log(response);
@@ -235,59 +207,37 @@ class App extends Component {
     console.log("logged in = " + this.state.loggedIn);
   }
 
->>>>>>> fee35f09470cb69a0f87c4cef1c771878de682a9
   //logic for activity card logging
   onLogClick = (event, sport) => {
     console.log(event)
     if (sport === "Run") {
       let activity = Object.assign({}, this.state.runActivity);
-<<<<<<< HEAD
-
-      if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
-      else {
-        this.handleShow();
-        API.saveActivity(activity, this.state.user._id)
-          .then(res => this.setState({ user: res.data }));
-=======
       if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
       else {
         this.handleShow(); 
         API.saveActivity(activity, this.state.user._id)
           .then(res => this.setState({ user: res.data }))
           .then(( callback ) => this.calcBadges() );
->>>>>>> fee35f09470cb69a0f87c4cef1c771878de682a9
       }
     }
     if (sport === "Ride") {
       let activity = Object.assign({}, this.state.rideActivity);
       if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
       else {
-<<<<<<< HEAD
-        this.handleShow();
-        API.saveActivity(activity, this.state.user._id)
-          .then(res => this.setState({ user: res.data }));
-=======
         this.handleShow(); 
         API.saveActivity(activity, this.state.user._id)
           .then(res => this.setState({ user: res.data }))
           .then(( callback ) => this.calcBadges() );
->>>>>>> fee35f09470cb69a0f87c4cef1c771878de682a9
       }
     }
     if (sport === "Swim") {
       let activity = Object.assign({}, this.state.swimActivity);
       if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
       else {
-<<<<<<< HEAD
-        this.handleShow();
-        API.saveActivity(activity, this.state.user._id)
-          .then(res => this.setState({ user: res.data }));
-=======
         this.handleShow(); 
         API.saveActivity(activity, this.state.user._id)
           .then(res => this.setState({ user: res.data }))
           .then(( callback ) => this.calcBadges() );
->>>>>>> fee35f09470cb69a0f87c4cef1c771878de682a9
       }
     }
 
@@ -304,7 +254,6 @@ class App extends Component {
           distance: value
         }
       }))
-<<<<<<< HEAD
     }
     if (name === "Ride") {
       this.setState(prevState => ({
@@ -322,25 +271,6 @@ class App extends Component {
         }
       }))
     }
-=======
-    }
-    if (name === "Ride") {
-      this.setState(prevState => ({
-        rideActivity: {
-          ...prevState.rideActivity,
-          distance: value
-        }
-      }))
-    }
-    if (name === "Swim") {
-      this.setState(prevState => ({
-        swimActivity: {
-          ...prevState.swimActivity,
-          distance: value
-        }
-      }))
-    }
->>>>>>> fee35f09470cb69a0f87c4cef1c771878de682a9
   }
 
   onUnitChange = (event) => {
