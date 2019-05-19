@@ -176,8 +176,8 @@ class App extends Component {
       else {
         this.handleShow();
         API.saveActivity(activity, this.state.user._id)
-        .then(res => this.setState({ user: res.data }))
-        .then((callback) => this.addActivities());
+          .then(res => this.setState({ user: res.data }))
+          .then((callback) => this.addActivities());
       }
     }
     if (sport === "Ride") {
@@ -187,7 +187,7 @@ class App extends Component {
         this.handleShow();
         API.saveActivity(activity, this.state.user._id)
           .then(res => this.setState({ user: res.data }));
-          this.addActivities()
+        this.addActivities()
       }
     }
     if (sport === "Swim") {
@@ -197,7 +197,7 @@ class App extends Component {
         this.handleShow();
         API.saveActivity(activity, this.state.user._id)
           .then(res => this.setState({ user: res.data }));
-          this.addActivities()
+        this.addActivities()
       }
     }
   }
@@ -295,55 +295,77 @@ class App extends Component {
   };
 
   //GOAL ACCOMPLISHMENT TRACKING
-    addActivities = () => {
-      let activitiesArray = this.state.user.activities;
-      let runDistance = 0;
-      let runDuration = 0;
-      let rideDistance = 0;
-      let rideDuration = 0;
-      let swimDistance = 0;
-      let swimDuration = 0;
-      
-      debugger;
-      activitiesArray.map((value, index) => {
-        if (value.sport === "Run") {
-          runDistance += parseInt(value.distance)
-          runDuration += parseInt(value.duration)
-        }
-        if (value.sport === "Ride") {
-          rideDistance += parseInt(value.distance)
-          rideDuration += parseInt(value.duration)
-        }
-        if (value.sport === "Swim") {
-          swimDistance += parseInt(value.distance)
-          swimDuration += parseInt(value.duration)
-        }
-      })
-      this.determineGoalAchieved(runDistance, runDuration, rideDistance, rideDuration, swimDistance, swimDuration);
-   }
+  addActivities = () => {
+    let activitiesArray = this.state.user.activities;
+    let runDistance = 0;
+    let runDuration = 0;
+    let rideDistance = 0;
+    let rideDuration = 0;
+    let swimDistance = 0;
+    let swimDuration = 0;
 
-   determineGoalAchieved = (runDistance, runDuration, rideDistance, rideDuration, swimDistance, swimDuration) => {
-      let goalsArray = this.state.user.goals;
+    debugger;
+    activitiesArray.map((value, index) => {
+      if (value.sport === "Run") {
+        runDistance += parseInt(value.distance)
+        runDuration += parseInt(value.duration)
+      }
+      if (value.sport === "Ride") {
+        rideDistance += parseInt(value.distance)
+        rideDuration += parseInt(value.duration)
+      }
+      if (value.sport === "Swim") {
+        swimDistance += parseInt(value.distance)
+        swimDuration += parseInt(value.duration)
+      }
+    })
+    this.determineGoalAchieved(runDistance, runDuration, rideDistance, rideDuration, swimDistance, swimDuration);
+  }
 
-      goalsArray.map((value, index) => {
-        if (value.sport === "Run") {
-          if (value.distance <= runDistance || value.duration <= runDuration) {
-            alert("You achieved a goal!")
-          }
+  determineGoalAchieved = (runDistance, runDuration, rideDistance, rideDuration, swimDistance, swimDuration) => {
+    let goalsArray = this.state.user.goals;
+
+    goalsArray.map((value, index) => {
+      console.log(value)
+      if (value.sport === "Run") {
+        if (value.goalType === "Distance" && value.goalQty <= runDistance && value.isAchieved === false) {
+          alert("You achieved a running distance goal!")
+          API.updateGoal(this.state.user._id)
+          .then(res => this.setState({ user: res.data }));
         }
-        if (value.sport === "Ride") {
-          if (value.distance <= rideDistance || value.duration <= rideDuration) {
-            alert("You achieved a goal!")
-          }
+        if (value.goalType === "Time" && value.gaolQty <= runDuration && value.isAchieved === false) {
+          alert("You achieved a running time goal!")
+          API.updateGoal(this.state.user._id)
+          .then(res => this.setState({ user: res.data }));
         }
-        if (value.sport === "Swim") {
-          if (value.distance <= swimDistance || value.duration <= swimDuration) {
-            alert("You achieved a goal!")
-          }
+      }
+      if (value.sport === "Ride") {
+        if (value.goalType === "Distance" && value.goalQty <= rideDistance && value.isAchieved === false) {
+          alert("You achieved a biking distance goal!")
+          API.updateGoal(this.state.user._id)
+          .then(res => this.setState({ user: res.data }));
         }
-      })
-   }
-    
+        if (value.goalType === "Time" && value.gaolQty <= rideDuration && value.isAchieved === false) {
+          alert("You achieved a biking time goal!")
+          API.updateGoal(this.state.user._id)
+          .then(res => this.setState({ user: res.data }));
+        }
+      }
+      if (value.sport === "Swim") {
+        if (value.goalType === "Distance" && value.goalQty <= swimDistance && value.isAchieved === false) {
+          alert("You achieved a swimming distance goal!")
+          API.updateGoal(this.state.user._id)
+          .then(res => this.setState({ user: res.data }));
+        }
+        if (value.goalType === "Time" && value.gaolQty <= swimDuration && value.isAchieved === false) {
+          alert("You achieved a swimming time goal!")
+          API.updateGoal(this.state.user._id)
+          .then(res => this.setState({ user: res.data }));
+        }
+      }
+    })
+  }
+
   render() {
     console.log("is logged in: " + this.state.loggedIn);
     return (

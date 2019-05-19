@@ -47,13 +47,10 @@ module.exports = {
   addActivity: function (req, res) {
     db.User
       .findOneAndUpdate({ _id: req.params.id }, { $push: { activities: [object(req.body)] } }, {new : true } )
-      // .findOneAndUpdate({ _id: req.params.id }, { $push: { activities: { $each: [[req.body.sport, req.body.distance, req.body.units, Date.now()]] } } })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   removeActivity: function (req, res) {
-    console.log("req.params.id:", req.params.id)
-    console.log("req.params.activityid:", parseInt(req.params.activityId))
     db.User
       .findOneAndUpdate({ _id: req.params.id }, { $pull: { activities: { "id" : parseInt(req.params.activityId) } } }, { safe: true, new: true })
       .then(dbModel => res.json(dbModel))
@@ -67,6 +64,14 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+
+  updateGoal: function (req, res) {
+    db.User
+      .findOneAndUpdate({ _id: req.params.id }, { $set: { isAchieved: true } })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+
   removeGoal: function (req, res) {
     db.User
       .findOneAndUpdate({ _id: req.params.id }, { $pull: { goals: { "id" : parseInt(req.params.goalId) } } }, { safe: true })
