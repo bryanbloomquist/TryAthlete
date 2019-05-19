@@ -383,11 +383,15 @@ class App extends Component {
                   handleClose={this.handleClose}
                   handleShow={this.handleShow} />} />
               <Route exact path="/goals" render={(props) => <Goals {...props} user={this.state.user} />} />
-              <Route exact path="/challenges" render={(props) => <Challenges {...props} user={this.state.user} />} />
+              <Route exact path="/challenges" render={(props) => <Challenges {...props} 
+                user={this.state.user}
+                friends={this.state.friends} />} />
               <Route exact path="/badges" render={(props) => <Badges {...props}
                 user={this.state.user}
                 badges={this.state.badges} />} />
-              <Route exact path="/social" render={(props) => <Social {...props} user={this.state.user} />} />
+              <Route exact path="/social" render={(props) => <Social {...props} 
+                user={this.state.user}
+                friends={this.state.friends} />} />
               <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state.user} delete={this.deleteActivity} />} />
               {/* <Route component={NoMatch} /> */}
             </Switch>
