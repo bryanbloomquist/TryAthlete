@@ -5,6 +5,16 @@ import Col from "react-bootstrap/Col";
 
 
 function SocialArrayMap(props) {
+    if (!props.friends) {
+        return null;
+    }
+    if (!props.friends.length) {
+        return <Row>
+                    <Col>
+                        <h5>You need to add some friends!</h5>
+                    </Col>
+                </Row>
+    } else {
         return(  
             props.friends.map((value, index) => {
                 return (
@@ -24,6 +34,7 @@ function SocialArrayMap(props) {
                 )
             })
         )}
+    }
     
 
 
