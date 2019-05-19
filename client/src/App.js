@@ -307,19 +307,23 @@ class App extends Component {
     let runTotal = Calculations.calcTotalRun(this.state.user.activities).toFixed(2);
     let swimTotal = Calculations.calcTotalSwim(this.state.user.activities).toFixed(2);
     console.log( "bikeTotal: " + bikeTotal + ", runTotal: " + runTotal + ", swimTotal: " + swimTotal );
-    if ( runTotal >= 26 ) { badgeEarned.push(1);};
-    if ( runTotal >= 277 ) { badgeEarned.push(2);};
-    if ( runTotal >= 1350 ) { badgeEarned.push(3);};
-    if ( runTotal >= 2680 ) { badgeEarned.push(4);};
-    if ( swimTotal >= 36960 ) { badgeEarned.push(5);};
-    if ( swimTotal >= 580800 ) { badgeEarned.push(6);};
-    if ( swimTotal >= 4132480 ) { badgeEarned.push(7);};
-    if ( swimTotal >= 7272320 ) { badgeEarned.push(8);};
-    if ( bikeTotal >= 1467 ) { badgeEarned.push(9);};
-    if ( bikeTotal >= 2170 ) { badgeEarned.push(10);};
-    if ( bikeTotal >= 2200 ) { badgeEarned.push(11);};
-    if ( bikeTotal >= 13170 ) { badgeEarned.push(12);};
-    console.log("badgeID earned: " + badgeEarned);
+    if ( runTotal >= 26 ) { badgeEarned.push( 1 );};
+    if ( runTotal >= 277 ) { badgeEarned.push( 2 );};
+    if ( runTotal >= 1350 ) { badgeEarned.push( 3 );};
+    if ( runTotal >= 2680 ) { badgeEarned.push( 4 );};
+    if ( swimTotal >= 36960 ) { badgeEarned.push( 5 );};
+    if ( swimTotal >= 580800 ) { badgeEarned.push( 6 );};
+    if ( swimTotal >= 4132480 ) { badgeEarned.push( 7 );};
+    if ( swimTotal >= 7272320 ) { badgeEarned.push( 8 );};
+    if ( bikeTotal >= 1467 ) { badgeEarned.push( 9 );};
+    if ( bikeTotal >= 2170 ) { badgeEarned.push( 10 );};
+    if ( bikeTotal >= 2200 ) { badgeEarned.push( 11 );};
+    if ( bikeTotal >= 13170 ) { badgeEarned.push( 12 );};
+    console.log( "badgeID earned: " + badgeEarned );
+    API.saveBadge(badgeEarned, this.state.user._id)
+      .then(( res ) => {
+        this.setState({ user: res.data })
+      })
   }
 
   render() {
