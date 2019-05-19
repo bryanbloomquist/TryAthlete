@@ -12,6 +12,7 @@ import Goals from "./components/Goals/Goals";
 import Challenges from "./components/Challenges/Challenges";
 import Badges from "./components/Badges/Badges";
 import Social from "./components/Social/Social";
+import Calculations from "./components/Profile/calculateTotals";
 import { GoogleLogin } from "react-google-login";
 // import NoMatch from "./components/NoMatch/NoMatch";
 import './App.css';
@@ -172,12 +173,12 @@ class App extends Component {
     console.log(event)
     if (sport === "Run") {
       let activity = Object.assign({}, this.state.runActivity);
-
       if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
       else {
         this.handleShow(); 
         API.saveActivity(activity, this.state.user._id)
-          .then(res => this.setState({ user: res.data }));
+          .then(res => this.setState({ user: res.data }))
+          .then(( callback ) => this.calcBadges() );
       }
     }
     if (sport === "Ride") {
@@ -186,7 +187,8 @@ class App extends Component {
       else {
         this.handleShow(); 
         API.saveActivity(activity, this.state.user._id)
-          .then(res => this.setState({ user: res.data }));
+          .then(res => this.setState({ user: res.data }))
+          .then(( callback ) => this.calcBadges() );
       }
     }
     if (sport === "Swim") {
@@ -195,7 +197,8 @@ class App extends Component {
       else {
         this.handleShow(); 
         API.saveActivity(activity, this.state.user._id)
-          .then(res => this.setState({ user: res.data }));
+          .then(res => this.setState({ user: res.data }))
+          .then(( callback ) => this.calcBadges() );
       }
     }
 
@@ -297,9 +300,32 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
+  // determine if a badge has been earned
+  calcBadges = () => {
+    let badgeEarned = [];
+    let bikeTotal = Calculations.calcTotalBike(this.state.user.activities).toFixed(2);
+    let runTotal = Calculations.calcTotalRun(this.state.user.activities).toFixed(2);
+    let swimTotal = Calculations.calcTotalSwim(this.state.user.activities).toFixed(2);
+    console.log( "bikeTotal: " + bikeTotal + ", runTotal: " + runTotal + ", swimTotal: " + swimTotal );
+    if ( runTotal >= 26 ) { badgeEarned.push(1);};
+    if ( runTotal >= 277 ) { badgeEarned.push(2);};
+    if ( runTotal >= 1350 ) { badgeEarned.push(3);};
+    if ( runTotal >= 2680 ) { badgeEarned.push(4);};
+    if ( swimTotal >= 36960 ) { badgeEarned.push(5);};
+    if ( swimTotal >= 580800 ) { badgeEarned.push(6);};
+    if ( swimTotal >= 4132480 ) { badgeEarned.push(7);};
+    if ( swimTotal >= 7272320 ) { badgeEarned.push(8);};
+    if ( bikeTotal >= 1467 ) { badgeEarned.push(9);};
+    if ( bikeTotal >= 2170 ) { badgeEarned.push(10);};
+    if ( bikeTotal >= 2200 ) { badgeEarned.push(11);};
+    if ( bikeTotal >= 13170 ) { badgeEarned.push(12);};
+    console.log("badgeID earned: " + badgeEarned);
+  }
+
   render() {
     console.log("is logged in: " + this.state.loggedIn);
-    console.log()
+    console.log("state of the user:");
+    console.log(this.state.user);
     return (
       <Router>
         {this.state.loggedIn ? (
