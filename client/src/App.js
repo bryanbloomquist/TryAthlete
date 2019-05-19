@@ -392,6 +392,26 @@ class App extends Component {
             <Wrapper>
               <Switch>
                 <Route exact path="/" render={(props) => <Home {...props} user={this.state.user} />} />
+<<<<<<< HEAD
+=======
+                <Route exact path="/dashboard" render={(props) =>
+                  <Dashboard {...props} {...this.state}
+                    user={this.state.user}
+                    onLogClick={this.onLogClick}
+                    onDistanceChange={this.onDistanceChange}
+                    onUnitChange={this.onUnitChange}
+                    onDurationChange={this.onDurationChange}
+                    handleClose={this.handleClose}
+                    handleShow={this.handleShow} />} />
+                <Route exact path="/goals" render={(props) => <Goals {...props} user={this.state.user} />} />
+                <Route exact path="/challenges" render={(props) => <Challenges {...props} user={this.state.user} friends={this.state.friends}/>} />
+                <Route exact path="/badges" render={(props) => <Badges {...props}
+                  user={this.state.user}
+                  badges={this.state.badges} />} />
+                <Route exact path="/social" render={(props) => <Social {...props} user={this.state.user} friends={this.state.friends}/>} />
+                <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state.user} delete={this.deleteActivity} />} />
+                {/* <Route component={NoMatch} /> */}
+>>>>>>> 471690f5c43e01fa8b53aa0a1aba023daebc9517
               </Switch>
               <Row className="justify-content-center">
                 <Col xs="auto">
