@@ -12,6 +12,7 @@ import Goals from "./components/Goals/Goals";
 import Challenges from "./components/Challenges/Challenges";
 import Badges from "./components/Badges/Badges";
 import Social from "./components/Social/Social";
+import Calculations from "./components/Profile/calculateTotals";
 import { GoogleLogin } from "react-google-login";
 // import NoMatch from "./components/NoMatch/NoMatch";
 import './App.css';
@@ -22,6 +23,7 @@ class App extends Component {
     user: {},
     badges: {},
     loggedIn: false,
+    friends: [],
     runActivity: {
       sport: "Run",
       distance: 0,
@@ -93,13 +95,45 @@ class App extends Component {
           this.setState({ user: res.data, loggedIn: true });
           console.log(this.state)
           // this.setRedirect()
+          this.getUserFriends();
         })
     } else {
       console.log("no user")
     }
   }
 
-  //GOOGLE LOGIN
+  getUserFriends = () => {
+    let getFriendsPromises = [];
+    for (let i = 0; i < this.state.user.friends.length; i++) {
+      console.log("Loading Friends List into State: ", this.state.user.friends[i]);
+      getFriendsPromises.push(this.userNameLookup(this.state.user.friends[i]));
+    }
+    Promise.all(getFriendsPromises).then((values) => {
+      console.log(values);
+      console.log("got here");
+      this.setState({
+        friends: values
+      });
+    });
+  }
+
+  userNameLookup = (id) => {
+    console.log("Friend ID Lookup: ", id);
+    return API.getUser(id)
+      .then(res => {
+        console.log("Friend Name Lookup: ", res.data);
+        let friendData = {
+          id: res.data._id,
+          givenName: res.data.givenName,
+          familyName: res.data.familyName,
+          imageUrl: res.data.imageUrl,
+          email: res.data.email
+        }
+        return friendData;
+      })
+      .catch(err => console.log(err));
+  };
+
   responseGoogleSuccess = (response) => {
     //if the user isn't already logged in from local storage
     if (this.state.loggedIn === false) {
@@ -153,6 +187,7 @@ class App extends Component {
             })
             .catch((err) => console.log((err)))
         }
+        this.getUserFriends();
       })
   }
 
@@ -177,7 +212,8 @@ class App extends Component {
         this.handleShow();
         API.saveActivity(activity, this.state.user._id)
           .then(res => this.setState({ user: res.data }))
-          .then((callback) => this.addActivities());
+          .then((callback) => this.addActivities())
+          .then(( callback ) => this.calcBadges() );
       }
     }
     if (sport === "Ride") {
@@ -186,8 +222,8 @@ class App extends Component {
       else {
         this.handleShow();
         API.saveActivity(activity, this.state.user._id)
-          .then(res => this.setState({ user: res.data }));
-        this.addActivities()
+          .then(res => this.setState({ user: res.data }))
+          .then(( callback ) => this.calcBadges() );
       }
     }
     if (sport === "Swim") {
@@ -196,8 +232,8 @@ class App extends Component {
       else {
         this.handleShow();
         API.saveActivity(activity, this.state.user._id)
-          .then(res => this.setState({ user: res.data }));
-        this.addActivities()
+          .then(res => this.setState({ user: res.data }))
+          .then(( callback ) => this.calcBadges() );
       }
     }
   }
@@ -364,10 +400,36 @@ class App extends Component {
         }
       }
     })
+  // determine if a badge has been earned
+  calcBadges = () => {
+    let badgeEarned = [];
+    let bikeTotal = Calculations.calcTotalBike(this.state.user.activities).toFixed(2);
+    let runTotal = Calculations.calcTotalRun(this.state.user.activities).toFixed(2);
+    let swimTotal = Calculations.calcTotalSwim(this.state.user.activities).toFixed(2);
+    console.log( "bikeTotal: " + bikeTotal + ", runTotal: " + runTotal + ", swimTotal: " + swimTotal );
+    if ( runTotal >= 26 ) { badgeEarned.push( 1 );};
+    if ( runTotal >= 277 ) { badgeEarned.push( 2 );};
+    if ( runTotal >= 1350 ) { badgeEarned.push( 3 );};
+    if ( runTotal >= 2680 ) { badgeEarned.push( 4 );};
+    if ( swimTotal >= 36960 ) { badgeEarned.push( 5 );};
+    if ( swimTotal >= 580800 ) { badgeEarned.push( 6 );};
+    if ( swimTotal >= 4132480 ) { badgeEarned.push( 7 );};
+    if ( swimTotal >= 7272320 ) { badgeEarned.push( 8 );};
+    if ( bikeTotal >= 1467 ) { badgeEarned.push( 9 );};
+    if ( bikeTotal >= 2170 ) { badgeEarned.push( 10 );};
+    if ( bikeTotal >= 2200 ) { badgeEarned.push( 11 );};
+    if ( bikeTotal >= 13170 ) { badgeEarned.push( 12 );};
+    console.log( "badgeID earned: " + badgeEarned );
+    API.saveBadge(badgeEarned, this.state.user._id)
+      .then(( res ) => {
+        this.setState({ user: res.data })
+      })
   }
 
   render() {
     console.log("is logged in: " + this.state.loggedIn);
+    console.log("state of the user:");
+    console.log(this.state.user);
     return (
       <Router>
         {this.state.loggedIn ? (

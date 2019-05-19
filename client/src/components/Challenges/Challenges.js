@@ -14,7 +14,6 @@ class Challenges extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            friends: [],
             newChallenge:
             {
                 sport: "Run",
@@ -27,30 +26,6 @@ class Challenges extends Component {
         }
     }
 
-    componentDidMount() {
-        let getFriendsPromises = [];
-        for (let i = 0; i < this.props.user.friends.length; i++) {
-            console.log("Loading Friends List into State: ", this.props.user.friends[i]);
-            getFriendsPromises.push(this.userNameLookup(this.props.user.friends[i]));
-        }
-        Promise.all(getFriendsPromises).then((values) => {
-            console.log(values);
-            console.log("got here");
-            this.setState({
-                friends: values
-            });
-        });
-    };
-
-    userNameLookup = (id) => {
-        console.log("Friend ID Lookup: ", id);
-        return API.getUser(id)
-            .then(res => {
-                console.log("Friend Name Lookup: ", res.data);
-                return res.data;
-            })
-            .catch(err => console.log(err));
-    };
 
     onChallengeChange = (event) => {
         const { name, value } = event.target;
@@ -168,7 +143,7 @@ class Challenges extends Component {
     });
 
 
-    render() {
+    render(props) {
         console.log("friends State: ", this.state.friends)
         return (
             <Container fluid className="pb-5">
@@ -182,7 +157,8 @@ class Challenges extends Component {
                         <Card className="card-wide text-dark bg-light">
                             <ChallengeForm
                                 user={this.props.user}
-                                friends={this.state.friends}
+                                // friends={this.state.friends}
+                                friends={this.props.friends}
                                 onChallengeChange={this.onChallengeChange}
                                 onChallengeSubmit={this.onChallengeSubmit}
                                 newChallenge={this.state.newChallenge}

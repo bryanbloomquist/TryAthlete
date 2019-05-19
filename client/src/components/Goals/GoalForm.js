@@ -34,7 +34,6 @@ function GoalForm(props) {
                         <option>mi</option>
                         <option>km</option>
                         <option>minutes</option>
-                        <option>hours</option>
                         <option>days</option>
                         <option>times</option>
                         <option>meters</option>
