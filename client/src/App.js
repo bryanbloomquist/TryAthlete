@@ -304,7 +304,6 @@ class App extends Component {
     let swimDistance = 0;
     let swimDuration = 0;
 
-    debugger;
     activitiesArray.map((value, index) => {
       if (value.sport === "Run") {
         runDistance += parseInt(value.distance)
@@ -330,36 +329,37 @@ class App extends Component {
       if (value.sport === "Run") {
         if (value.goalType === "Distance" && value.goalQty <= runDistance && value.isAchieved === false) {
           alert("You achieved a running distance goal!")
-          API.updateGoal(this.state.user._id)
+          console.log(value.id)
+          API.updateGoal(true, this.state.user._id, value.id)
           .then(res => this.setState({ user: res.data }));
         }
         if (value.goalType === "Time" && value.gaolQty <= runDuration && value.isAchieved === false) {
           alert("You achieved a running time goal!")
-          API.updateGoal(this.state.user._id)
+          API.updateGoal(true, this.state.user._id)
           .then(res => this.setState({ user: res.data }));
         }
       }
       if (value.sport === "Ride") {
         if (value.goalType === "Distance" && value.goalQty <= rideDistance && value.isAchieved === false) {
           alert("You achieved a biking distance goal!")
-          API.updateGoal(this.state.user._id)
+          API.updateGoal(true, this.state.user._id)
           .then(res => this.setState({ user: res.data }));
         }
         if (value.goalType === "Time" && value.gaolQty <= rideDuration && value.isAchieved === false) {
           alert("You achieved a biking time goal!")
-          API.updateGoal(this.state.user._id)
+          API.updateGoal(true, this.state.user._id)
           .then(res => this.setState({ user: res.data }));
         }
       }
       if (value.sport === "Swim") {
         if (value.goalType === "Distance" && value.goalQty <= swimDistance && value.isAchieved === false) {
           alert("You achieved a swimming distance goal!")
-          API.updateGoal(this.state.user._id)
+          API.updateGoal(true, this.state.user._id)
           .then(res => this.setState({ user: res.data }));
         }
         if (value.goalType === "Time" && value.gaolQty <= swimDuration && value.isAchieved === false) {
           alert("You achieved a swimming time goal!")
-          API.updateGoal(this.state.user._id)
+          API.updateGoal(true, this.state.user._id)
           .then(res => this.setState({ user: res.data }));
         }
       }
