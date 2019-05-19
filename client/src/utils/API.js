@@ -30,6 +30,10 @@ export default {
     getBadges: function () {
         return axios.get("/api/badges");
     },
+    // adds badges earned to users badge array
+    saveBadge: function (value, userId) {
+        return axios.put(`/api/users/${userId}/badges`, value)
+    },
     
 
     //--------------------------------ACTIVITIES------------------------------
