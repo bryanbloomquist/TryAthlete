@@ -31,7 +31,7 @@ function NavbarArea(props) {
                         <Link style={style} to="/goals">Goals</Link>
                         <Link style={style} to="/challenges">Challenges</Link>
                         <Link style={style} to="/badges">Badges</Link>
-                        <Link style={style} to="/social">Social</Link>
+                        <Link style={style} to="/social">Friends</Link>
                     </NavDropdown>
                 </Nav>
                 <Form inline className="searchBar">
