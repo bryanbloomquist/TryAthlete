@@ -309,8 +309,6 @@ class App extends Component {
         if (value.sport === "Run") {
           runDistance += parseInt(value.distance)
           runDuration += parseInt(value.duration)
-          console.log(runDistance)
-          console.log(runDuration)
         }
         if (value.sport === "Ride") {
           rideDistance += parseInt(value.distance)
@@ -321,13 +319,29 @@ class App extends Component {
           swimDuration += parseInt(value.duration)
         }
       })
-      this.determineGoalAchieved();
+      this.determineGoalAchieved(runDistance, runDuration, rideDistance, rideDuration, swimDistance, swimDuration);
    }
 
    determineGoalAchieved = (runDistance, runDuration, rideDistance, rideDuration, swimDistance, swimDuration) => {
-     console.log(runDistance)
-     console.log(runDuration)
       let goalsArray = this.state.user.goals;
+
+      goalsArray.map((value, index) => {
+        if (value.sport === "Run") {
+          if (value.distance <= runDistance || value.duration <= runDuration) {
+            alert("You achieved a goal!")
+          }
+        }
+        if (value.sport === "Ride") {
+          if (value.distance <= rideDistance || value.duration <= rideDuration) {
+            alert("You achieved a goal!")
+          }
+        }
+        if (value.sport === "Swim") {
+          if (value.distance <= swimDistance || value.duration <= swimDuration) {
+            alert("You achieved a goal!")
+          }
+        }
+      })
    }
     
   render() {
