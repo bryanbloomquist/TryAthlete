@@ -44,22 +44,21 @@ class App extends Component {
     redirect: false
   }
 
+  //MODAL CONTROLS
   constructor(props, context) {
     super(props, context);
 
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
   }
-
   handleClose() {
     this.setState({ show: false });
   }
-
   handleShow() {
     this.setState({ show: true });
   }
 
-  //redirect logic
+  //REDIRECT LOGIC
   setRedirect = () => {
     this.setState({
       redirect: true
@@ -67,21 +66,21 @@ class App extends Component {
   }
   renderRedirect = () => {
     if (this.state.redirect) {
-      this.setState({redirect: false});
-      return <Redirect to='/dashboard'/>
+      this.setState({ redirect: false });
+      return <Redirect to='/dashboard' />
     }
   }
 
   componentDidMount() {
 
-    //load badges
+    //LOADING BADGES
     API.getBadges()
       .then(res => {
         this.setState({ badges: res.data });
         console.log(this.state.badges);
       })
 
-    //check local storage
+    //CHECK FOR USER IN LOCAL STORAGE
     let localStorageUser = JSON.parse(window.localStorage.getItem("user"))
 
     //if there is a user saved to the local storage
@@ -100,6 +99,7 @@ class App extends Component {
     }
   }
 
+  //GOOGLE LOGIN
   responseGoogleSuccess = (response) => {
     //if the user isn't already logged in from local storage
     if (this.state.loggedIn === false) {
@@ -167,44 +167,44 @@ class App extends Component {
     console.log("logged in = " + this.state.loggedIn);
   }
 
-  //logic for activity card logging
+  //ACTIVITY CARD LOGGING TO DB
   onLogClick = (event, sport) => {
     console.log(event)
     if (sport === "Run") {
       let activity = Object.assign({}, this.state.runActivity);
-
       if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
       else {
-        this.handleShow(); 
+        this.handleShow();
         API.saveActivity(activity, this.state.user._id)
-          .then(res => this.setState({ user: res.data }));
+        .then(res => this.setState({ user: res.data }))
+        .then((callback) => this.addActivities());
       }
     }
     if (sport === "Ride") {
       let activity = Object.assign({}, this.state.rideActivity);
       if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
       else {
-        this.handleShow(); 
+        this.handleShow();
         API.saveActivity(activity, this.state.user._id)
           .then(res => this.setState({ user: res.data }));
+          this.addActivities()
       }
     }
     if (sport === "Swim") {
       let activity = Object.assign({}, this.state.swimActivity);
       if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
       else {
-        this.handleShow(); 
+        this.handleShow();
         API.saveActivity(activity, this.state.user._id)
           .then(res => this.setState({ user: res.data }));
+          this.addActivities()
       }
     }
-
   }
 
+  //ON CHANGE EVENT HANDLERS FOR ACTIVITY CARD
   onDistanceChange = (event) => {
     const { name, value } = event.target;
-    console.log(value)
-
     if (name === "Run") {
       this.setState(prevState => ({
         runActivity: {
@@ -233,7 +233,6 @@ class App extends Component {
 
   onUnitChange = (event) => {
     const { name, value } = event.target;
-
     if (name === "Run") {
       this.setState(prevState => ({
         runActivity: {
@@ -260,10 +259,8 @@ class App extends Component {
     }
   }
 
-  //NEW
   onDurationChange = (event) => {
     const { name, value } = event.target;
-
     if (name === "Run") {
       this.setState(prevState => ({
         runActivity: {
@@ -290,16 +287,51 @@ class App extends Component {
     }
   }
 
-  // delete our activity
-  deleteActivity = id => {
+  //DELETE AN ACTIVITY
+  deleteActivity = (id) => {
     API.deleteActivity(this.state.user._id, id)
       .then(res => this.setState({ user: res.data }))
       .catch(err => console.log(err));
   };
 
+  //GOAL ACCOMPLISHMENT TRACKING
+    addActivities = () => {
+      let activitiesArray = this.state.user.activities;
+      let runDistance = 0;
+      let runDuration = 0;
+      let rideDistance = 0;
+      let rideDuration = 0;
+      let swimDistance = 0;
+      let swimDuration = 0;
+      
+      debugger;
+      activitiesArray.map((value, index) => {
+        if (value.sport === "Run") {
+          runDistance += parseInt(value.distance)
+          runDuration += parseInt(value.duration)
+          console.log(runDistance)
+          console.log(runDuration)
+        }
+        if (value.sport === "Ride") {
+          rideDistance += parseInt(value.distance)
+          rideDuration += parseInt(value.duration)
+        }
+        if (value.sport === "Swim") {
+          swimDistance += parseInt(value.distance)
+          swimDuration += parseInt(value.duration)
+        }
+      })
+      this.determineGoalAchieved();
+   }
+
+   determineGoalAchieved = (runDistance, runDuration, rideDistance, rideDuration, swimDistance, swimDuration) => {
+     console.log(runDistance)
+     console.log(runDuration)
+      let goalsArray = this.state.user.goals;
+   }
+    
   render() {
     console.log("is logged in: " + this.state.loggedIn);
-    console.log()
     return (
       <Router>
         {this.state.loggedIn ? (
