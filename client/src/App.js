@@ -45,9 +45,11 @@ class App extends Component {
     redirect: false
   }
 
+  //constructor to handle the model functions
   constructor(props, context) {
     super(props, context);
 
+    //models 
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
   }
@@ -66,6 +68,8 @@ class App extends Component {
       redirect: true
     })
   }
+
+  //redirect location in redner method
   renderRedirect = () => {
     if (this.state.redirect) {
       this.setState({ redirect: false });
@@ -87,14 +91,14 @@ class App extends Component {
 
     //if there is a user saved to the local storage
     if (localStorageUser !== null) {
-      //set the user and log in
 
       //get the most up-to-data user information
       API.getUser(localStorageUser._id)
         .then(res => {
+          //set the user state to the API-called data
           this.setState({ user: res.data, loggedIn: true });
-          console.log(this.state)
          
+          //populate user friends list
           this.getUserFriends();
         })
     } else {
