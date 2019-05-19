@@ -43,11 +43,12 @@ router
   .route("/:id/goals")
   .get(usersController.findById)
   .put(usersController.addGoal)
+  .put(usersController.updateGoal)
   .delete(usersController.remove);
 
 router
   .route("/:id/goals/:goalId")
-  .put(usersController.updateGoal)
+  
   .delete(usersController.removeGoal)
 
 // //badges

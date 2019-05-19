@@ -50,7 +50,7 @@ export default {
     },
 
     updateGoal: function (goalData, userId, goalId) {
-        return axios.put(`api/users/${userId}/goals/${goalId}`, goalData);
+        return axios.put(`api/users/${userId}/goals/`, goalData);
     },
 
     deleteGoal: function (userId, goalId) {

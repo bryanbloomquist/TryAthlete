@@ -1,11 +1,11 @@
 const db = require("../models");
 
-const object = function(object) {
-  let date = Date.now();
-  object.timestamp = date
-  object.id = date
-  return(object)
-}
+// const object = function(object) {
+//   let date = Date.now();
+//   object.timestamp = date
+//   object.id = date
+//   return(object)
+// }
 
 // Defining methods for the UsersController
 module.exports = {
@@ -46,7 +46,7 @@ module.exports = {
   //------------------------ACTIVITIES---------------------
   addActivity: function (req, res) {
     db.User
-      .findOneAndUpdate({ _id: req.params.id }, { $push: { activities: [object(req.body)] } }, {new : true } )
+      .findOneAndUpdate({ _id: req.params.id }, { $push: { activities: [req.body] } }, {new : true } )
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -60,14 +60,14 @@ module.exports = {
   //------------------------GOALS---------------------
   addGoal: function (req, res) {
     db.User
-      .findOneAndUpdate({ _id: req.params.id }, { $push: { goals: [object(req.body)] } }, { new: true })
+      .findOneAndUpdate({ _id: req.params.id }, { $push: { goals: [req.body] } }, { new: true })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
 
   updateGoal: function (req, res) {
     db.User
-      .updateOne({ _id: req.params.id, goals: { $elemMatch: {id: req.params.goalId} } }, { $set: { "goals.$.isAchieved" : true } } )
+      .findOneAndUpdate({ _id: req.params.id}, { $set: { "goals.$[elem].isAchieved" : true } }, { arrayFilters: [ { "elem.id" : req.params.goalId} ] }
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
