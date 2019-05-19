@@ -22,6 +22,7 @@ class App extends Component {
     user: {},
     badges: {},
     loggedIn: false,
+    friendSearch:"",
     friends: [],
     runActivity: {
       sport: "Run",
@@ -332,6 +333,36 @@ class App extends Component {
         .catch(err => console.log(err));
     };
 
+    onFriendSearchChange = (event) => {
+      const { name, value } = event.target;
+        this.setState({
+          friendSearch: value
+        })
+    
+    }
+
+    onFriendSearchSubmit = (event) => {
+      API.getUsers()
+        .then(res => {
+          let searchUsers = res.data;
+          searchUsers.forEach(searchUser => {
+            if (searchUser.email === this.state.friendSearch){
+              let friendData = {
+                friends: searchUser._id
+              }
+
+              API.addFriend(friendData,this.state.user._id)
+                .then(
+                  console.log("Added " +searchUser.email+ " to friends list")
+
+                )
+            }
+
+          })
+        })
+    }
+
+
     render() {
       console.log("is logged in: " + this.state.loggedIn);
       console.log()
@@ -357,7 +388,7 @@ class App extends Component {
                 <Route exact path="/badges" render={(props) => <Badges {...props}
                   user={this.state.user}
                   badges={this.state.badges} />} />
-                <Route exact path="/social" render={(props) => <Social {...props} user={this.state.user} friends={this.state.friends}/>} />
+                <Route exact path="/social" render={(props) => <Social {...props} user={this.state.user} friends={this.state.friends} onFriendSearchChange={this.onFriendSearchChange} onFriendSearchSubmit={this.onFriendSearchSubmit}/>} />
                 <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state.user} delete={this.deleteActivity} />} />
                 {/* <Route component={NoMatch} /> */}
               </Switch>

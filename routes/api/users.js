@@ -30,12 +30,11 @@ router
 router
   .route("/:id/friends")
   .get(usersController.findById)
-  .put(usersController.addActivity)
-  .delete(usersController.remove);
+  .put(usersController.addFriend)
 
 router
   .route("/:id/friends/:friendId")
-  .get(usersController.removeActivity)
+  .delete(usersController.removeFriend)
 
 // //goals
 
