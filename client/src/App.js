@@ -221,7 +221,7 @@ class App extends Component {
         whichSport = Object.assign({}, this.state.swimActivity);
         break;
       default:
-        whichSport = Object.assign({}, this.state.runActivity);
+        whichSport = Object.assign({}, this.state);
     }
     if (parseFloat(whichSport.distance) === 0 || parseFloat(whichSport.duration) === 0) { alert("Please enter a value greater than 0") }
     else {
