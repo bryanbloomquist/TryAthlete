@@ -156,52 +156,55 @@ class Goals extends Component {
                                 <CurGoalsCard>
                                     <ListGroup variant="flush">
                                         {this.state.user.goals.map(goal => {
-                                            if(this.state.user.goals.isAchieved === true)
-                                            return (
-                                                <ListGroup.Item key={goal.id} className="bg-light">
-                                                    <Row>
-                                                        <Col sm={9}>
-                                                            {goal.name}
-                                                            <div className="progress-bar bg-success mt-2" style={{ width: goal.goalProgress }}> </div>
-                                                        </Col>
-                                                        <Col sm={3}>
-                                                            <DeleteGoalBtn className="ml-5"
-                                                                onClick={() => this.onGoalDelete(goal.id)}
-                                                                btnname="Delete" />
-                                                        </Col>
-                                                    </Row>
-                                                </ListGroup.Item>
-                                            );
+                                            console.log(this.state.user.goals)
+                                            if (goal.isAchieved === false)
+                                                return (
+                                                    <ListGroup.Item key={goal.id} className="bg-light">
+                                                        <Row>
+                                                            <Col sm={9}>
+                                                                {goal.name}
+                                                                <div className="progress-bar bg-success mt-2" style={{ width: goal.goalProgress }}> </div>
+                                                            </Col>
+                                                            <Col sm={3}>
+                                                                <DeleteGoalBtn className="ml-5"
+                                                                    onClick={() => this.onGoalDelete(goal.id)}
+                                                                    btnname="Delete" />
+                                                            </Col>
+                                                        </Row>
+                                                    </ListGroup.Item>
+                                                );
                                         })}
                                     </ListGroup>
                                 </CurGoalsCard>
                             </Col>
                         </Row>
                         <Row>
-                            {/* <Col>
+                            <Col>
                                 <AchievedGoalsCard>
                                     <ListGroup variant="flush">
                                         {this.state.user.goals.map(goal => {
-                                            if(this.state.user.goals.isAchieved === true)
-                                            return (
-                                                <ListGroup.Item key={goal.id} className="bg-light">
-                                                    <Row>
-                                                        <Col sm={9}>
-                                                            {goal.name}
-                                                            <div className="progress-bar bg-success mt-2" style={{ width: goal.goalProgress }}> </div>
-                                                        </Col>
-                                                        <Col sm={3}>
-                                                            <DeleteGoalBtn className="ml-5"
-                                                                onClick={() => this.onGoalDelete(goal.id)}
-                                                                btnname="Delete" />
-                                                        </Col>
-                                                    </Row>
-                                                </ListGroup.Item>
-                                            );
+                                            if (goal.isAchieved === true)
+                                                return (
+                                                    <ListGroup.Item key={goal.id} className="bg-light">
+                                                        <Row>
+                                                            <Col sm={9}>
+                                                                {goal.name}
+                                                                <div className="progress-bar bg-success mt-2" style={{ width: goal.goalProgress }}> </div>
+                                                            </Col>
+                                                            <Col sm={3}>
+                                                                <DeleteGoalBtn className="ml-5"
+                                                                    onClick={() => this.onGoalDelete(goal.id)}
+                                                                    btnname="Delete" />
+                                                            </Col>
+                                                        </Row>
+                                                    </ListGroup.Item>
+                                                );
                                         })}
                                     </ListGroup>
                                 </AchievedGoalsCard>
-                            </Col> */}
+                            </Col>
+                        </Row>
+                        <Row>
                             <Col>
                                 <LifetimeAchievedGoalsCard
                                     userGoals={this.state.user.goals}
