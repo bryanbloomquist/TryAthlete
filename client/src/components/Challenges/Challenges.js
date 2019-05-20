@@ -7,7 +7,7 @@ import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import AchievedChallengesCard from "./AcheivedChallengesCard";
 import ListGroup from "react-bootstrap/ListGroup";
-import DeleteChalBtn from "./DeleteChalBtn";
+import DeleteBtn from "./DeleteChalBtn";
 import API from "../../utils/API";
 
 class Challenges extends Component {
@@ -34,7 +34,6 @@ class Challenges extends Component {
             case "fChallenged":
                 API.getUser(value)
                     .then(res => {
-                        console.log(res);
                         this.setState(prevState => ({
                             newChallenge:
                             {
@@ -198,7 +197,7 @@ class Challenges extends Component {
                                                             <div className="progress-bar bg-success mt-2" style={{ width: challenge.challengeProgress }}> </div>
                                                         </Col>
                                                         <Col sm={3}>
-                                                            <DeleteChalBtn className="ml-5"
+                                                            <DeleteBtn className="ml-5"
                                                                 onClick={() => this.onChallengeDelete(challenge.id)}
                                                                 btnname="Decline"
                                                             />

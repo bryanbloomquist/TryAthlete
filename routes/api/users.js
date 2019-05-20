@@ -23,18 +23,19 @@ router
 
 router
   .route("/:id/activities/:activityId")
-  .delete(usersController.removeActivity)
+  .get(usersController.removeActivity)
 
 // //friends
 
 router
   .route("/:id/friends")
   .get(usersController.findById)
-  .put(usersController.addFriend)
+  .put(usersController.addActivity)
+  .delete(usersController.remove);
 
 router
   .route("/:id/friends/:friendId")
-  .delete(usersController.removeFriend)
+  .get(usersController.removeActivity)
 
 // //goals
 
@@ -69,6 +70,6 @@ router
 
 router
   .route("/:id/challenges/:challengeId")
-  .delete(usersController.removeChallenge)
+  .get(usersController.removeChallenge)
 
 module.exports = router;

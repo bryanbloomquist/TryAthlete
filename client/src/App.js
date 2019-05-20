@@ -23,7 +23,6 @@ class App extends Component {
     user: {},
     badges: {},
     loggedIn: false,
-    friendSearch:"",
     friends: [],
     runActivity: {
       sport: "Run",
@@ -447,6 +446,7 @@ class App extends Component {
       }
     })
   }
+<<<<<<< HEAD
   
     onFriendSearchChange = (event) => {
       const { name, value } = event.target;
@@ -479,6 +479,8 @@ class App extends Component {
   
 =======
 >>>>>>> parent of 88cf9ac... Merge pull request #101 from bryanbloomquist/Scott-Dashboard-Fix
+=======
+>>>>>>> parent of 8513130... Merge branch 'master' into Scott-Dashboard-Fix
   // determine if a badge has been earned
   calcBadges = () => {
     let badgeEarned = [];
@@ -505,9 +507,13 @@ class App extends Component {
       })
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> parent of 88cf9ac... Merge pull request #101 from bryanbloomquist/Scott-Dashboard-Fix
+=======
+
+>>>>>>> parent of 8513130... Merge branch 'master' into Scott-Dashboard-Fix
   render() {
     console.log("is logged in: " + this.state.loggedIn);
     console.log("state of the user:");
@@ -570,6 +576,7 @@ class App extends Component {
         ) : (
             <Wrapper>
               <Switch>
+                <Route exact path="/" render={(props) => <Home {...props} user={this.state.user} />} />
               </Switch>
               <Row className="justify-content-center">
                 <Col xs="auto">

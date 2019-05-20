@@ -25,7 +25,7 @@ function ChallengeForm(props) {
                 <Col sm={6}>
                     <Form.Control name="sport" className="my-2" as="select" onChange={props.onChallengeChange} defaultValue="Run">
                         <option>Run</option>
-                        <option>Ride</option>
+                        <option>Bike</option>
                         <option>Swim</option>
                     </Form.Control>
                 </Col>
