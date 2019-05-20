@@ -12,7 +12,7 @@ function GoalForm(props) {
                 <Col sm={6}>
                     <Form.Control name="sport" className="my-2" as="select" onChange={props.onGoalChange} defaultValue="Run">
                         <option>Run</option>
-                        <option>Bike</option>
+                        <option>Ride</option>
                         <option>Swim</option>
                     </Form.Control>
                 </Col>

@@ -7,7 +7,7 @@ import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import AchievedGoalsCard from "./AcheivedGoalsCard";
 import ListGroup from "react-bootstrap/ListGroup";
-import DeleteBtn from "./DeleteGoalBtn";
+import DeleteGoalBtn from "./DeleteGoalBtn";
 import API from "../../utils/API";
 
 class Goals extends Component {
@@ -163,7 +163,7 @@ class Goals extends Component {
                                                         <div className="progress-bar bg-success mt-2" style={{ width: goal.goalProgress }}> </div>
                                                     </Col>
                                                     <Col sm={3}>
-                                                        <DeleteBtn className="ml-5" 
+                                                        <DeleteGoalBtn className="ml-5" 
                                                             onClick = {() => this.onGoalDelete(goal.id)} 
                                                             btnname="Delete"/>
                                                     </Col>
