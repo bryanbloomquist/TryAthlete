@@ -517,6 +517,7 @@ class App extends Component {
         ) : (
             <Wrapper>
               <Switch>
+              <Route exact path="/" render={(props) => <Home {...props} user={this.state.user} />} />
               </Switch>
               <Row className="justify-content-center">
                 <Col xs="auto">
