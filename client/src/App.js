@@ -348,6 +348,8 @@ class App extends Component {
       if (value.sport === "Swim") {
         swimDistance += parseFloat(value.distance)
         swimDuration += parseFloat(value.duration)
+      } else {
+        return(console.log("not an activity"));
       }
     })
     this.determineGoalAchieved(runDistance, runDuration, rideDistance, rideDuration, swimDistance, swimDuration);
