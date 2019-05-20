@@ -28,6 +28,7 @@ function ArrayDisplay(props) {
             </ul>
         )
     }
+<<<<<<< HEAD
     if (props.card === "social") {
         console.log(props)
         return (
@@ -39,6 +40,8 @@ function ArrayDisplay(props) {
             </ul>
         )
     }
+=======
+>>>>>>> parent of 88cf9ac... Merge pull request #101 from bryanbloomquist/Scott-Dashboard-Fix
 }
 
 export default ArrayDisplay;

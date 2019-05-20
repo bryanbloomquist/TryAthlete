@@ -55,14 +55,16 @@ class App extends Component {
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
   }
+
   handleClose() {
     this.setState({ show: false });
   }
+
   handleShow() {
     this.setState({ show: true });
   }
 
-  //REDIRECT LOGIC
+  //redirect logic
   setRedirect = () => {
     this.setState({
       redirect: true
@@ -79,14 +81,14 @@ class App extends Component {
 
   componentDidMount() {
 
-    //LOADING BADGES
+    //load badges
     API.getBadges()
       .then(res => {
         this.setState({ badges: res.data });
         console.log(this.state.badges);
       })
 
-    //CHECK FOR USER IN LOCAL STORAGE
+    //check local storage
     let localStorageUser = JSON.parse(window.localStorage.getItem("user"))
 
     //process for if there is a user saved to the local storage
@@ -206,9 +208,10 @@ class App extends Component {
     console.log("logged in = " + this.state.loggedIn);
   }
 
-  //ACTIVITY CARD LOGGING TO DB
+  //logic for activity card logging
   onLogClick = (event, sport) => {
     console.log(event)
+<<<<<<< HEAD
     let whichSport = ""
     switch (sport) {
       case "Run":
@@ -230,13 +233,50 @@ class App extends Component {
         .then(res => this.setState({ user: res.data }))
         .then((callback) => this.addActivities())
         .then((callback) => this.calcBadges());
+=======
+    if (sport === "Run") {
+      let activity = Object.assign({}, this.state.runActivity);
+      if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
+      else {
+        this.handleShow(); 
+        API.saveActivity(activity, this.state.user._id)
+          .then(res => this.setState({ user: res.data }))
+          .then(( callback ) => this.calcBadges() );
+      }
     }
+    if (sport === "Ride") {
+      let activity = Object.assign({}, this.state.rideActivity);
+      if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
+      else {
+        this.handleShow(); 
+        API.saveActivity(activity, this.state.user._id)
+          .then(res => this.setState({ user: res.data }))
+          .then(( callback ) => this.calcBadges() );
+      }
+    }
+    if (sport === "Swim") {
+      let activity = Object.assign({}, this.state.swimActivity);
+      if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
+      else {
+        this.handleShow(); 
+        API.saveActivity(activity, this.state.user._id)
+          .then(res => this.setState({ user: res.data }))
+          .then(( callback ) => this.calcBadges() );
+      }
+>>>>>>> parent of 88cf9ac... Merge pull request #101 from bryanbloomquist/Scott-Dashboard-Fix
+    }
+
   }
 
+<<<<<<< HEAD
 
   //ON CHANGE EVENT HANDLERS FOR ACTIVITY CARD
+=======
+>>>>>>> parent of 88cf9ac... Merge pull request #101 from bryanbloomquist/Scott-Dashboard-Fix
   onDistanceChange = (event) => {
     const { name, value } = event.target;
+    console.log(value)
+
     if (name === "Run") {
       this.setState(prevState => ({
         runActivity: {
@@ -265,6 +305,7 @@ class App extends Component {
 
   onUnitChange = (event) => {
     const { name, value } = event.target;
+
     if (name === "Run") {
       this.setState(prevState => ({
         runActivity: {
@@ -291,8 +332,10 @@ class App extends Component {
     }
   }
 
+  //NEW
   onDurationChange = (event) => {
     const { name, value } = event.target;
+
     if (name === "Run") {
       this.setState(prevState => ({
         runActivity: {
@@ -319,14 +362,20 @@ class App extends Component {
     }
   }
 
+<<<<<<< HEAD
   //DELETE AN ACTIVITY
   deleteActivity = (id) => {
     console.log(id)
+=======
+  // delete our activity
+  deleteActivity = id => {
+>>>>>>> parent of 88cf9ac... Merge pull request #101 from bryanbloomquist/Scott-Dashboard-Fix
     API.deleteActivity(this.state.user._id, id)
       .then(res => this.setState({ user: res.data }))
       .catch(err => console.log(err));
   };
 
+<<<<<<< HEAD
   //GOAL ACCOMPLISHMENT TRACKING
   addActivities = () => {
     let activitiesArray = this.state.user.activities;
@@ -428,31 +477,37 @@ class App extends Component {
         })
     }
   
+=======
+>>>>>>> parent of 88cf9ac... Merge pull request #101 from bryanbloomquist/Scott-Dashboard-Fix
   // determine if a badge has been earned
   calcBadges = () => {
     let badgeEarned = [];
     let bikeTotal = Calculations.calcTotalBike(this.state.user.activities).toFixed(2);
     let runTotal = Calculations.calcTotalRun(this.state.user.activities).toFixed(2);
     let swimTotal = Calculations.calcTotalSwim(this.state.user.activities).toFixed(2);
-    console.log("bikeTotal: " + bikeTotal + ", runTotal: " + runTotal + ", swimTotal: " + swimTotal);
-    if (runTotal >= 26) { badgeEarned.push(1); };
-    if (runTotal >= 277) { badgeEarned.push(2); };
-    if (runTotal >= 1350) { badgeEarned.push(3); };
-    if (runTotal >= 2680) { badgeEarned.push(4); };
-    if (swimTotal >= 36960) { badgeEarned.push(5); };
-    if (swimTotal >= 580800) { badgeEarned.push(6); };
-    if (swimTotal >= 4132480) { badgeEarned.push(7); };
-    if (swimTotal >= 7272320) { badgeEarned.push(8); };
-    if (bikeTotal >= 1467) { badgeEarned.push(9); };
-    if (bikeTotal >= 2170) { badgeEarned.push(10); };
-    if (bikeTotal >= 2200) { badgeEarned.push(11); };
-    if (bikeTotal >= 13170) { badgeEarned.push(12); };
-    console.log("badgeID earned: " + badgeEarned);
+    console.log( "bikeTotal: " + bikeTotal + ", runTotal: " + runTotal + ", swimTotal: " + swimTotal );
+    if ( runTotal >= 26 ) { badgeEarned.push( 1 );};
+    if ( runTotal >= 277 ) { badgeEarned.push( 2 );};
+    if ( runTotal >= 1350 ) { badgeEarned.push( 3 );};
+    if ( runTotal >= 2680 ) { badgeEarned.push( 4 );};
+    if ( swimTotal >= 36960 ) { badgeEarned.push( 5 );};
+    if ( swimTotal >= 580800 ) { badgeEarned.push( 6 );};
+    if ( swimTotal >= 4132480 ) { badgeEarned.push( 7 );};
+    if ( swimTotal >= 7272320 ) { badgeEarned.push( 8 );};
+    if ( bikeTotal >= 1467 ) { badgeEarned.push( 9 );};
+    if ( bikeTotal >= 2170 ) { badgeEarned.push( 10 );};
+    if ( bikeTotal >= 2200 ) { badgeEarned.push( 11 );};
+    if ( bikeTotal >= 13170 ) { badgeEarned.push( 12 );};
+    console.log( "badgeID earned: " + badgeEarned );
     API.saveBadge(badgeEarned, this.state.user._id)
-      .then((res) => {
+      .then(( res ) => {
         this.setState({ user: res.data })
       })
   }
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 88cf9ac... Merge pull request #101 from bryanbloomquist/Scott-Dashboard-Fix
   render() {
     console.log("is logged in: " + this.state.loggedIn);
     console.log("state of the user:");
@@ -538,5 +593,4 @@ class App extends Component {
     )
   }
 }
-
 export default App;
