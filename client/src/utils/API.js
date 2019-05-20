@@ -30,6 +30,10 @@ export default {
     getBadges: function () {
         return axios.get("/api/badges");
     },
+    // adds badges earned to users badge array
+    saveBadge: function (value, userId) {
+        return axios.put(`/api/users/${userId}/badges`, value)
+    },
     
 
     //--------------------------------ACTIVITIES------------------------------
@@ -47,6 +51,10 @@ export default {
 
     saveGoal: function (goalData, userId) {
         return axios.put(`/api/users/${userId}/goals`, goalData);
+    },
+
+    updateGoal: function (goalData, userId, goalId) {
+        return axios.put(`api/users/${userId}/goals/${goalId}`, goalData);
     },
 
     deleteGoal: function (userId, goalId) {

@@ -28,6 +28,16 @@ function ArrayDisplay(props) {
             </ul>
         )
     }
+    if (props.card === "social") {
+        return (
+            <ul>
+                {props.friends.map((value, index) => {
+                    console.log(value);
+                    return <li key={index}>{value}</li>
+                })}
+            </ul>
+        )
+    }
 }
 
 export default ArrayDisplay;

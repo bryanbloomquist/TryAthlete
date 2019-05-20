@@ -23,7 +23,7 @@ router
 
 router
   .route("/:id/activities/:activityId")
-  .get(usersController.removeActivity)
+  .delete(usersController.removeActivity)
 
 // //friends
 
@@ -46,6 +46,7 @@ router
 
 router
   .route("/:id/goals/:goalId")
+  .put(usersController.updateGoal)
   .delete(usersController.removeGoal)
 
 // //badges
@@ -69,6 +70,6 @@ router
 
 router
   .route("/:id/challenges/:challengeId")
-  .get(usersController.removeChallenge)
+  .delete(usersController.removeChallenge)
 
 module.exports = router;
