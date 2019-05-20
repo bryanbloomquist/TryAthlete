@@ -3,8 +3,9 @@ import ArrayDisplay from "./ArrayDisplay";
 import Card from "react-bootstrap/Card"
 
 function SocialCard(props) {
+    
     const length = props.user.friends.length;
-    const friends = props.user.friends;
+    const friends = props.friends;
     if (props.user.friends[0]) {
         return (
             <Card className="card card-wide">
