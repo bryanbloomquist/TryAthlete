@@ -29,11 +29,12 @@ function ArrayDisplay(props) {
         )
     }
     if (props.card === "social") {
+        console.log(props)
         return (
             <ul>
                 {props.friends.map((value, index) => {
-                    console.log(value);
-                    return <li key={index}>{value}</li>
+                    console.log(value.email);
+                    return <li key={index}>{value.givenName + " " + value.familyName}</li>
                 })}
             </ul>
         )

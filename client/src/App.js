@@ -208,38 +208,30 @@ class App extends Component {
   //ACTIVITY CARD LOGGING TO DB
   onLogClick = (event, sport) => {
     console.log(event)
-    if (sport === "Run") {
-      let activity = Object.assign({}, this.state.runActivity);
-      if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
-      else {
-        this.handleShow();
-        API.saveActivity(activity, this.state.user._id)
-          .then(res => this.setState({ user: res.data }))
-          .then((callback) => this.addActivities())
-          .then((callback) => this.calcBadges());
-      }
+    let whichSport = ""
+    switch (sport) {
+      case "Run":
+        whichSport = Object.assign({}, this.state.runActivity);
+        break;
+      case "Ride":
+        whichSport = Object.assign({}, this.state.rideActivity);
+        break;
+      case "Swim":
+        whichSport = Object.assign({}, this.state.swimActivity);
+        break;
+      default:
+        whichSport = Object.assign({}, this.state.runActivity);
     }
-    if (sport === "Ride") {
-      let activity = Object.assign({}, this.state.rideActivity);
-      if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
-      else {
-        this.handleShow();
-        API.saveActivity(activity, this.state.user._id)
-          .then(res => this.setState({ user: res.data }))
-          .then((callback) => this.calcBadges());
-      }
-    }
-    if (sport === "Swim") {
-      let activity = Object.assign({}, this.state.swimActivity);
-      if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
-      else {
-        this.handleShow();
-        API.saveActivity(activity, this.state.user._id)
-          .then(res => this.setState({ user: res.data }))
-          .then((callback) => this.calcBadges());
-      }
+    if (parseFloat(whichSport.distance) === 0 || parseFloat(whichSport.duration) === 0) { alert("Please enter a value greater than 0") }
+    else {
+      this.handleShow();
+      API.saveActivity(whichSport, this.state.user._id)
+        .then(res => this.setState({ user: res.data }))
+        .then((callback) => this.addActivities())
+        .then((callback) => this.calcBadges());
     }
   }
+
 
   //ON CHANGE EVENT HANDLERS FOR ACTIVITY CARD
   onDistanceChange = (event) => {
@@ -328,6 +320,7 @@ class App extends Component {
 
   //DELETE AN ACTIVITY
   deleteActivity = (id) => {
+    console.log(id)
     API.deleteActivity(this.state.user._id, id)
       .then(res => this.setState({ user: res.data }))
       .catch(err => console.log(err));
@@ -345,16 +338,16 @@ class App extends Component {
 
     activitiesArray.map((value, index) => {
       if (value.sport === "Run") {
-        runDistance += parseInt(value.distance)
-        runDuration += parseInt(value.duration)
+        runDistance += parseFloat(value.distance)
+        runDuration += parseFloat(value.duration)
       }
       if (value.sport === "Ride") {
-        rideDistance += parseInt(value.distance)
-        rideDuration += parseInt(value.duration)
+        rideDistance += parseFloat(value.distance)
+        rideDuration += parseFloat(value.duration)
       }
       if (value.sport === "Swim") {
-        swimDistance += parseInt(value.distance)
-        swimDuration += parseInt(value.duration)
+        swimDistance += parseFloat(value.distance)
+        swimDuration += parseFloat(value.duration)
       }
     })
     this.determineGoalAchieved(runDistance, runDuration, rideDistance, rideDuration, swimDistance, swimDuration);
@@ -429,7 +422,7 @@ class App extends Component {
         this.setState({ user: res.data })
       })
   }
-  
+
   render() {
     console.log("is logged in: " + this.state.loggedIn);
     console.log("state of the user:");
@@ -445,6 +438,7 @@ class App extends Component {
               <Route exact path="/dashboard" render={(props) =>
                 <Dashboard {...props} {...this.state}
                   user={this.state.user}
+                  friends={this.state.friends}
                   onLogClick={this.onLogClick}
                   onDistanceChange={this.onDistanceChange}
                   onUnitChange={this.onUnitChange}
@@ -452,13 +446,13 @@ class App extends Component {
                   handleClose={this.handleClose}
                   handleShow={this.handleShow} />} />
               <Route exact path="/goals" render={(props) => <Goals {...props} user={this.state.user} />} />
-              <Route exact path="/challenges" render={(props) => <Challenges {...props} 
+              <Route exact path="/challenges" render={(props) => <Challenges {...props}
                 user={this.state.user}
                 friends={this.state.friends} />} />
               <Route exact path="/badges" render={(props) => <Badges {...props}
                 user={this.state.user}
                 badges={this.state.badges} />} />
-              <Route exact path="/social" render={(props) => <Social {...props} 
+              <Route exact path="/social" render={(props) => <Social {...props}
                 user={this.state.user}
                 friends={this.state.friends} />} />
               <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state.user} delete={this.deleteActivity} />} />

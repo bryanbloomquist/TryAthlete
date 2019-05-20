@@ -74,7 +74,10 @@ function Dashboard(props) {
                 <BadgesCard user={props.user} />
             </Row>
             <Row>
-                <SocialCard user={props.user} />
+                <SocialCard 
+                user={props.user}
+                friends={props.friends}
+                 />
             </Row>
         </Container >
 
