@@ -40,7 +40,7 @@ function ActivityRow(props) {
             padding: "10px"
         },
         image: {
-            width: "90%"
+            width: "30%"
         },
         col: {
             marginTop: "auto",
@@ -54,7 +54,7 @@ function ActivityRow(props) {
             position: "relative",
             bottom: "5px",
             left: "5px",
-            padding: "15px 20px"
+            // padding: "15px 20px"
             // width: "40%"
         },
         title: {

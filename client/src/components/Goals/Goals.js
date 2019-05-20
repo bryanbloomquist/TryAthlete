@@ -5,7 +5,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
-import AchievedGoalsCard from "./AcheivedGoalsCard";
+import AchievedGoalsCard from "./AchievedGoalsCard";
+import LifetimeAchievedGoalsCard from "./LifetimeAcheivedGoalsCard";
 import ListGroup from "react-bootstrap/ListGroup";
 import DeleteGoalBtn from "./DeleteGoalBtn";
 import API from "../../utils/API";
@@ -178,7 +179,7 @@ class Goals extends Component {
                         </Row>
                         <Row>
                             <Col>
-                                <AchievedGoalsCard
+                                <LifetimeAchievedGoalsCard
                                     userGoals={this.state.user.goals}
                                 />
                             </Col>
