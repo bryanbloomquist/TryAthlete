@@ -156,8 +156,7 @@ class Goals extends Component {
                                 <CurGoalsCard>
                                     <ListGroup variant="flush">
                                         {this.state.user.goals.map(goal => {
-                                            console.log(goal);
-                                            if(goal.isAchieved === false)
+                                            if(this.state.user.goals.isAchieved === true)
                                             return (
                                                 <ListGroup.Item key={goal.id} className="bg-light">
                                                     <Row>
@@ -179,11 +178,11 @@ class Goals extends Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col>
+                            {/* <Col>
                                 <AchievedGoalsCard>
                                     <ListGroup variant="flush">
                                         {this.state.user.goals.map(goal => {
-                                            if(goal.isAchieved === true)
+                                            if(this.state.user.goals.isAchieved === true)
                                             return (
                                                 <ListGroup.Item key={goal.id} className="bg-light">
                                                     <Row>
@@ -202,7 +201,7 @@ class Goals extends Component {
                                         })}
                                     </ListGroup>
                                 </AchievedGoalsCard>
-                            </Col>
+                            </Col> */}
                             <Col>
                                 <LifetimeAchievedGoalsCard
                                     userGoals={this.state.user.goals}
