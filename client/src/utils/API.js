@@ -44,7 +44,7 @@ export default {
 
     deleteActivity: function (userId, activityId) {
         console.log(`/api/users/${userId}/activities/${activityId}`)
-        return axios.get(`/api/users/${userId}/activities/${activityId}`);
+        return axios.delete(`/api/users/${userId}/activities/${activityId}`);
     },
 
     //--------------------------------GOALS------------------------------
