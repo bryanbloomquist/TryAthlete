@@ -54,16 +54,14 @@ class App extends Component {
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
   }
-
   handleClose() {
     this.setState({ show: false });
   }
-
   handleShow() {
     this.setState({ show: true });
   }
 
-  //redirect logic
+  //REDIRECT LOGIC
   setRedirect = () => {
     this.setState({
       redirect: true
@@ -80,14 +78,14 @@ class App extends Component {
 
   componentDidMount() {
 
-    //load badges
+    //LOADING BADGES
     API.getBadges()
       .then(res => {
         this.setState({ badges: res.data });
         console.log(this.state.badges);
       })
 
-    //check local storage
+    //CHECK FOR USER IN LOCAL STORAGE
     let localStorageUser = JSON.parse(window.localStorage.getItem("user"))
 
     //process for if there is a user saved to the local storage
@@ -207,46 +205,45 @@ class App extends Component {
     console.log("logged in = " + this.state.loggedIn);
   }
 
-  //logic for activity card logging
+  //ACTIVITY CARD LOGGING TO DB
   onLogClick = (event, sport) => {
     console.log(event)
     if (sport === "Run") {
       let activity = Object.assign({}, this.state.runActivity);
       if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
       else {
-        this.handleShow(); 
+        this.handleShow();
         API.saveActivity(activity, this.state.user._id)
           .then(res => this.setState({ user: res.data }))
-          .then(( callback ) => this.calcBadges() );
+          .then((callback) => this.addActivities())
+          .then((callback) => this.calcBadges());
       }
     }
     if (sport === "Ride") {
       let activity = Object.assign({}, this.state.rideActivity);
       if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
       else {
-        this.handleShow(); 
+        this.handleShow();
         API.saveActivity(activity, this.state.user._id)
           .then(res => this.setState({ user: res.data }))
-          .then(( callback ) => this.calcBadges() );
+          .then((callback) => this.calcBadges());
       }
     }
     if (sport === "Swim") {
       let activity = Object.assign({}, this.state.swimActivity);
       if (parseFloat(activity.distance) === 0 || parseFloat(activity.duration) === 0) { alert("Please enter a value greater than 0") }
       else {
-        this.handleShow(); 
+        this.handleShow();
         API.saveActivity(activity, this.state.user._id)
           .then(res => this.setState({ user: res.data }))
-          .then(( callback ) => this.calcBadges() );
+          .then((callback) => this.calcBadges());
       }
     }
-
   }
 
+  //ON CHANGE EVENT HANDLERS FOR ACTIVITY CARD
   onDistanceChange = (event) => {
     const { name, value } = event.target;
-    console.log(value)
-
     if (name === "Run") {
       this.setState(prevState => ({
         runActivity: {
@@ -275,7 +272,6 @@ class App extends Component {
 
   onUnitChange = (event) => {
     const { name, value } = event.target;
-
     if (name === "Run") {
       this.setState(prevState => ({
         runActivity: {
@@ -302,10 +298,8 @@ class App extends Component {
     }
   }
 
-  //NEW
   onDurationChange = (event) => {
     const { name, value } = event.target;
-
     if (name === "Run") {
       this.setState(prevState => ({
         runActivity: {
@@ -332,39 +326,110 @@ class App extends Component {
     }
   }
 
-  // delete our activity
-  deleteActivity = id => {
+  //DELETE AN ACTIVITY
+  deleteActivity = (id) => {
     API.deleteActivity(this.state.user._id, id)
       .then(res => this.setState({ user: res.data }))
       .catch(err => console.log(err));
   };
 
+  //GOAL ACCOMPLISHMENT TRACKING
+  addActivities = () => {
+    let activitiesArray = this.state.user.activities;
+    let runDistance = 0;
+    let runDuration = 0;
+    let rideDistance = 0;
+    let rideDuration = 0;
+    let swimDistance = 0;
+    let swimDuration = 0;
+
+    activitiesArray.map((value, index) => {
+      if (value.sport === "Run") {
+        runDistance += parseInt(value.distance)
+        runDuration += parseInt(value.duration)
+      }
+      if (value.sport === "Ride") {
+        rideDistance += parseInt(value.distance)
+        rideDuration += parseInt(value.duration)
+      }
+      if (value.sport === "Swim") {
+        swimDistance += parseInt(value.distance)
+        swimDuration += parseInt(value.duration)
+      }
+    })
+    this.determineGoalAchieved(runDistance, runDuration, rideDistance, rideDuration, swimDistance, swimDuration);
+  }
+
+  determineGoalAchieved = (runDistance, runDuration, rideDistance, rideDuration, swimDistance, swimDuration) => {
+    let goalsArray = this.state.user.goals;
+
+    goalsArray.map((value, index) => {
+      console.log(value)
+      if (value.sport === "Run") {
+        if (value.goalType === "Distance" && value.goalQty <= runDistance && value.isAchieved === false) {
+          alert("You achieved a running distance goal!")
+          console.log(value.id)
+          API.updateGoal(true, this.state.user._id, value.id)
+            .then(res => this.setState({ user: res.data }));
+        }
+        if (value.goalType === "Time" && value.gaolQty <= runDuration && value.isAchieved === false) {
+          alert("You achieved a running time goal!")
+          API.updateGoal(true, this.state.user._id)
+            .then(res => this.setState({ user: res.data }));
+        }
+      }
+      if (value.sport === "Ride") {
+        if (value.goalType === "Distance" && value.goalQty <= rideDistance && value.isAchieved === false) {
+          alert("You achieved a biking distance goal!")
+          API.updateGoal(true, this.state.user._id)
+            .then(res => this.setState({ user: res.data }));
+        }
+        if (value.goalType === "Time" && value.gaolQty <= rideDuration && value.isAchieved === false) {
+          alert("You achieved a biking time goal!")
+          API.updateGoal(true, this.state.user._id)
+            .then(res => this.setState({ user: res.data }));
+        }
+      }
+      if (value.sport === "Swim") {
+        if (value.goalType === "Distance" && value.goalQty <= swimDistance && value.isAchieved === false) {
+          alert("You achieved a swimming distance goal!")
+          API.updateGoal(true, this.state.user._id)
+            .then(res => this.setState({ user: res.data }));
+        }
+        if (value.goalType === "Time" && value.gaolQty <= swimDuration && value.isAchieved === false) {
+          alert("You achieved a swimming time goal!")
+          API.updateGoal(true, this.state.user._id)
+            .then(res => this.setState({ user: res.data }));
+        }
+      }
+    })
+  }
   // determine if a badge has been earned
   calcBadges = () => {
     let badgeEarned = [];
     let bikeTotal = Calculations.calcTotalBike(this.state.user.activities).toFixed(2);
     let runTotal = Calculations.calcTotalRun(this.state.user.activities).toFixed(2);
     let swimTotal = Calculations.calcTotalSwim(this.state.user.activities).toFixed(2);
-    console.log( "bikeTotal: " + bikeTotal + ", runTotal: " + runTotal + ", swimTotal: " + swimTotal );
-    if ( runTotal >= 26 ) { badgeEarned.push( 1 );};
-    if ( runTotal >= 277 ) { badgeEarned.push( 2 );};
-    if ( runTotal >= 1350 ) { badgeEarned.push( 3 );};
-    if ( runTotal >= 2680 ) { badgeEarned.push( 4 );};
-    if ( swimTotal >= 36960 ) { badgeEarned.push( 5 );};
-    if ( swimTotal >= 580800 ) { badgeEarned.push( 6 );};
-    if ( swimTotal >= 4132480 ) { badgeEarned.push( 7 );};
-    if ( swimTotal >= 7272320 ) { badgeEarned.push( 8 );};
-    if ( bikeTotal >= 1467 ) { badgeEarned.push( 9 );};
-    if ( bikeTotal >= 2170 ) { badgeEarned.push( 10 );};
-    if ( bikeTotal >= 2200 ) { badgeEarned.push( 11 );};
-    if ( bikeTotal >= 13170 ) { badgeEarned.push( 12 );};
-    console.log( "badgeID earned: " + badgeEarned );
+    console.log("bikeTotal: " + bikeTotal + ", runTotal: " + runTotal + ", swimTotal: " + swimTotal);
+    if (runTotal >= 26) { badgeEarned.push(1); };
+    if (runTotal >= 277) { badgeEarned.push(2); };
+    if (runTotal >= 1350) { badgeEarned.push(3); };
+    if (runTotal >= 2680) { badgeEarned.push(4); };
+    if (swimTotal >= 36960) { badgeEarned.push(5); };
+    if (swimTotal >= 580800) { badgeEarned.push(6); };
+    if (swimTotal >= 4132480) { badgeEarned.push(7); };
+    if (swimTotal >= 7272320) { badgeEarned.push(8); };
+    if (bikeTotal >= 1467) { badgeEarned.push(9); };
+    if (bikeTotal >= 2170) { badgeEarned.push(10); };
+    if (bikeTotal >= 2200) { badgeEarned.push(11); };
+    if (bikeTotal >= 13170) { badgeEarned.push(12); };
+    console.log("badgeID earned: " + badgeEarned);
     API.saveBadge(badgeEarned, this.state.user._id)
-      .then(( res ) => {
+      .then((res) => {
         this.setState({ user: res.data })
       })
   }
-
+  
   render() {
     console.log("is logged in: " + this.state.loggedIn);
     console.log("state of the user:");
@@ -450,4 +515,5 @@ class App extends Component {
     )
   }
 }
+
 export default App;
