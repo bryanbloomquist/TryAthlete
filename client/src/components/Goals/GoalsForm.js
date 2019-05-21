@@ -36,7 +36,7 @@ function GoalForm(props) {
         unitOptionTwo = <option disabled>km</option>;
         unitOptionThree = <option disabled>meters</option>;
         unitOptionFour = <option disabled>yards</option>;
-        unitOptionSix = <option>minutes</option>;
+        unitOptionSix = <option disabled>minutes</option>;
     } else {
         //unitOptions = //set options to minutes
         unitOptionOne = <option disabled>mi</option>;
@@ -74,12 +74,13 @@ function GoalForm(props) {
                 <Form.Label column sm={4} className="text-right my-2">Unit:</Form.Label>
                 <Col sm={6}>
                     <Form.Control name="unit" className="my-2" as="select" onChange={props.onGoalChange} defaultValue="">
-                    {unitOptionOne}
+                        <option disabled></option>
+                        {unitOptionOne}
                         {unitOptionTwo}
                         {unitOptionThree}
                         {unitOptionFour}
                         {unitOptionFive}
-                        {/* {UnitOptionSix} */}
+                        {unitOptionSix}
                     </Form.Control>
                 </Col>
                 <Form.Label column sm={4} className="text-right my-2">Time frame:</Form.Label>
