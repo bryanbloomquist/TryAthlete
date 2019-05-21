@@ -433,16 +433,17 @@ class App extends Component {
       })
   }
 
-  onUnfriend = ((friendID) => {
+  onUnfriend = (friendID) => {
     console.log("onFriend", friendID, "userID ", this.state.user._id);
     console.log(friendID)
     API.deleteFriend(this.state.user._id, friendID)
-      .then()
+      .then(window.location.reload())
       .catch(err => console.log(err));
+      
   }
   
   // window.location.reload()
-  );
+  
 
 
   // determine if a badge has been earned
