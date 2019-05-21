@@ -3,8 +3,8 @@ import Button from "react-bootstrap/Button";
 
 
 
-function CurGoalsCard(props) {
+function DeleteGoalBtn(props) {
     return (<Button {...props} variant="danger">Delete</Button>);
 }
 
-export default CurGoalsCard;
+export default DeleteGoalBtn;

@@ -5,7 +5,7 @@ import Card from "react-bootstrap/Card"
 function ChallengesCard(props) {
     const length = props.user.challenges.length;
     const challenges = props.user.challenges;
-    if (props.challenges) {
+    if (props.user.challenges[0]) {
         return (
             <Card className="card">
                 <Card.Link className="cardLink" href="/Challenges">

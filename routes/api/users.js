@@ -33,7 +33,7 @@ router
   .put(usersController.addFriend)
 
 router
-  .route("/:id/friends/:friendId")
+  .route("/:id/friends/:friends")
   .delete(usersController.removeFriend)
 
 // //goals
@@ -71,5 +71,6 @@ router
 router
   .route("/:id/challenges/:challengeId")
   .delete(usersController.removeChallenge)
+  .put(usersController.updateChallenge)
 
 module.exports = router;

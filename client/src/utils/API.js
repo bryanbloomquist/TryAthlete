@@ -67,6 +67,10 @@ export default {
         return axios.put(`/api/users/${userId}/challenges`, challengeData);
     },
 
+    updateChallenge: function (challengeData, userId, challengeId) {
+        return axios.put(`api/users/${userId}/challenges/${challengeId}`, challengeData);
+    },
+
     deleteChallenge: function (userId, challengeId) {
         return axios.delete(`/api/users/${userId}/challenges/${challengeId}`);
     },
@@ -78,6 +82,7 @@ export default {
     },
 
     deleteFriend: function (userId, friendId) {
+        console.log(`/api/users/${userId}/friends/${friendId}`)
         return axios.delete(`/api/users/${userId}/friends/${friendId}`);
     }
 
