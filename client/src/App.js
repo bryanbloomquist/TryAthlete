@@ -420,12 +420,26 @@ class App extends Component {
             let friendData = {
               friends: searchUser._id
             }
+            let userData = {
+              friends: this.state.user._id
+            }
 
+            // If already a friend display msg stating so
+            
+
+
+            // Add found friend to current user friend array
             API.addFriend(friendData, this.state.user._id)
               .then(
-                console.log("Added " + searchUser.email + " to friends list")
-
+                console.log("Added " + searchUser.email + " to " +this.state.friendSearch+ "'s friends list")
               )
+            
+            // Add current user to found friend array (mutually friends)
+            API.addFriend(userData, searchUser._id)
+              .then(
+                console.log("Added " +this.state.friendSearch+ "to " +searchUser.email+ "'s friends list")
+              )
+
             window.location.reload();
           }
           else{
