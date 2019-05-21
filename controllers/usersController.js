@@ -67,7 +67,8 @@ module.exports = {
 
   updateGoal: function (req, res) {
     db.User
-      .findOneAndUpdate({ _id: req.params.id}, { $set: { "goals.$[elem].isAchieved" : true } }, { arrayFilters: [ { "elem.id" : parseInt(req.params.goalId)} ] } )      .then(dbModel => res.json(dbModel))
+      .findOneAndUpdate({ _id: req.params.id}, { $set: { "goals.$[elem].isAchieved" : true } }, { arrayFilters: [ { "elem.id" : parseInt(req.params.goalId)} ] } )      
+      .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
 
