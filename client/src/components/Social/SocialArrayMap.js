@@ -9,15 +9,12 @@ function SocialArrayMap(props) {
         return null;
     }
     if (!props.friends.length) {
-        return <Row>
-                    <Col>
-                        <h5>You need to add some friends!</h5>
-                    </Col>
-                </Row>
+        return  <Col xs={3} className="h3 text-center text-white mx-auto bg-info p-3">
+                    You need to add some friends!
+                </Col>
     } else {
         return(  
             props.friends.map((value, index) => {
-                console.log("social friends value: ", value);
                 return (
                     <Card className="text-dark mx-auto px-1 py-1" key={index} style={{ width: '400px', backgroundColor: 'white' }}>
                         <Row className="no-gutters">

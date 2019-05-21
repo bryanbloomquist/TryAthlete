@@ -428,6 +428,11 @@ class App extends Component {
               )
             window.location.reload();
           }
+          else{
+            // No users found with this email
+            this.setState({modalBody: "User not found"})
+            this.handleShow()
+          }
 
         })
       })
