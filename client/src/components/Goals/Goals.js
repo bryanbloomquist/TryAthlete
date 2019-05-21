@@ -139,7 +139,7 @@ class Goals extends Component {
                         Goals
                     </Col>
                 </Row>
-                <Row className="text-center">
+                <Row className="text-center py-5">
                     <Col md={4} className = "mb-4">
                         <Card className="card-wide text-dark bg-light">
                             <GoalForm

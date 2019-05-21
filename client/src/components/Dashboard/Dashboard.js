@@ -24,7 +24,7 @@ function Dashboard(props) {
                     Dashboard
                 </Col>
             </Row>
-            <Row>
+            <Row className = "py-5">
                 <Col xs={12} sm={6} lg={4} className="mb-4">
                     <ActivityCard
                         sport={"Run"}

@@ -10,28 +10,28 @@ function AchievedChallengesCard(props) {
             <Card.Title className="display-4">Lifetime Achievements</Card.Title>
             <Card.Body className="h5">
                 <Row className="mb-2">
-                    <Col md={2}>
+                    <Col md={3}>
                         Run
                                         </Col>
-                    <Col md={10}>
+                    <Col md={9}>
                         <div className="progress-bar bg-danger rounded" style={{ width: "80%" }}>80%</div>
                         {/* <div className="progress-bar bg-success rounded" style={{ width: API.calcActivity("run") }}>80%</div> */}
                     </Col>
                 </Row>
                 <Row className="mb-2">
-                    <Col md={2}>
+                    <Col md={3}>
                         Bike
                                         </Col>
-                    <Col md={10}>
+                    <Col md={9}>
                         <div className="progress-bar bg-success rounded" style={{ width: "60%" }}>60%</div>
                         {/* <div className="progress-bar bg-success rounded" style={{ width: API.calcActivity("bike") }}>80%</div> */}
                     </Col>
                 </Row>
                 <Row className="mb-2">
-                    <Col md={2}>
+                    <Col md={3}>
                         Swim
-                                        </Col>
-                    <Col md={10}>
+                    </Col>
+                    <Col md={9}>
                         <div className="progress-bar bg-primary rounded" style={{ width: "20%" }}>20%</div>
                         {/* <div className="progress-bar bg-success rounded" style={{ width: API.calcActivity("swim") }}>80%</div> */}
                     </Col>
