@@ -492,7 +492,9 @@ class App extends Component {
                 badges={this.state.badges} />} />
               <Route exact path="/social" render={(props) => <Social {...props}
                 user={this.state.user}
-                friends={this.state.friends} />} />
+                friends={this.state.friends}
+                onFriendSearchChange={this.onFriendSearchChange} 
+                onFriendSearchSubmit={this.onFriendSearchSubmit} />} />
               <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state.user} delete={this.deleteActivity} />} />
               {/* <Route component={NoMatch} /> */}
             </Switch>
