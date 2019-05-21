@@ -81,7 +81,7 @@ module.exports = {
   //------------------------CHALLENGES---------------------
   addChallenge: function (req, res) {
     db.User
-      .findOneAndUpdate({ _id: req.params.id }, { $push: { challenges: req.body } }, { new: true })
+      .findOneAndUpdate({ _id: req.params.id }, { $push: { challenges: addTimestamp(req.body) } }, { new: true })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

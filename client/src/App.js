@@ -424,8 +424,9 @@ class App extends Component {
             API.addFriend(friendData, this.state.user._id)
               .then(
                 console.log("Added " + searchUser.email + " to friends list")
-
+                
               )
+              window.location.reload();
           }
 
         })
