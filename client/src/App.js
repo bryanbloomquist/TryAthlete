@@ -44,7 +44,9 @@ class App extends Component {
       duration: 0
     },
     show: false,
-    redirect: false
+    redirect: false,
+    modalBody: "Keep up the good work!",
+    modalTitle: "Activity Logged"
   }
 
   //constructor to handle the model functions
@@ -208,6 +210,7 @@ class App extends Component {
 
   //ACTIVITY CARD LOGGING TO DB
   onLogClick = (event, sport) => {
+    this.setState({ modalBody: "Keep up the great work!"})
     console.log(event)
     let whichSport = ""
     switch (sport) {
@@ -363,37 +366,36 @@ class App extends Component {
       console.log(value)
       if (value.sport === "Run") {
         if (value.goalType === "Distance" && value.goalQty <= runDistance && value.isAchieved === false) {
-          alert("You achieved a running distance goal!")
-          console.log(value.id)
+          this.setState({modalBody: "You achieved a running distance goal!"})
           API.updateGoal(true, this.state.user._id, value.id)
             .then(res => this.setState({ user: res.data }));
         }
         if (value.goalType === "Time" && value.gaolQty <= runDuration && value.isAchieved === false) {
-          alert("You achieved a running time goal!")
+          this.setState({modalBody: "You achieved a running duration goal!"})
           API.updateGoal(true, this.state.user._id, value.id)
             .then(res => this.setState({ user: res.data }));
         }
       }
       if (value.sport === "Ride") {
         if (value.goalType === "Distance" && value.goalQty <= rideDistance && value.isAchieved === false) {
-          alert("You achieved a biking distance goal!")
+          this.setState({modalBody: "You achieved a riding distance goal!"})
           API.updateGoal(true, this.state.user._id, value.id)
             .then(res => this.setState({ user: res.data }));
         }
         if (value.goalType === "Time" && value.gaolQty <= rideDuration && value.isAchieved === false) {
-          alert("You achieved a biking time goal!")
+          this.setState({modalBody: "You achieved a riding duration goal!"})
           API.updateGoal(true, this.state.user._id, value.id)
             .then(res => this.setState({ user: res.data }));
         }
       }
       if (value.sport === "Swim") {
         if (value.goalType === "Distance" && value.goalQty <= swimDistance && value.isAchieved === false) {
-          alert("You achieved a swimming distance goal!")
+          this.setState({modalBody: "You achieved a swimming distance goal!"})
           API.updateGoal(true, this.state.user._id, value.id)
             .then(res => this.setState({ user: res.data }));
         }
         if (value.goalType === "Time" && value.gaolQty <= swimDuration && value.isAchieved === false) {
-          alert("You achieved a swimming time goal!")
+          this.setState({modalBody: "You achieved a swimming duration goal!"})
           API.updateGoal(true, this.state.user._id, value.id)
             .then(res => this.setState({ user: res.data }));
         }
@@ -463,8 +465,6 @@ class App extends Component {
     console.log("is logged in: " + this.state.loggedIn);
     console.log("state of the user:");
     console.log(this.state.user);
-    let modalTitle = "Activity Logged"
-    let modalBody = "Great job, keep it up!"
     return (
       <Router>
         {this.state.loggedIn ? (
@@ -510,9 +510,9 @@ class App extends Component {
             </Row>
             <Modal show={this.state.show} onHide={this.handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title>{modalTitle}</Modal.Title>
+                <Modal.Title>{this.state.modalTitle}</Modal.Title>
               </Modal.Header>
-              <Modal.Body>{modalBody}</Modal.Body>
+              <Modal.Body>{this.state.modalBody}</Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={this.handleClose}>
                   Close
