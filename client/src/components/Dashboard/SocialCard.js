@@ -8,7 +8,7 @@ function SocialCard(props) {
     const friends = props.friends;
     if (props.user.friends[0]) {
         return (
-            <Card className="card card-wide">
+            <Card className="card">
                 <Card.Link className="cardLink " href="/Social">
                     <Card.Body>
                         <h2>Friends List</h2>
@@ -18,7 +18,7 @@ function SocialCard(props) {
             </Card>
         )} else {
             return (
-                <Card className="card card-wide">
+                <Card className="card">
                     <Card.Link className="cardLink" href="/Social">
                         <Card.Body>
                             <h2>Friends List</h2>

@@ -142,7 +142,7 @@ class Goals extends Component {
                     </Col>
                 </Row>
                 <Row className="text-center py-5">
-                    <Col md={4}>
+                    <Col md={4} className = "mb-4">
                         <Card className="card-wide text-dark bg-light">
                             <GoalsForm
                                 user={this.props.user}
@@ -154,7 +154,7 @@ class Goals extends Component {
                     </Col>
                     <Col md={8}>
                         <Row>
-                            <Col>
+                            <Col className = "mb-4">
                                 <CurGoalsCard>
                                     <ListGroup variant="flush">
                                         {this.state.user.goals.map(goal => {
@@ -180,7 +180,7 @@ class Goals extends Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col>
+                            <Col className = "mb-4">
                                 <AchievedGoalsCard>
                                     <ListGroup variant="flush">
                                         {this.state.user.goals.map(goal => {

@@ -15,6 +15,10 @@ class Challenges extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            user:
+            {
+                challenges: []
+            },
             newChallenge:
             {
                 sport: "Run",
@@ -26,6 +30,22 @@ class Challenges extends Component {
             }
         }
     }
+
+
+
+    componentDidMount() {
+        this.loadChallenges();
+    };
+
+    loadChallenges = () => {
+        API.getUser(this.props.user._id)
+            .then(res =>
+                this.setState({
+                    user: { challenges: res.data.challenges }
+                })
+            )
+            .catch(err => console.log(err));
+    };
 
 
     onChallengeChange = (event) => {
@@ -140,14 +160,14 @@ class Challenges extends Component {
             .catch(err => console.log(err));
     })
 
-    onChallangeDelete = ((challengeID) => {
+    onChallengeDelete = ((challengeID) => {
         API.deleteChallenge(this.props.user._id, challengeID)
             .then(res => this.loadChallenges())
             .catch(err => console.log(err));
     });
 
 
-    render(props) {
+    render(props) { 
         console.log("friends State: ", this.state.friends)
         return (
             <Container fluid className="pb-5">
@@ -157,7 +177,7 @@ class Challenges extends Component {
                     </Col>
                 </Row>
                 <Row className="text-center py-5">
-                    <Col md={4}>
+                    <Col md={4} className = "mb-4">
                         <Card className="card-wide text-dark bg-light">
                             <ChallengeForm
                                 user={this.props.user}
@@ -170,18 +190,18 @@ class Challenges extends Component {
                     </Col>
                     <Col md={8}>
                         <Row>
-                            <Col>
+                            <Col className = "mb-4">
                                 <CurChallengesCard>
                                     <ListGroup variant="flush">
                                         <Row className="mb-3 font-weight-bold">
-                                            <Col sm={3} className="my-auto">
+                                            <Col className="my-auto">
                                                 Challenger
                                             </Col>
-                                            <Col sm={6} className="my-auto">
+                                            <Col className="my-auto">
                                                 Challenge Name <br />& Progress
                                             </Col>
                                         </Row>
-                                        {this.props.user.challenges.map(challenge => {
+                                        {this.state.user.challenges.map(challenge => {
                                             // if (challenge.isAchieved) {
                                                 return (
                                                     <ListGroup.Item key={challenge.id} className="bg-light">
@@ -216,14 +236,14 @@ class Challenges extends Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col>
+                            <Col className = "mb-4">
                                 <AchievedChallengesCard>
                                     <ListGroup variant="flush">
                                         <Row className="mb-3 font-weight-bold">
-                                            <Col sm={3} className="my-auto">
+                                            <Col className="my-auto">
                                                 Challenger
                                             </Col>
-                                            <Col sm={6} className="my-auto">
+                                            <Col className="my-auto">
                                                 Challenge Name <br />& Progress
                                             </Col>
                                         </Row>

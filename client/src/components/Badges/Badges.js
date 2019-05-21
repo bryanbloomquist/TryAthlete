@@ -18,7 +18,7 @@ function Badges(props) {
                 </Col>
             </Row>
             
-            <Row>
+            <Row className = "py-5">
                 <BadgeArrayMap length={length} badges={badges} user={user}></BadgeArrayMap>
             </Row>
         </Container>
