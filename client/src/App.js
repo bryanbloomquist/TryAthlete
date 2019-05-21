@@ -101,7 +101,11 @@ class App extends Component {
           this.setState({ user: res.data, loggedIn: true })
             .then(() => {
               //populate user friends list
-              this.getUserFriends();
+              this.getUserFriends()
+              .then(() => {
+                this.setRedirect();
+              })
+              .catch(err => console.log(err))
             })
 
 
@@ -123,7 +127,7 @@ class App extends Component {
       console.log("got here");
       this.setState({
         friends: values
-      });
+      })
     });
   }
 
@@ -188,12 +192,17 @@ class App extends Component {
           API
             .saveUser(userObject)
             .then((res) => {
+              console.log(res);
               this.setState({ user: userObject, loggedIn: true })
               window.localStorage.setItem('user', JSON.stringify(userObject));
               window.localStorage.setItem('loggedIn', true);
               console.log("logged in = " + this.state.loggedIn);
               //this.setRedirect()
-              this.getUserFriends();
+              this.getUserFriends()
+              
+                this.setRedirect()
+              
+              
 
             })
             .catch((err) => console.log((err)))
