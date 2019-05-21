@@ -5,7 +5,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
-import AchievedChallengesCard from "./AcheivedChallengesCard";
+import AchievedChallengesCard from "./AchievedChallengesCard";
+import LifetimeAchievedChallengesCard from "./LifetimeAchievedChallengesCard";
 import ListGroup from "react-bootstrap/ListGroup";
 import DeleteChalBtn from "./DeleteChalBtn";
 import API from "../../utils/API";
@@ -236,7 +237,51 @@ class Challenges extends Component {
                         </Row>
                         <Row>
                             <Col>
-                                <AchievedChallengesCard
+                                <AchievedChallengesCard>
+                                    <ListGroup variant="flush">
+                                        <Row className="mb-3 font-weight-bold">
+                                            <Col sm={3} className="my-auto">
+                                                Challenger
+                                            </Col>
+                                            <Col sm={6} className="my-auto">
+                                                Challenge Name <br />& Progress
+                                            </Col>
+                                        </Row>
+                                        {this.props.user.challenges.map(challenge => {
+                                            return (
+                                                <ListGroup.Item key={challenge.id} className="bg-light">
+                                                    <Row>
+                                                        <Col sm={3}>
+                                                            <Row>
+                                                                <Col sm={12}>
+                                                                <img src={challenge.challenger.imageUrl} className="challenge-avatars" alt={challenge.challenger.email}></img>
+                                                                </Col>
+                                                                <Col sm={12}>
+                                                                {challenge.challenger.givenName} {challenge.challenger.familyName}
+                                                                </Col>
+                                                            </Row>
+                                                        </Col>
+                                                        <Col sm={6}>
+                                                            {challenge.name}
+                                                            <div className="progress-bar bg-success mt-2" style={{ width: challenge.challengeProgress }}> </div>
+                                                        </Col>
+                                                        <Col sm={3}>
+                                                            <DeleteChalBtn className="ml-5"
+                                                                onClick={() => this.onChallengeDelete(challenge.id)}
+                                                                btnname="Decline"
+                                                            />
+                                                        </Col>
+                                                    </Row>
+                                                </ListGroup.Item>
+                                            );
+                                        })}
+                                    </ListGroup>
+                                </AchievedChallengesCard>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <LifetimeAchievedChallengesCard
                                     userChallenges={this.props.user.challenges}
                                 />
                             </Col>

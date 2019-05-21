@@ -5,7 +5,9 @@ function ArrayDisplay(props) {
         return (
             <ul>
                 {props.goals.map((value, index) => {
+                    if(value.isAchieved === false){
                     return <li key={index}>{value.name}</li>
+                    }
                 })}
             </ul>
         )
@@ -14,7 +16,9 @@ function ArrayDisplay(props) {
         return (
             <ul>
                 {props.challenges.map((value, index) => {
+                    if(value.isAchieved === false){
                     return <li key={index}>{value.name}</li>
+                    }
                 })}
             </ul>
         )

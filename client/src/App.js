@@ -23,7 +23,7 @@ class App extends Component {
     user: {},
     badges: {},
     loggedIn: false,
-    friendSearch:"",
+    friendSearch: "",
     friends: [],
     runActivity: {
       sport: "Run",
@@ -221,7 +221,7 @@ class App extends Component {
         whichSport = Object.assign({}, this.state.swimActivity);
         break;
       default:
-        whichSport = Object.assign({}, this.state.runActivity);
+        whichSport = Object.assign({}, this.state);
     }
     if (parseFloat(whichSport.distance) === 0 || parseFloat(whichSport.duration) === 0) { alert("Please enter a value greater than 0") }
     else {
@@ -349,6 +349,8 @@ class App extends Component {
       if (value.sport === "Swim") {
         swimDistance += parseFloat(value.distance)
         swimDuration += parseFloat(value.duration)
+      } else {
+        return (console.log("not an activity"));
       }
     })
     this.determineGoalAchieved(runDistance, runDuration, rideDistance, rideDuration, swimDistance, swimDuration);
@@ -368,66 +370,66 @@ class App extends Component {
         }
         if (value.goalType === "Time" && value.gaolQty <= runDuration && value.isAchieved === false) {
           alert("You achieved a running time goal!")
-          API.updateGoal(true, this.state.user._id)
+          API.updateGoal(true, this.state.user._id, value.id)
             .then(res => this.setState({ user: res.data }));
         }
       }
       if (value.sport === "Ride") {
         if (value.goalType === "Distance" && value.goalQty <= rideDistance && value.isAchieved === false) {
           alert("You achieved a biking distance goal!")
-          API.updateGoal(true, this.state.user._id)
+          API.updateGoal(true, this.state.user._id, value.id)
             .then(res => this.setState({ user: res.data }));
         }
         if (value.goalType === "Time" && value.gaolQty <= rideDuration && value.isAchieved === false) {
           alert("You achieved a biking time goal!")
-          API.updateGoal(true, this.state.user._id)
+          API.updateGoal(true, this.state.user._id, value.id)
             .then(res => this.setState({ user: res.data }));
         }
       }
       if (value.sport === "Swim") {
         if (value.goalType === "Distance" && value.goalQty <= swimDistance && value.isAchieved === false) {
           alert("You achieved a swimming distance goal!")
-          API.updateGoal(true, this.state.user._id)
+          API.updateGoal(true, this.state.user._id, value.id)
             .then(res => this.setState({ user: res.data }));
         }
         if (value.goalType === "Time" && value.gaolQty <= swimDuration && value.isAchieved === false) {
           alert("You achieved a swimming time goal!")
-          API.updateGoal(true, this.state.user._id)
+          API.updateGoal(true, this.state.user._id, value.id)
             .then(res => this.setState({ user: res.data }));
         }
       }
     })
   }
-  
-    onFriendSearchChange = (event) => {
-      const { name, value } = event.target;
-        this.setState({
-          friendSearch: value
-        })
-    
-    }
 
-    onFriendSearchSubmit = (event) => {
-      API.getUsers()
-        .then(res => {
-          let searchUsers = res.data;
-          searchUsers.forEach(searchUser => {
-            if (searchUser.email === this.state.friendSearch){
-              let friendData = {
-                friends: searchUser._id
-              }
+  onFriendSearchChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({
+      friendSearch: value
+    })
 
-              API.addFriend(friendData,this.state.user._id)
-                .then(
-                  console.log("Added " +searchUser.email+ " to friends list")
+  }
 
-                )
+  onFriendSearchSubmit = (event) => {
+    API.getUsers()
+      .then(res => {
+        let searchUsers = res.data;
+        searchUsers.forEach(searchUser => {
+          if (searchUser.email === this.state.friendSearch) {
+            let friendData = {
+              friends: searchUser._id
             }
 
-          })
+            API.addFriend(friendData, this.state.user._id)
+              .then(
+                console.log("Added " + searchUser.email + " to friends list")
+
+              )
+          }
+
         })
-    }
-  
+      })
+  }
+
   // determine if a badge has been earned
   calcBadges = () => {
     let badgeEarned = [];
@@ -453,10 +455,16 @@ class App extends Component {
         this.setState({ user: res.data })
       })
   }
+
+
+
+
   render() {
     console.log("is logged in: " + this.state.loggedIn);
     console.log("state of the user:");
     console.log(this.state.user);
+    let modalTitle = "Activity Logged"
+    let modalBody = "Great job, keep it up!"
     return (
       <Router>
         {this.state.loggedIn ? (
@@ -502,9 +510,9 @@ class App extends Component {
             </Row>
             <Modal show={this.state.show} onHide={this.handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title>Activity logged</Modal.Title>
+                <Modal.Title>{modalTitle}</Modal.Title>
               </Modal.Header>
-              <Modal.Body>Woohoo! Keep it up!</Modal.Body>
+              <Modal.Body>{modalBody}</Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={this.handleClose}>
                   Close
@@ -515,7 +523,7 @@ class App extends Component {
         ) : (
             <Wrapper>
               <Switch>
-              <Route exact path="/" render={(props) => <Home {...props} user={this.state.user} />} />
+                <Route exact path="/" render={(props) => <Home {...props} user={this.state.user} />} />
               </Switch>
               <Row className="justify-content-center">
                 <Col xs="auto">

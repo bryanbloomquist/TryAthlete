@@ -7,7 +7,7 @@ import Card from "react-bootstrap/Card";
 function AchievedGoalsCard(props) {
     return (
         <Card className="card-wide text-dark bg-light">
-            <Card.Title>Lifetime Acheivements</Card.Title>
+            <Card.Title className="display-4">Lifetime Acheivements</Card.Title>
             <Card.Body className="h5">
                 <Row className="mb-2">
                     <Col md={2}>

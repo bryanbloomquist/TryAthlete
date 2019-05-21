@@ -11,7 +11,7 @@ function SocialCard(props) {
             <Card className="card card-wide">
                 <Card.Link className="cardLink " href="/Social">
                     <Card.Body>
-                        <h2>Social Feed</h2>
+                        <h2>Friends List</h2>
                         <ArrayDisplay length={length} friends={friends} card="social"></ArrayDisplay>
                     </Card.Body>
                 </Card.Link>
@@ -21,7 +21,7 @@ function SocialCard(props) {
                 <Card className="card card-wide">
                     <Card.Link className="cardLink" href="/Social">
                         <Card.Body>
-                            <h2>Social Feed</h2>
+                            <h2>Friends List</h2>
                             <p>Add a friend!</p>
                         </Card.Body>
                     </Card.Link>
