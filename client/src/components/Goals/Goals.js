@@ -103,7 +103,7 @@ class Goals extends Component {
         }
     }
 
-    onGoalSubmit = (() => {
+    onGoalSubmit = () => {
 
         console.log("goalSubmit clicked: ", this.props.user._id);
 
@@ -122,13 +122,13 @@ class Goals extends Component {
             .then(res => this.loadGoals())
             .catch(err => console.log(err));
 
-    });
+    };
 
-    onGoalDelete = ((goalID) => {
+    onGoalDelete = (goalID) => {
         API.deleteGoal(this.props.user._id, goalID)
             .then(res => this.loadGoals())
             .catch(err => console.log(err));
-    });
+    }
 
 
     render() {
