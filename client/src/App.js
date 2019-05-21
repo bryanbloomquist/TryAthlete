@@ -98,10 +98,13 @@ class App extends Component {
       API.getUser(localStorageUser._id)
         .then(res => {
           //set the user state to the API-called data
-          this.setState({ user: res.data, loggedIn: true });
+          this.setState({ user: res.data, loggedIn: true })
+            .then(() => {
+              //populate user friends list
+              this.getUserFriends();
+            })
 
-          //populate user friends list
-          this.getUserFriends();
+
         })
     } else {
       console.log("no user")
@@ -185,15 +188,17 @@ class App extends Component {
           API
             .saveUser(userObject)
             .then((res) => {
-              this.setState({ user: userObject, loggedIn: true });
+              this.setState({ user: userObject, loggedIn: true })
               window.localStorage.setItem('user', JSON.stringify(userObject));
               window.localStorage.setItem('loggedIn', true);
               console.log("logged in = " + this.state.loggedIn);
-              this.setRedirect()
+              //this.setRedirect()
+              this.getUserFriends();
+
             })
             .catch((err) => console.log((err)))
         }
-        this.getUserFriends();
+        
       })
   }
 
@@ -484,11 +489,11 @@ class App extends Component {
     API.deleteFriend(this.state.user._id, friendID)
       .then(window.location.reload())
       .catch(err => console.log(err));
-      
+
   }
-  
+
   // window.location.reload()
-  
+
 
 
   // determine if a badge has been earned
