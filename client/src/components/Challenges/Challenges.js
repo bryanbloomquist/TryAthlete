@@ -202,7 +202,7 @@ class Challenges extends Component {
                                             </Col>
                                         </Row>
                                         {this.state.user.challenges.map(challenge => {
-                                            // if (challenge.isAchieved) {
+                                            if (challenge.isAchieved === false) {
                                                 return (
                                                     <ListGroup.Item key={challenge.id} className="bg-light">
                                                         <Row>
@@ -229,7 +229,7 @@ class Challenges extends Component {
                                                         </Row>
                                                     </ListGroup.Item>
                                                 );
-                                            // }
+                                            }
                                         })}
                                     </ListGroup>
                                 </CurChallengesCard>
@@ -248,6 +248,7 @@ class Challenges extends Component {
                                             </Col>
                                         </Row>
                                         {this.props.user.challenges.map(challenge => {
+                                            if (challenge.isAchieved === true)
                                             return (
                                                 <ListGroup.Item key={challenge.id} className="bg-light">
                                                     <Row>

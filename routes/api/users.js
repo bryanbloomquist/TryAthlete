@@ -70,6 +70,10 @@ router
 
 router
   .route("/:id/challenges/:challengeId")
+  .put(serController.updateChallenge)
+
+router
+  .route("/:id/challenges/:challengeId")
   .delete(usersController.removeChallenge)
 
 module.exports = router;
