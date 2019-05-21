@@ -71,5 +71,6 @@ router
 router
   .route("/:id/challenges/:challengeId")
   .delete(usersController.removeChallenge)
+  .put(usersController.updateChallenge)
 
 module.exports = router;

@@ -67,6 +67,10 @@ export default {
         return axios.put(`/api/users/${userId}/challenges`, challengeData);
     },
 
+    updateChallenge: function (challengeData, userId, challengeId) {
+        return axios.put(`api/users/${userId}/goals/${challengeId}`, challengeData);
+    },
+
     deleteChallenge: function (userId, challengeId) {
         return axios.delete(`/api/users/${userId}/challenges/${challengeId}`);
     },

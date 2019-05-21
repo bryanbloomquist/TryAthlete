@@ -50,7 +50,7 @@ class Challenges extends Component {
 
     onChallengeChange = (event) => {
         const { name, value } = event.target;
-        
+
         switch (name) {
             case "fChallenged":
                 console.log("fChallenged Event: ", event);
@@ -63,13 +63,13 @@ class Challenges extends Component {
                             {
                                 ...prevState.newChallenge,
                                 fChallenged:
-                                    {
-                                        id: res.data._id,
-                                        givenName: res.data.givenName,
-                                        familyName: res.data.familyName,
-                                        imageUrl: res.data.imageUrl,
-                                        email: res.data.email
-                                    }
+                                {
+                                    id: res.data._id,
+                                    givenName: res.data.givenName,
+                                    familyName: res.data.familyName,
+                                    imageUrl: res.data.imageUrl,
+                                    email: res.data.email
+                                }
                             }
                         }))
                     })
@@ -202,7 +202,7 @@ class Challenges extends Component {
                                             </Col>
                                         </Row>
                                         {this.state.user.challenges.map(challenge => {
-                                            // if (challenge.isAchieved) {
+                                            if (challenge.isAchieved === false) {
                                                 return (
                                                     <ListGroup.Item key={challenge.id} className="bg-light">
                                                         <Row>
@@ -229,8 +229,9 @@ class Challenges extends Component {
                                                         </Row>
                                                     </ListGroup.Item>
                                                 );
-                                            // }
+                                            }
                                         })}
+
                                     </ListGroup>
                                 </CurChallengesCard>
                             </Col>
@@ -248,32 +249,34 @@ class Challenges extends Component {
                                             </Col>
                                         </Row>
                                         {this.props.user.challenges.map(challenge => {
-                                            return (
-                                                <ListGroup.Item key={challenge.id} className="bg-light">
-                                                    <Row>
-                                                        <Col sm={3}>
-                                                            <Row>
-                                                                <Col sm={12}>
-                                                                <img src={challenge.challenger.imageUrl} className="challenge-avatars" alt={challenge.challenger.email}></img>
-                                                                </Col>
-                                                                <Col sm={12}>
-                                                                {challenge.challenger.givenName} {challenge.challenger.familyName}
-                                                                </Col>
-                                                            </Row>
-                                                        </Col>
-                                                        <Col sm={6}>
-                                                            {challenge.name}
-                                                            <div className="progress-bar bg-success mt-2" style={{ width: challenge.challengeProgress }}> </div>
-                                                        </Col>
-                                                        <Col sm={3}>
-                                                            <DeleteChalBtn className="ml-5"
-                                                                onClick={() => this.onChallengeDelete(challenge.id)}
-                                                                btnname="Decline"
-                                                            />
-                                                        </Col>
-                                                    </Row>
-                                                </ListGroup.Item>
-                                            );
+                                            if (challenge.isAchieved === true) {
+                                                return (
+                                                    <ListGroup.Item key={challenge.id} className="bg-light">
+                                                        <Row>
+                                                            <Col sm={3}>
+                                                                <Row>
+                                                                    <Col sm={12}>
+                                                                        <img src={challenge.challenger.imageUrl} className="challenge-avatars" alt={challenge.challenger.email}></img>
+                                                                    </Col>
+                                                                    <Col sm={12}>
+                                                                        {challenge.challenger.givenName} {challenge.challenger.familyName}
+                                                                    </Col>
+                                                                </Row>
+                                                            </Col>
+                                                            <Col sm={6}>
+                                                                {challenge.name}
+                                                                <div className="progress-bar bg-success mt-2" style={{ width: challenge.challengeProgress }}> </div>
+                                                            </Col>
+                                                            <Col sm={3}>
+                                                                <DeleteChalBtn className="ml-5"
+                                                                    onClick={() => this.onChallengeDelete(challenge.id)}
+                                                                    btnname="Decline"
+                                                                />
+                                                            </Col>
+                                                        </Row>
+                                                    </ListGroup.Item>
+                                                );
+                                            }
                                         })}
                                     </ListGroup>
                                 </AchievedChallengesCard>

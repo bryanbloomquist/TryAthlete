@@ -85,6 +85,14 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+
+  updateChallenge: function (req, res) {
+    db.User
+      .findOneAndUpdate({ _id: req.params.id}, { $set: { "challenges.$[elem].isAchieved" : true } }, { arrayFilters: [ { "elem.id" : parseInt(req.params.challengeId)} ] } )      
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+
   removeChallenge: function (req, res) {
     db.User
       .findOneAndUpdate({ _id: req.params.id }, { $pull: { challenges: { "id" : parseInt(req.params.challengeId) } } }, { safe: true })

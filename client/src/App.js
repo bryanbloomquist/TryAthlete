@@ -357,6 +357,7 @@ class App extends Component {
       }
     })
     this.determineGoalAchieved(runDistance, runDuration, rideDistance, rideDuration, swimDistance, swimDuration);
+    this.determineChallengeAchieved(runDistance, runDuration, rideDistance, rideDuration, swimDistance, swimDuration);
   }
 
   determineGoalAchieved = (runDistance, runDuration, rideDistance, rideDuration, swimDistance, swimDuration) => {
@@ -366,37 +367,81 @@ class App extends Component {
       console.log(value)
       if (value.sport === "Run") {
         if (value.goalType === "Distance" && value.goalQty <= runDistance && value.isAchieved === false) {
-          this.setState({ modalBody: "You achieved a running distance goal!" })
+          this.setState({ modalBody: "You achieved a running distance challenge or goal!" })
           API.updateGoal(true, this.state.user._id, value.id)
             .then(res => this.setState({ user: res.data }));
         }
         if (value.goalType === "Time" && value.gaolQty <= runDuration && value.isAchieved === false) {
-          this.setState({ modalBody: "You achieved a running duration goal!" })
+          this.setState({ modalBody: "You achieved a running duration challenge or goal!" })
           API.updateGoal(true, this.state.user._id, value.id)
             .then(res => this.setState({ user: res.data }));
         }
       }
       if (value.sport === "Ride") {
         if (value.goalType === "Distance" && value.goalQty <= rideDistance && value.isAchieved === false) {
-          this.setState({ modalBody: "You achieved a riding distance goal!" })
+          this.setState({ modalBody: "You achieved a riding distance challenge or goal!" })
           API.updateGoal(true, this.state.user._id, value.id)
             .then(res => this.setState({ user: res.data }));
         }
         if (value.goalType === "Time" && value.gaolQty <= rideDuration && value.isAchieved === false) {
-          this.setState({ modalBody: "You achieved a riding duration goal!" })
+          this.setState({ modalBody: "You achieved a riding duration challenge or goal!" })
           API.updateGoal(true, this.state.user._id, value.id)
             .then(res => this.setState({ user: res.data }));
         }
       }
       if (value.sport === "Swim") {
         if (value.goalType === "Distance" && value.goalQty <= swimDistance && value.isAchieved === false) {
-          this.setState({ modalBody: "You achieved a swimming distance goal!" })
+          this.setState({ modalBody: "You achieved a swimming distance challenge or goal!" })
           API.updateGoal(true, this.state.user._id, value.id)
             .then(res => this.setState({ user: res.data }));
         }
         if (value.goalType === "Time" && value.gaolQty <= swimDuration && value.isAchieved === false) {
-          this.setState({ modalBody: "You achieved a swimming duration goal!" })
+          this.setState({ modalBody: "You achieved a swimming duration challenge or goal!" })
           API.updateGoal(true, this.state.user._id, value.id)
+            .then(res => this.setState({ user: res.data }));
+        }
+      }
+    })
+  }
+
+  determineChallengeAchieved = (runDistance, runDuration, rideDistance, rideDuration, swimDistance, swimDuration) => {
+    let goalsArray = this.state.user.goals;
+
+    goalsArray.map((value, index) => {
+      console.log(value)
+      if (value.sport === "Run") {
+        if (value.goalType === "Distance" && value.goalQty <= runDistance && value.isAchieved === false) {
+          this.setState({ modalBody: "You achieved a running distance challenge or goal!" })
+          API.updateChallenge(true, this.state.user._id, value.id)
+            .then(res => this.setState({ user: res.data }));
+        }
+        if (value.goalType === "Time" && value.gaolQty <= runDuration && value.isAchieved === false) {
+          this.setState({ modalBody: "You achieved a running duration challenge or goal!" })
+          API.updateChallenge(true, this.state.user._id, value.id)
+            .then(res => this.setState({ user: res.data }));
+        }
+      }
+      if (value.sport === "Ride") {
+        if (value.goalType === "Distance" && value.goalQty <= rideDistance && value.isAchieved === false) {
+          this.setState({ modalBody: "You achieved a riding distance challenge or goal!" })
+          API.updateChallenge(true, this.state.user._id, value.id)
+            .then(res => this.setState({ user: res.data }));
+        }
+        if (value.goalType === "Time" && value.gaolQty <= rideDuration && value.isAchieved === false) {
+          this.setState({ modalBody: "You achieved a riding duration challenge or goal!" })
+          API.updateChallenge(true, this.state.user._id, value.id)
+            .then(res => this.setState({ user: res.data }));
+        }
+      }
+      if (value.sport === "Swim") {
+        if (value.goalType === "Distance" && value.goalQty <= swimDistance && value.isAchieved === false) {
+          this.setState({ modalBody: "You achieved a swimming distance challenge or goal!" })
+          API.updateChallenge(true, this.state.user._id, value.id)
+            .then(res => this.setState({ user: res.data }));
+        }
+        if (value.goalType === "Time" && value.gaolQty <= swimDuration && value.isAchieved === false) {
+          this.setState({ modalBody: "You achieved a swimming duration challenge or goal!" })
+          API.updateChallenge(true, this.state.user._id, value.id)
             .then(res => this.setState({ user: res.data }));
         }
       }
