@@ -10,8 +10,8 @@ function ChallengeForm(props) {
         <Form>
             <h3 className="py-3">Challenge a Friend</h3>
             <Form.Group as={Row} controlId="newChallenge">
-                <Form.Label column sm={4} className="text-right my-2">Friend:</Form.Label>
-                <Col sm={6}>
+                <Form.Label column xs={4} md={12} lg={4} className="text-right my-2">Friend:</Form.Label>
+                <Col xs={8} md={12} lg={8}>
                     <Form.Control name="fChallenged" className="my-2" as="select" onChange={props.onChallengeChange} defaultValue="">
                             <option disabled></option>
                             {props.friends.map(friend => {
@@ -22,28 +22,28 @@ function ChallengeForm(props) {
                         })}
                     </Form.Control>
                 </Col>
-                <Form.Label column sm={4} className="text-right my-2">Sport:</Form.Label>
-                <Col sm={6}>
+                <Form.Label column xs={4} md={12} lg={4} className="text-right my-2">Sport:</Form.Label>
+                <Col xs={8} md={12} lg={8}>
                     <Form.Control name="sport" className="my-2" as="select" onChange={props.onChallengeChange} defaultValue="Run">
                         <option>Run</option>
                         <option>Ride</option>
                         <option>Swim</option>
                     </Form.Control>
                 </Col>
-                <Form.Label column sm={4} className="text-right  my-2">Type:</Form.Label>
-                <Col sm={6}>
+                <Form.Label column xs={4} md={12} lg={4} className="text-right  my-2">Type:</Form.Label>
+                <Col xs={8} md={12} lg={8}>
                     <Form.Control name="type" className="my-2" as="select" onChange={props.onChallengeChange} defaultValue="Distance">
                         <option>Distance</option>
                         <option>Frequency</option>
                         <option>Time</option>
                     </Form.Control>
                 </Col>
-                <Form.Label column sm={4} className="text-right my-2">Qty:</Form.Label>
-                <Col sm={6}>
+                <Form.Label column xs={4} md={12} lg={4} className="text-right my-2">Qty:</Form.Label>
+                <Col xs={8} md={12} lg={8}>
                     <Form.Control name="qty" className="my-2" type="text" onChange={props.onChallengeChange} placeholder="1" />
                 </Col>
-                <Form.Label column sm={4} className="text-right my-2">Unit:</Form.Label>
-                <Col sm={6}>
+                <Form.Label column xs={4} md={12} lg={4} className="text-right my-2">Unit:</Form.Label>
+                <Col xs={8} md={12} lg={8}>
                     <Form.Control name="unit" className="my-2" as="select" onChange={props.onChallengeChange} defaultValue="mi">
                         <option>mi</option>
                         <option>km</option>
@@ -54,15 +54,15 @@ function ChallengeForm(props) {
                         <option>yards</option>
                     </Form.Control>
                 </Col>
-                <Form.Label column sm={4} className="text-right my-2">Time frame:</Form.Label>
-                <Col sm={6}>
+                <Form.Label column xs={4} md={12} lg={4} className="text-right my-2">Time frame:</Form.Label>
+                <Col xs={8} md={12} lg={8}>
                     <Form.Control name="timeframe" className="my-2" as="select" onChange={props.onChallengeChange} defaultValue="This Week">
                         <option>Today</option>
                         <option>This Week</option>
                     </Form.Control>
                 </Col>
 
-                <Col sm={{ span: 9, offset: 1 }}>
+                <Col sm={{ span: 10, offset: 1 }}>
                     <Button type="submit" variant="warning" size="lg" className="my-2" block onClick={() => props.onChallengeSubmit()} >
                         Challenge Friend
                     </Button>

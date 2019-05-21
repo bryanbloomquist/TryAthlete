@@ -18,32 +18,28 @@ function Profile(props) {
                 </Col>
             </Row>
             <Row>
-                <Col size="md-6" style={Style.header}>
+                <Col md={6} style={Style.header}>
                     <Jumbotron style={Style.jumbo}>
                         <h1>{props.user.givenName} {props.user.familyName}</h1>
                         <h2>
 
                         </h2>
                         <img src={props.user.imageUrl} style={Style.image} className="text-center" alt="User Avatar" />
-
-
-                        <hr></hr>
                     </Jumbotron>
                 </Col>
-                <Col size="md-6" style={Style.header}>
+                <Col md={6} style={Style.header}>
                     <Jumbotron style={Style.jumbo}>
-                        <h4>Lifetime Totals</h4>
+                        <h1>Lifetime Totals</h1>
                         <ul style={Style.ul}>
                             <li style={Style.li}><span style={Style.span}>Bike: </span>{Calculations.calcTotalBike(props.user.activities).toFixed(2)} miles</li>
                             <li style={Style.li}><span style={Style.span}>Run:</span> {Calculations.calcTotalRun(props.user.activities).toFixed(2)} miles</li>
                             <li style={Style.li}><span style={Style.span}>Swim:</span> {Calculations.calcTotalSwim(props.user.activities).toFixed(2)} yards</li>
                             <li style={Style.li}>Total Activities Completed: {activityNum}</li>
                         </ul>
-                        <hr></hr>
                     </Jumbotron>
                 </Col>
             </Row>
-
+            <hr></hr>
             <Row>
                 <Col style={Style.info}>
                     <h4>Activity Log</h4>
