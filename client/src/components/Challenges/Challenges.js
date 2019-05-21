@@ -23,7 +23,7 @@ class Challenges extends Component {
             {
                 sport: "Run",
                 type: "Distance",
-                qty: 1,
+                qty: "1",
                 unit: "mi",
                 timeframe: "This Week",
                 fChallenged: ""

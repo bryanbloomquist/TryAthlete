@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 
 
 function ChallengeForm(props) {
+    console.log(props.newChallenge)
     return (
         <Form>
             <h3 className="py-3">Challenge a Friend</h3>
@@ -40,7 +41,7 @@ function ChallengeForm(props) {
                 </Col>
                 <Form.Label column xs={4} md={12} lg={4} className="text-right my-2">Qty:</Form.Label>
                 <Col xs={8} md={12} lg={8}>
-                    <Form.Control name="qty" className="my-2" type="number" min={1} onChange={props.onChallengeChange} placeholder="1" />
+                    <Form.Control name="qty" className="my-2" type="number" min={1} onChange={props.onChallengeChange} defaultValue={props.newChallenge.qty} />
                 </Col>
                 <Form.Label column xs={4} md={12} lg={4} className="text-right my-2">Unit:</Form.Label>
                 <Col xs={8} md={12} lg={8}>
