@@ -15,8 +15,9 @@ function ChallengeForm(props) {
                     <Form.Control name="fChallenged" className="my-2" as="select" onChange={props.onChallengeChange} defaultValue="">
                             <option disabled></option>
                             {props.friends.map(friend => {
+                                console.log("Friend Map : ",friend);
                             return (
-                                <option key={friend._id} value={friend._id} title={friend.email}>{friend.givenName} {friend.familyName}</option>
+                                <option key={friend.id} value={friend.id} title={friend.email}>{friend.givenName} {friend.familyName}</option>
                             )
                         })}
                     </Form.Control>
