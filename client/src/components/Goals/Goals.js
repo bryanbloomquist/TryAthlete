@@ -107,6 +107,8 @@ class Goals extends Component {
 
         console.log("goalSubmit clicked: ", this.props.user._id);
 
+        console.log(this.state.newGoal.type)
+
         let newGoal = {
             name: this.state.newGoal.sport + " " + this.state.newGoal.qty + " " + this.state.newGoal.unit + " " + this.state.newGoal.timeframe,
             sport: this.state.newGoal.sport,
@@ -147,24 +149,6 @@ class Goals extends Component {
                                 onGoalChange={this.onGoalChange}
                                 onGoalSubmit={this.onGoalSubmit}
                                 curGoal={this.state.newGoal}
-                                type={"distance"}
-                                unit={['mi','km']}
-                            />
-                             <GoalsForm
-                                user={this.props.user}
-                                onGoalChange={this.onGoalChange}
-                                onGoalSubmit={this.onGoalSubmit}
-                                curGoal={this.state.newGoal}
-                                type={"frequency"}
-                                unit={'times'}
-                            />
-                             <GoalsForm
-                                user={this.props.user}
-                                onGoalChange={this.onGoalChange}
-                                onGoalSubmit={this.onGoalSubmit}
-                                curGoal={this.state.newGoal}
-                                type={'time'}
-                                unit={['minutes']}
                             />
                         </Card>
                     </Col>
@@ -174,7 +158,6 @@ class Goals extends Component {
                                 <CurGoalsCard>
                                     <ListGroup variant="flush">
                                         {this.state.user.goals.map(goal => {
-                                            console.log(this.state.user.goals)
                                             if (goal.isAchieved === false)
                                                 return (
                                                     <ListGroup.Item key={goal.id} className="bg-light">
