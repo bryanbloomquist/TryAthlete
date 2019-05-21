@@ -210,7 +210,7 @@ class App extends Component {
 
   //ACTIVITY CARD LOGGING TO DB
   onLogClick = (event, sport) => {
-    this.setState({ modalBody: "Keep up the great work!"})
+    this.setState({ modalBody: "Keep up the great work!" })
     console.log(event)
     let whichSport = ""
     switch (sport) {
@@ -366,36 +366,36 @@ class App extends Component {
       console.log(value)
       if (value.sport === "Run") {
         if (value.goalType === "Distance" && value.goalQty <= runDistance && value.isAchieved === false) {
-          this.setState({modalBody: "You achieved a running distance goal!"})
+          this.setState({ modalBody: "You achieved a running distance goal!" })
           API.updateGoal(true, this.state.user._id, value.id)
             .then(res => this.setState({ user: res.data }));
         }
         if (value.goalType === "Time" && value.gaolQty <= runDuration && value.isAchieved === false) {
-          this.setState({modalBody: "You achieved a running duration goal!"})
+          this.setState({ modalBody: "You achieved a running duration goal!" })
           API.updateGoal(true, this.state.user._id, value.id)
             .then(res => this.setState({ user: res.data }));
         }
       }
       if (value.sport === "Ride") {
         if (value.goalType === "Distance" && value.goalQty <= rideDistance && value.isAchieved === false) {
-          this.setState({modalBody: "You achieved a riding distance goal!"})
+          this.setState({ modalBody: "You achieved a riding distance goal!" })
           API.updateGoal(true, this.state.user._id, value.id)
             .then(res => this.setState({ user: res.data }));
         }
         if (value.goalType === "Time" && value.gaolQty <= rideDuration && value.isAchieved === false) {
-          this.setState({modalBody: "You achieved a riding duration goal!"})
+          this.setState({ modalBody: "You achieved a riding duration goal!" })
           API.updateGoal(true, this.state.user._id, value.id)
             .then(res => this.setState({ user: res.data }));
         }
       }
       if (value.sport === "Swim") {
         if (value.goalType === "Distance" && value.goalQty <= swimDistance && value.isAchieved === false) {
-          this.setState({modalBody: "You achieved a swimming distance goal!"})
+          this.setState({ modalBody: "You achieved a swimming distance goal!" })
           API.updateGoal(true, this.state.user._id, value.id)
             .then(res => this.setState({ user: res.data }));
         }
         if (value.goalType === "Time" && value.gaolQty <= swimDuration && value.isAchieved === false) {
-          this.setState({modalBody: "You achieved a swimming duration goal!"})
+          this.setState({ modalBody: "You achieved a swimming duration goal!" })
           API.updateGoal(true, this.state.user._id, value.id)
             .then(res => this.setState({ user: res.data }));
         }
@@ -424,14 +424,26 @@ class App extends Component {
             API.addFriend(friendData, this.state.user._id)
               .then(
                 console.log("Added " + searchUser.email + " to friends list")
-                
+
               )
-              window.location.reload();
+            window.location.reload();
           }
 
         })
       })
   }
+
+  onUnfriend = ((friendID) => {
+    console.log("onFriend", friendID, "userID ", this.state.user._id);
+    console.log(friendID)
+    API.deleteFriend(this.state.user._id, friendID)
+      .then()
+      .catch(err => console.log(err));
+  }
+  
+  // window.location.reload()
+  );
+
 
   // determine if a badge has been earned
   calcBadges = () => {
@@ -494,8 +506,9 @@ class App extends Component {
               <Route exact path="/social" render={(props) => <Social {...props}
                 user={this.state.user}
                 friends={this.state.friends}
-                onFriendSearchChange={this.onFriendSearchChange} 
-                onFriendSearchSubmit={this.onFriendSearchSubmit} />} />
+                onFriendSearchChange={this.onFriendSearchChange}
+                onFriendSearchSubmit={this.onFriendSearchSubmit}
+                onUnfriend={this.onUnfriend} />} />
               <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state.user} delete={this.deleteActivity} />} />
               {/* <Route component={NoMatch} /> */}
             </Switch>

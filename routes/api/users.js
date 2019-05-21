@@ -33,7 +33,7 @@ router
   .put(usersController.addFriend)
 
 router
-  .route("/:id/friends/:friendId")
+  .route("/:id/friends")
   .delete(usersController.removeFriend)
 
 // //goals

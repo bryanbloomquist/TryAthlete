@@ -25,7 +25,7 @@ function Social(props) {
                 <Button variant="primary" onClick={() => props.onFriendSearchSubmit()}>Add Friend</Button>
             </Row>
             <Row>
-                <SocialArrayMap length={length} friends={friends} user={user}></SocialArrayMap>
+                <SocialArrayMap length={length} friends={friends} user={user} onUnfriend={props.onUnfriend}></SocialArrayMap>
             </Row>
         </Container>
     );
