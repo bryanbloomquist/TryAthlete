@@ -167,7 +167,7 @@ class Challenges extends Component {
     });
 
 
-    render(props) {
+    render(props) { 
         console.log("friends State: ", this.state.friends)
         return (
             <Container fluid className="pb-5">
@@ -177,7 +177,7 @@ class Challenges extends Component {
                     </Col>
                 </Row>
                 <Row className="text-center py-5">
-                    <Col md={4}>
+                    <Col md={4} className = "mb-4">
                         <Card className="card-wide text-dark bg-light">
                             <ChallengeForm
                                 user={this.props.user}
@@ -190,14 +190,14 @@ class Challenges extends Component {
                     </Col>
                     <Col md={8}>
                         <Row>
-                            <Col>
+                            <Col className = "mb-4">
                                 <CurChallengesCard>
                                     <ListGroup variant="flush">
                                         <Row className="mb-3 font-weight-bold">
-                                            <Col sm={3} className="my-auto">
+                                            <Col className="my-auto">
                                                 Challenger
                                             </Col>
-                                            <Col sm={6} className="my-auto">
+                                            <Col className="my-auto">
                                                 Challenge Name <br />& Progress
                                             </Col>
                                         </Row>
@@ -236,14 +236,14 @@ class Challenges extends Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col>
+                            <Col className = "mb-4">
                                 <AchievedChallengesCard>
                                     <ListGroup variant="flush">
                                         <Row className="mb-3 font-weight-bold">
-                                            <Col sm={3} className="my-auto">
+                                            <Col className="my-auto">
                                                 Challenger
                                             </Col>
-                                            <Col sm={6} className="my-auto">
+                                            <Col className="my-auto">
                                                 Challenge Name <br />& Progress
                                             </Col>
                                         </Row>
