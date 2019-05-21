@@ -15,6 +15,10 @@ class Challenges extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            user:
+            {
+                challenges: []
+            },
             newChallenge:
             {
                 sport: "Run",
@@ -26,6 +30,22 @@ class Challenges extends Component {
             }
         }
     }
+
+
+
+    componentDidMount() {
+        this.loadChallenges();
+    };
+
+    loadChallenges = () => {
+        API.getUser(this.props.user._id)
+            .then(res =>
+                this.setState({
+                    user: { challenges: res.data.challenges }
+                })
+            )
+            .catch(err => console.log(err));
+    };
 
 
     onChallengeChange = (event) => {
@@ -140,7 +160,7 @@ class Challenges extends Component {
             .catch(err => console.log(err));
     })
 
-    onChallangeDelete = ((challengeID) => {
+    onChallengeDelete = ((challengeID) => {
         API.deleteChallenge(this.props.user._id, challengeID)
             .then(res => this.loadChallenges())
             .catch(err => console.log(err));
@@ -181,7 +201,7 @@ class Challenges extends Component {
                                                 Challenge Name <br />& Progress
                                             </Col>
                                         </Row>
-                                        {this.props.user.challenges.map(challenge => {
+                                        {this.state.user.challenges.map(challenge => {
                                             // if (challenge.isAchieved) {
                                                 return (
                                                     <ListGroup.Item key={challenge.id} className="bg-light">
