@@ -78,7 +78,8 @@ export default {
     },
 
     deleteFriend: function (userId, friendId) {
-        return axios.delete(`/api/users/${userId}/friends`, friendId);
+        console.log(`/api/users/${userId}/friends/${friendId}`)
+        return axios.delete(`/api/users/${userId}/friends/${friendId}`);
     }
 
 };

@@ -107,9 +107,9 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   removeFriend: function (req, res) {
-    console.log(req.body);
+    console.log(req.params);
     db.User
-      .findOneAndUpdate({ _id: req.params.id }, { $pull: { friends: req.body } }, { safe: true })
+      .findOneAndUpdate({ _id: req.params.id }, { $pull: { friends: req.params.friends } }, { safe: true })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }
