@@ -5,36 +5,11 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 function GoalForm(props) {
-    let unitOptionOne;
-    let unitOptionTwo;
-
-    let sport = props.curGoal.sport;
-    let type = props.curGoal.type;
-
-    //if the goal type is distance
-    if (type === "Distance") {
-        //if the sport is run or bike
-        if (sport === "Run" || sport === "Ride") {
-            unitOptionOne = <option>mi</option>;
-            unitOptionTwo = <option>km</option>;
-        } else {
-            //unitOptions = //set options to meters/yards
-            unitOptionOne = <option>meters</option>;
-            unitOptionTwo = <option>yards</option>;
-        }
-    } else if (type === "Frequency") {
-        //unitOptions = //set options to times/days
-        unitOptionOne = <option>times</option>;
-    } else {
-        //unitOptions = //set options to minutes
-        unitOptionOne = <option>minutes</option>;
-    }
-       
 
 console.log(props.curGoal)
 return (
     <Form>
-        <Form.Group as={Row} controlId="newGoal">
+        <Form.Group as={Row} controlId="newGoal">{props.type}
             <Form.Label column sm={4} className="text-right my-2">Sport:</Form.Label>
             <Col sm={6}>
                 <Form.Control name="sport" className="my-2" as="select" onChange={props.onGoalChange} defaultValue="Run">
@@ -46,9 +21,7 @@ return (
             <Form.Label column sm={4} className="text-right  my-2">Type:</Form.Label>
             <Col sm={6}>
                 <Form.Control name="type" className="my-2" as="select" onChange={props.onGoalChange} defaultValue="Distance">
-                    <option>Distance</option>
-                    <option>Frequency</option>
-                    <option>Time</option>
+                    <option>{props.type}</option>
                 </Form.Control>
             </Col>
             <Form.Label column sm={4} className="text-right my-2">Qty:</Form.Label>
@@ -57,18 +30,12 @@ return (
             </Col>
             <Form.Label column sm={4} className="text-right my-2">Unit:</Form.Label>
             <Col sm={6}>
-                <Form.Control name="unit" className="my-2" as="select" onChange={props.onGoalChange} /*defaultValue="mi"*/>
-                    {unitOptionOne}
-                    {unitOptionTwo}
-                     
-                     
-                     {/* <option>mi</option>
-                    <option>km</option>
-                    <option>minutes</option>
-                    <option>days</option>
-                    <option>times</option>
-                    <option>meters</option>
-                    <option>yards</option> */}
+                <Form.Control name="unit" className="my-2" as="select" onChange={props.onGoalChange} /*defaultValue="mi"*/>                     
+                    {props.unit.map(unit => {
+                        return(
+                        <option>{unit}</option>
+                        )
+                    })}
                 </Form.Control>
             </Col>
             <Form.Label column sm={4} className="text-right my-2">Time frame:</Form.Label>

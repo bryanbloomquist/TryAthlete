@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import GoalForm from "./GoalForm";
+import GoalsForm from "./GoalsForm";
 import CurGoalsCard from "./CurGoalsCard";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -142,11 +142,29 @@ class Goals extends Component {
                 <Row className="text-center py-5">
                     <Col md={4}>
                         <Card className="card-wide text-dark bg-light">
-                            <GoalForm
+                            <GoalsForm
                                 user={this.props.user}
                                 onGoalChange={this.onGoalChange}
                                 onGoalSubmit={this.onGoalSubmit}
                                 curGoal={this.state.newGoal}
+                                type={"distance"}
+                                unit={['mi','km']}
+                            />
+                             <GoalsForm
+                                user={this.props.user}
+                                onGoalChange={this.onGoalChange}
+                                onGoalSubmit={this.onGoalSubmit}
+                                curGoal={this.state.newGoal}
+                                type={"frequency"}
+                                unit={'times'}
+                            />
+                             <GoalsForm
+                                user={this.props.user}
+                                onGoalChange={this.onGoalChange}
+                                onGoalSubmit={this.onGoalSubmit}
+                                curGoal={this.state.newGoal}
+                                type={'time'}
+                                unit={['minutes']}
                             />
                         </Card>
                     </Col>
