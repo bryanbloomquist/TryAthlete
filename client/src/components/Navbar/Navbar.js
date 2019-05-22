@@ -1,9 +1,6 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import Form from "react-bootstrap/Form";
-import FormControl from "react-bootstrap/FormControl";
-import Button from "react-bootstrap/Button";
 import Logo from "../images/logo.svg";
 const Link = require("react-router-dom").Link;
 
@@ -28,10 +25,6 @@ function NavbarArea(props) {
                     <Link style={style} to="/badges">Badges</Link>
                     <Link style={style} to="/social">Social</Link>
                 </Nav>
-                <Form inline className="searchBar">
-                    <FormControl type="text" placeholder="Search for friends" className="mr-sm-2" />
-                    <Button className="searchButton" variant="outline-success">Search</Button>
-                </Form>
             </Navbar.Collapse>
             <Link to="/profile"><Navbar.Brand>
                 <img className="avatar" src={props.children.imageUrl} alt={props.children.givenName}></img>
