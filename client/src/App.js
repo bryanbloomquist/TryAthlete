@@ -193,8 +193,9 @@ class App extends Component {
             })
             .catch((err) => console.log((err)))
         }
-        this.getUserFriends();
-      })
+      }).then(
+        this.getUserFriends()
+      )
   }
 
   responseGoogleFailure = (response) => {
