@@ -31,8 +31,7 @@ const UserSchema = new Schema({
     type: Array, "default": []
   },
   friends: {
-    type: Array,
-    default: []
+    type: Array, "default": []
   }
 });
 

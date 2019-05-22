@@ -28,10 +28,6 @@ function NavbarArea(props) {
                     <Link style={style} to="/badges">Badges</Link>
                     <Link style={style} to="/social">Social</Link>
                 </Nav>
-                <Form inline className="searchBar">
-                    <FormControl type="text" placeholder="Search for friends" className="mr-sm-2" />
-                    <Button className="searchButton" variant="outline-success">Search</Button>
-                </Form>
             </Navbar.Collapse>
             <Link to="/profile"><Navbar.Brand>
                 <img className="avatar" src={props.children.imageUrl} alt={props.children.givenName}></img>

@@ -462,31 +462,46 @@ class App extends Component {
     API.getUsers()
       .then(res => {
         let searchUsers = res.data;
+        let userNotFound = 0;
         searchUsers.forEach(searchUser => {
           if (searchUser.email === this.state.friendSearch) {
             let friendData = {
               friends: searchUser._id
             }
-
+            let userData = {
+              friends: this.state.user._id
+            }
+            // Add found friend to current user friend array
             API.addFriend(friendData, this.state.user._id)
               .then(
-                console.log("Added " + searchUser.email + " to friends list")
+                console.log("Added " + searchUser.email + " to " + this.state.friendSearch + "'s friends list")
+              )
 
+            // Add current user to found friend array (mutually friends)
+            API.addFriend(userData, searchUser._id)
+              .then(
+                console.log("Added " + this.state.friendSearch + "to " + searchUser.email + "'s friends list")
               )
             window.location.reload();
           }
-
+          else {
+            // No users found with this email
+            userNotFound++
+          }
+          // The number of users not found in the conditional equals the number of users in the array
+          // This means no users match friend search and they must not exist
+          if (userNotFound === searchUsers.length) {
+            this.setState({ modalBody: "User not found" })
+            this.handleShow()
+          }
         })
       })
   }
 
   onUnfriend = (friendID) => {
-    console.log("onFriend", friendID, "userID ", this.state.user._id);
-    console.log(friendID)
     API.deleteFriend(this.state.user._id, friendID)
       .then(window.location.reload())
       .catch(err => console.log(err));
-      
   }
   
   // window.location.reload()
