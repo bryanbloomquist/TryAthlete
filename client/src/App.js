@@ -101,7 +101,7 @@ class App extends Component {
           this.setState({ user: res.data, loggedIn: true });
 
           //populate user friends list
-          // this.getUserFriends();
+          this.getUserFriends();
         })
     } else {
       console.log("no user")
