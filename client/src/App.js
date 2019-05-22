@@ -101,7 +101,7 @@ class App extends Component {
           this.setState({ user: res.data, loggedIn: true });
 
           //populate user friends list
-          this.getUserFriends();
+          // this.getUserFriends();
         })
     } else {
       console.log("no user")
@@ -109,19 +109,25 @@ class App extends Component {
   }
 
   //friends function that populates after user loaded
+
   getUserFriends = () => {
-    let getFriendsPromises = [];
-    for (let i = 0; i < this.state.user.friends.length; i++) {
-      console.log("Loading Friends List into State: ", this.state.user.friends[i]);
-      getFriendsPromises.push(this.userNameLookup(this.state.user.friends[i]));
-    }
-    Promise.all(getFriendsPromises).then((values) => {
-      console.log(values);
-      console.log("got here");
-      this.setState({
-        friends: values
+    if (this.state.user.friends.length === 0) {
+      console.log("getUserFriends - No")
+    } else {
+
+      let getFriendsPromises = [];
+      for (let i = 0; i < this.state.user.friends.length; i++) {
+        console.log("Loading Friends List into State: ", this.state.user.friends[i]);
+        getFriendsPromises.push(this.userNameLookup(this.state.user.friends[i]));
+      }
+      Promise.all(getFriendsPromises).then((values) => {
+        console.log(values);
+        console.log("got here");
+        this.setState({
+          friends: values
+        });
       });
-    });
+    }
   }
 
   userNameLookup = (id) => {
@@ -503,9 +509,9 @@ class App extends Component {
       .then(window.location.reload())
       .catch(err => console.log(err));
   }
-  
+
   // window.location.reload()
-  
+
 
 
   // determine if a badge has been earned

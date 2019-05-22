@@ -110,7 +110,7 @@ module.exports = {
   //------------------------FRIENDS---------------------
   addFriend: function (req, res) {
     db.User
-      .findOneAndUpdate({ _id: req.params.id }, { $push: { friends: req.body.friends } }, { new: true })
+      .findOneAndUpdate({ _id: req.params.id }, { $push: { friends: req.body.friends } }, { upsert: true })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
